@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
 
-import { Providers } from '@/providers'
+import Providers from './providers'
 
 import type { Metadata } from 'next'
 

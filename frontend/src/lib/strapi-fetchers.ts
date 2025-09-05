@@ -1,0 +1,79 @@
+import { STRAPI_BASE_URL, STRAPI_PUBLIC_TOKEN } from './strapi-config'
+import { type StrapiParams, strapiQueryMap, toQueryString } from './strapi-query'
+
+import type { StrapiContentTypes } from '@/types/strapi-content'
+import type { StrapiListResponse, StrapiSingleResponse } from '@/types/strapi-core'
+
+function authHeaders(): Record<string, string> {
+  return STRAPI_PUBLIC_TOKEN ? { Authorization: `Bearer ${STRAPI_PUBLIC_TOKEN}` } : {}
+}
+
+async function handle<T>(res: Response): Promise<T> {
+  if (res.ok) return (await res.json()) as T
+
+  let message = `HTTP ${res.status}`
+
+  try {
+    const payload = (await res.json()) as { error?: { message?: string; details?: unknown } }
+
+    if (payload?.error?.message) message = payload.error.message
+
+    throw new (class extends Error {
+      status = res.status
+      details = payload?.error?.details
+    })(message)
+  } catch {
+    // non‑JSON error
+    throw new Error(message)
+  }
+}
+
+export async function fetchCollection<K extends keyof StrapiContentTypes>(
+  contentType: K,
+  params?: StrapiParams,
+): Promise<StrapiListResponse<StrapiContentTypes[K]>> {
+  const preset = strapiQueryMap[contentType]?.list
+  const qs = toQueryString({ ...(preset ?? {}), ...(params ?? {}) })
+  const res = await fetch(`${STRAPI_BASE_URL}/${String(contentType)}${qs}`, {
+    headers: { 'Content-Type': 'application/json', ...authHeaders() },
+    cache: 'no-store', // tweak per your SSR strategy
+  })
+
+  return handle(res)
+}
+
+export async function fetchSingleBySlug<K extends keyof StrapiContentTypes>(
+  contentType: K,
+  slug: string,
+  params?: StrapiParams,
+): Promise<StrapiSingleResponse<StrapiContentTypes[K]>> {
+  const preset = strapiQueryMap[contentType]?.single
+  const merged: StrapiParams = {
+    ...(preset ?? {}),
+    ...(params ?? {}),
+    filters: { ...(preset?.filters ?? {}), ...(params?.filters ?? {}), slug: { $eq: slug } },
+  }
+  const qs = toQueryString(merged)
+  const res = await fetch(`${STRAPI_BASE_URL}/${String(contentType)}${qs}`, {
+    headers: { 'Content-Type': 'application/json', ...authHeaders() },
+    cache: 'no-store',
+  })
+  const list = await handle<StrapiListResponse<StrapiContentTypes[K]>>(res)
+
+  return { data: list.data?.[0] ?? null, meta: list.meta }
+}
+
+export async function fetchSingleById<K extends keyof StrapiContentTypes>(
+  contentType: K,
+  id: number | string,
+  params?: StrapiParams,
+): Promise<StrapiSingleResponse<StrapiContentTypes[K]>> {
+  const preset = strapiQueryMap[contentType]?.single
+  const qs = toQueryString({ ...(preset ?? {}), ...(params ?? {}) })
+  const res = await fetch(`${STRAPI_BASE_URL}/${String(contentType)}/${id}${qs}`, {
+    headers: { 'Content-Type': 'application/json', ...authHeaders() },
+    cache: 'no-store',
+  })
+
+  return handle(res)
+}
