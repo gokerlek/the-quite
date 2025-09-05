@@ -1,12 +1,18 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 # Dependencies
 node_modules/
 */node_modules/
+/.pnp
+.pnp.js
 
 # Build outputs
 dist/
 build/
 .next/
+/.next/
 out/
+/out/
 
 # Environment files
 .env
@@ -14,6 +20,7 @@ out/
 .env.development.local
 .env.test.local
 .env.production.local
+.env*.local
 
 # Logs
 *.log
@@ -23,24 +30,26 @@ yarn-error.log*
 bun-debug.log*
 lerna-debug.log*
 
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Coverage directory used by tools like istanbul
+# Testing
+/coverage
 coverage/
 *.lcov
 
 # nyc test coverage
 .nyc_output
 
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
 # Dependency directories
 jspm_packages/
 
 # TypeScript build info
 *.tsbuildinfo
+next-env.d.ts
 
 # Optional npm cache directory
 .npm
@@ -67,12 +76,8 @@ jspm_packages/
 .cache
 .parcel-cache
 
-# Next.js build output
-.next
-
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Storybook build outputs
 .out
@@ -98,10 +103,13 @@ temp/
 .Trashes
 ehthumbs.db
 Thumbs.db
+*.pem
+
+# Vercel
+.vercel
 
 # Strapi specific
 .tmp/
-.cache/
 .strapi-updater.json
 public/uploads/*
 !public/uploads/.gitkeep
