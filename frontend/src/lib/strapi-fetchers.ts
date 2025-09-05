@@ -1,3 +1,5 @@
+import { toast } from 'sonner'
+
 import { STRAPI_BASE_URL, STRAPI_PUBLIC_TOKEN } from './strapi-config'
 import { type StrapiParams, strapiQueryMap, toQueryString } from './strapi-query'
 
@@ -18,12 +20,22 @@ async function handle<T>(res: Response): Promise<T> {
 
     if (payload?.error?.message) message = payload.error.message
 
-    throw new (class extends Error {
+    const err = new (class extends Error {
       status = res.status
       details = payload?.error?.details
     })(message)
+
+    if (typeof window !== 'undefined') {
+      toast.error(message)
+    }
+
+    throw err
   } catch {
     // non‑JSON error
+    if (typeof window !== 'undefined') {
+      toast.error(message)
+    }
+
     throw new Error(message)
   }
 }
@@ -36,7 +48,8 @@ export async function fetchCollection<K extends keyof StrapiContentTypes>(
   const qs = toQueryString({ ...(preset ?? {}), ...(params ?? {}) })
   const res = await fetch(`${STRAPI_BASE_URL}/${String(contentType)}${qs}`, {
     headers: { 'Content-Type': 'application/json', ...authHeaders() },
-    cache: 'no-store', // tweak per your SSR strategy
+    // Enable ISR-like caching on the server while still letting React Query manage client caching
+    next: { revalidate: 30 },
   })
 
   return handle(res)
@@ -56,7 +69,7 @@ export async function fetchSingleBySlug<K extends keyof StrapiContentTypes>(
   const qs = toQueryString(merged)
   const res = await fetch(`${STRAPI_BASE_URL}/${String(contentType)}${qs}`, {
     headers: { 'Content-Type': 'application/json', ...authHeaders() },
-    cache: 'no-store',
+    next: { revalidate: 30 },
   })
   const list = await handle<StrapiListResponse<StrapiContentTypes[K]>>(res)
 
@@ -72,7 +85,7 @@ export async function fetchSingleById<K extends keyof StrapiContentTypes>(
   const qs = toQueryString({ ...(preset ?? {}), ...(params ?? {}) })
   const res = await fetch(`${STRAPI_BASE_URL}/${String(contentType)}/${id}${qs}`, {
     headers: { 'Content-Type': 'application/json', ...authHeaders() },
-    cache: 'no-store',
+    next: { revalidate: 30 },
   })
 
   return handle(res)
