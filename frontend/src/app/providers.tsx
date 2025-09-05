@@ -3,6 +3,7 @@
 import { ReactNode, useState } from 'react'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import { Sonner } from '@/components/sonner'
 
@@ -26,6 +27,8 @@ export default function Providers({ children }: { children: ReactNode }) {
       {children}
 
       <Sonner />
+
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   )
 }
