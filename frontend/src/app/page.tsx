@@ -1,53 +1,56 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import { strapiApi } from '@/lib/api';
-import { LandingPage } from '@/types/strapi';
-import Layout from '@/components/Layout';
-import Hero from '@/components/Hero';
+import { useEffect, useState } from 'react'
+
+import Hero from '@/components/Hero'
+import Layout from '@/components/Layout'
+import { strapiApi } from '@/lib/api'
+import { LandingPage } from '@/types/strapi'
 
 export default function Home() {
-  const [landingPage, setLandingPage] = useState<LandingPage | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [landingPage, setLandingPage] = useState<LandingPage | null>(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function fetchLandingPage() {
       try {
-        const response = await strapiApi.getLandingPage();
-        setLandingPage(response.data);
+        const response = await strapiApi.getLandingPage()
+
+        setLandingPage(response.data)
       } catch (error) {
-        console.error('Failed to fetch landing page:', error);
+        console.error('Failed to fetch landing page:', error)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     }
 
-    fetchLandingPage();
-  }, []);
+    fetchLandingPage()
+  }, [])
 
   if (loading) {
     return (
       <Layout>
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+        <div className='flex items-center justify-center min-h-[60vh]'>
+          <div className='animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900'></div>
         </div>
       </Layout>
-    );
+    )
   }
 
   if (!landingPage) {
     return (
       <Layout>
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Welcome!</h1>
-            <p className="text-lg text-gray-600">
+        <div className='flex items-center justify-center min-h-[60vh]'>
+          <div className='text-center'>
+            <h1 className='text-4xl font-bold text-gray-900 mb-4'>Welcome!</h1>
+
+            <p className='text-lg text-gray-600'>
               Your Strapi backend is ready. Add some content to get started.
             </p>
           </div>
         </div>
       </Layout>
-    );
+    )
   }
 
   return (
@@ -60,5 +63,5 @@ export default function Home() {
         </div>
       )}
     </Layout>
-  );
+  )
 }

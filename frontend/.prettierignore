@@ -1,0 +1,6 @@
+node_modules
+.next
+build
+package-lock.json
+bun.lockb
+/src/components/auth/AuthLayout.tsx

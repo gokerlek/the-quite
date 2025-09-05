@@ -1,16 +1,12 @@
-import type { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin'
 
-const nextConfig: NextConfig = {
-   images: {
-      remotePatterns: [
-         {
-            protocol: 'http',
-            hostname: 'localhost',
-            port: '1337',
-            pathname: '/uploads/**',
-         },
-      ],
-   },
-};
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
-export default nextConfig;
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  turbopack: {
+    root: __dirname,
+  },
+}
+
+export default withNextIntl(nextConfig)

@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/bun.lockb
 /.pnp
 .pnp.*
 .yarn/*
@@ -9,6 +10,11 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+.vscode
+.cursor
+.cursorrules
+.cursorignore
+
 
 # testing
 /coverage
@@ -16,6 +22,8 @@
 # next.js
 /.next/
 /out/
+
+/.idea
 
 # production
 /build
