@@ -40,7 +40,12 @@
       "instruction": "Enter your registered email address and we'll send you a secure login link.",
       "success": "Login link sent successfully! Check your email.",
       "verifyTitle": "Check Your Email",
-      "verifyDescription": "We've sent a login link to your email"
+      "verifyDescription": "We've sent a login link to your email",
+      "errors": {
+        "required": "Email address is required",
+        "invalid": "Please enter a valid email address",
+        "tooLong": "Email address is too long"
+      }
     },
     "verify": {
       "title": "Verify Your Email",
@@ -52,7 +57,14 @@
       "resendingButton": "Resending...",
       "backToEmail": "Back to email",
       "instruction": "We've sent a 6-digit verification code to",
-      "success": "Email verified successfully!"
+      "success": "Email verified successfully!",
+      "noCode": "Didn't receive the code?",
+      "helpText": "The code is valid for 10 minutes.",
+      "contactSupport": "If the problem persists, please contact our support team.",
+      "errors": {
+        "required": "6-digit verification code is required",
+        "invalid": "Please enter numbers only"
+      }
     },
     "contact": {
       "title": "Contact Administrator",

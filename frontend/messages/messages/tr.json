@@ -1,7 +1,6 @@
 {
   "auth": {
   "welcome": "Hoş Geldiniz",
-
   "password": "Şifre",
   "signin": "Giriş Yap",
   "signup": "Kayıt Ol",
@@ -32,16 +31,21 @@
     "email": {
       "title": "Email Girişi",
       "description": "Size güvenli bir giriş bağlantısı göndereceğiz",
-      "emailPlaceholder": "Email adresinizi girin",
-      "sendButton": "Giriş bağlantısı gönder",
-      "sendingButton": "Gönderiliyor...",
+      "emailPlaceholder": "ornek@email.com",
+      "sendButton": "Doğrulama kodu gönder",
+      "sendingButton": "Kod gönderiliyor...",
       "checkButton": "Emailinizi kontrol edin",
       "checkingButton": "Kontrol ediliyor...",
       "backToLogin": "Girişe dön",
       "instruction": "Kayıtlı email adresinizi girin, size güvenli bir giriş bağlantısı gönderelim.",
-      "success": "Giriş bağlantısı başarıyla gönderildi! Emailinizi kontrol edin.",
+      "success": "Doğrulama kodu email adresinize gönderildi",
       "verifyTitle": "Emailinizi Kontrol Edin",
-      "verifyDescription": "Emailinize bir giriş bağlantısı gönderdik"
+      "verifyDescription": "Emailinize bir giriş bağlantısı gönderdik",
+      "errors": {
+        "required": "Email adresi gerekli",
+        "invalid": "Geçerli bir email adresi girin",
+        "tooLong": "Email adresi çok uzun"
+      }
     },
     "verify": {
       "title": "Emailinizi Doğrulayın",
@@ -53,7 +57,14 @@
       "resendingButton": "Tekrar gönderiliyor...",
       "backToEmail": "Email'e dön",
       "instruction": "6 haneli doğrulama kodunu şu adrese gönderdik",
-      "success": "Email başarıyla doğrulandı!"
+      "success": "Email başarıyla doğrulandı!",
+      "noCode": "Kod gelmedi mi?",
+      "helpText": "Kodun geçerlilik süresi 10 dakikadır.",
+      "contactSupport": "Sorun devam ediyorsa destek ekibimizle iletişime geçin.",
+      "errors": {
+        "required": "6 haneli doğrulama kodu gerekli",
+        "invalid": "Sadece rakam giriniz"
+      }
     },
     "contact": {
       "title": "Yetkili ile İletişim",

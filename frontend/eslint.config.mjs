@@ -1,4 +1,5 @@
 import { FlatCompat } from '@eslint/eslintrc'
+import tanstackQuery from '@tanstack/eslint-plugin-query'
 import prettierConfig from 'eslint-config-prettier'
 import importPlugin from 'eslint-plugin-import'
 import prettier from 'eslint-plugin-prettier'
@@ -18,6 +19,7 @@ const eslintConfig = [
   prettierConfig,
   {
     plugins: {
+      '@tanstack/query': tanstackQuery,
       import: importPlugin,
       'simple-import-sort': simpleImportSort,
       prettier: prettier,
@@ -48,6 +50,11 @@ const eslintConfig = [
       'import/first': 'error',
       'import/newline-after-import': 'error',
       'import/no-duplicates': 'error',
+
+      // React Query rules
+      '@tanstack/query/exhaustive-deps': 'error',
+      '@tanstack/query/no-rest-destructuring': 'warn',
+      '@tanstack/query/stable-query-client': 'error',
 
       // TypeScript rules
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
@@ -105,24 +112,12 @@ const eslintConfig = [
         'error',
         { blankLine: 'always', prev: '*', next: 'return' },
         { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
-        {
-          blankLine: 'any',
-          prev: ['const', 'let', 'var'],
-          next: ['const', 'let', 'var'],
-        },
+        { blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var'] },
         { blankLine: 'always', prev: 'directive', next: '*' },
         { blankLine: 'any', prev: 'directive', next: 'directive' },
         { blankLine: 'always', prev: ['case', 'default'], next: '*' },
-        {
-          blankLine: 'always',
-          prev: '*',
-          next: ['if', 'for', 'while', 'switch', 'try'],
-        },
-        {
-          blankLine: 'always',
-          prev: ['if', 'for', 'while', 'switch', 'try'],
-          next: '*',
-        },
+        { blankLine: 'always', prev: '*', next: ['if', 'for', 'while', 'switch', 'try'] },
+        { blankLine: 'always', prev: ['if', 'for', 'while', 'switch', 'try'], next: '*' },
         { blankLine: 'always', prev: '*', next: 'function' },
         { blankLine: 'always', prev: 'function', next: '*' },
       ],
