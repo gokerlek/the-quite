@@ -1,12 +1,24 @@
 'use client'
 
+import { useRef } from 'react'
+
 import Layout from '@/components/Layout'
 
 export default function Home() {
+  const logoRef = useRef()
+  const logoContainerRef = useRef()
+  const drawingLogo = () => {
+    // todo using gsap timeline drawSVG from 0 to 100%
+  }
+  const scaleUpLogoWithScroll = () => {
+    // todo drawingLogo fonksiyonun calstiktan sonra kullanilabilir olacak. kullanici scroll Logonun buyumesini sagalaycak. logo 20 kat buyuyecek
+  }
+
   return (
     <Layout>
-      <div className='relative min-h-screen bg-offblack-950'>
+      <div ref={logoContainerRef} className='relative min-h-screen bg-offblack-950 overflow-hidden'>
         <svg
+          ref={logoRef}
           id='quiet-drawing-logo'
           viewBox='0 0 860 654'
           fill='none'
