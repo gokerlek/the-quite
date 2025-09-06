@@ -5,7 +5,14 @@ export default [
    {
       name: 'strapi::cors',
       config: {
-         origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:3001', 'http://127.0.0.1:3001'],
+         origin: [
+            'http://localhost:3000',
+            'http://127.0.0.1:3000',
+            'http://localhost:3001',
+            'http://127.0.0.1:3001',
+            // Production frontend URL
+            process.env.FRONTEND_URL,
+         ].filter(Boolean),
          credentials: true,
       },
    },
