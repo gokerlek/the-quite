@@ -8,6 +8,7 @@ import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import Layout from '@/components/Layout'
+import { cn } from '@/lib/utils'
 
 gsap.registerPlugin(useGSAP, DrawSVGPlugin, ScrollTrigger)
 
@@ -80,6 +81,11 @@ export default function Home() {
               : (widthVW - fadeStartVW) / (fadeEndVW - fadeStartVW)
 
         gsap.set('#the_quite', { opacity: t })
+
+        // Update scroll indicator text color when progress reaches 0.9
+        const indicatorColor = p >= 0.6 ? '#1c1c1c' : ''
+
+        gsap.set('#scroll_indicator', { color: indicatorColor })
       }
 
       // initialize at top
@@ -128,10 +134,18 @@ export default function Home() {
           </section>
 
           {/* Spacer to allow scroll once enabled */}
-          <div className={showScrollIndicator ? 'h-[400vh]' : 'h-0'} />
+          <div
+            className={cn({
+              'h-[400vh]': showScrollIndicator,
+              'h-0': !showScrollIndicator,
+            })}
+          />
 
           {showScrollIndicator && (
-            <div className='text-offblack-50 fixed bottom-4 left-1/2 -translate-x-1/2 z-10'>
+            <div
+              id='scroll_indicator'
+              className='text-offblack-50 fixed bottom-4 left-1/2 -translate-x-1/2 z-10'
+            >
               Scroll
             </div>
           )}
@@ -139,7 +153,7 @@ export default function Home() {
 
         <section
           id='the_quite'
-          className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 opacity-0 pointer-events-none'
+          className='absolute bottom-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 z-20 opacity-0 pointer-events-none'
         >
           <svg
             width='480'
