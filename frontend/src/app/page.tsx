@@ -86,6 +86,21 @@ export default function Home() {
         const indicatorColor = p >= 0.6 ? '#1c1c1c' : ''
 
         gsap.set('#scroll_indicator', { color: indicatorColor })
+
+        // Move #the_quite bottom from 50% to 10rem when p goes 0.9 -> 1.0
+        const u = Math.min(1, Math.max(0, (p - 0.9) / 0.1))
+        const bottomInterpolated = u < 1 ? `calc(${(1 - u) * 50}% + ${u * 10}rem)` : '10rem'
+
+        gsap.set('#the_quite', { bottom: bottomInterpolated })
+
+        // When animation completes, remove scroll container and hide the indicator
+        if (p >= 1) {
+          gsap.set(el, { display: 'none' })
+          gsap.set('#scroll_indicator', { display: 'none' })
+        } else {
+          gsap.set(el, { display: '' })
+          gsap.set('#scroll_indicator', { display: '' })
+        }
       }
 
       // initialize at top
