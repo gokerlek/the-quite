@@ -5,12 +5,11 @@ import Layout from '@/components/Layout'
 export default function Home() {
   return (
     <Layout>
-      <div className='relative min-h-screen bg-[#1c1c1c]'>
+      <div className='relative min-h-screen bg-offblack-950'>
         <svg
           id='quiet-drawing-logo'
           viewBox='0 0 860 654'
           fill='none'
-          opacity={0}
           xmlns='http://www.w3.org/2000/svg'
           className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[20%] max-w-[750px]'
         >

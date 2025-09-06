@@ -1,7 +1,6 @@
 'use client'
 
 import { ReactNode, useState } from 'react'
-import { ThemeProvider } from 'next-themes'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
@@ -25,14 +24,11 @@ export default function Providers({ children }: { children: ReactNode }) {
 
   return (
     <QueryClientProvider client={client}>
-      <ThemeProvider attribute='class' defaultTheme='light' enableSystem={false} storageKey='theme'>
-        {children}
+      {children}
 
-        <Sonner />
-      </ThemeProvider>
+      <Sonner />
 
-      {/* Devtools out of ThemeProvider to avoid affecting its UI theme */}
-
+      {/* Devtools */}
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   )

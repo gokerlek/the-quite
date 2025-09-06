@@ -1,20 +1,53 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+    /* OffBlack */
+    --color-offblack-950: lch(10.27% 0.00 296.81);
+    --color-offblack-900: lch(21.70% 0.00 296.81);
+    --color-offblack-800: lch(31.03% 0.00 296.81);
+    --color-offblack-700: lch(39.49% 0.01 296.81);
+    --color-offblack-600: lch(48.84% 0.01 296.81);
+    --color-offblack-500: lch(57.48% 0.01 296.81);
+    --color-offblack-400: lch(65.49% 0.01 296.81);
+    --color-offblack-300: lch(73.68% 0.01 296.81);
+    --color-offblack-200: lch(81.33% 0.01 296.81);
+    --color-offblack-100: lch(88.82% 0.01 296.81);
+    --color-offblack-50:  lch(93.75% 0.01 296.81);
+
+    /* RichCarmine */
+    --color-richcarmine-950: lch(8.74% 28.10 23.61);
+    --color-richcarmine-900: lch(18.87% 45.19 33.19);
+    --color-richcarmine-800: lch(23.88% 51.97 26.52);
+    --color-richcarmine-700: lch(37.44% 74.38 36.22);
+    --color-richcarmine-600: lch(46.05% 87.43 36.75);
+    --color-richcarmine-500: lch(51.88% 87.37 33.65);
+    --color-richcarmine-400: lch(56.91% 72.08 27.85);
+    --color-richcarmine-300: lch(64.39% 54.19 23.04);
+    --color-richcarmine-200: lch(73.00% 20.48 27.31);
+    --color-richcarmine-100: lch(84.00% 20.94 18.20);
+    --color-richcarmine-50:  lch(94.81% 6.48 15.22);
+
+    /* SpringBud */
+    --color-springbud-950: lch(17.88% 19.66 103.57);
+    --color-springbud-900: lch(31.90% 30.92 102.61);
+    --color-springbud-800: lch(44.95% 41.99 102.30);
+    --color-springbud-700: lch(56.96% 49.71 102.12);
+    --color-springbud-600: lch(68.85% 58.79 101.90);
+    --color-springbud-500: lch(76.84% 59.14 102.53);
+    --color-springbud-400: lch(80.92% 49.33 103.70);
+    --color-springbud-300: lch(84.27% 40.76 104.90);
+    --color-springbud-200: lch(89.63% 27.31 106.20);
+    --color-springbud-100: lch(93.78% 16.38 107.52);
+    --color-springbud-50:  lch(98.03% 5.08 109.78);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-inconsolata), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
+
 
