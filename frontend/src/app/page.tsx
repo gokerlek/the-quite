@@ -70,15 +70,11 @@ export default function Home() {
 
         gsap.set('#overlay', { opacity: overlayOpacity })
 
-        // Update #the_quite Opacity: 0->1 only when main logo width goes 200vw->300vw
-        const fadeStartVW = 200
-        const fadeEndVW = 300
+        // Update #the_quite opacity based on scroll progress: 0->1 as p goes 0.6->0.7
+        const fadeStartP = 0.05
+        const fadeEndP = 0.15
         const t =
-          widthVW <= fadeStartVW
-            ? 0
-            : widthVW >= fadeEndVW
-              ? 1
-              : (widthVW - fadeStartVW) / (fadeEndVW - fadeStartVW)
+          p <= fadeStartP ? 0 : p >= fadeEndP ? 1 : (p - fadeStartP) / (fadeEndP - fadeStartP)
 
         gsap.set('#the_quite', { opacity: t })
 
@@ -115,7 +111,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <section className='min-h-screen flex flex-col relative'>
+      <section className='min-h-screen flex flex-col relative h-screen overflow-hidden'>
         <div id='overlay' className='absolute inset-0 bg-offblack-950  '></div>
 
         <section
@@ -168,15 +164,13 @@ export default function Home() {
 
         <section
           id='the_quite'
-          className='absolute bottom-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 z-20 opacity-0 pointer-events-none'
+          className='absolute bottom-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 z-20 opacity-0 pointer-events-none w-[min(80vw,640px)]'
         >
           <svg
-            width='480'
-            height='240'
             viewBox='0 0 480 240'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
-            className='fill-offblack-950'
+            className='fill-offblack-950 w-full h-auto'
           >
             <path d='M72.5022 78V87.8667H72.1245L70.9689 84.2178C70.0889 81.4311 67.5022 79.5378 64.5822 79.5333H56C53.7022 79.5333 51.84 81.3956 51.84 83.6889V154.929C51.8622 157.68 53.6267 160.12 56.2356 161L58.2089 161.667V162.044H41.96V161.667L43.96 161C46.5911 160.12 48.3689 157.649 48.3689 154.871V83.6978C48.3689 81.4 46.5111 79.5378 44.2134 79.5378H35.4622C32.5378 79.5378 29.9556 81.4356 29.0756 84.2178L27.92 87.8667H27.5422V78H72.4934H72.5022Z' />
 
