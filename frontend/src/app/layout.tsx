@@ -27,6 +27,11 @@ const inconsolata = Inconsolata({
 export const metadata: Metadata = {
   title: 'The Quiet',
   description: '',
+  icons: {
+    icon: '/logo.svg',
+    shortcut: '/logo.svg',
+    apple: '/logo.svg',
+  },
 }
 
 export default async function RootLayout({
