@@ -57,14 +57,14 @@ export default function Home() {
         const max = Math.max(0, el.scrollHeight - el.clientHeight)
         const y = el.scrollTop || 0
         const p = max > 0 ? Math.min(1, y / max) : 0
-        const widthVW = 20 + p * (10000 - 20)
+        const widthVW = 20 + p * (15000 - 20)
 
         // Update SVG width based on scroll progression
         gsap.set(svgRef.current!, { width: `${widthVW}vw` })
 
         // Overlay fade-out starts when 20% of scroll remains (p >= 0.8)
         // Opacity stays at 1 until p = 0.8, then linearly goes to 0 at p = 1.0
-        const startFade = 0.2
+        const startFade = 0.9
         const overlayOpacity =
           p < startFade ? 1 : Math.max(0, 1 - (p - startFade) / (1 - startFade))
 
@@ -93,9 +93,11 @@ export default function Home() {
         if (p >= 1) {
           gsap.set(el, { display: 'none' })
           gsap.set('#scroll_indicator', { display: 'none' })
+          gsap.set('#overlay', { display: 'none' })
         } else {
           gsap.set(el, { display: '' })
           gsap.set('#scroll_indicator', { display: '' })
+          gsap.set('#overlay', { display: '' })
         }
       }
 
@@ -130,7 +132,7 @@ export default function Home() {
               viewBox='0 0 860 654'
               fill='none'
               xmlns='http://www.w3.org/2000/svg'
-              className='fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[20vw] pointer-events-none'
+              className='fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[20vw] pointer-events-none min-w-40'
               shapeRendering='geometricPrecision'
               opacity={0}
             >
