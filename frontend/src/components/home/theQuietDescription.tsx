@@ -16,7 +16,7 @@ export function TheQuietDescription({ onDiscover }: Props) {
 
       <button
         onClick={onDiscover}
-        className='bt-white px-5 py-2 bg-offblack-50 text-offblack-950 hover:opacity-80 transform hover:scale-95 transition-all duration-300 ease-in-out'
+        className='bt-white px-5 py-2 bg-offblack-50 text-offblack-950 hover:opacity-80 transform hover:scale-95 transition-all duration-300 ease-in-out cursor-pointer'
       >
         DISCOVER
       </button>
