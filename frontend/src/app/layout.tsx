@@ -3,6 +3,9 @@ import { Geist, Geist_Mono, Inconsolata } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
 
+import Footer from '@/components/layout/footer'
+import Header from '@/components/layout/header'
+
 import Providers from './providers'
 
 import type { Metadata } from 'next'
@@ -48,7 +51,15 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${inconsolata.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
-          <Providers>{children}</Providers>
+          <Providers>
+            {children}
+
+            {/* App-wide header and footer */}
+            {/* They hide when localStorage 'loaded' is true via LoadingContext */}
+            <Header />
+
+            <Footer />
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>

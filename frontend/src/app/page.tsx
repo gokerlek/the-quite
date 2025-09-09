@@ -15,7 +15,6 @@ import { TheQuiteWordmark } from '@/components/home/theQuiteWordmark'
 import { TheQuiteWordmarkWhite } from '@/components/home/theQuiteWordmarkWhite'
 import Layout from '@/components/layout'
 import { useHeroAnimation } from '@/hooks/useHeroAnimation'
-import { useIsClient } from '@/hooks/useIsClient'
 import { useLoadingState } from '@/hooks/useLoadingState'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import { cn } from '@/lib/utils'
@@ -26,16 +25,11 @@ export default function Home() {
   const containerRef = useRef<HTMLElement | null>(null)
   const scrollRef = useRef<HTMLElement | null>(null)
   const svgRef = useRef<SVGSVGElement | null>(null)
-  const isClient = useIsClient()
 
   const { loaded, endLoading } = useLoadingState()
-  const { showScrollIndicator } = useHeroAnimation(containerRef, isClient)
+  const { showScrollIndicator } = useHeroAnimation(containerRef, true)
 
   useScrollAnimation(containerRef, scrollRef, svgRef, showScrollIndicator)
-
-  if (!isClient) {
-    return <div>loading</div>
-  }
 
   return loaded ? (
     <HomeCarousel />
