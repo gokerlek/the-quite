@@ -9,6 +9,6 @@ const navItems = [
 
 export const NavItems = () => {
   return navItems.map((item) => {
-    return <NavItem key={item.label} {...item} />
+    return <NavItem key={item.label} {...item} zIndex={navItems.length - navItems.indexOf(item)} />
   })
 }

@@ -2,13 +2,14 @@ import { useEffect, useRef } from 'react'
 
 import gsap from 'gsap'
 
+import { useDock } from './dockContext'
+
 type Props = {
-  open: boolean
-  onClick?: () => void
   className?: string
 }
 
-export const HamburgerButton = ({ open = false, onClick, className }: Props) => {
+export const HamburgerButton = ({ className }: Props) => {
+  const { open, toggleOpen } = useDock()
   const tlRef = useRef<gsap.core.Timeline | null>(null)
   const topRef = useRef<SVGLineElement | null>(null)
   const midRef = useRef<SVGLineElement | null>(null)
@@ -72,8 +73,8 @@ export const HamburgerButton = ({ open = false, onClick, className }: Props) => 
   return (
     <button
       type='button'
-      onClick={onClick}
-      className={`border border-offblack-950 size-12 flex items-center justify-center cursor-pointer ${className ?? ''}`}
+      onClick={toggleOpen}
+      className={`border bg-offblack-50 border-offblack-950 size-12 flex items-center justify-center cursor-pointer z-50 ${className ?? ''}`}
       aria-label={open ? 'Close menu' : 'Open menu'}
       aria-pressed={open}
     >
