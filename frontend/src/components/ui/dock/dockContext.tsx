@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, ReactNode, RefObject } from 'react'
+import { createContext, ReactNode, RefObject, useContext, useState } from 'react'
 
 interface DockContextType {
   open: boolean
@@ -15,9 +15,11 @@ const DockContext = createContext<DockContextType | undefined>(undefined)
 
 export const useDock = () => {
   const context = useContext(DockContext)
+
   if (!context) {
     throw new Error('useDock must be used within a DockProvider')
   }
+
   return context
 }
 
@@ -32,7 +34,7 @@ export const DockProvider = ({ children }: DockProviderProps) => {
 
   const toggleOpen = () => {
     setHasInteracted(true)
-    setOpen(prevState => !prevState)
+    setOpen((prevState) => !prevState)
   }
 
   const close = () => {
@@ -47,7 +49,9 @@ export const DockProvider = ({ children }: DockProviderProps) => {
   }
 
   return (
-    <DockContext.Provider value={{ open, toggleOpen, menuBoxRef, setMenuBoxRef, close, hasInteracted }}>
+    <DockContext.Provider
+      value={{ open, toggleOpen, menuBoxRef, setMenuBoxRef, close, hasInteracted }}
+    >
       {children}
     </DockContext.Provider>
   )
