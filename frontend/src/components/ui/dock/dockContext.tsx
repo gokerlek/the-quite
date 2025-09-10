@@ -15,7 +15,7 @@ import gsap from 'gsap'
 interface DockContextType {
   open: boolean
   toggleOpen: () => void
-  toggleWithAnimation: () => void
+  toggleWithAnimation: () => Promise<void>
   menuBoxRef: RefObject<HTMLDivElement | null>
   navItemsRef: RefObject<HTMLDivElement | null>
   close: () => Promise<void>
@@ -54,8 +54,9 @@ export const DockProvider = ({ children }: DockProviderProps) => {
     gsap.to(navItems.children, {
       x: -58,
       duration: 0.8,
-      stagger: 0.1,
+      stagger: 0.3,
       delay: 0.1,
+      ease: 'power1.inOut',
     })
   }, [])
 
@@ -63,7 +64,8 @@ export const DockProvider = ({ children }: DockProviderProps) => {
     const navItemsAnimation = gsap.to(navItems.children, {
       x: -500,
       duration: 0.8,
-      stagger: 0.1,
+      stagger: 0.2,
+      ease: 'power1.inOut',
     })
     const menuBoxAnimation = gsap.to(menuBox, {
       x: 0,
@@ -74,7 +76,7 @@ export const DockProvider = ({ children }: DockProviderProps) => {
     return Promise.all([navItemsAnimation, menuBoxAnimation])
   }, [])
 
-  const toggleWithAnimation = useCallback(() => {
+  const toggleWithAnimation = useCallback(async () => {
     setHasInteracted(true)
     const menuBox = menuBoxRef.current
     const navItems = navItemsRef.current
@@ -88,7 +90,7 @@ export const DockProvider = ({ children }: DockProviderProps) => {
     if (!open) {
       openAnimation(menuBox, navItems)
     } else {
-      closeAnimation(menuBox, navItems)
+      await closeAnimation(menuBox, navItems)
     }
 
     toggleOpen()
