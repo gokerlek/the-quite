@@ -1,6 +1,7 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
-import Typography from '@/components/ui/typography'
+import Text from '@/components/ui/text'
 
 interface CarouselCardProps {
   img: string
@@ -14,13 +15,19 @@ export const CarouselCard = ({ img, title, description, href }: CarouselCardProp
     <div className='flex flex-col items-center justify-center'>
       <Image src={img} alt={title} width={214} height={214} />
 
-      <Typography variant='h1' weight={300} className='mt-4' t>
+      <Text variant='headingL' weight={300} className='mt-4' t>
         {title}
-      </Typography>
+      </Text>
 
-      <Typography variant='h1' weight={300} className='mt-4' t>
+      <Text variant='pS' weight={400} className='mt-4' t>
         {description}
-      </Typography>
+      </Text>
+
+      <Link href={href}>
+        <Text variant='pM' t>
+          discover
+        </Text>
+      </Link>
     </div>
   )
 }
