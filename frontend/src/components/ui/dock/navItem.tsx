@@ -2,6 +2,8 @@ import { MouseEvent } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
+import { useTranslations } from 'use-intl'
+
 import { useDock } from './dockContext'
 
 interface NavItem {
@@ -14,6 +16,7 @@ interface NavItem {
 export const NavItem = ({ href, label, icon, zIndex }: NavItem) => {
   const { close } = useDock()
   const router = useRouter()
+  const t = useTranslations()
 
   const handleClick = async (e: MouseEvent) => {
     e.preventDefault()
@@ -31,7 +34,7 @@ export const NavItem = ({ href, label, icon, zIndex }: NavItem) => {
     >
       <Image src={icon} alt={label} width={32} height={32} priority />
 
-      {label}
+      {t(label)}
     </div>
   )
 }

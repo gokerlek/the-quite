@@ -2,7 +2,7 @@
 
 import { useLoadingContext } from '@/context/LoadingContext'
 
-import { Dock } from '../ui/dock'
+import { Dock } from '../ui/dock/index'
 
 export default function Footer() {
   const { loaded } = useLoadingContext()

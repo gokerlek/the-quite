@@ -48,7 +48,10 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inconsolata.variable} antialiased`}
+        className={
+          `${geistSans.variable} ${geistMono.variable} ${inconsolata.variable} antialiased` +
+          ' bg-offblack-50'
+        }
       >
         <NextIntlClientProvider messages={messages}>
           <Providers>

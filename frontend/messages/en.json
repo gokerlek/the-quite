@@ -1,5 +1,11 @@
 {
   "welcome": "Welcome",
   "hello": "Hello",
-  "goodbye": "Goodbye"
+  "goodbye": "Goodbye",
+  "menu": "Menu",
+  "home": "Home",
+  "events": "Events",
+  "about": "About",
+  "contact": "Contact",
+  "discover": "Discover"
 }

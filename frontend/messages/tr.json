@@ -1,5 +1,11 @@
 {
   "welcome": "Hoş geldiniz",
   "hello": "Merhaba",
-  "goodbye": "Hoşça kal"
+  "goodbye": "Hoşça kal",
+  "menu": "Menü",
+  "home": "Ana Sayfa",
+  "events": "Etkinlikler",
+  "about": "Hakkımızda",
+  "contact": "İletişim",
+  "discover": "Keşfet"
 }
