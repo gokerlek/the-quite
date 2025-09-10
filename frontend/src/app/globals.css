@@ -1,8 +1,66 @@
 @import "tailwindcss";
 
+/* stylelint-disable */
+/* eslint-disable */
+/* webstorm-disable */
+/* @typescript-eslint/no-unused-vars: off */
+/* IDE path resolution disabled for fonts */
+/* noinspection CssUnresolvedCustomProperty */
+/* noinspection CssUnknownTarget */
+
+
+@font-face {
+    font-family: 'MontagneetRiviäre';
+    src: url('/fonts/MontagneetRiviäre.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lemon';
+    src: url('/fonts/lemon/LEMONMILK-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lemon';
+    src: url('/fonts/lemon/LEMONMILK-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lemon';
+    src: url('/fonts/lemon/LEMONMILK-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lemon';
+    src: url('/fonts/lemon/LEMONMILK-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Font utility helpers */
+@utility font-montagne {
+    font-family: 'MontagneetRiviäre', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, 'Noto Sans', sans-serif;
+}
+
+@utility font-lemon {
+    font-family: 'Lemon', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, 'Noto Sans', sans-serif;
+}
+
 :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    --background: var(--color-offblack-50);
+    --foreground: var(--color-offblack-950);
 }
 
 @theme {

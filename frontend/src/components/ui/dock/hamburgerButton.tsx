@@ -75,7 +75,7 @@ export const HamburgerButton = ({ className, onToggle }: Props) => {
     <button
       type='button'
       onClick={onToggle || toggleOpen}
-      className={`border bg-offblack-50 border-offblack-950 size-12 flex items-center justify-center cursor-pointer z-50 ${className ?? ''}`}
+      className={`border bg-offblack-50 border-offblack-950 size-12 min-w-12 flex items-center justify-center cursor-pointer z-50 ${className ?? ''}`}
       aria-label={open ? 'Close menu' : 'Open menu'}
       aria-pressed={open}
     >
