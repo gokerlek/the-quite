@@ -24,7 +24,7 @@ export const CarouselCard = ({ img, title, description, href }: CarouselCardProp
         {title}
       </Text>
 
-      <Text variant='pS' weight={400} className='break-words text-center' t>
+      <Text variant='pS' weight={400} className='break-words text-center'>
         {description}
       </Text>
 
