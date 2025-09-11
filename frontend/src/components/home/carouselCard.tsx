@@ -12,14 +12,19 @@ interface CarouselCardProps {
 
 export const CarouselCard = ({ img, title, description, href }: CarouselCardProps) => {
   return (
-    <div className='flex flex-col items-center justify-center'>
+    <div className='flex flex-col items-center justify-center gap-12 px-12 py-24'>
       <Image src={img} alt={title} width={214} height={214} />
 
-      <Text variant='headingL' weight={300} className='mt-4' t>
+      <Text
+        variant='headingM'
+        weight={300}
+        className='break-all text-center whitespace-pre-line '
+        t
+      >
         {title}
       </Text>
 
-      <Text variant='pS' weight={400} className='mt-4' t>
+      <Text variant='pS' weight={400} className='break-words text-center' t>
         {description}
       </Text>
 

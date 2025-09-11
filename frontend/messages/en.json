@@ -8,8 +8,8 @@
   "about": "About",
   "contact": "Contact",
   "discover": "Discover",
-  "community_events":"community events ",
-  "journey_design": "journey design",
-  "event_organization": "event organization",
+  "community_events":"community\nevents ",
+  "journey_design": "journey\ndesign",
+  "event_organization": "event\norganization",
   "description": "Description"
 }

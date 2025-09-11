@@ -4,19 +4,22 @@ const homeCarouselData = [
   {
     img: '/home/community-events.svg',
     title: 'community_events',
-    description: 'description',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin hendrerit porta. ',
     href: '/events',
   },
   {
     img: '/home/journey-design.svg',
     title: 'journey_design',
-    description: 'description',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin hendrerit porta. ',
     href: '/events',
   },
   {
     img: '/home/event-organization.svg',
     title: 'event_organization',
-    description: 'description',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin hendrerit porta. ',
     href: '/events',
   },
 ]
@@ -24,7 +27,7 @@ const homeCarouselData = [
 export const HomeCarousel = () => {
   return (
     <div className='min-h-screen px-6 py-24 container mx-auto max-w-[1440px]'>
-      <div className='grid grid-cols-3'>
+      <div className='grid grid-cols-3 gap-6 px-20'>
         {homeCarouselData.map((data) => (
           <CarouselCard {...data} key={data.title} />
         ))}
