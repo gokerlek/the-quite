@@ -60,25 +60,62 @@ export interface Hero {
   image?: Image
 }
 
-// Content types
-export interface Global {
+// New content types based on updated API structure
+export interface TeamMember {
+  id: number
+  MemberInfo: string
+  memberPic: Image
+  Members: string
+  Roles: string
+}
+
+export interface ContactInfo {
+  id: number
+  addres: string
+  email: string
+  placeholder: Image
+}
+
+export interface EventDetail {
+  id: number
+  date1: number
+  date2: number
+  EventBody: string
+  eventMedia: Image
+  PreviousEvents: Image[]
+}
+
+export interface About {
   id: number
   documentId: string
-  title: string
-  description?: string
-  header: Header
-  footer: Footer
+  Team: TeamMember[]
   createdAt: string
   updatedAt: string
   publishedAt?: string
 }
 
-export interface LandingPage {
+export interface AboutLanding {
   id: number
   documentId: string
-  title: string
-  description?: string
-  blocks: Hero[]
+  aboutLanding: string
+  createdAt: string
+  updatedAt: string
+  publishedAt?: string
+}
+
+export interface ContactPage {
+  id: number
+  documentId: string
+  contact: ContactInfo
+  createdAt: string
+  updatedAt: string
+  publishedAt?: string
+}
+
+export interface EventsDetail {
+  id: number
+  documentId: string
+  EventDetails: EventDetail[]
   createdAt: string
   updatedAt: string
   publishedAt?: string
