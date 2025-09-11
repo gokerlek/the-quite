@@ -12,7 +12,7 @@ interface CarouselCardProps {
 
 export const CarouselCard = ({ img, title, description, href }: CarouselCardProps) => {
   return (
-    <div className='flex flex-col items-center justify-center gap-12 px-12 py-24'>
+    <div className='flex flex-col items-center justify-center gap-12 px-12 py-24 min-w-[420px]'>
       <Image src={img} alt={title} width={214} height={214} />
 
       <Text

@@ -27,7 +27,7 @@ const homeCarouselData = [
 export const HomeCarousel = () => {
   return (
     <div className='min-h-screen px-6 py-24 container mx-auto max-w-[1440px]'>
-      <div className='grid grid-cols-3 gap-6 px-20'>
+      <div className='flex  gap-6 px-20 overflow-x-scroll max-w-[1440px] mx-auto'>
         {homeCarouselData.map((data) => (
           <CarouselCard {...data} key={data.title} />
         ))}
