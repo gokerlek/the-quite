@@ -34,7 +34,7 @@ const homeCarouselData = [
 export const HomeCarousel = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isAnimating, setIsAnimating] = useState(false)
-  const [activeRenderIndex, setActiveRenderIndex] = useState(0)
+  const [activeRenderIndex, setActiveRenderIndex] = useState(1)
 
   // Sonsuz döngü illüzyonu için 3 kopya
   const extendedData = [...homeCarouselData, ...homeCarouselData, ...homeCarouselData]
@@ -111,6 +111,19 @@ export const HomeCarousel = () => {
 
     const currentX = gsap.getProperty(containerRef.current, 'x') as number
 
+    // Animasyon başlamadan önce hedef index'i hesapla ve güncelle
+    const currentActiveIndex = activeRenderIndex
+    let targetIndex: number
+
+    if (direction === 'next') {
+      targetIndex = (currentActiveIndex + 1) % homeCarouselData.length
+    } else {
+      targetIndex = currentActiveIndex === 0 ? homeCarouselData.length - 1 : currentActiveIndex - 1
+    }
+
+    // Animasyon başlamadan hemen title animasyonunu başlat
+    setActiveRenderIndex(targetIndex)
+
     if (direction === 'next') {
       gsap.to(containerRef.current, {
         x: currentX - cardWidth,
@@ -130,8 +143,6 @@ export const HomeCarousel = () => {
             containerRef.current.appendChild(firstChild)
             gsap.set(containerRef.current, { x: currentX })
           }
-
-          updateActiveIndex()
 
           setIsAnimating(false)
         },
@@ -155,8 +166,6 @@ export const HomeCarousel = () => {
             containerRef.current.insertBefore(lastChild, containerRef.current.children[0])
             gsap.set(containerRef.current, { x: currentX })
           }
-
-          updateActiveIndex()
 
           setIsAnimating(false)
         },
@@ -195,17 +204,26 @@ export const HomeCarousel = () => {
           className='flex gap-6 px-20 items-center'
           style={{ width: 'fit-content' }}
         >
-          {extendedData.map((data, index) => (
-            <div key={`${data.title}-${index}`} data-index={index}>
-              <CarouselCard {...data} isActive={index === activeRenderIndex} />
-            </div>
-          ))}
+          {extendedData.map((data, index) => {
+            console.log(index, activeRenderIndex)
+
+            return (
+              <div key={`${data.title}-${index}`} data-index={index}>
+                <CarouselCard
+                  {...data}
+                  isActive={
+                    index % homeCarouselData.length === activeRenderIndex % homeCarouselData.length
+                  }
+                />
+              </div>
+            )
+          })}
         </div>
 
         {/* Active card area indicator - viewport'un tam ortasında */}
         <div
           id='active-card-area'
-          className='fixed inset-y-0 h-full left-1/2 transform -translate-x-1/2 max-w-[420px] w-full border border-red-500 border-dashed pointer-events-none z-10'
+          className='fixed inset-y-0 h-full left-1/2 transform -translate-x-1/2 max-w-[420px] w-full border border-offblack-950 pointer-events-none z-10'
           style={{ top: 'auto', bottom: 'auto', height: '730px' }}
         ></div>
       </div>
