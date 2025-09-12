@@ -33,11 +33,8 @@ const homeCarouselData = [
 
 export const HomeCarousel = () => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [currentIndex, setCurrentIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
   const [activeRenderIndex, setActiveRenderIndex] = useState(0)
-
-  const totalCards = homeCarouselData.length
 
   // Sonsuz döngü illüzyonu için 3 kopya
   const extendedData = [...homeCarouselData, ...homeCarouselData, ...homeCarouselData]
@@ -115,8 +112,6 @@ export const HomeCarousel = () => {
     const currentX = gsap.getProperty(containerRef.current, 'x') as number
 
     if (direction === 'next') {
-      setCurrentIndex((prev) => (prev + 1) % totalCards)
-
       gsap.to(containerRef.current, {
         x: currentX - cardWidth,
         duration: 0.4,
@@ -142,8 +137,6 @@ export const HomeCarousel = () => {
         },
       })
     } else {
-      setCurrentIndex((prev) => (prev === 0 ? totalCards - 1 : prev - 1))
-
       gsap.to(containerRef.current, {
         x: currentX + cardWidth,
         duration: 0.4,

@@ -2,11 +2,32 @@
 
 import { ReactNode, useState } from 'react'
 
+// GSAP global plugin registration
+import { useGSAP } from '@gsap/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { gsap } from 'gsap'
+import { Draggable } from 'gsap/Draggable'
+import { Flip } from 'gsap/Flip'
+import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
+import { Observer } from 'gsap/Observer'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { TextPlugin } from 'gsap/TextPlugin'
 
 import { Sonner } from '@/components/sonner'
 import { LoadingProvider, useLoadingContext } from '@/context/LoadingContext'
+
+gsap.registerPlugin(
+  useGSAP,
+  ScrollTrigger,
+  ScrollToPlugin,
+  Draggable,
+  MotionPathPlugin,
+  Flip,
+  Observer,
+  TextPlugin,
+)
 
 function LoadingScreen() {
   // minimal loading indicator centered on screen
