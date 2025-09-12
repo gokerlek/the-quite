@@ -8,24 +8,25 @@ interface CarouselCardProps {
   title: string
   description: string
   href: string
+  isActive: boolean
 }
 
-export const CarouselCard = ({ img, title, description, href }: CarouselCardProps) => {
+export const CarouselCard = ({ img, title, description, href, isActive }: CarouselCardProps) => {
   return (
-    <div className='flex flex-col items-center justify-center gap-12 px-12 py-24 min-w-[420px]'>
+    <div className='flex flex-col items-center justify-center gap-12 sm:px-12 px-1 py-24 max-w-[420px] w-full min-w-[375px] sm:min-w-[calc((1440px-120px)/3)]'>
       <Image src={img} alt={title} width={214} height={214} />
 
       <Text
-        variant='headingM'
+        variant={isActive ? 'headingL' : 'headingM'}
         weight={300}
-        className='break-all text-center whitespace-pre-line '
+        className='break-all text-center whitespace-pre-line'
         t
       >
         {title}
       </Text>
 
       <Text variant='pS' weight={400} className='break-words text-center'>
-        {description}
+        {isActive ? description : ''}
       </Text>
 
       <Link href={href}>
