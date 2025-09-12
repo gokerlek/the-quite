@@ -34,6 +34,7 @@ const homeCarouselData = [
 export const HomeCarousel = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isAnimating, setIsAnimating] = useState(false)
 
   const totalCards = homeCarouselData.length
 
@@ -51,14 +52,21 @@ export const HomeCarousel = () => {
   )
 
   const animateToCard = (direction: 'next' | 'prev') => {
-    if (!containerRef.current) return
+    if (!containerRef.current || isAnimating) return
+
+    setIsAnimating(true)
 
     // Dinamik card width hesaplama
     const firstCard = containerRef.current.children[0] as HTMLElement
 
-    if (!firstCard) return
+    if (!firstCard) {
+      setIsAnimating(false)
+
+      return
+    }
 
     const cardWidth = firstCard.offsetWidth + 24
+
     const currentX = gsap.getProperty(containerRef.current, 'x') as number
 
     if (direction === 'next') {
@@ -69,7 +77,11 @@ export const HomeCarousel = () => {
         duration: 0.4,
         ease: 'power2.out',
         onComplete: () => {
-          if (!containerRef.current) return
+          if (!containerRef.current) {
+            setIsAnimating(false)
+
+            return
+          }
 
           // İlk kartı sona taşı
           const firstChild = containerRef.current.children[0]
@@ -78,6 +90,8 @@ export const HomeCarousel = () => {
             containerRef.current.appendChild(firstChild)
             gsap.set(containerRef.current, { x: currentX })
           }
+
+          setIsAnimating(false)
         },
       })
     } else {
@@ -88,7 +102,11 @@ export const HomeCarousel = () => {
         duration: 0.4,
         ease: 'power2.out',
         onComplete: () => {
-          if (!containerRef.current) return
+          if (!containerRef.current) {
+            setIsAnimating(false)
+
+            return
+          }
 
           // Son kartı başa taşı
           const lastChild = containerRef.current.children[containerRef.current.children.length - 1]
@@ -97,6 +115,8 @@ export const HomeCarousel = () => {
             containerRef.current.insertBefore(lastChild, containerRef.current.children[0])
             gsap.set(containerRef.current, { x: currentX })
           }
+
+          setIsAnimating(false)
         },
       })
     }
@@ -112,6 +132,7 @@ export const HomeCarousel = () => {
         <button
           onClick={handlePrev}
           className='px-6 py-2 bg-white text-black rounded hover:bg-gray-200 transition-colors'
+          disabled={isAnimating}
         >
           Prev
         </button>
@@ -119,6 +140,7 @@ export const HomeCarousel = () => {
         <button
           onClick={handleNext}
           className='px-6 py-2 bg-white text-black rounded hover:bg-gray-200 transition-colors'
+          disabled={isAnimating}
         >
           Next
         </button>
