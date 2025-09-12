@@ -26,7 +26,7 @@ export const CarouselCard = ({ img, title, description, href, isActive }: Carous
       </Text>
 
       <Text variant='pS' weight={400} className='break-words text-center'>
-        {isActive ? description : ''}
+        {description}
       </Text>
 
       <Link href={href}>

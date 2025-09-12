@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
@@ -35,11 +35,53 @@ export const HomeCarousel = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [activeRenderIndex, setActiveRenderIndex] = useState(0)
 
   const totalCards = homeCarouselData.length
 
   // Sonsuz döngü illüzyonu için 3 kopya
   const extendedData = [...homeCarouselData, ...homeCarouselData, ...homeCarouselData]
+
+  const updateActiveIndex = () => {
+    if (!containerRef.current) return
+
+    const activeArea = document.getElementById('active-card-area')
+    const areaRect = activeArea?.getBoundingClientRect()
+    const centerX = areaRect ? areaRect.left + areaRect.width / 2 : window.innerWidth / 2
+
+    let closest = { i: 0, d: Number.POSITIVE_INFINITY }
+
+    const children = Array.from(containerRef.current.children) as HTMLElement[]
+
+    children.forEach((el, i) => {
+      const rect = el.getBoundingClientRect()
+      const elCenter = rect.left + rect.width / 2
+      const dist = Math.abs(elCenter - centerX)
+
+      if (dist < closest.d) {
+        closest = { i, d: dist }
+      }
+    })
+
+    const closestEl = children[closest.i] as HTMLElement | undefined
+    const renderIndex = closestEl ? Number(closestEl.dataset.index) : 0
+
+    if (!Number.isNaN(renderIndex)) {
+      setActiveRenderIndex(renderIndex)
+    }
+  }
+
+  useEffect(() => {
+    updateActiveIndex()
+
+    const onResize = () => updateActiveIndex()
+
+    window.addEventListener('resize', onResize)
+
+    return () => {
+      window.removeEventListener('resize', onResize)
+    }
+  }, [])
 
   useGSAP(
     () => {
@@ -47,6 +89,9 @@ export const HomeCarousel = () => {
 
       // Başlangıç pozisyonunu ayarla - ilk kartı merkeze al
       gsap.set(containerRef.current, { x: 0 })
+
+      // İlk render sonrasında aktif index'i hesapla
+      updateActiveIndex()
     },
     { scope: containerRef },
   )
@@ -91,6 +136,8 @@ export const HomeCarousel = () => {
             gsap.set(containerRef.current, { x: currentX })
           }
 
+          updateActiveIndex()
+
           setIsAnimating(false)
         },
       })
@@ -115,6 +162,8 @@ export const HomeCarousel = () => {
             containerRef.current.insertBefore(lastChild, containerRef.current.children[0])
             gsap.set(containerRef.current, { x: currentX })
           }
+
+          updateActiveIndex()
 
           setIsAnimating(false)
         },
@@ -154,8 +203,8 @@ export const HomeCarousel = () => {
           style={{ width: 'fit-content' }}
         >
           {extendedData.map((data, index) => (
-            <div key={`${data.title}-${index}`}>
-              <CarouselCard {...data} isActive={currentIndex + 1 === index % totalCards} />
+            <div key={`${data.title}-${index}`} data-index={index}>
+              <CarouselCard {...data} isActive={index === activeRenderIndex} />
             </div>
           ))}
         </div>
