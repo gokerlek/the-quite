@@ -75,11 +75,30 @@ export const HomeCarousel = () => {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const [activeIndex, setActiveIndex] = useState(0)
   const wheelTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const list = [
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+  ]
 
   useEffect(() => {
     const container = containerRef.current
 
     if (!container) return
+
+    // Start from middle of the list to allow infinite scrolling
+    const middleIndex = Math.floor(list.length / 2)
+    const cardWidth = container.scrollWidth / list.length
+    container.scrollLeft = middleIndex * cardWidth
 
     const handleScroll = () => {
       const containerRect = container.getBoundingClientRect()
@@ -153,7 +172,7 @@ export const HomeCarousel = () => {
       className=' min-h-dvh flex gap-5 md:gap-12 items-center px-5 md:px-6 py-24 mx-auto md:max-w-[1440px] max-w-[100vw] snap-x snap-mandatory overflow-x-scroll scrollbar-hide'
       style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
     >
-      {homeCarouselData.map((data, index) => {
+      {list.map((data, index) => {
         return (
           <CarouselCard
             {...data}
