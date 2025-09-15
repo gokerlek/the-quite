@@ -98,6 +98,7 @@ export const HomeCarousel = () => {
     // Start from middle of the list to allow infinite scrolling
     const middleIndex = Math.floor(list.length / 2)
     const cardWidth = container.scrollWidth / list.length
+
     container.scrollLeft = middleIndex * cardWidth
 
     const handleScroll = () => {
