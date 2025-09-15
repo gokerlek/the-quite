@@ -19,7 +19,7 @@ export const CarouselCard = forwardRef<HTMLDivElement, CarouselCardProps>(
       <div
         ref={ref}
         className={cn(
-          'flex snap-center flex-col items-center justify-center md:gap-12 gap-6 md:py-24 py-3 transition-all duration-500 md:border',
+          'flex snap-center flex-col items-center justify-center md:gap-12 gap-4 md:py-24 py-3 transition-all duration-500 md:border',
           // Mobile: viewport height minus header space, Desktop: fixed height
           'h-[calc(100dvh-210px)] md:h-[720px]',
           // Mobile: screen width minus 40px (20px each side), Desktop: 3 cards per view
@@ -30,14 +30,13 @@ export const CarouselCard = forwardRef<HTMLDivElement, CarouselCardProps>(
           },
         )}
       >
-        <div className='relative size-40 sm:w-[214px] sm:h-[214px]'>
-          <Image
-            src={img}
-            alt={title}
-            fill
-            className='object-contain' // gerekirse cover/contain
-          />
-        </div>
+        <Image
+          src={img}
+          alt={title}
+          width={214}
+          height={214}
+          className='object-contain size-40 md:size-[214px]' // gerekirse cover/contain
+        />
 
         <Text
           variant='headingM'
