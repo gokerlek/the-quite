@@ -4,13 +4,8 @@ import gsap from 'gsap'
 
 import { useDock } from './dockContext'
 
-type Props = {
-  className?: string
-  onToggle?: () => void
-}
-
-export const HamburgerButton = ({ className, onToggle }: Props) => {
-  const { open, toggleOpen } = useDock()
+export const HamburgerButton = () => {
+  const { open, toggleWithAnimation } = useDock()
   const tlRef = useRef<gsap.core.Timeline | null>(null)
   const topRef = useRef<SVGLineElement | null>(null)
   const midRef = useRef<SVGLineElement | null>(null)
@@ -74,8 +69,8 @@ export const HamburgerButton = ({ className, onToggle }: Props) => {
   return (
     <button
       type='button'
-      onClick={onToggle || toggleOpen}
-      className={`border bg-offblack-50 border-offblack-950 size-12 min-w-12 flex items-center justify-center cursor-pointer z-50 ${className ?? ''}`}
+      onClick={toggleWithAnimation}
+      className='border bg-offblack-50 border-offblack-950 size-12 min-w-12 flex items-center justify-center cursor-pointer z-50'
       aria-label={open ? 'Close menu' : 'Open menu'}
       aria-pressed={open}
     >
