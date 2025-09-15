@@ -10,8 +10,10 @@ export default function Header() {
   if (!loaded) return null
 
   return (
-    <div className='fixed top-5 sm:top-8  px-4'>
-      <Image src='/header-logo.svg' alt='The Quiet Header Logo' width={96} height={48} priority />
+    <div className='px-6 container mx-auto'>
+      <div className='fixed top-5 sm:top-8'>
+        <Image src='/header-logo.svg' alt='The Quiet Header Logo' width={96} height={48} priority />
+      </div>
     </div>
   )
 }
