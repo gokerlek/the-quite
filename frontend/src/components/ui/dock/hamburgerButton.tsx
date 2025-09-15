@@ -1,70 +1,8 @@
-import { useEffect, useRef } from 'react'
-
-import gsap from 'gsap'
-
 import { useDock } from './dockContext'
 
 export const HamburgerButton = () => {
-  const { open, toggleWithAnimation } = useDock()
-  const tlRef = useRef<gsap.core.Timeline | null>(null)
-  const topRef = useRef<SVGLineElement | null>(null)
-  const midRef = useRef<SVGLineElement | null>(null)
-  const botRef = useRef<SVGLineElement | null>(null)
-
-  // Create timeline once
-  useEffect(() => {
-    const tl = gsap.timeline({ paused: true })
-
-    if (topRef.current && midRef.current && botRef.current) {
-      tl.to(topRef.current, {
-        y: 30,
-        rotation: 45,
-        transformOrigin: 'center center',
-        duration: 0.4,
-        ease: 'power2.inOut',
-      })
-        .to(
-          botRef.current,
-          {
-            y: -30,
-            rotation: -45,
-            transformOrigin: 'center center',
-            duration: 0.4,
-            ease: 'power2.inOut',
-          },
-          0,
-        )
-        .to(
-          midRef.current,
-          {
-            opacity: 0,
-            duration: 0.2,
-            ease: 'power2.inOut',
-          },
-          0,
-        )
-    }
-
-    tlRef.current = tl
-
-    return () => {
-      tl.kill()
-      tlRef.current = null
-    }
-  }, [])
-
-  // React to prop changes
-  useEffect(() => {
-    const tl = tlRef.current
-
-    if (!tl) return
-
-    if (open) {
-      tl.play()
-    } else {
-      tl.reverse()
-    }
-  }, [open])
+  const { open, toggleWithAnimation, hamburgerRefs } = useDock()
+  const { topRef, midRef, botRef } = hamburgerRefs
 
   return (
     <button

@@ -6,6 +6,7 @@ import {
   RefObject,
   useCallback,
   useContext,
+  useEffect,
   useRef,
   useState,
 } from 'react'
@@ -18,6 +19,11 @@ interface DockContextType {
   toggleWithAnimation: () => Promise<void>
   menuBoxRef: RefObject<HTMLDivElement | null>
   navItemsRef: RefObject<HTMLDivElement | null>
+  hamburgerRefs: {
+    topRef: RefObject<SVGLineElement | null>
+    midRef: RefObject<SVGLineElement | null>
+    botRef: RefObject<SVGLineElement | null>
+  }
   close: () => Promise<void>
   hasInteracted: boolean
 }
@@ -44,10 +50,79 @@ export const DockProvider = ({ children }: DockProviderProps) => {
   const menuBoxRef = useRef<HTMLDivElement>(null)
   const navItemsRef = useRef<HTMLDivElement>(null)
 
+  // Hamburger button refs
+  const hamburgerRefs = {
+    topRef: useRef<SVGLineElement>(null),
+    midRef: useRef<SVGLineElement>(null),
+    botRef: useRef<SVGLineElement>(null),
+  }
+
+  // Hamburger animation timeline
+  const hamburgerTimelineRef = useRef<gsap.core.Timeline | null>(null)
+
+  // Initialize hamburger timeline
+  useEffect(() => {
+    const { topRef, midRef, botRef } = hamburgerRefs
+
+    if (topRef.current && midRef.current && botRef.current) {
+      const tl = gsap.timeline({ paused: true })
+
+      tl.to(topRef.current, {
+        y: 30,
+        rotation: 45,
+        transformOrigin: 'center center',
+        duration: 0.4,
+        ease: 'power2.inOut',
+      })
+        .to(
+          botRef.current,
+          {
+            y: -30,
+            rotation: -45,
+            transformOrigin: 'center center',
+            duration: 0.4,
+            ease: 'power2.inOut',
+          },
+          0,
+        )
+        .to(
+          midRef.current,
+          {
+            opacity: 0,
+            duration: 0.2,
+            ease: 'power2.inOut',
+          },
+          0,
+        )
+
+      hamburgerTimelineRef.current = tl
+    }
+
+    return () => {
+      if (hamburgerTimelineRef.current) {
+        hamburgerTimelineRef.current.kill()
+        hamburgerTimelineRef.current = null
+      }
+    }
+  }, [])
+
   const toggleOpen = useCallback(() => {
     setHasInteracted(true)
     setOpen((prevState) => !prevState)
   }, [])
+
+  // Handle hamburger animation based on open state
+  useEffect(() => {
+    const tl = hamburgerTimelineRef.current
+
+    if (tl) {
+      if (open) {
+        tl.play()
+      } else {
+        tl.reverse()
+      }
+    }
+  }, [open])
 
   const openAnimation = useCallback((menuBox: HTMLDivElement, navItems: HTMLDivElement) => {
     gsap.to(menuBox, { x: -120, duration: 0.5 })
@@ -117,6 +192,7 @@ export const DockProvider = ({ children }: DockProviderProps) => {
         toggleWithAnimation,
         menuBoxRef,
         navItemsRef,
+        hamburgerRefs,
         close,
         hasInteracted,
       }}
