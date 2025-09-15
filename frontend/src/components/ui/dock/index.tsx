@@ -9,7 +9,7 @@ const DockContent = () => {
   const { toggleWithAnimation, menuBoxRef, navItemsRef } = useDock()
 
   return (
-    <div className='absolute bottom-5 sm:bottom-8 mx-5  flex items-center justify-between gap-1 z-10 overflow-hidden'>
+    <div className='fixed bottom-5 sm:bottom-8 mx-5  flex items-center justify-between gap-1 z-10 overflow-hidden'>
       <HamburgerButton onToggle={toggleWithAnimation || (() => {})} />
 
       <MenuBox ref={menuBoxRef} />

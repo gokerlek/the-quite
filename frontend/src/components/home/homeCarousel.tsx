@@ -150,7 +150,7 @@ export const HomeCarousel = () => {
   return (
     <div
       ref={containerRef}
-      className='min-h-dvh flex gap-5 md:gap-12 items-center px-5 md:px-6 py-24 mx-auto md:max-w-[1440px] max-w-[100vw] snap-x snap-mandatory overflow-x-scroll scrollbar-hide'
+      className=' min-h-dvh flex gap-5 md:gap-12 items-center px-5 md:px-6 py-24 mx-auto md:max-w-[1440px] max-w-[100vw] snap-x snap-mandatory overflow-x-scroll scrollbar-hide'
       style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
     >
       {homeCarouselData.map((data, index) => {
@@ -165,6 +165,8 @@ export const HomeCarousel = () => {
           />
         )
       })}
+
+      <div className='absolute top-1/2 left-1/2 border border-offblack-950 w-[430px] h-[calc(100dvh-210px)] max-h-[720px] -translate-x-1/2 -translate-y-1/2 bg-transparent pointer-events-none md:block hidden'></div>
     </div>
   )
 }
