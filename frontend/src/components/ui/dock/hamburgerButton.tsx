@@ -8,7 +8,7 @@ export const HamburgerButton = () => {
     <button
       type='button'
       onClick={toggleWithAnimation}
-      className='border bg-offblack-50 border-offblack-950 size-12 min-w-12 flex items-center justify-center cursor-pointer z-50'
+      className='border bg-offblack-50 border-offblack-950 size-12 min-w-12 flex items-center justify-center cursor-pointer z-50 pointer-events-auto'
       aria-label={open ? 'Close menu' : 'Open menu'}
       aria-pressed={open}
     >

@@ -65,7 +65,7 @@ export default function Home() {
         <TheQuiteWordmark />
       </section>
 
-      <TheQuietDescription onDiscover={endLoading} />
+      <TheQuietDescription onDiscoverAction={endLoading} />
 
       <TheQuiteWordmarkWhite />
     </Layout>

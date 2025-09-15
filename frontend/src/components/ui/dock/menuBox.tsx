@@ -13,7 +13,7 @@ export const MenuBox = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
       <div
         onClick={toggleWithAnimation}
         ref={ref}
-        className='h-12 px-2 flex items-center justify-center border border-offblack-950 uppercase text-lg font-medium cursor-pointer bg-offblack-50 z-10'
+        className='h-12 px-2 flex items-center justify-center border border-offblack-950 uppercase text-lg font-medium cursor-pointer bg-offblack-50 z-10 pointer-events-auto'
         {...props}
       >
         {t('menu')}
