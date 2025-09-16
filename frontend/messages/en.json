@@ -2,14 +2,22 @@
   "welcome": "Welcome",
   "hello": "Hello",
   "goodbye": "Goodbye",
-  "menu": "Menu",
-  "home": "Home",
-  "events": "Events",
-  "about": "About",
-  "contact": "Contact",
+  "dock": {
+    "menu": "Menu",
+    "home": "Home",
+    "events": "Events",
+    "about": "About",
+    "contact": "Contact"
+  },
   "discover": "Discover",
-  "community_events":"community\nevents ",
+  "community_events": "community\nevents",
   "journey_design": "journey\ndesign",
   "event_organization": "event\norganization",
-  "description": "Description"
+  "description": "Description",
+  "contact": {
+    "title": "project inquiries",
+    "link": "Let's Talk Quiet",
+    "mail": "info@thequiet.com",
+    "address": "Via Guantai Nuovi 72, Lago Patria\n80014 Napoli, ITALY"
+  }
 }

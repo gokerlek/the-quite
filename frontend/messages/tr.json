@@ -2,14 +2,20 @@
   "welcome": "Hoş geldiniz",
   "hello": "Merhaba",
   "goodbye": "Hoşça kal",
-  "menu": "Menü",
-  "home": "Ana Sayfa",
-  "events": "Etkinlikler",
-  "about": "Hakkımızda",
-  "contact": "İletişim",
+  "dock": {
+    "menu": "Menü",
+    "home": "Ana Sayfa",
+    "events": "Etkinlikler",
+    "about": "Hakkımızda",
+    "contact": "İletişim"
+  },
   "discover": "Keşfet",
   "community_events":"iletişim",
   "journey_design": "yolculuk\ntasarımı",
   "event_organization": "etkinlikn\norganizasyonu",
-  "description": "Açıklama"
+  "description": "Açıklama",
+  "contact": {
+    "title": "proje sorular",
+    "link": "Let's Talk Quiet"
+  }
 }
