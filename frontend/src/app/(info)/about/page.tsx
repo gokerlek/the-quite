@@ -1,9 +1,29 @@
+'use client'
+
+import Image from 'next/image'
+
+import { useTranslations } from 'use-intl'
+
+import ScrollReveal from '@/components/ui/ScrollReveal'
+
 export default function AboutPage() {
+  const t = useTranslations()
+
   return (
     <div>
-      <h1 className='text-3xl font-semibold mb-4'>About</h1>
+      <section id='bg_logo'>
+        <Image src='/about/bg.svg' alt='logo' width={636} height={636} />
+      </section>
 
-      <p className='text-muted-foreground'>Learn more about The Quiet on this page.</p>
+      <ScrollReveal
+        baseOpacity={0}
+        enableBlur={true}
+        baseRotation={0}
+        blurStrength={10}
+        textClassName='font-lemon text-[48px] font-light text-center'
+      >
+        {t('about.desc')}
+      </ScrollReveal>
     </div>
   )
 }

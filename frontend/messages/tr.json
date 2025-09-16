@@ -14,8 +14,12 @@
   "journey_design": "yolculuk\ntasarımı",
   "event_organization": "etkinlikn\norganizasyonu",
   "description": "Açıklama",
+  "team": "takım",
   "contact": {
     "title": "proje sorular",
     "link": "Let's Talk Quiet"
+  },
+  "about": {
+    "desc": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,    eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae,"
   }
 }
