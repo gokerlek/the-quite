@@ -5,35 +5,30 @@
 import type { Core } from '@strapi/strapi';
 
 const populate = {
-   header: {
+   // About page population
+   Team: {
       populate: {
-         logo: {
-            populate: {
-               image: {
-                  fields: ['alternativeText', 'url'],
-               },
-            },
+         memberPic: {
+            fields: ['alternativeText', 'url', 'width', 'height', 'formats'],
          },
-         navItems: true,
-         cta: true,
       },
    },
-   footer: {
+   // Contact page population
+   contact: {
       populate: {
-         logo: {
-            populate: {
-               image: {
-                  fields: ['alternativeText', 'url'],
-               },
-            },
+         placeholder: {
+            fields: ['alternativeText', 'url', 'width', 'height', 'formats'],
          },
-         navItems: true,
-         socialLinks: {
-            populate: {
-               image: {
-                  fields: ['alternativeText', 'url'],
-               },
-            },
+      },
+   },
+   // Events detail page population
+   EventDetails: {
+      populate: {
+         eventMedia: {
+            fields: ['alternativeText', 'url', 'width', 'height', 'formats'],
+         },
+         PreviousEvents: {
+            fields: ['alternativeText', 'url', 'width', 'height', 'formats'],
          },
       },
    },

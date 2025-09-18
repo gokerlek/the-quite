@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_about_teams",
+  "info": {
+    "displayName": "Team"
+  },
+  "options": {},
+  "attributes": {
+    "Members": {
+      "type": "string"
+    },
+    "Roles": {
+      "type": "string"
+    },
+    "memberPic": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "MemberInfo": {
+      "type": "richtext"
+    }
+  },
+  "config": {}
+}

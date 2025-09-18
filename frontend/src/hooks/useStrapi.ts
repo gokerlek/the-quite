@@ -5,7 +5,12 @@ import {
   type UseQueryOptions,
 } from '@tanstack/react-query'
 
-import { fetchCollection, fetchSingleById, fetchSingleBySlug } from '@/lib/strapi-fetchers'
+import {
+  fetchCollection,
+  fetchSingle,
+  fetchSingleById,
+  fetchSingleBySlug,
+} from '@/lib/strapi-fetchers'
 
 import type { StrapiParams } from '@/lib/strapi-query'
 import type { StrapiContentTypes } from '@/types/strapi-content'
@@ -53,6 +58,30 @@ export function useStrapiSingleBySlug<K extends keyof StrapiContentTypes>(
     queryKey: ['strapi', contentType, 'slug', slug, params],
     queryFn: () => fetchSingleBySlug(contentType, slug as string, params),
     enabled: Boolean(slug),
+    staleTime: 30_000,
+    placeholderData: keepPreviousData,
+    ...options,
+  })
+
+  return query
+}
+
+// Single (for single types without ID)
+export function useStrapiSingle<K extends keyof StrapiContentTypes>(
+  contentType: K,
+  params?: StrapiParams,
+  options?: Omit<
+    UseQueryOptions<
+      StrapiSingleResponse<StrapiContentTypes[K]>,
+      Error,
+      StrapiSingleResponse<StrapiContentTypes[K]>
+    >,
+    'queryKey' | 'queryFn'
+  >,
+) {
+  const query = useQuery({
+    queryKey: ['strapi', contentType, params],
+    queryFn: () => fetchSingle(contentType, params),
     staleTime: 30_000,
     placeholderData: keepPreviousData,
     ...options,

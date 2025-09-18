@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "events_details",
+  "info": {
+    "singularName": "events-detail",
+    "pluralName": "events-details",
+    "displayName": "Events Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "EventDetails": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "events-detail.media-field",
+      "repeatable": true
+    }
+  }
+}

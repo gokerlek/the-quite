@@ -7,6 +7,16 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '1337',
+        pathname: '/**',
+      } as const,
+    ],
+  },
 }
 
 export default withNextIntl(nextConfig)

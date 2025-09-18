@@ -51,16 +51,32 @@ api.interceptors.response.use(
 
 // API functions
 export const strapiApi = {
-  // Get global data (header, footer, etc.)
-  async getGlobal() {
-    const response = await api.get('/global?populate=*')
+  // Get about page data
+  async getAbout() {
+    const response = await api.get('/about?populate[Team][populate][memberPic]=*')
 
     return response.data
   },
 
-  // Get landing page data
-  async getLandingPage() {
-    const response = await api.get('/landing-page?populate=*')
+  // Get about landing page data
+  async getAboutLanding() {
+    const response = await api.get('/about-landing?populate=*')
+
+    return response.data
+  },
+
+  // Get contact page data
+  async getContactPage() {
+    const response = await api.get('/contact-page?populate[contact][populate][placeholder]=*')
+
+    return response.data
+  },
+
+  // Get events detail page data
+  async getEventsDetail() {
+    const response = await api.get(
+      '/events-detail?populate[EventDetails][populate][eventMedia]=*&populate[EventDetails][populate][PreviousEvents]=*',
+    )
 
     return response.data
   },
