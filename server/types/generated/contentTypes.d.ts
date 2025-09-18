@@ -332,81 +332,99 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
    };
 }
 
-export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
-   collectionName: 'globals';
+export interface ApiAboutLandingAboutLanding extends Struct.SingleTypeSchema {
+   collectionName: 'about_landings';
    info: {
-      displayName: 'Global';
-      pluralName: 'globals';
-      singularName: 'global';
+      displayName: 'About Page';
+      pluralName: 'about-landings';
+      singularName: 'about-landing';
+   };
+   options: {
+      draftAndPublish: true;
+   };
+   pluginOptions: {
+      i18n: {
+         localized: true;
+      };
+   };
+   attributes: {
+      aboutLanding: Schema.Attribute.Text &
+         Schema.Attribute.SetPluginOptions<{
+            i18n: {
+               localized: true;
+            };
+         }>;
+      createdAt: Schema.Attribute.DateTime;
+      createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+      locale: Schema.Attribute.String;
+      localizations: Schema.Attribute.Relation<'oneToMany', 'api::about-landing.about-landing'>;
+      publishedAt: Schema.Attribute.DateTime;
+      updatedAt: Schema.Attribute.DateTime;
+      updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+   };
+}
+
+export interface ApiAboutAbout extends Struct.SingleTypeSchema {
+   collectionName: 'abouts';
+   info: {
+      displayName: 'People';
+      pluralName: 'abouts';
+      singularName: 'about';
+   };
+   options: {
+      draftAndPublish: true;
+   };
+   pluginOptions: {
+      i18n: {
+         localized: true;
+      };
+   };
+   attributes: {
+      createdAt: Schema.Attribute.DateTime;
+      createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+      locale: Schema.Attribute.String;
+      localizations: Schema.Attribute.Relation<'oneToMany', 'api::about.about'>;
+      publishedAt: Schema.Attribute.DateTime;
+      Team: Schema.Attribute.Component<'about.team', true> &
+         Schema.Attribute.SetPluginOptions<{
+            i18n: {
+               localized: true;
+            };
+         }>;
+      updatedAt: Schema.Attribute.DateTime;
+      updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+   };
+}
+
+export interface ApiContactPageContactPage extends Struct.SingleTypeSchema {
+   collectionName: 'contact_pages';
+   info: {
+      displayName: 'Cantact Page';
+      pluralName: 'contact-pages';
+      singularName: 'contact-page';
    };
    options: {
       draftAndPublish: true;
    };
    attributes: {
+      contact: Schema.Attribute.Component<'contact.contact', false>;
       createdAt: Schema.Attribute.DateTime;
       createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
-      description: Schema.Attribute.Text;
-      footer: Schema.Attribute.Component<'layout.footer', false>;
-      header: Schema.Attribute.Component<'layout.header', false>;
       locale: Schema.Attribute.String & Schema.Attribute.Private;
-      localizations: Schema.Attribute.Relation<'oneToMany', 'api::global.global'> & Schema.Attribute.Private;
+      localizations: Schema.Attribute.Relation<'oneToMany', 'api::contact-page.contact-page'> &
+         Schema.Attribute.Private;
       publishedAt: Schema.Attribute.DateTime;
-      title: Schema.Attribute.String;
       updatedAt: Schema.Attribute.DateTime;
       updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
    };
 }
 
-export interface ApiLandingPageLandingPage extends Struct.SingleTypeSchema {
-   collectionName: 'landing_pages';
+export interface ApiEventsDetailEventsDetail extends Struct.SingleTypeSchema {
+   collectionName: 'events_details';
    info: {
-      displayName: 'Landing Page';
-      pluralName: 'landing-pages';
-      singularName: 'landing-page';
-   };
-   options: {
-      draftAndPublish: true;
-   };
-   pluginOptions: {
-      i18n: {
-         localized: true;
-      };
-   };
-   attributes: {
-      blocks: Schema.Attribute.DynamicZone<['blocks.hero']> &
-         Schema.Attribute.SetPluginOptions<{
-            i18n: {
-               localized: true;
-            };
-         }>;
-      createdAt: Schema.Attribute.DateTime;
-      createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
-      description: Schema.Attribute.Text &
-         Schema.Attribute.SetPluginOptions<{
-            i18n: {
-               localized: true;
-            };
-         }>;
-      locale: Schema.Attribute.String;
-      localizations: Schema.Attribute.Relation<'oneToMany', 'api::landing-page.landing-page'>;
-      publishedAt: Schema.Attribute.DateTime;
-      title: Schema.Attribute.String &
-         Schema.Attribute.SetPluginOptions<{
-            i18n: {
-               localized: true;
-            };
-         }>;
-      updatedAt: Schema.Attribute.DateTime;
-      updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
-   };
-}
-
-export interface ApiTestPageTestPage extends Struct.SingleTypeSchema {
-   collectionName: 'test_pages';
-   info: {
-      displayName: 'test-page';
-      pluralName: 'test-pages';
-      singularName: 'test-page';
+      displayName: 'Events Page';
+      pluralName: 'events-details';
+      singularName: 'events-detail';
    };
    options: {
       draftAndPublish: true;
@@ -419,15 +437,15 @@ export interface ApiTestPageTestPage extends Struct.SingleTypeSchema {
    attributes: {
       createdAt: Schema.Attribute.DateTime;
       createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
-      locale: Schema.Attribute.String;
-      localizations: Schema.Attribute.Relation<'oneToMany', 'api::test-page.test-page'>;
-      publishedAt: Schema.Attribute.DateTime;
-      test1: Schema.Attribute.DynamicZone<['blocks.hero']> &
+      EventDetails: Schema.Attribute.Component<'events-detail.media-field', true> &
          Schema.Attribute.SetPluginOptions<{
             i18n: {
                localized: true;
             };
          }>;
+      locale: Schema.Attribute.String;
+      localizations: Schema.Attribute.Relation<'oneToMany', 'api::events-detail.events-detail'>;
+      publishedAt: Schema.Attribute.DateTime;
       updatedAt: Schema.Attribute.DateTime;
       updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
    };
@@ -844,9 +862,10 @@ declare module '@strapi/strapi' {
          'admin::transfer-token': AdminTransferToken;
          'admin::transfer-token-permission': AdminTransferTokenPermission;
          'admin::user': AdminUser;
-         'api::global.global': ApiGlobalGlobal;
-         'api::landing-page.landing-page': ApiLandingPageLandingPage;
-         'api::test-page.test-page': ApiTestPageTestPage;
+         'api::about-landing.about-landing': ApiAboutLandingAboutLanding;
+         'api::about.about': ApiAboutAbout;
+         'api::contact-page.contact-page': ApiContactPageContactPage;
+         'api::events-detail.events-detail': ApiEventsDetailEventsDetail;
          'plugin::content-releases.release': PluginContentReleasesRelease;
          'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
          'plugin::i18n.locale': PluginI18NLocale;

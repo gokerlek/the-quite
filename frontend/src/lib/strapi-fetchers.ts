@@ -76,6 +76,20 @@ export async function fetchSingleBySlug<K extends keyof StrapiContentTypes>(
   return { data: list.data?.[0] ?? null, meta: list.meta }
 }
 
+export async function fetchSingle<K extends keyof StrapiContentTypes>(
+  contentType: K,
+  params?: StrapiParams,
+): Promise<StrapiSingleResponse<StrapiContentTypes[K]>> {
+  const preset = strapiQueryMap[contentType]?.single
+  const qs = toQueryString({ ...(preset ?? {}), ...(params ?? {}) })
+  const res = await fetch(`${STRAPI_BASE_URL}/${String(contentType)}${qs}`, {
+    headers: { 'Content-Type': 'application/json', ...authHeaders() },
+    next: { revalidate: 30 },
+  })
+
+  return handle(res)
+}
+
 export async function fetchSingleById<K extends keyof StrapiContentTypes>(
   contentType: K,
   id: number | string,
