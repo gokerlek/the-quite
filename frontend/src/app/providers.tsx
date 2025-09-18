@@ -11,8 +11,10 @@ import { Draggable } from 'gsap/Draggable'
 import { Flip } from 'gsap/Flip'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
 import { Observer } from 'gsap/Observer'
+import { ScrollSmoother } from 'gsap/ScrollSmoother'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { SplitText } from 'gsap/SplitText'
 import { TextPlugin } from 'gsap/TextPlugin'
 
 import { Sonner } from '@/components/sonner'
@@ -27,6 +29,8 @@ gsap.registerPlugin(
   Flip,
   Observer,
   TextPlugin,
+  SplitText,
+  ScrollSmoother,
 )
 
 function LoadingScreen() {

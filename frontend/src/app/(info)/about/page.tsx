@@ -5,23 +5,23 @@ import Image from 'next/image'
 
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { SplitText } from 'gsap/SplitText'
 import { useTranslations } from 'use-intl'
 
-import ScrollReveal from '@/components/ui/ScrollReveal'
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
-}
+import { TeamList } from '@/components/about/teamList'
+import Text from '@/components/ui/text'
 
 export default function AboutPage() {
   const logoRef = useRef<HTMLImageElement>(null)
   const redSectionRef = useRef<HTMLElement>(null)
   const greenSectionRef = useRef<HTMLElement>(null)
   const mainContainerRef = useRef<HTMLDivElement>(null)
-  const t = useTranslations
+  const textRef = useRef<HTMLParagraphElement>(null)
+  const t = useTranslations('about')
 
   useEffect(() => {
-    if (!logoRef.current || !redSectionRef.current || !greenSectionRef.current) return
+    if (!logoRef.current || !redSectionRef.current || !greenSectionRef.current || !textRef.current)
+      return
 
     // Animasyon ayarları
     const LOGO_TOP_MARGIN = 100 // Logo ile ekran üstü arasındaki boşluk
@@ -75,8 +75,35 @@ export default function AboutPage() {
         ease: 'none',
       })
 
+    // Text mask animasyonu
+    const splitText = new SplitText(textRef.current.querySelector('h1'), { type: 'lines' })
+    const masks: HTMLElement[] = []
+
+    splitText.lines.forEach((line) => {
+      const mask = document.createElement('span')
+
+      mask.className = ` size-full absolute bg-offblack-50 left-0 top-0 opacity-80 blur-sm`
+      ;(line as HTMLElement).style.position = 'relative'
+      line.appendChild(mask)
+      masks.push(mask)
+
+      gsap.to(mask, {
+        scaleX: 0,
+        transformOrigin: 'right center',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: line,
+          scrub: true,
+          start: 'top center',
+          end: 'bottom center',
+        },
+      })
+    })
+
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+      masks.forEach((mask) => mask.remove())
+      splitText.revert()
     }
   }, [])
 
@@ -96,18 +123,31 @@ export default function AboutPage() {
       <section className='h-[200vh] w-full' />
 
       {/* Red section - z-10 (logo üstünden geçer) */}
-      <section ref={redSectionRef} id='red' className='relative w-full h-[200vh] z-10'>
-        <ScrollReveal baseOpacity={0} enableBlur={true} blurStrength={10}>
-          {t('about.desc')}
-        </ScrollReveal>
+      <section
+        ref={redSectionRef}
+        id='red'
+        className='relative w-full h-fit z-10 flex items-center justify-center'
+      >
+        <div
+          ref={textRef}
+          className="text font-lemon font-light text-center text-[48px] leading-[48px] max-w-4xl px-8'"
+        >
+          <h1>{t('desc')}</h1>
+        </div>
       </section>
 
       {/* Green section - z-10 */}
       <section
         ref={greenSectionRef}
         id='green'
-        className='relative w-full h-screen bg-green-400 z-10 '
-      />
+        className='w-full h-fit  z-10 flex flex-col  items-center py-20 mb-40 gap-10  '
+      >
+        <Text variant='headingM' t className='uppercase font-light'>
+          team
+        </Text>
+
+        <TeamList />
+      </section>
     </div>
   )
 }
