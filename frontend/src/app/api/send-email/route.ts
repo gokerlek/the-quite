@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import { createEmailRegistrationService } from '@/lib/email-registration'
+import { createRegistrationService } from '@/lib/registration-service'
 
 export interface EmailFormData {
   name: string
@@ -13,9 +13,9 @@ export async function POST(request: NextRequest) {
   try {
     const body: EmailFormData = await request.json()
 
-    // Use the email registration service to handle the entire process
-    const emailRegistrationService = createEmailRegistrationService()
-    const result = await emailRegistrationService.processRegistration(body)
+    // Use the registration service to handle the entire process (email + Google Sheets)
+    const registrationService = createRegistrationService()
+    const result = await registrationService.processRegistration(body)
 
     if (!result.success) {
       // Handle validation errors specifically
@@ -37,8 +37,9 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       {
-        message: 'Email sent successfully',
+        message: 'Registration processed successfully',
         messageId: result.messageId,
+        sheetsUpdated: result.sheetsUpdated,
       },
       { status: 200 },
     )

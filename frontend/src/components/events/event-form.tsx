@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+
 import { type EventFormData, useEventForm } from '@/components/events/hooks/useEventForm'
 import { Button } from '@/components/ui/button'
 import Text from '@/components/ui/text'
@@ -51,11 +53,7 @@ export default function EventForm({
               aria-label={imageAlt}
             >
               {imageSrc ? (
-                <img
-                  src={imageSrc}
-                  alt={imageAlt}
-                  className='w-full h-full object-cover rounded-lg'
-                />
+                <Image src={imageSrc} alt={imageAlt} fill className='object-cover rounded-lg' />
               ) : (
                 <Text variant='p2XL' className='text-offblack-500'>
                   {imageAlt}
