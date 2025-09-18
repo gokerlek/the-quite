@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+
 import Text from '@/components/ui/text'
 
 export interface FormFieldProps {
@@ -24,14 +25,18 @@ export function FormField({
         <Text variant='p2XL' t className='inline'>
           {label}
         </Text>
+
         {required}
+
         {children}
+
         {suffix && (
           <Text variant='p2XL' as='span' className='inline'>
             {suffix}
           </Text>
         )}
       </div>
+
       {error && (
         <Text variant='p2XL' className='text-red-500 text-sm'>
           {error}

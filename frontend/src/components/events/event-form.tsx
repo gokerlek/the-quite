@@ -1,9 +1,9 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import Text from '@/components/ui/text'
+import { type EventFormData, useEventForm } from '@/components/events/hooks/useEventForm'
 import { Button } from '@/components/ui/button'
-import { useEventForm, type EventFormData } from '@/components/events/hooks/useEventForm'
+import Text from '@/components/ui/text'
+
 import { EventFormFields } from './event-form-fields'
 
 export interface EventFormProps {
@@ -27,8 +27,6 @@ export default function EventForm({
   submitButtonText,
   validateOnChange = false,
 }: EventFormProps) {
-  const t = useTranslations()
-
   const { formData, errors, isSubmitting, handleChange, handleSubmit } = useEventForm({
     initialData,
     onSubmit:

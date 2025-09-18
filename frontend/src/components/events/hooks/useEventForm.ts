@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useCallback, useState } from 'react'
 
 export interface EventFormData {
   name: string
@@ -44,13 +44,18 @@ export function useEventForm({
       switch (name) {
         case 'name':
           return value.trim().length < 2 ? 'Name must be at least 2 characters' : undefined
+
         case 'occupation':
           return value.trim().length < 2 ? 'Occupation must be at least 2 characters' : undefined
+
         case 'role':
           return !value ? 'Please select a role' : undefined
+
         case 'email':
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
           return !emailRegex.test(value) ? 'Please enter a valid email address' : undefined
+
         default:
           return undefined
       }
@@ -63,6 +68,7 @@ export function useEventForm({
 
     Object.entries(formData).forEach(([key, value]) => {
       const error = validateField(key as keyof EventFormData, value)
+
       if (error) {
         newErrors[key as keyof EventFormErrors] = error
       }
@@ -83,6 +89,7 @@ export function useEventForm({
 
       if (validateOnChange) {
         const fieldError = validateField(fieldName, value)
+
         setErrors((prev) => ({
           ...prev,
           [fieldName]: fieldError,
@@ -97,6 +104,7 @@ export function useEventForm({
       e.preventDefault()
 
       const formErrors = validateForm()
+
       setErrors(formErrors)
 
       if (Object.keys(formErrors).length > 0) {
@@ -106,6 +114,7 @@ export function useEventForm({
       if (!onSubmit) return
 
       setIsSubmitting(true)
+
       try {
         await onSubmit(formData)
       } catch (error) {

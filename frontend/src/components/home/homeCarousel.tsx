@@ -165,7 +165,7 @@ export const HomeCarousel = () => {
         clearTimeout(wheelTimeoutRef.current)
       }
     }
-  }, [])
+  }, [list.length])
 
   return (
     <div

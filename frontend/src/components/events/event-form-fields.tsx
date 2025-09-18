@@ -1,7 +1,9 @@
 import { useTranslations } from 'next-intl'
+
+import { FormField } from '@/components/ui/form-field'
 import { Input } from '@/components/ui/input'
 import { Select } from '@/components/ui/select'
-import { FormField } from '@/components/ui/form-field'
+
 import type { EventFormData, EventFormErrors } from '@/components/events/hooks/useEventForm'
 
 export const ROLE_OPTIONS = [
@@ -67,6 +69,7 @@ export function EventFormFields({
           aria-label={t('events.form.role')}
         >
           <option value=''>{t('events.form.rolePlaceholder')}</option>
+
           {ROLE_OPTIONS.map((role) => (
             <option key={role} value={role}>
               {t(`events.form.roles.${role}`)}

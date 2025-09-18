@@ -1,28 +1,41 @@
 'use client'
 
+import { toast } from 'sonner'
+
 import EventForm from '@/components/events/event-form'
+
 import type { EventFormData } from '@/components/events/hooks/useEventForm'
 
 export default function EventsPage() {
   const handleFormSubmit = async (data: EventFormData) => {
     try {
-      // Here you would typically send the data to your backend/API
-      console.log('Event form submitted:', data)
+      console.log('Submitting event form:', data)
 
-      // Example API call:
-      // const response = await fetch('/api/events/register', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(data),
-      // })
+      // Send form data to email API
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
 
-      // if (!response.ok) throw new Error('Failed to submit form')
+      const result = await response.json()
 
-      // Handle success (e.g., show toast, redirect, etc.)
-      alert('Thank you for your interest! We will contact you soon.')
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit form')
+      }
+
+      // Handle success
+      console.log('Email sent successfully:', result.messageId)
+      toast.success(
+        'Thank you for your interest! We have received your registration and will contact you soon.',
+      )
     } catch (error) {
       console.error('Form submission error:', error)
-      alert('There was an error submitting the form. Please try again.')
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred'
+
+      toast.error(`There was an error submitting the form: ${errorMessage}. Please try again.`)
     }
   }
 
