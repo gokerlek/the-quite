@@ -14,11 +14,13 @@ type Variant =
   | 'headingL'
   | 'headingM'
   | 'headingS'
+  | 'p2XL'
   | 'pXL'
   | 'pL'
   | 'pM'
   | 'pS'
   | 'pXS'
+  | 'pCustom'
 type Weight = 300 | 400 | 500 | 700
 
 interface Props<T extends React.ElementType = 'span'> {
@@ -40,11 +42,16 @@ const map: Record<Variant, { className: string; fontFamily: string }> = {
   headingL: { className: 'text-[32px] leading-[40px] font-lemon', fontFamily: 'Lemon' },
   headingM: { className: 'text-[24px] leading-[32px] font-lemon', fontFamily: 'Lemon' },
   headingS: { className: 'text-[20px] leading-[24px] font-lemon', fontFamily: 'Lemon' },
+  p2XL: { className: 'text-[24px] leading-[32px]', fontFamily: 'var(--font-inconsolata)' },
   pXL: { className: 'text-[20px] leading-[32px]', fontFamily: 'var(--font-inconsolata)' },
   pL: { className: 'text-[18px] leading-[28px]', fontFamily: 'var(--font-inconsolata)' },
   pM: { className: 'text-[16px] leading-[24px]', fontFamily: 'var(--font-inconsolata)' },
   pS: { className: 'text-[14px] leading-[22px]', fontFamily: 'var(--font-inconsolata)' },
   pXS: { className: 'text-[12px] leading-[18px]', fontFamily: 'var(--font-inconsolata)' },
+  pCustom: {
+    className: 'text-[24px] leading-[100%] text-justify font-normal tracking-normal',
+    fontFamily: 'var(--font-inconsolata)',
+  },
 }
 
 const defaultTags: Record<string, string> = {

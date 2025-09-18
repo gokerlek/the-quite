@@ -19,5 +19,23 @@
     "link": "Let's Talk Quiet",
     "mail": "info@thequiet.com",
     "address": "Via Guantai Nuovi 72, Lago Patria\n80014 Napoli, ITALY"
+  },
+  "events": {
+    "form": {
+      "name": "I am",
+      "occupation": "My occupation is",
+      "role": "I have",
+      "rolePlaceholder": "Select your role in Quiet's Society",
+      "email": "My email is",
+      "emailPlaceholder": "email@example.com",
+      "invite": "Invite me",
+      "roles": {
+        "member": "Member status",
+        "volunteer": "Volunteer interest",
+        "participant": "Event participation",
+        "supporter": "Community support",
+        "organizer": "Event organization experience"
+      }
+    }
   }
 }
