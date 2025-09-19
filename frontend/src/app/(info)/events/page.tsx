@@ -21,30 +21,50 @@ export default function EventsPage() {
     const scrollThreshold = 100
 
     const handleWheel = (e: WheelEvent) => {
-      e.preventDefault()
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
 
-      if (isAnimating) return
+      // Aşağı scroll: son kelimeye ulaştıysak normal scroll'a izin ver
+      if (currentIndex === words.length - 1 && e.deltaY > 0) {
+        return // Normal scroll devam etsin
+      }
 
-      scrollAccumulator += e.deltaY
+      // Yukarı scroll: sayfa en üstte değilse normal scroll'a izin ver
+      if (e.deltaY < 0 && scrollTop > 0) {
+        return // Önce normal scroll ile sayfa en üste çıksın
+      }
 
-      if (Math.abs(scrollAccumulator) >= scrollThreshold) {
-        if (scrollAccumulator > 0) {
-          // Scroll down - next word
-          if (currentIndex < words.length - 1) {
-            const newIndex = currentIndex + 1
+      // Sayfa en üstte ve yukarı scroll: kelimeler geriye gitsin
+      if (e.deltaY < 0 && scrollTop === 0 && currentIndex > 0) {
+        e.preventDefault()
 
-            animateWordChange(newIndex, 'down')
-          }
-        } else {
-          // Scroll up - previous word
-          if (currentIndex > 0) {
-            const newIndex = currentIndex - 1
+        if (isAnimating) return
 
-            animateWordChange(newIndex, 'up')
-          }
+        scrollAccumulator += e.deltaY
+
+        if (Math.abs(scrollAccumulator) >= scrollThreshold) {
+          const newIndex = currentIndex - 1
+
+          animateWordChange(newIndex, 'up')
+          scrollAccumulator = 0
         }
 
-        scrollAccumulator = 0
+        return
+      }
+
+      // Normal kelime değişimi (aşağı)
+      if (e.deltaY > 0 && currentIndex < words.length - 1) {
+        e.preventDefault()
+
+        if (isAnimating) return
+
+        scrollAccumulator += e.deltaY
+
+        if (Math.abs(scrollAccumulator) >= scrollThreshold) {
+          const newIndex = currentIndex + 1
+
+          animateWordChange(newIndex, 'down')
+          scrollAccumulator = 0
+        }
       }
     }
 
@@ -149,7 +169,7 @@ export default function EventsPage() {
       </section>
 
       <section className='flex flex-col items-center justify-center '>
-        <Image src={'/events/icon.svg'} alt={'icon'} width={456} height={456} />
+        <Image src={'/events/icon.svg'} alt={'icon'} width={456} height={456} className='mb-20' />
 
         <div className='font-lemon text-[120px] font-[300]'>AGUST</div>
 
