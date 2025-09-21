@@ -15,12 +15,8 @@ const nextConfig = {
         port: '1337',
         pathname: '/**',
       } as const,
-    ],
-  },
-  images: {
-    remotePatterns: [
       {
-        protocol: 'https',
+        protocol: 'https' as const,
         hostname: 'randomuser.me',
         pathname: '/api/portraits/**',
       },
