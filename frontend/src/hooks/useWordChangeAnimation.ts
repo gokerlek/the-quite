@@ -11,6 +11,8 @@ export type WordChangeDirection = 'up' | 'down'
 interface UseWordChangeAnimationOptions {
   words: string[]
   scrollThreshold?: number
+  autoPlay?: boolean
+  autoPlayInterval?: number
 }
 
 interface UseWordChangeAnimationReturn {
@@ -18,14 +20,18 @@ interface UseWordChangeAnimationReturn {
   containerRef: RefObject<HTMLDivElement | null>
   currentWordRef: RefObject<HTMLSpanElement | null>
   nextWordRef: RefObject<HTMLSpanElement | null>
+  hasCompletedCycle: boolean
 }
 
 export function useWordChangeAnimation({
   words,
   scrollThreshold = 100,
+  autoPlay = false,
+  autoPlayInterval = 2000,
 }: UseWordChangeAnimationOptions): UseWordChangeAnimationReturn {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [hasCompletedCycle, setHasCompletedCycle] = useState(false)
 
   const containerRef = useRef<HTMLDivElement>(null)
   const currentWordRef = useRef<HTMLSpanElement>(null)
@@ -97,6 +103,35 @@ export function useWordChangeAnimation({
     [isAnimating, words],
   )
 
+  // Auto play effect for mobile
+  useEffect(() => {
+    if (!autoPlay) return
+
+    const interval = setInterval(() => {
+      if (!isAnimating) {
+        const nextIndex = (currentIndex + 1) % words.length
+
+        // İlk turunu tamamladığını işaretle
+        if (currentIndex === words.length - 1 && !hasCompletedCycle) {
+          setHasCompletedCycle(true)
+        }
+
+        animateWordChange(nextIndex, 'down')
+      }
+    }, autoPlayInterval)
+
+    return () => clearInterval(interval)
+  }, [
+    autoPlay,
+    autoPlayInterval,
+    currentIndex,
+    isAnimating,
+    words.length,
+    animateWordChange,
+    hasCompletedCycle,
+  ])
+
+  // Wheel event for desktop
   useEffect(() => {
     const handler = (e: WheelEvent) => {
       handleWheel(e, {
@@ -123,5 +158,6 @@ export function useWordChangeAnimation({
     containerRef,
     currentWordRef,
     nextWordRef,
+    hasCompletedCycle,
   }
 }

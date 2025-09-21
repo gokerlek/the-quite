@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
 
 import { useGSAP } from '@gsap/react'
@@ -11,10 +11,47 @@ import { useWordChangeAnimation } from '@/hooks/useWordChangeAnimation'
 
 export default function EventsPage() {
   const words = useMemo(() => ['world', 'moment', 'action', 'science'], [])
-  const { currentIndex, containerRef, currentWordRef, nextWordRef } = useWordChangeAnimation({
-    words,
-    scrollThreshold: 100,
-  })
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkIsMobile()
+    window.addEventListener('resize', checkIsMobile)
+
+    return () => window.removeEventListener('resize', checkIsMobile)
+  }, [])
+
+  const { currentIndex, containerRef, currentWordRef, nextWordRef, hasCompletedCycle } =
+    useWordChangeAnimation({
+      words,
+      scrollThreshold: 100,
+      autoPlay: isMobile,
+      autoPlayInterval: 2500,
+    })
+
+  // Mobilde tüm kelimeler geçene kadar scroll'u engelle
+  useEffect(() => {
+    if (!isMobile) return
+
+    const preventScroll = (e: TouchEvent | WheelEvent) => {
+      if (!hasCompletedCycle) {
+        e.preventDefault()
+      }
+    }
+
+    if (!hasCompletedCycle) {
+      document.addEventListener('touchmove', preventScroll, { passive: false })
+      document.addEventListener('wheel', preventScroll, { passive: false })
+    }
+
+    return () => {
+      document.removeEventListener('touchmove', preventScroll)
+      document.removeEventListener('wheel', preventScroll)
+    }
+  }, [isMobile, hasCompletedCycle])
 
   // Poster animasyonu için ScrollTrigger
   useGSAP(() => {
