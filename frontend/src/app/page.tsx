@@ -14,7 +14,6 @@ import { useLoadingState } from '@/hooks/useLoadingState'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import { cn } from '@/lib/utils'
 
-
 export default function Home() {
   const containerRef = useRef<HTMLElement | null>(null)
   const scrollRef = useRef<HTMLElement | null>(null)

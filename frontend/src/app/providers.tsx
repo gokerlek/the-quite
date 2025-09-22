@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable'
+import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
 import { Flip } from 'gsap/Flip'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
 import { Observer } from 'gsap/Observer'
@@ -16,8 +17,6 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 import { TextPlugin } from 'gsap/TextPlugin'
-import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
-
 
 import { Sonner } from '@/components/sonner'
 import { LoadingProvider, useLoadingContext } from '@/context/LoadingContext'
@@ -33,7 +32,7 @@ gsap.registerPlugin(
   TextPlugin,
   SplitText,
   ScrollSmoother,
-    DrawSVGPlugin,
+  DrawSVGPlugin,
 )
 
 function LoadingScreen() {
