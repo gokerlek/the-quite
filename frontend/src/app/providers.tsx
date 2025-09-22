@@ -16,6 +16,8 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 import { TextPlugin } from 'gsap/TextPlugin'
+import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
+
 
 import { Sonner } from '@/components/sonner'
 import { LoadingProvider, useLoadingContext } from '@/context/LoadingContext'
@@ -31,6 +33,7 @@ gsap.registerPlugin(
   TextPlugin,
   SplitText,
   ScrollSmoother,
+    DrawSVGPlugin,
 )
 
 function LoadingScreen() {
