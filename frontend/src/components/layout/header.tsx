@@ -1,13 +1,16 @@
 'use client'
 
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 
 import { useLoadingContext } from '@/context/LoadingContext'
 
 export default function Header() {
   const { loaded } = useLoadingContext()
+  const pathname = usePathname()
 
-  if (!loaded) return null
+  // Ana sayfada sadece loaded durumunda göster, diğer sayfalarda her zaman göster
+  if (pathname === '/' && !loaded) return null
 
   return (
     <div className='px-6 container mx-auto'>

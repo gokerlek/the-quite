@@ -24,7 +24,7 @@ export const useLoadingState = () => {
 
       if (storedData) {
         const parsed = JSON.parse(storedData)
-        const hourInMs = 60 * 60
+        const hourInMs = 60 * 60 * 1000
         const isExpired = Date.now() - parsed.timestamp > hourInMs
 
         if (!isExpired && parsed.value === true) {
