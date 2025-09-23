@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
@@ -14,6 +15,7 @@ import { useWordChangeAnimation } from '@/hooks/useWordChangeAnimation'
 export default function EventsPage() {
   const words = useMemo(() => ['world', 'moment', 'action', 'science'], [])
   const [isMobile, setIsMobile] = useState(false)
+  const router = useRouter()
   const t = useTranslations('events')
 
   useEffect(() => {
@@ -123,7 +125,7 @@ export default function EventsPage() {
         </div>
 
         <Button
-          onClick={() => console.log('boo')}
+          onClick={() => router.push('/invitation')}
           className='mt-8 text-lg'
           style={{ transform: 'none' }}
         >
