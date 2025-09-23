@@ -8,13 +8,12 @@ import { ScrollIndicator } from '@/components/home/scrollIndicator'
 import { TheQuietDescription } from '@/components/home/theQuietDescription'
 import { TheQuiteWordmark } from '@/components/home/theQuiteWordmark'
 import { TheQuiteWordmarkWhite } from '@/components/home/theQuiteWordmarkWhite'
-import Layout from '@/components/layout'
 import { useHeroAnimation } from '@/hooks/useHeroAnimation'
 import { useLoadingState } from '@/hooks/useLoadingState'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
-import { cn } from '@/lib/utils'
 
 export default function Home() {
+  const homeRef = useRef<HTMLDivElement | null>(null)
   const containerRef = useRef<HTMLElement | null>(null)
   const scrollRef = useRef<HTMLElement | null>(null)
   const svgRef = useRef<SVGSVGElement | null>(null)
@@ -22,14 +21,14 @@ export default function Home() {
   const { loaded, endLoading } = useLoadingState()
   const { showScrollIndicator } = useHeroAnimation(containerRef, true)
 
-  useScrollAnimation(containerRef, scrollRef, svgRef, showScrollIndicator)
+  useScrollAnimation(homeRef, scrollRef, svgRef, showScrollIndicator)
 
   return loaded ? (
     <HomeCarousel />
   ) : (
-    <Layout>
+    <div id='home' className='min-h-dvh flex flex-col bg-offblack-50 fixed inset-0' ref={homeRef}>
       <section id='main' className='min-h-dvh flex flex-col relative h-dvh overflow-hidden'>
-        <div id='overlay' className='absolute inset-0 bg-offblack-950  '></div>
+        <div id='overlay' className='overley absolute inset-0 bg-offblack-950  '></div>
 
         <section
           ref={scrollRef}
@@ -44,14 +43,6 @@ export default function Home() {
             <HeroLogo ref={svgRef} />
           </section>
 
-          {/* Spacer to allow scroll once enabled */}
-          <div
-            className={cn({
-              'h-[400dvh]': showScrollIndicator,
-              'h-0': !showScrollIndicator,
-            })}
-          />
-
           {showScrollIndicator && <ScrollIndicator />}
         </section>
 
@@ -61,6 +52,6 @@ export default function Home() {
       <TheQuietDescription onDiscoverAction={endLoading} />
 
       <TheQuiteWordmarkWhite />
-    </Layout>
+    </div>
   )
 }
