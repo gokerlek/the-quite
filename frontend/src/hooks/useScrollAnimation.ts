@@ -109,12 +109,16 @@ export const useScrollAnimation = (
   const createTextMovement = () => {
     const tl = gsap.timeline({ paused: true })
 
+    // Scroll indicator'ı gizle
+    tl.set('#scroll_indicator', { display: 'none' })
+
     tl.to('#the_quite', {
       bottom: '10rem',
       duration: 2,
       ease: 'power2.inOut',
     })
 
+    // Animasyon bitince tekrar göster
     tl.set('#scroll_indicator', {
       display: 'block',
       color: '#1c1c1c',
