@@ -24,5 +24,8 @@
   },
   "preloader": {
     "desc":"Biz **anın** küratörleriyiz.\n**Unutulmazın** arayıcılarıyız.\nBiz **sessizliğiz**.\nBu bir topluluk, bu bir yolculuk."
+  },
+  "events": {
+    "button": "REQUEST AN INVITATION"
   }
 }

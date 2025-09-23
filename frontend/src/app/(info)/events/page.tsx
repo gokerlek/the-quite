@@ -6,12 +6,15 @@ import Image from 'next/image'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useTranslations } from 'use-intl'
 
+import { Button } from '@/components/ui/button'
 import { useWordChangeAnimation } from '@/hooks/useWordChangeAnimation'
 
 export default function EventsPage() {
   const words = useMemo(() => ['world', 'moment', 'action', 'science'], [])
   const [isMobile, setIsMobile] = useState(false)
+  const t = useTranslations('events')
 
   useEffect(() => {
     const checkIsMobile = () => {
@@ -58,7 +61,7 @@ export default function EventsPage() {
     ScrollTrigger.create({
       trigger: '#agust',
       start: 'top top',
-      end: '+=1000',
+      end: '+=2000',
       scrub: 2,
       pin: '#second-section',
       onUpdate: (self) => {
@@ -105,15 +108,27 @@ export default function EventsPage() {
       >
         <Image src={'/events/icon.svg'} alt={'icon'} width={456} height={456} className='mb-20' />
 
-        <div id='agust'>AGUST</div>
+        <div id='agust' className='text-richcarmine-800'>
+          AUGUST
+        </div>
 
         <div className='flex gap-5 items-center justify-center w-full'>
           <div className='min-w-max'>10</div>
 
-          <div id='poster' className='aspect-2/3 w-full bg-red-400'></div>
+          <div id='poster' className='aspect-2/3 w-full relative'>
+            <Image src='/events/mock.png' alt='events' fill={true} className='object-cover' />
+          </div>
 
           <div className='min-w-max'>26</div>
         </div>
+
+        <Button
+          onClick={() => console.log('boo')}
+          className='mt-8 text-lg'
+          style={{ transform: 'none' }}
+        >
+          {t('button')}
+        </Button>
       </section>
     </div>
   )

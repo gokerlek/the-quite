@@ -26,5 +26,8 @@
   },
   "preloader": {
     "desc":"We are the curators of **the** moment.\nSeekers of **the** unforgettable.\nWe are **the** quiet.\nIt's a society, ıt's a journey."
+  },
+  "events": {
+    "button": "REQUEST AN INVITATION"
   }
 }
