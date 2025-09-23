@@ -89,18 +89,27 @@ export const useScrollAnimation = (
       '-=6',
     )
 
-    // Overlay Kaybolma
+    // Overlay Kaybolma - 3 kat hızlı
     tl.to('#overlay', {
       opacity: 0,
-      duration: 2,
-      ease: 'power1.inOut',
+      duration: 0.67,
+      ease: 'power2.out',
     })
 
     // Scroll indicator göster
-    tl.set('#scroll_indicator', {
-      display: 'block',
-      color: '#1c1c1c',
-    })
+    tl.call(
+      () => {
+        gsap.set('#scroll_indicator', {
+          display: 'block',
+          color: '#1c1c1c',
+        })
+      },
+      undefined,
+      tl.duration() * 0.7,
+    )
+
+    // Timeline bittiğinde log
+    tl.call(() => console.log('✅ Timeline 1 completed: SVG Scaling + Text + Overlay'))
 
     return tl
   }
@@ -124,6 +133,9 @@ export const useScrollAnimation = (
       color: '#1c1c1c',
     })
 
+    // Timeline bittiğinde log
+    tl.call(() => console.log('✅ Timeline 2 completed: Text Movement'))
+
     return tl
   }
 
@@ -139,6 +151,9 @@ export const useScrollAnimation = (
     tl.to('#the_quite', { opacity: 0, duration: 1, ease: 'power1.inOut' }, '-=3')
     tl.to('#the_quite_white', { opacity: 1, duration: 3, ease: 'power1.inOut' }, '-=3')
     tl.to('#main', { backgroundColor: '#1c1c1c', duration: 3, ease: 'power1.inOut' }, '-=3')
+
+    // Timeline bittiğinde log
+    tl.call(() => console.log('✅ Timeline 3 completed: Final Scene'))
 
     return tl
   }
@@ -157,9 +172,9 @@ export const useScrollAnimation = (
       return
     }
 
-    // Timeline 2 - Yazı hareketi
+    // Timeline 2 - Yazı hareketi (Timeline 1'in %90'ı bitince tetiklenebilir)
     if (states.timeline1Triggered && !states.timeline2Triggered) {
-      if (tl.timeline1?.progress() === 1) {
+      if (tl.timeline1 && tl.timeline1.progress() >= 0.7) {
         states.timeline2Triggered = true
         console.log('⬇️ Timeline 2 started: Text Movement')
         tl.timeline2?.play()
