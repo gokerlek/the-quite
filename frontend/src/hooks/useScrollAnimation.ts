@@ -147,10 +147,10 @@ export const useScrollAnimation = (
     tl.set('#scroll_indicator', { display: 'none' })
     tl.set('#overlay', { display: 'none' })
     tl.set('#the_quiet_description', { display: 'flex' })
-    tl.to('#the_quiet_description', { opacity: 1, duration: 3, ease: 'power1.inOut' }, '+=2')
-    tl.to('#the_quite', { opacity: 0, duration: 1, ease: 'power1.inOut' }, '-=3')
-    tl.to('#the_quite_white', { opacity: 1, duration: 3, ease: 'power1.inOut' }, '-=3')
-    tl.to('#main', { backgroundColor: '#1c1c1c', duration: 3, ease: 'power1.inOut' }, '-=3')
+    tl.to('#the_quiet_description', { opacity: 1, duration: 1.5, ease: 'power1.inOut' }, '+=0.5')
+    tl.to('#the_quite', { opacity: 0, duration: 0.8, ease: 'power1.inOut' }, '-=1.5')
+    tl.to('#the_quite_white', { opacity: 1, duration: 1.5, ease: 'power1.inOut' }, '-=1.5')
+    tl.to('#main', { backgroundColor: '#1c1c1c', duration: 1.5, ease: 'power1.inOut' }, '-=1.5')
 
     // Timeline bittiğinde log
     tl.call(() => console.log('✅ Timeline 3 completed: Final Scene'))
