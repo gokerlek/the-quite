@@ -11,18 +11,16 @@ export const useScrollAnimation = (
 ) => {
   // Timeline durum yönetimi
   const timelineStates = useRef({
-    timeline1Triggered: false,
-    timeline2Triggered: false,
-    timeline3Triggered: false,
-    timeline4Triggered: false,
+    timeline1Triggered: false, // SVG Büyüme + Yazı + Overlay
+    timeline2Triggered: false, // Yazı Hareket
+    timeline3Triggered: false, // Final Sahne
   })
 
   // Timeline referansları
   const timelines = useRef({
-    timeline1: null as gsap.core.Timeline | null,
-    timeline2: null as gsap.core.Timeline | null,
-    timeline3: null as gsap.core.Timeline | null,
-    timeline4: null as gsap.core.Timeline | null,
+    timeline1: null as gsap.core.Timeline | null, // SVG Büyüme + Yazı + Overlay
+    timeline2: null as gsap.core.Timeline | null, // Yazı Hareket
+    timeline3: null as gsap.core.Timeline | null, // Final Sahne
   })
 
   // Throttle fonksiyonu - Scroll spam'ini önlemek için
@@ -38,8 +36,8 @@ export const useScrollAnimation = (
     }
   }
 
-  // Timeline 1: SVG Büyüme ve Yazı Görünümü
-  const createInitialAnimation = () => {
+  // Timeline 1: SVG Büyüme + Yazı + Overlay Kaybolma
+  const createSVGScalingWithOverlay = () => {
     const tl = gsap.timeline({ paused: true })
 
     // Mobile detection ve viewport hesaplama
@@ -55,8 +53,8 @@ export const useScrollAnimation = (
 
     // Target boyutları hesapla (viewport'un çok fazla üstünde)
     const targetWidth = isMobile
-      ? viewportWidth * 100 // Mobile: 20x viewport genişliği
-      : viewportWidth * 70 // Desktop: 40x viewport genişliği
+      ? viewportWidth * 100 // Mobile: 100x viewport genişliği
+      : viewportWidth * 70 // Desktop: 70x viewport genişliği
 
     // Başlangıç durumları - width/height kullan
     tl.set(svgRef.current, {
@@ -91,35 +89,23 @@ export const useScrollAnimation = (
       '-=6',
     )
 
-    // Tamamlandığında scroll indicator göster
-    tl.set('#scroll_indicator', { display: 'block' })
-
-    return tl
-  }
-
-  // Timeline 2: Overlay Kaybolma
-  const createOverlayFadeOut = () => {
-    const tl = gsap.timeline({ paused: true })
-
+    // Overlay Kaybolma
     tl.to('#overlay', {
       opacity: 0,
       duration: 2,
       ease: 'power1.inOut',
     })
 
-    tl.set(
-      '#scroll_indicator',
-      {
-        display: 'block',
-        color: '#1c1c1c',
-      },
-      '-=1',
-    )
+    // Scroll indicator göster
+    tl.set('#scroll_indicator', {
+      display: 'block',
+      color: '#1c1c1c',
+    })
 
     return tl
   }
 
-  // Timeline 3: Yazı Aşağı Hareket
+  // Timeline 2: Yazı Aşağı Hareket
   const createTextMovement = () => {
     const tl = gsap.timeline({ paused: true })
 
@@ -137,7 +123,7 @@ export const useScrollAnimation = (
     return tl
   }
 
-  // Timeline 4: Final Sahne
+  // Timeline 3: Final Sahne
   const createFinalScene = () => {
     const tl = gsap.timeline({ paused: true })
 
@@ -158,39 +144,32 @@ export const useScrollAnimation = (
     const states = timelineStates.current
     const tl = timelines.current
 
-    // Timeline 1 - İlk animasyon
+    // Timeline 1 - SVG Büyüme + Yazı + Overlay
     if (!states.timeline1Triggered && showScrollIndicator) {
       states.timeline1Triggered = true
+      console.log('📈 Timeline 1 started: SVG Scaling + Text + Overlay')
       tl.timeline1?.play()
 
       return
     }
 
-    // Timeline 2 - Overlay fade out
+    // Timeline 2 - Yazı hareketi
     if (states.timeline1Triggered && !states.timeline2Triggered) {
       if (tl.timeline1?.progress() === 1) {
         states.timeline2Triggered = true
+        console.log('⬇️ Timeline 2 started: Text Movement')
         tl.timeline2?.play()
       }
 
       return
     }
 
-    // Timeline 3 - Yazı hareketi
+    // Timeline 3 - Final sahne
     if (states.timeline2Triggered && !states.timeline3Triggered) {
       if (tl.timeline2?.progress() === 1) {
         states.timeline3Triggered = true
+        console.log('🎬 Timeline 3 started: Final Scene')
         tl.timeline3?.play()
-      }
-
-      return
-    }
-
-    // Timeline 4 - Final sahne
-    if (states.timeline3Triggered && !states.timeline4Triggered) {
-      if (tl.timeline3?.progress() === 1) {
-        states.timeline4Triggered = true
-        tl.timeline4?.play()
       }
     }
   }
@@ -230,10 +209,20 @@ export const useScrollAnimation = (
       if (!showScrollIndicator || !svgRef.current) return
 
       // Timeline'ları oluştur
-      timelines.current.timeline1 = createInitialAnimation()
-      timelines.current.timeline2 = createOverlayFadeOut()
-      timelines.current.timeline3 = createTextMovement()
-      timelines.current.timeline4 = createFinalScene()
+      timelines.current.timeline1 = createSVGScalingWithOverlay() // SVG Büyüme + Yazı + Overlay
+      timelines.current.timeline2 = createTextMovement() // Yazı Hareket
+      timelines.current.timeline3 = createFinalScene() // Final Sahne
+
+      // Debug için timeline'ları window'a kaydet
+      if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
+        const globalWindow = window as typeof window & {
+          scrollTimelines?: typeof timelines.current
+          timelineStates?: typeof timelineStates.current
+        }
+
+        globalWindow.scrollTimelines = timelines.current
+        globalWindow.timelineStates = timelineStates.current
+      }
 
       // Event listener'ları kur
       return setupEventListeners()
