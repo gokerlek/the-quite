@@ -29,17 +29,22 @@ export const useLoadingState = () => {
 
         if (!isExpired && parsed.value === true) {
           setLoadedFromStorage(true)
+          setLoading(false) // localStorage'dan gelen değer varsa loading'i de false yap
+          setLoaded(true) // Context'i de güncelle
         } else {
           localStorage.removeItem('loaded')
           setLoadedFromStorage(false)
+          setLoaded(false) // Context'i de resetle
         }
       } else {
         setLoadedFromStorage(false)
+        setLoaded(false) // Context'i de resetle
       }
     } catch {
       setLoadedFromStorage(false)
+      setLoaded(false) // Context'i de resetle
     }
-  }, [])
+  }, [setLoaded])
 
   const loaded = loadedFromStorage || !loading
 

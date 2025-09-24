@@ -3,6 +3,7 @@
 import { useForm } from 'react-hook-form'
 
 import { isEmpty } from 'ramda'
+import { toast } from 'sonner'
 import { useTranslations } from 'use-intl'
 
 import { Button } from '@/components/ui/button'
@@ -13,7 +14,6 @@ import { DEFAULT_ROLE_OPTIONS } from './constants'
 import { type EventFormData, type EventFormProps, type RoleOption } from './types'
 
 export default function EventForm({
-  onSubmit,
   initialData,
   validateOnChange = true,
   roleOptions = DEFAULT_ROLE_OPTIONS,
@@ -31,10 +31,34 @@ export default function EventForm({
   })
 
   const handleFormSubmit = async (data: EventFormData) => {
-    if (onSubmit) {
-      await onSubmit(data)
-    } else {
-      console.log(data)
+    try {
+      console.log('Submitting event form:', data)
+
+      // Send form data to email API
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit form')
+      }
+
+      // Handle success
+      console.log('Email sent successfully:', result.messageId)
+      toast.success(
+        'Thank you for your interest! We have received your registration and will contact you soon.',
+      )
+    } catch (error) {
+      console.error('Form submission error:', error)
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred'
+
+      toast.error(`There was an error submitting the form: ${errorMessage}. Please try again.`)
     }
   }
   const { role } = watch()

@@ -29,9 +29,28 @@ export function LoadingProvider({ children }: { children: ReactNode }) {
     if (typeof window === 'undefined') return
 
     try {
-      const v = window.localStorage.getItem('loaded')
+      const storedData = localStorage.getItem('loaded')
 
-      setLoadedState(v === 'true')
+      if (storedData) {
+        // Hook formatını kontrol et
+        try {
+          const parsed = JSON.parse(storedData)
+          const hourInMs = 60 * 60 * 1000
+          const isExpired = Date.now() - parsed.timestamp > hourInMs
+
+          if (!isExpired && parsed.value === true) {
+            setLoadedState(true)
+          } else {
+            setLoadedState(false)
+            localStorage.removeItem('loaded')
+          }
+        } catch {
+          // Eski string formatı
+          setLoadedState(storedData === 'true')
+        }
+      } else {
+        setLoadedState(false)
+      }
     } catch {
       setLoadedState(false)
     }
@@ -42,7 +61,10 @@ export function LoadingProvider({ children }: { children: ReactNode }) {
 
     if (typeof window !== 'undefined') {
       try {
-        window.localStorage.setItem('loaded', value ? 'true' : 'false')
+        // Hook ile aynı formatı kullan
+        const timestamp = Date.now()
+
+        localStorage.setItem('loaded', JSON.stringify({ value, timestamp }))
       } catch {}
     }
   }, [])
