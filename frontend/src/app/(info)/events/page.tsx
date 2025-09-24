@@ -1,43 +1,137 @@
 'use client'
 
-import { toast } from 'sonner'
+import { useEffect, useMemo, useState } from 'react'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
-import EventForm from '@/components/events/event-form'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useTranslations } from 'use-intl'
 
-import type { EventFormData } from '@/components/events/hooks/useEventForm'
+import { Button } from '@/components/ui/button'
+import { useWordChangeAnimation } from '@/hooks/useWordChangeAnimation'
 
 export default function EventsPage() {
-  const handleFormSubmit = async (data: EventFormData) => {
-    try {
-      console.log('Submitting event form:', data)
+  const words = useMemo(() => ['world', 'moment', 'action', 'science'], [])
+  const [isMobile, setIsMobile] = useState(false)
+  const router = useRouter()
+  const t = useTranslations('events')
 
-      // Send form data to email API
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-
-      const result = await response.json()
-
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to submit form')
-      }
-
-      // Handle success
-      console.log('Email sent successfully:', result.messageId)
-      toast.success(
-        'Thank you for your interest! We have received your registration and will contact you soon.',
-      )
-    } catch (error) {
-      console.error('Form submission error:', error)
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred'
-
-      toast.error(`There was an error submitting the form: ${errorMessage}. Please try again.`)
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768)
     }
-  }
 
-  return <EventForm onSubmit={handleFormSubmit} validateOnChange={true} showImage={true} />
+    checkIsMobile()
+    window.addEventListener('resize', checkIsMobile)
+
+    return () => window.removeEventListener('resize', checkIsMobile)
+  }, [])
+
+  const { currentIndex, containerRef, currentWordRef, nextWordRef, hasCompletedCycle } =
+    useWordChangeAnimation({
+      words,
+      scrollThreshold: 100,
+      autoPlay: isMobile,
+      autoPlayInterval: 2500,
+    })
+
+  // Mobilde tüm kelimeler geçene kadar scroll'u engelle
+  useEffect(() => {
+    if (!isMobile) return
+
+    const preventScroll = (e: TouchEvent | WheelEvent) => {
+      if (!hasCompletedCycle) {
+        e.preventDefault()
+      }
+    }
+
+    if (!hasCompletedCycle) {
+      document.addEventListener('touchmove', preventScroll, { passive: false })
+      document.addEventListener('wheel', preventScroll, { passive: false })
+    }
+
+    return () => {
+      document.removeEventListener('touchmove', preventScroll)
+      document.removeEventListener('wheel', preventScroll)
+    }
+  }, [isMobile, hasCompletedCycle])
+
+  // Poster animasyonu için ScrollTrigger
+  useGSAP(() => {
+    ScrollTrigger.create({
+      trigger: '#agust',
+      start: 'top top',
+      end: '+=2000',
+      scrub: 2,
+      pin: '#second-section',
+      onUpdate: (self) => {
+        const progress = self.progress
+        const width = 100 - progress * 60
+
+        gsap.set('#poster', {
+          width: `${width}%`,
+          transformOrigin: 'top center',
+        })
+      },
+    })
+  })
+
+  return (
+    <div>
+      <section className='min-h-[calc(100dvh-222px)] md:min-h-[calc(100dvh-322px)] flex items-center justify-center'>
+        <div className='md:text-5xl text-3xl flex items-center justify-center gap-4 font-[400]'>
+          <span>The</span>
+
+          <div ref={containerRef} className='h-32 w-fit flex items-center justify-center'>
+            <div className='grid grid-cols-1 grid-rows-1 place-items-center w-fit h-full'>
+              <span
+                ref={currentWordRef}
+                className='col-start-1 row-start-1 text-richcarmine-500 whitespace-nowrap font-montagne'
+              >
+                {words[currentIndex]}
+              </span>
+
+              <span
+                ref={nextWordRef}
+                className='col-start-1 row-start-1 text-richcarmine-500 whitespace-nowrap font-montagne'
+              />
+            </div>
+          </div>
+
+          <span>around us.</span>
+        </div>
+      </section>
+
+      <section
+        id='second-section'
+        className='flex flex-col items-center justify-start sticky top-0 text-5xl md:text-[120px] font-[300] font-lemon'
+      >
+        <Image src={'/events/icon.svg'} alt={'icon'} width={456} height={456} className='mb-20' />
+
+        <div id='agust' className='text-richcarmine-800'>
+          AUGUST
+        </div>
+
+        <div className='flex gap-5 items-center justify-center w-full'>
+          <div className='min-w-max'>10</div>
+
+          <div id='poster' className='aspect-2/3 w-full relative'>
+            <Image src='/events/mock.png' alt='events' fill={true} className='object-cover' />
+          </div>
+
+          <div className='min-w-max'>26</div>
+        </div>
+
+        <Button
+          onClick={() => router.push('/invitation')}
+          className='mt-8 text-lg'
+          style={{ transform: 'none' }}
+        >
+          {t('button')}
+        </Button>
+      </section>
+    </div>
+  )
 }
