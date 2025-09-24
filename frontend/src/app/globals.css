@@ -112,4 +112,9 @@ body {
     font-family: 'Inconsolata', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+@layer base {
+    option:disabled {
+        @apply text-offblack-950/30;
+    }
+}
 

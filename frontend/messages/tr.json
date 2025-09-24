@@ -26,6 +26,15 @@
     "desc":"Biz **anın** küratörleriyiz.\n**Unutulmazın** arayıcılarıyız.\nBiz **sessizliğiz**.\nBu bir topluluk, bu bir yolculuk."
   },
   "events": {
-    "button": "REQUEST AN INVITATION"
+    "invite_me": "Davet Et",
+    "sentence_form": "Benim adım {name}\nMesleğim {occupation} The Quiet's Society'de\n{role} rolündeyim\nE-mail adresim {email}",
+    "roles": {
+      "member": "üye",
+      "volunteer": "gönüllü", 
+      "participant": "katılımcı",
+      "supporter": "destekçi",
+      "organizer": "organizatör",
+      "placeholder": "an inside friend"
+    }
   }
 }

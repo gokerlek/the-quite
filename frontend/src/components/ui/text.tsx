@@ -20,7 +20,7 @@ type Variant =
   | 'pM'
   | 'pS'
   | 'pXS'
-  | 'pCustom'
+  | 'inherit'
 type Weight = 300 | 400 | 500 | 700
 
 interface Props<T extends React.ElementType = 'span'> {
@@ -48,10 +48,7 @@ const map: Record<Variant, { className: string; fontFamily: string }> = {
   pM: { className: 'text-[16px] leading-[24px]', fontFamily: 'var(--font-inconsolata)' },
   pS: { className: 'text-[14px] leading-[22px]', fontFamily: 'var(--font-inconsolata)' },
   pXS: { className: 'text-[12px] leading-[18px]', fontFamily: 'var(--font-inconsolata)' },
-  pCustom: {
-    className: 'text-[24px] leading-[100%] text-justify font-normal tracking-normal',
-    fontFamily: 'var(--font-inconsolata)',
-  },
+  inherit: { className: 'inherit', fontFamily: 'inherit' },
 }
 
 const defaultTags: Record<string, string> = {

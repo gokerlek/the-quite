@@ -2,6 +2,8 @@
 
 import { useTranslations } from 'use-intl'
 
+import { Button } from '@/components/ui/button'
+
 type Props = { onDiscoverAction: () => void }
 
 export function TheQuietDescription({ onDiscoverAction }: Props) {
@@ -34,12 +36,9 @@ export function TheQuietDescription({ onDiscoverAction }: Props) {
         {renderFormattedText(t('desc'))}
       </div>
 
-      <button
-        onClick={onDiscoverAction}
-        className='bt-white px-5 py-2 bg-offblack-50 text-offblack-950 hover:opacity-80 transform hover:scale-95 transition-all duration-300 ease-in-out cursor-pointer'
-      >
+      <Button variant='secondary' onClick={onDiscoverAction}>
         DISCOVER
-      </button>
+      </Button>
     </section>
   )
 }

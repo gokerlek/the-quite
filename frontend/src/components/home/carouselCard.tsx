@@ -2,6 +2,7 @@ import { forwardRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { buttonVariants } from '@/components/ui/button'
 import Text from '@/components/ui/text'
 import { cn } from '@/lib/utils'
 
@@ -65,11 +66,15 @@ export const CarouselCard = forwardRef<HTMLDivElement, CarouselCardProps>(
                 e.preventDefault()
               }
             }}
-            className={cn(' px-4 py-2  w-fit mx-auto', {
-              'opacity-0 cursor-default ': !isActive,
-              'bg-offblack-950 text-offblack-50 hover:opacity-80 transform hover:scale-95 ':
-                isActive,
-            })}
+            className={cn(
+              buttonVariants({
+                variant: 'default',
+              }),
+              'mx-auto',
+              {
+                'opacity-0 cursor-default ': !isActive,
+              },
+            )}
           >
             <Text variant='pM' t>
               discover
