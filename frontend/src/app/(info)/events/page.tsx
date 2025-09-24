@@ -115,22 +115,24 @@ export default function EventsPage() {
         </div>
 
         <div className='flex gap-5 items-center justify-center w-full'>
-          <div className='min-w-max'>10</div>
+          <div className='min-w-max '>10</div>
 
-          <div id='poster' className='aspect-2/3 w-full relative'>
-            <Image src='/events/mock.png' alt='events' fill={true} className='object-cover' />
+          <div id='poster' className='w-full flex flex-col gap-5 items-center justify-center'>
+            <div className='aspect-2/3 w-full relative'>
+              <Image src='/events/mock.png' alt='events' fill={true} className='object-cover' />
+            </div>
+
+            <Button
+              variant='default'
+              className='text-lg font-light'
+              onClick={() => router.push('/invitation')}
+            >
+              {t('button')}
+            </Button>
           </div>
 
           <div className='min-w-max'>26</div>
         </div>
-
-        <Button
-          onClick={() => router.push('/invitation')}
-          className='mt-8 text-lg'
-          style={{ transform: 'none' }}
-        >
-          {t('button')}
-        </Button>
       </section>
     </div>
   )
