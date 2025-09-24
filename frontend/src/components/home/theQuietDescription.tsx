@@ -1,17 +1,37 @@
 'use client'
 
+import { useTranslations } from 'use-intl'
+
 type Props = { onDiscoverAction: () => void }
 
 export function TheQuietDescription({ onDiscoverAction }: Props) {
+  const t = useTranslations('preloader')
+
+  const renderFormattedText = (text: string) => {
+    const regex = /\*\*(.*?)\*\*/g
+    const parts = text.split(regex)
+
+    return parts.map((part, index) =>
+      index % 2 === 1 ? (
+        <span key={index} className='text-2xl sm:text-4xl'>
+          {part}
+        </span>
+      ) : (
+        <span className='text-2xl sm:text-5xl' key={index}>
+          {part}
+        </span>
+      ),
+    )
+  }
+
   return (
     <section
       id='the_quiet_description'
-      className='absolute left-1/12 top-1/12 flex-col gap-5 items-start opacity-0'
+      className='absolute left-1/12 top-1/12 flex-col gap-12 items-start opacity-0'
       style={{ display: 'none' }}
     >
-      <div className='text-2xl sm:text-5xl sm:max-w-1/2 font-light  text-left text-offblack-50 text-balance'>
-        We are the curators of the moment. Seekers of the unforgettable. We are the quiet. It&apos;s
-        a society, ıt&apos;s a journey.
+      <div className=' font-light uppercase  text-left text-offblack-50 text-balance '>
+        {renderFormattedText(t('desc'))}
       </div>
 
       <button

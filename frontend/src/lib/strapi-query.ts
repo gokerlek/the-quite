@@ -17,13 +17,50 @@ export interface ContentTypePreset {
 
 // Per‑type defaults (customize freely)
 export const strapiQueryMap: Record<keyof StrapiContentTypes, ContentTypePreset> = {
-  posts: {
-    list: { populate: ['cover'], sort: ['-id'] },
-    single: { populate: ['cover', 'author'] },
+  about: {
+    single: {
+      populate: {
+        Team: {
+          populate: {
+            memberPic: {
+              fields: ['alternativeText', 'url', 'width', 'height', 'formats'],
+            },
+          },
+        },
+      },
+    },
   },
-  projects: {
-    list: { populate: '*' },
+  'about-landing': {
     single: { populate: '*' },
+  },
+  'contact-page': {
+    single: {
+      populate: {
+        contact: {
+          populate: {
+            placeholder: {
+              fields: ['alternativeText', 'url', 'width', 'height', 'formats'],
+            },
+          },
+        },
+      },
+    },
+  },
+  'events-detail': {
+    single: {
+      populate: {
+        EventDetails: {
+          populate: {
+            eventMedia: {
+              fields: ['alternativeText', 'url', 'width', 'height', 'formats'],
+            },
+            PreviousEvents: {
+              fields: ['alternativeText', 'url', 'width', 'height', 'formats'],
+            },
+          },
+        },
+      },
+    },
   },
 }
 

@@ -11,18 +11,31 @@ export const useLoadingState = () => {
     setLoading(false)
     setLoaded(true)
 
-    if (typeof window !== 'undefined') {
-      try {
-        window.localStorage.setItem('loaded', 'true')
-      } catch {}
-    }
+    try {
+      const timestamp = Date.now()
+
+      localStorage.setItem('loaded', JSON.stringify({ value: true, timestamp }))
+    } catch {}
   }, [setLoaded])
 
   useEffect(() => {
-    if (typeof window === 'undefined') return
-
     try {
-      setLoadedFromStorage(window.localStorage.getItem('loaded') === 'true')
+      const storedData = localStorage.getItem('loaded')
+
+      if (storedData) {
+        const parsed = JSON.parse(storedData)
+        const hourInMs = 60 * 60 * 1000
+        const isExpired = Date.now() - parsed.timestamp > hourInMs
+
+        if (!isExpired && parsed.value === true) {
+          setLoadedFromStorage(true)
+        } else {
+          localStorage.removeItem('loaded')
+          setLoadedFromStorage(false)
+        }
+      } else {
+        setLoadedFromStorage(false)
+      }
     } catch {
       setLoadedFromStorage(false)
     }

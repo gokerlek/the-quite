@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_events_detail_media_fields",
+  "info": {
+    "displayName": "Body"
+  },
+  "options": {},
+  "attributes": {
+    "Cover": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Events": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "EventBody": {
+      "type": "richtext"
+    },
+    "Date": {
+      "type": "date"
+    }
+  },
+  "config": {}
+}

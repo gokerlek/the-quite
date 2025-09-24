@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_landings",
+  "info": {
+    "singularName": "about-landing",
+    "pluralName": "about-landings",
+    "displayName": "About Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "aboutLanding": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "contact_pages",
+  "info": {
+    "singularName": "contact-page",
+    "pluralName": "contact-pages",
+    "displayName": "Cantact Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "contact": {
+      "type": "component",
+      "component": "contact.contact",
+      "repeatable": false
+    }
+  }
+}
