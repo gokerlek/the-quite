@@ -123,3 +123,4 @@ public/uploads/*
 # Package manager lockfiles (keeping bun.lock)
 package-lock.json
 yarn.lock
+bun.lock
