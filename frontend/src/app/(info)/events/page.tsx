@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTranslations } from 'use-intl'
 
@@ -60,6 +61,8 @@ export default function EventsPage() {
 
   // Poster animasyonu için ScrollTrigger
   useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
+
     ScrollTrigger.create({
       trigger: '#agust',
       start: 'top top',
@@ -73,6 +76,14 @@ export default function EventsPage() {
         gsap.set('#poster', {
           width: `${width}%`,
           transformOrigin: 'top center',
+        })
+      },
+      onEnter: () => {
+        // AUGUST yukarı dayandığında otomatik scroll başlat
+        gsap.to(window, {
+          scrollTo: { y: '+=2000', autoKill: false },
+          duration: 3,
+          ease: 'power2.inOut',
         })
       },
     })
