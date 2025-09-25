@@ -71,7 +71,7 @@ export default function EventsPage() {
       pin: '#second-section',
       onUpdate: (self) => {
         const progress = self.progress
-        const width = 100 - progress * 60
+        const width = 100 - progress * 75
 
         gsap.set('#poster', {
           width: `${width}%`,
@@ -115,12 +115,18 @@ export default function EventsPage() {
         </div>
       </section>
 
+      <Image
+        src={'/events/icon.svg'}
+        alt={'icon'}
+        width={456}
+        height={456}
+        className='mb-20 mx-auto'
+      />
+
       <section
         id='second-section'
-        className='flex flex-col items-center justify-start sticky top-0 text-5xl md:text-[120px] font-[300] font-lemon'
+        className='flex flex-col items-center justify-start sticky top-10 text-5xl md:text-[120px] font-[300] font-lemon'
       >
-        <Image src={'/events/icon.svg'} alt={'icon'} width={456} height={456} className='mb-20' />
-
         <div id='agust' className='text-richcarmine-800'>
           AUGUST
         </div>
