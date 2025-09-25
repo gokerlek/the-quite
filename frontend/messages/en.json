@@ -32,6 +32,7 @@
     "button": "REQUEST AN INVITATION",
     "sentence_form":  "I am {name}\nMy occupation is {occupation} I have\n{role} in The Quiet's Society.\nMy email is {email}",
     "invite_me": "Invite me",
+    "previous_events": "previous events",
     "roles": {
       "member": "member",
       "volunteer": "volunteer",

@@ -28,6 +28,7 @@
   "events": {
     "invite_me": "Davet Et",
     "sentence_form": "Benim adım {name}\nMesleğim {occupation} The Quiet's Society'de\n{role} rolündeyim\nE-mail adresim {email}",
+    "previous_events": "previous events",
     "roles": {
       "member": "üye",
       "volunteer": "gönüllü", 
