@@ -2,7 +2,16 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+
 import { CarouselCard } from '@/components/home/carouselCard'
+
+const debug =
+  typeof window !== 'undefined' &&
+  (process.env.NEXT_PUBLIC_DEBUG_CAROUSEL === '1' ||
+    process.env.NEXT_PUBLIC_DEBUG_CAROUSEL === 'true' ||
+    process.env.NODE_ENV !== 'production')
 
 const homeCarouselData = [
   {
@@ -33,25 +42,151 @@ export const HomeCarousel = () => {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const [activeIndex, setActiveIndex] = useState(0)
   const wheelTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  // Scroll helpers
+  const getViewportCenterX = () => (typeof window !== 'undefined' ? window.innerWidth / 2 : 0)
+
+  const getCardCenterViewportX = (el: HTMLDivElement | null) => {
+    if (!el) return Number.POSITIVE_INFINITY
+
+    const rect = el.getBoundingClientRect()
+
+    return rect.left + rect.width / 2
+  }
+
+  const updateActiveIndexByCenter = () => {
+    const center = getViewportCenterX()
+    let closestIdx = 0
+    let closestDist = Number.POSITIVE_INFINITY
+
+    cardRefs.current.forEach((card, idx) => {
+      const c = getCardCenterViewportX(card)
+      const dist = Math.abs(c - center)
+
+      if (dist < closestDist) {
+        closestDist = dist
+        closestIdx = idx
+      }
+    })
+
+    setActiveIndex(closestIdx)
+  }
+
+  const snapToClosestCard = () => {
+    const el = containerRef.current
+
+    if (!el) return
+
+    const viewportCenter = getViewportCenterX()
+    let targetCardCenterVp = viewportCenter
+    let closestDist = Number.POSITIVE_INFINITY
+
+    cardRefs.current.forEach((card) => {
+      const cVp = getCardCenterViewportX(card)
+      const dist = Math.abs(cVp - viewportCenter)
+
+      if (dist < closestDist) {
+        closestDist = dist
+        targetCardCenterVp = cVp
+      }
+    })
+
+    // Compute required scrollLeft to bring target card center to viewport center
+    const delta = targetCardCenterVp - viewportCenter
+    const targetScrollLeft = Math.max(0, el.scrollLeft + delta)
+
+    // Debug
+    try {
+      if (debug)
+        console.info(
+          '[HomeCarousel] snap -> viewportX:',
+          Math.round(viewportCenter),
+          'cardX:',
+          Math.round(targetCardCenterVp),
+          'delta:',
+          Math.round(delta),
+        )
+    } catch {}
+
+    gsap.killTweensOf(el)
+    gsap.to(el, {
+      duration: 0.6,
+      ease: 'power3.out',
+      scrollTo: { x: targetScrollLeft },
+    })
+  }
+
+  useEffect(() => {
+    // Ensure GSAP ScrollToPlugin is registered on client
+    gsap.registerPlugin(ScrollToPlugin)
+
+    const el = containerRef.current
+
+    if (!el) return
+
+    // Handle wheel -> horizontal scroll
+    const onWheel = (e: WheelEvent) => {
+      // allow shift+wheel native horizontal scroll
+      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY
+
+      // Prevent page vertical scrolling when hovering the carousel
+      e.preventDefault()
+
+      // Cancel any ongoing GSAP tween when the user interacts
+      gsap.killTweensOf(el)
+
+      el.scrollLeft += delta
+      updateActiveIndexByCenter()
+
+      if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current)
+
+      wheelTimeoutRef.current = setTimeout(() => {
+        snapToClosestCard()
+      }, 120)
+    }
+
+    const onScroll = () => {
+      updateActiveIndexByCenter()
+    }
+
+    el.addEventListener('wheel', onWheel, { passive: false })
+    el.addEventListener('scroll', onScroll)
+    window.addEventListener('resize', updateActiveIndexByCenter)
+
+    // Initialize active index on mount
+    updateActiveIndexByCenter()
+
+    return () => {
+      el.removeEventListener('wheel', onWheel)
+      el.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', updateActiveIndexByCenter)
+
+      if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current)
+    }
+  }, [])
+
   const list = [
     ...homeCarouselData,
     ...homeCarouselData,
     ...homeCarouselData,
-    // ...homeCarouselData,
-    // ...homeCarouselData,
-    // ...homeCarouselData,
-    // ...homeCarouselData,
-    // ...homeCarouselData,
-    // ...homeCarouselData,
-    // ...homeCarouselData,
-    // ...homeCarouselData,
-    // ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
+    ...homeCarouselData,
   ]
 
   return (
     <div
       ref={containerRef}
-      className=' min-h-dvh flex gap-5 md:gap-12 items-center justify-center px-5 md:px-6 py-24 mx-auto md:max-w-[91.5rem] max-w-[100vw] overflow-x-scroll scrollbar-hide'
+      className='relative min-h-dvh flex gap-5 md:gap-12 items-center justify-center px-5 md:px-6 py-24 mx-auto md:max-w-[73.5rem] max-w-[100vw] overflow-x-scroll scrollbar-hide'
       style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
     >
       {list.map((data, index) => {
@@ -67,7 +202,7 @@ export const HomeCarousel = () => {
         )
       })}
 
-      <div className='absolute top-1/2 left-1/2 border border-offblack-950 w-[22.5rem] min-w-[22.5rem] h-[37.5rem] -translate-x-1/2 -translate-y-1/2 bg-transparent pointer-events-none md:block hidden'></div>
+      <div className='fixed top-1/2 left-1/2 z-30 border border-offblack-950 w-[22.5rem] min-w-[22.5rem] h-[37.5rem] -translate-x-1/2 -translate-y-1/2 bg-transparent pointer-events-none md:block hidden'></div>
     </div>
   )
 }

@@ -22,12 +22,13 @@ export const CarouselCard = forwardRef<HTMLDivElement, CarouselCardProps>(
       <div
         ref={ref}
         className={cn(
-          'flex snap-center flex-col items-center justify-center gap-12 px-6 py-8 w-[22.5rem] min-w-[22.5rem] h-[37.5rem]',
+          'relative flex snap-center flex-col items-center justify-center gap-12 px-6 py-8 w-[22.5rem] min-w-[22.5rem] h-[37.5rem] ',
           {
             'opacity-40': !isActive,
             'opacity-100': isActive,
           },
         )}
+        style={{ scrollSnapAlign: 'center' }}
       >
         <div className='relative w-[8.75rem] h-[8.75rem]'>
           <Image
@@ -41,7 +42,8 @@ export const CarouselCard = forwardRef<HTMLDivElement, CarouselCardProps>(
         <div className='flex flex-col justify-start gap-12 flex-1'>
           <div
             className={cn(
-              'break-all text-center whitespace-pre-line transition-all duration-1000 heading-m',
+              'break-all text-center whitespace-pre-line transition-all duration-1000',
+              { 'heading-m-medium': isActive, 'heading-m': !isActive },
             )}
           >
             {t(title)}
