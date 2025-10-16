@@ -12,7 +12,7 @@ export default function Header() {
   if (pathname === '/' && !loaded) return null
 
   return (
-    <div className='px-6 container mx-auto'>
+    <div className='px-6  mx-auto'>
       <div className='fixed top-5 sm:top-8 w-[6rem]'>
         <svg viewBox='0 0 96 48' fill='none' xmlns='http://www.w3.org/2000/svg'>
           <path
