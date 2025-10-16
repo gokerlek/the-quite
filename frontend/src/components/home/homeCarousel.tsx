@@ -1,17 +1,22 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 
 import { CarouselCard } from '@/components/home/carouselCard'
 
-const debug =
-  typeof window !== 'undefined' &&
-  (process.env.NEXT_PUBLIC_DEBUG_CAROUSEL === '1' ||
-    process.env.NEXT_PUBLIC_DEBUG_CAROUSEL === 'true' ||
-    process.env.NODE_ENV !== 'production')
+// Helpers moved to module scope to avoid useEffect dependency noise
+const getViewportCenterX = () => (typeof window !== 'undefined' ? window.innerWidth / 2 : 0)
+
+const getCardCenterViewportX = (el: HTMLDivElement | null) => {
+  if (!el) return Number.POSITIVE_INFINITY
+
+  const rect = el.getBoundingClientRect()
+
+  return rect.left + rect.width / 2
+}
 
 const homeCarouselData = [
   {
@@ -37,24 +42,31 @@ const homeCarouselData = [
   },
 ]
 
+const list = [
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+]
+
 export const HomeCarousel = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const [activeIndex, setActiveIndex] = useState(0)
   const wheelTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-  // Scroll helpers
-  const getViewportCenterX = () => (typeof window !== 'undefined' ? window.innerWidth / 2 : 0)
-
-  const getCardCenterViewportX = (el: HTMLDivElement | null) => {
-    if (!el) return Number.POSITIVE_INFINITY
-
-    const rect = el.getBoundingClientRect()
-
-    return rect.left + rect.width / 2
-  }
-
-  const updateActiveIndexByCenter = () => {
+  const updateActiveIndexByCenter = useCallback(() => {
     const center = getViewportCenterX()
     let closestIdx = 0
     let closestDist = Number.POSITIVE_INFINITY
@@ -70,9 +82,9 @@ export const HomeCarousel = () => {
     })
 
     setActiveIndex(closestIdx)
-  }
+  }, [])
 
-  const snapToClosestCard = () => {
+  const snapToClosestCard = useCallback(() => {
     const el = containerRef.current
 
     if (!el) return
@@ -95,26 +107,13 @@ export const HomeCarousel = () => {
     const delta = targetCardCenterVp - viewportCenter
     const targetScrollLeft = Math.max(0, el.scrollLeft + delta)
 
-    // Debug
-    try {
-      if (debug)
-        console.info(
-          '[HomeCarousel] snap -> viewportX:',
-          Math.round(viewportCenter),
-          'cardX:',
-          Math.round(targetCardCenterVp),
-          'delta:',
-          Math.round(delta),
-        )
-    } catch {}
-
     gsap.killTweensOf(el)
     gsap.to(el, {
       duration: 0.6,
       ease: 'power3.out',
       scrollTo: { x: targetScrollLeft },
     })
-  }
+  }, [])
 
   useEffect(() => {
     // Ensure GSAP ScrollToPlugin is registered on client
@@ -163,25 +162,7 @@ export const HomeCarousel = () => {
 
       if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current)
     }
-  }, [])
-
-  const list = [
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-  ]
+  }, [updateActiveIndexByCenter, snapToClosestCard])
 
   return (
     <div
