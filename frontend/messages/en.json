@@ -10,9 +10,21 @@
     "contact": "Contact"
   },
   "discover": "Discover",
-  "community_events": "community\nevents",
-  "journey_design": "journey\ndesign",
-  "event_organization": "event\norganization",
+  "community_events": {
+    "title": "community\nevents",
+    "subtitle": "Begins in Rome.",
+    "desc": "Though, it belongs to those who moves with care. A quiet motif woven into detail, If it finds you, listen."
+  },
+  "journey_design": {
+    "title": "journey\ndesign",
+    "subtitle": "First, we listen.",
+    "desc": "Tailoring experiences just for you.\nShaped by instinct, emotion and place\nIt belongs to the moment it’s made for. \nJust what’s right, when it ’s time."
+  },
+  "event_organization":{
+    "title": "event\norganization",
+    "subtitle": "Framed for you.",
+    "desc": "Framed for you.\nIn a certain mood, in the specific atmosphere. The rest is detail, movement and timing. Before it reveals itself. \nYou’ll know it’s yours."
+  },
   "description": "Description",
   "team": "team",
   "contact": {

@@ -1,85 +1,57 @@
 import { forwardRef } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 
-import { buttonVariants } from '@/components/ui/button'
-import Text from '@/components/ui/text'
+import { useTranslations } from 'use-intl'
+
 import { cn } from '@/lib/utils'
 
 interface CarouselCardProps {
   img: string
   title: string
+  subtitle: string
   description: string
   href: string
   isActive: boolean
 }
 
 export const CarouselCard = forwardRef<HTMLDivElement, CarouselCardProps>(
-  ({ img, title, description, href, isActive }, ref) => {
+  ({ img, title, description, subtitle, isActive }, ref) => {
+    const t = useTranslations()
+
     return (
       <div
         ref={ref}
         className={cn(
-          'flex snap-center flex-col items-center justify-center md:py-24 py-3 transition-all duration-1000 max-h-720px',
-          // Mobile: viewport height minus header space, Desktop: fixed height
-          'h-[calc(100dvh-210px)]',
-          // Mobile: screen width minus 40px (20px each side), Desktop: 3 cards per view
-          'min-w-[calc(100vw-40px)] px-6 md:w-full  md:min-w-[calc((1440px-120px)/3)] md:px-12',
+          'flex snap-center flex-col items-center justify-center gap-12 px-6 py-8 w-[22.5rem] min-w-[22.5rem] h-[37.5rem]',
           {
             'opacity-40': !isActive,
             'opacity-100': isActive,
           },
         )}
       >
-        <Image
-          src={img}
-          alt={title}
-          width={214}
-          height={214}
-          className='object-contain w-10 h-10 md:w-214px md:h-214px' // gerekirse cover/contain
-        />
+        <div className='relative w-[8.75rem] h-[8.75rem]'>
+          <Image
+            src={img}
+            alt={title}
+            fill
+            className='object-cover' // gerekirse cover/contain
+          />
+        </div>
 
-        <div className='flex flex-col justify-between flex-1'>
-          <Text
-            variant='headingM'
-            weight={300}
+        <div className='flex flex-col justify-start gap-12 flex-1'>
+          <div
             className={cn(
-              'break-all text-center whitespace-pre-line transition-all duration-1000',
-              {
-                'md:text-32 md:leading-40 text-24 leading-32': isActive,
-                'md:text-24 md:leading-32 text-18 leading-24': !isActive,
-              },
-            )}
-            t
-          >
-            {title}
-          </Text>
-
-          <Text variant='pS' weight={400} className='break-words text-center py-5'>
-            {description}
-          </Text>
-
-          <Link
-            href={isActive ? href : '#'}
-            onClick={(e) => {
-              if (!isActive) {
-                e.preventDefault()
-              }
-            }}
-            className={cn(
-              buttonVariants({
-                variant: 'default',
-              }),
-              'mx-auto',
-              {
-                'opacity-0 cursor-default ': !isActive,
-              },
+              'break-all text-center whitespace-pre-line transition-all duration-1000 heading-m',
             )}
           >
-            <Text variant='pM' t>
-              discover
-            </Text>
-          </Link>
+            {t(title)}
+          </div>
+
+          <div className='flex flex-col gap-2'>
+            <div className='break-words text-center h9 text-richcarmine-600'>{t(subtitle)}</div>
+
+            <div className='break-words text-center p-s'>{t(description)}</div>
+          </div>
         </div>
       </div>
     )
