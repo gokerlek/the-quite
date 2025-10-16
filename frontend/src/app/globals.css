@@ -8,6 +8,14 @@
 /* noinspection CssUnresolvedCustomProperty */
 /* noinspection CssUnknownTarget */
 
+@layer base {
+    html { font-size: clamp(16px, calc(100vw / 90), 9999px); }
+    /* 90 = 1440 / 16 ⇒ 100vw/90 = 16px @1440 */
+    option:disabled {
+        @apply text-offblack-950/30;
+    }
+}
+
 
 @font-face {
     font-family: 'MontagneetRiviäre';
@@ -106,15 +114,58 @@
     --color-springbud-200: lch(89.63% 27.31 106.20);
     --color-springbud-100: lch(93.78% 16.38 107.52);
     --color-springbud-50:  lch(98.03% 5.08 109.78);
+
+    /* Custom Font Sizes */
+    --font-size-12: 0.75rem;   /* 12px */
+    --font-size-14: 0.875rem;  /* 14px */
+    --font-size-16: 1rem;      /* 16px */
+    --font-size-18: 1.125rem;  /* 18px */
+    --font-size-20: 1.25rem;   /* 20px */
+    --font-size-24: 1.5rem;    /* 24px */
+    --font-size-32: 2rem;      /* 32px */
+    --font-size-40: 2.5rem;    /* 40px */
+    --font-size-48: 3rem;      /* 48px */
+    --font-size-56: 3.5rem;    /* 56px */
+    --font-size-60: 3.75rem;   /* 60px */
+    --font-size-72: 4.5rem;    /* 72px */
+    --font-size-96: 6rem;      /* 96px */
+    --font-size-120: 7.5rem;   /* 120px */
+
+    /* Custom Spacing & Sizes - Only non-conflicting values */
+    --spacing-3px: 0.1875rem;     /* 3px */
+    --spacing-18px: 1.125rem;     /* 18px */
+    --spacing-120px: 7.5rem;      /* 120px */
+    --spacing-210px: 13.125rem;   /* 210px */
+    --spacing-214px: 13.375rem;   /* 214px */
+    --spacing-222px: 13.875rem;   /* 222px */
+    --spacing-277px: 17.3125rem;  /* 277px */
+    --spacing-322px: 20.125rem;   /* 322px */
+    --spacing-406px: 25.375rem;   /* 406px */
+    --spacing-420px: 26.25rem;    /* 420px */
+    --spacing-430px: 26.875rem;   /* 430px */
+    --spacing-480px: 30rem;       /* 480px */
+    --spacing-636px: 39.75rem;    /* 636px */
+    --spacing-645px: 40.3125rem;  /* 645px */
+    --spacing-720px: 45rem;       /* 720px */
+    --spacing-730px: 45.625rem;   /* 730px */
+    --spacing-1440px: 90rem;      /* 1440px */
+
+    /* Custom Line Heights */
+    --line-height-18: 1.125rem; /* 18px */
+    --line-height-22: 1.375rem; /* 22px */
+    --line-height-24: 1.5rem;   /* 24px */
+    --line-height-28: 1.75rem;  /* 28px */
+    --line-height-32: 2rem;     /* 32px */
+    --line-height-40: 2.5rem;   /* 40px */
+    --line-height-48: 3rem;     /* 48px */
+    --line-height-56: 3.5rem;   /* 56px */
+    --line-height-68: 4.25rem;  /* 68px */
+    --line-height-73: 4.5625rem; /* 73px */
+    --line-height-86: 5.375rem; /* 86px */
+    --line-height-114: 7.125rem; /* 114px */
 }
 
 body {
     font-family: 'Inconsolata', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
-
-@layer base {
-    option:disabled {
-        @apply text-offblack-950/30;
-    }
 }
 

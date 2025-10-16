@@ -14,7 +14,7 @@ export default function Event({
 }: EventProps) {
   return (
     <div className='flex flex-col lg:flex-row md:gap-24 gap-5 h-full w-full'>
-      <div className='aspect-4/5 w-full max-w-[480px] relative'>
+      <div className='aspect-4/5 w-full max-w-480px relative'>
         <Image src='/events/mock.png' alt={imageAlt} fill className='object-cover' />
       </div>
 

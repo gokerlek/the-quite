@@ -177,7 +177,7 @@ export const HomeCarousel = () => {
   const handlePrev = () => animateToCard('prev')
 
   return (
-    <div className='min-h-screen px-6 py-24 mx-auto max-w-[1440px]'>
+    <div className='min-h-screen px-6 py-24 mx-auto max-w-1440px'>
       {/* Navigation buttons */}
       <div className='flex justify-center gap-4 mb-8'>
         <button
@@ -197,7 +197,7 @@ export const HomeCarousel = () => {
         </button>
       </div>
 
-      <div className='overflow-hidden w-full mx-auto relative h-[730px] flex justify-center'>
+      <div className='overflow-hidden w-full mx-auto relative h-730px flex justify-center'>
         {/* Cards container - flex ile otomatik ortalanır */}
         <div
           ref={containerRef}
@@ -223,7 +223,7 @@ export const HomeCarousel = () => {
         {/* Active card area indicator - viewport'un tam ortasında */}
         <div
           id='active-card-area'
-          className='fixed inset-y-0 h-full left-1/2 transform -translate-x-1/2 max-w-[420px] w-full border border-offblack-950 pointer-events-none z-10'
+          className='fixed inset-y-0 h-full left-1/2 transform -translate-x-1/2 max-w-420px w-full border border-offblack-950 pointer-events-none z-10'
           style={{ top: 'auto', bottom: 'auto', height: '730px' }}
         ></div>
       </div>

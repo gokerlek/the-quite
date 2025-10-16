@@ -10,7 +10,7 @@ export const HeroLogo = forwardRef(function HeroLogo(_: object, ref: ForwardedRe
       viewBox='0 0 659 659'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
-      className='fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[20vw] pointer-events-none min-w-40'
+      className='fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:w-2xs w-52 pointer-events-none min-w-10'
       shapeRendering='geometricPrecision'
       opacity={0}
     >

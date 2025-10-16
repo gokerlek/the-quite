@@ -10,20 +10,25 @@ export function TheQuietDescription({ onDiscoverAction }: Props) {
   const t = useTranslations('preloader')
 
   const renderFormattedText = (text: string) => {
-    const regex = /\*\*(.*?)\*\*/g
-    const parts = text.split(regex)
+    return text.split('\n').map((line, lineIndex) => (
+      <div key={lineIndex}>
+        {line.split(/(\*\*.*?\*\*)/).map((part, partIndex) => {
+          if (part.startsWith('**') && part.endsWith('**')) {
+            return (
+              <span key={partIndex} className='text-2xl sm:text-4xl font-lemon font-light'>
+                {part.slice(2, -2)}
+              </span>
+            )
+          }
 
-    return parts.map((part, index) =>
-      index % 2 === 1 ? (
-        <span key={index} className='text-2xl sm:text-4xl'>
-          {part}
-        </span>
-      ) : (
-        <span className='text-2xl sm:text-5xl' key={index}>
-          {part}
-        </span>
-      ),
-    )
+          return (
+            <span className='text-2xl sm:text-5xl font-lemon font-light' key={partIndex}>
+              {part}
+            </span>
+          )
+        })}
+      </div>
+    ))
   }
 
   return (

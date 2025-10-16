@@ -116,7 +116,7 @@ export default function AboutPage() {
         alt='logo'
         width={636}
         height={636}
-        className='w-[clamp(200px,50vw,636px)] h-auto'
+        className='w-[clamp(200px,50vw,636)] h-auto'
       />
 
       {/* İlk scroll alanı */}
@@ -130,7 +130,7 @@ export default function AboutPage() {
       >
         <div
           ref={textRef}
-          className="text font-lemon font-light text-center text-[48px] leading-[48px] max-w-4xl px-8'"
+          className="text font-lemon font-light text-center text-48 leading-48 max-w-4xl px-8'"
         >
           <h1>{t('desc')}</h1>
         </div>

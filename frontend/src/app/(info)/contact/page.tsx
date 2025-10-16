@@ -7,11 +7,11 @@ import Text from '@/components/ui/text'
 
 export default function ContactPage() {
   return (
-    <div className='flex flex-col h-[calc(100dvh-192px)]'>
-      <div className='max-h-[120px] h-full md:block hidden'></div>
+    <div className='flex flex-col h-[calc(100dvh-192)]'>
+      <div className='max-h-120px h-full md:block hidden'></div>
 
       <div className='flex flex-row md:gap-24 gap-5 h-full'>
-        <div className='flex flex-1 flex-col justify-between max-h-[645px]'>
+        <div className='flex flex-1 flex-col justify-between max-h-645px'>
           <div className='flex flex-col gap-6'>
             <Text variant='headingS' weight={300} t>
               contact.title
@@ -50,7 +50,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className='relative max-w-[406px] max-h-[645px] min-h-[277px] w-full h-full'>
+        <div className='relative max-w-406px max-h-645px min-h-277px w-full h-full'>
           <Image
             src='/contact/img.png'
             alt='contact'

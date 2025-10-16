@@ -28,7 +28,7 @@ export const TeamMember = ({ member, activeHoverId, id, onDiscover }: TeamMember
     >
       <div
         className={cn(
-          'absolute left-0 top-0 w-[176px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out pointer-events-none z-10',
+          'absolute left-0 top-0 w-44 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out pointer-events-none z-10',
           {
             'opacity-100': activeHoverId === member.id,
             'group-hover:opacity-0': activeHoverId,
@@ -38,9 +38,9 @@ export const TeamMember = ({ member, activeHoverId, id, onDiscover }: TeamMember
         <motion.div
           layoutId={`image-${member.name}-${member.surname}-${id}`}
           className={cn(
-            'w-[176px] h-0 group-hover:h-[184px] transition-all duration-700 ease-out overflow-hidden relative',
+            'w-44 h-0 group-hover:h-184px transition-all duration-700 ease-out overflow-hidden relative',
             {
-              'h-[184px]': activeHoverId === member.id,
+              'h-184px': activeHoverId === member.id,
               'transition-none': activeHoverId,
             },
           )}
@@ -50,7 +50,7 @@ export const TeamMember = ({ member, activeHoverId, id, onDiscover }: TeamMember
             height={184}
             src={member.img}
             alt={`${member.name} ${member.surname}`}
-            className='w-full h-[184px] object-cover object-center absolute top-1/2 -translate-y-1/2'
+            className='w-full h-184px object-cover object-center absolute top-1/2 -translate-y-1/2'
           />
         </motion.div>
       </div>
@@ -74,7 +74,7 @@ export const TeamMember = ({ member, activeHoverId, id, onDiscover }: TeamMember
 
       <div
         className={cn(
-          'absolute right-0 top-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out z-10 w-20',
+          'absolute right-0 top-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out z-10 w-5',
           {
             'opacity-100': activeHoverId === member.id,
             'group-hover:opacity-0': activeHoverId,

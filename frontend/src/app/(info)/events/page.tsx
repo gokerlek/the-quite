@@ -95,7 +95,7 @@ export default function EventsPage() {
         <div className='md:text-5xl text-3xl flex items-center justify-center gap-4 font-[400]'>
           <span>The</span>
 
-          <div ref={containerRef} className='h-32 w-fit flex items-center justify-center'>
+          <div ref={containerRef} className='h-8 w-fit flex items-center justify-center'>
             <div className='grid grid-cols-1 grid-rows-1 place-items-center w-fit h-full'>
               <span
                 ref={currentWordRef}
@@ -125,7 +125,7 @@ export default function EventsPage() {
 
       <section
         id='second-section'
-        className='flex flex-col items-center justify-start sticky top-10 text-5xl md:text-[120px] font-[300] font-lemon'
+        className='flex flex-col items-center justify-start sticky top-10 text-5xl md:text-120 font-[300] font-lemon'
       >
         <div id='agust' className='text-richcarmine-800'>
           AUGUST

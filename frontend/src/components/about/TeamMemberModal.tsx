@@ -36,7 +36,7 @@ export const TeamMemberModal = ({ member, id, onClose }: TeamMemberModalProps) =
               height={184}
               src={member.img}
               alt={`${member.name} ${member.surname}`}
-              className='min-w-[176px]'
+              className='min-w-44'
             />
           </motion.div>
 
