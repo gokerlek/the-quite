@@ -9,15 +9,13 @@ const DockContent = () => {
   const { menuBoxRef, navItemsRef } = useDock()
 
   return (
-    <div className='px-6  mx-auto'>
-      <div className='fixed bottom-5 sm:bottom-8 flex items-center justify-between gap-1 z-10 overflow-hidden pointer-events-none'>
-        <HamburgerButton />
+    <div className='fixed bottom-8 left-16 flex items-center justify-between gap-1 z-10 overflow-hidden pointer-events-none'>
+      <HamburgerButton />
 
-        <MenuBox ref={menuBoxRef} />
+      <MenuBox ref={menuBoxRef} />
 
-        <div ref={navItemsRef} className='flex gap-1'>
-          <NavItems />
-        </div>
+      <div ref={navItemsRef} className='flex gap-1'>
+        <NavItems />
       </div>
     </div>
   )
