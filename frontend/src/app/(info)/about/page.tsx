@@ -109,7 +109,7 @@ export default function AboutPage() {
     <div ref={mainContainerRef} className='relative'>
       {/* Logo - fixed position, responsive */}
       <div ref={logoRef}>
-        <div className='relative w-[39.75rem] h-[39.75rem] '>
+        <div className='relative md:w-[39.75rem] md:h-[39.75rem] w-[15rem] h-[15rem]'>
           <Image src='/about/bg.svg' alt='logo' fill className='object-cover' />
         </div>
       </div>
@@ -123,7 +123,10 @@ export default function AboutPage() {
         id='red'
         className='relative w-full h-fit z-10 flex items-center justify-center'
       >
-        <div ref={textRef} className="text-center heading-xl-light max-w-[74rem] px-8'">
+        <div
+          ref={textRef}
+          className='text-center md:heading-xl-light heading-s-light max-w-[74rem] md:px-0 px-4'
+        >
           <h1>{t('desc')}</h1>
         </div>
       </section>
