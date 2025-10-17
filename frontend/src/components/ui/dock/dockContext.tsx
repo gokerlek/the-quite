@@ -13,6 +13,30 @@ import {
 
 import gsap from 'gsap'
 
+const getBaseUnit = (): number => {
+  if (typeof window === 'undefined') return 16
+
+  const rootStyles = getComputedStyle(document.documentElement)
+  const rootFontSize = rootStyles.fontSize
+  const baseUnit = parseFloat(rootFontSize) || 16
+
+  // Debug logging
+  if (process.env.NODE_ENV === 'development') {
+    const viewportWidth = window.innerWidth
+    const expectedBase = viewportWidth / 90
+
+    console.log('🔍 Base Unit Debug:', {
+      viewportWidth: `${viewportWidth}px`,
+      expectedBase: `${expectedBase.toFixed(2)}px`,
+      actualBase: `${baseUnit}px`,
+      rootFontSize: rootFontSize,
+      calculationMethod: 'Using rootFontSize directly',
+    })
+  }
+
+  return baseUnit
+}
+
 interface DockContextType {
   open: boolean
   toggleOpen: () => void
@@ -73,11 +97,24 @@ export const DockProvider = ({ children }: DockProviderProps) => {
   const openAnimation = useCallback(
     (menuBox: HTMLDivElement, navItems: HTMLDivElement) => {
       const { topRef, midRef, botRef } = hamburgerRefs
+      const baseUnit = getBaseUnit()
+
+      // Debug logging
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🚀 Open Animation Debug:', {
+          baseUnit: `${baseUnit}px`,
+          menuBoxMovement: `${-7.5 * baseUnit}px`,
+          navItemsMovement: `${-3.625 * baseUnit}px`,
+          menuBoxWidth: `${menuBox.offsetWidth}px`,
+          navItemsWidth: `${navItems.offsetWidth}px`,
+          containerWidth: `${navItems.parentElement?.offsetWidth}px`,
+        })
+      }
 
       // Menu animation
-      gsap.to(menuBox, { x: -120, duration: 0.5 })
+      gsap.to(menuBox, { x: -7.5 * baseUnit, duration: 0.5 })
       gsap.to(navItems.children, {
-        x: -58,
+        x: -3.625 * baseUnit,
         duration: 0.8,
         stagger: -0.1,
         delay: 0.1,
@@ -86,15 +123,30 @@ export const DockProvider = ({ children }: DockProviderProps) => {
 
       // Hamburger animation - open state
       if (topRef.current && midRef.current && botRef.current) {
+        const topMovement = 1.875 * baseUnit
+        const bottomMovement = -1.875 * baseUnit
+
+        // Debug hamburger animation values
+        if (process.env.NODE_ENV === 'development') {
+          console.log('🍔 Hamburger Open Animation Debug:', {
+            baseUnit: `${baseUnit}px`,
+            topLineMovement: `${topMovement}px`,
+            bottomLineMovement: `${bottomMovement}px`,
+            expectedAt1440px: '30px (1.875 * 16)',
+            multiplier: '1.875',
+            calculationFormula: '1.875 * baseUnit'
+          })
+        }
+
         gsap.to(topRef.current, {
-          y: 30,
+          y: topMovement,
           rotation: 45,
           transformOrigin: 'center center',
           duration: 0.4,
           ease: 'power2.inOut',
         })
         gsap.to(botRef.current, {
-          y: -30,
+          y: bottomMovement,
           rotation: -45,
           transformOrigin: 'center center',
           duration: 0.4,
@@ -113,13 +165,28 @@ export const DockProvider = ({ children }: DockProviderProps) => {
   const closeAnimation = useCallback(
     (menuBox: HTMLDivElement, navItems: HTMLDivElement) => {
       const { topRef, midRef, botRef } = hamburgerRefs
+      const baseUnit = getBaseUnit()
+
+      // Debug logging
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🔄 Close Animation Debug:', {
+          baseUnit: `${baseUnit}px`,
+          navItemsCloseMovement: `${-31.25 * baseUnit}px`,
+          navItemsCurrentTransform: getComputedStyle(navItems).transform,
+          individualNavItemTransforms: Array.from(navItems.children).map((child, i) => ({
+            index: i,
+            transform: getComputedStyle(child as HTMLElement).transform,
+            offsetWidth: (child as HTMLElement).offsetWidth,
+          })),
+        })
+      }
 
       // Dock container width animation
       const dockAnimation = Promise.resolve()
 
       // Menu animation
       const navItemsAnimation = gsap.to(navItems.children, {
-        x: -500,
+        x: -31.25 * baseUnit,
         duration: 0.8,
         stagger: 0.1,
         ease: 'power1.inOut',
@@ -132,6 +199,16 @@ export const DockProvider = ({ children }: DockProviderProps) => {
 
       // Hamburger animation - close state
       if (topRef.current && midRef.current && botRef.current) {
+        // Debug hamburger reset animation
+        if (process.env.NODE_ENV === 'development') {
+          console.log('🍔 Hamburger Close Animation Debug:', {
+            topLineReset: '0px (resetting from previous position)',
+            bottomLineReset: '0px (resetting from previous position)',
+            midLineOpacity: '1 (making visible again)',
+            action: 'Resetting hamburger to original state'
+          })
+        }
+
         gsap.to(topRef.current, {
           y: 0,
           rotation: 0,
@@ -167,6 +244,36 @@ export const DockProvider = ({ children }: DockProviderProps) => {
       toggleOpen()
 
       return
+    }
+
+    // Debug viewport and container measurements
+    if (process.env.NODE_ENV === 'development') {
+      const viewport = {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      }
+      const dockContainer = navItems.parentElement
+
+      console.log('📐 Container Measurements:', {
+        viewport,
+        dockContainer: dockContainer
+          ? {
+              width: dockContainer.offsetWidth,
+              height: dockContainer.offsetHeight,
+              boundingRect: dockContainer.getBoundingClientRect(),
+            }
+          : null,
+        navItemsContainer: {
+          width: navItems.offsetWidth,
+          height: navItems.offsetHeight,
+          boundingRect: navItems.getBoundingClientRect(),
+        },
+        menuBox: {
+          width: menuBox.offsetWidth,
+          height: menuBox.offsetHeight,
+          boundingRect: menuBox.getBoundingClientRect(),
+        },
+      })
     }
 
     if (!open) {

@@ -12,7 +12,7 @@ export const HamburgerButton = () => {
       aria-label={open ? 'Close menu' : 'Open menu'}
       aria-pressed={open}
     >
-      <svg viewBox='0 0 200 200' width='100%' height='100%' aria-hidden='true'>
+      <svg viewBox='0 0 200 200' aria-hidden='true'>
         <g fill='none' strokeWidth={10} className='stroke-offblack-950'>
           <line ref={topRef} x1='60' y1='70' x2='140' y2='70' />
 
