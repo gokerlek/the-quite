@@ -147,6 +147,7 @@
     --text-h9: 1.25rem;   --leading-h9: 1.5rem; /* 20px / 24px */
 
     /* Display / Heading sets (L/M/S) */
+    --text-head-xl: 3rem;    --leading-head-xl: 3.5rem; /* 48px / 56px */
     --text-head-l: 2rem;     --leading-head-l: 2.5rem; /* 32px / 40px */
     --text-head-m: 1.5rem;   --leading-head-m: 2rem; /* 24px / 32px */
     --text-head-s: 1.25rem;  --leading-head-s: 1.5rem; /* 20px / 24px */
@@ -181,6 +182,11 @@ body {
 /* ===============================
    DISPLAY HEADINGS (Lemon)
    =============================== */
+@utility heading-xl           { font-size: var(--text-head-xl); line-height: var(--leading-head-xl); @apply font-lemon font-normal; }
+@utility heading-xl-light     { font-size: var(--text-head-xl); line-height: var(--leading-head-xl); @apply font-lemon font-light; }
+@utility heading-xl-medium    { font-size: var(--text-head-xl); line-height: var(--leading-head-xl); @apply font-lemon font-medium; }
+@utility heading-xl-bold      { font-size: var(--text-head-xl); line-height: var(--leading-head-xl); @apply font-lemon font-bold; }
+
 @utility heading-l           { font-size: var(--text-head-l); line-height: var(--leading-head-l); @apply font-lemon font-normal; }
 @utility heading-l-light     { font-size: var(--text-head-l); line-height: var(--leading-head-l); @apply font-lemon font-light; }
 @utility heading-l-medium    { font-size: var(--text-head-l); line-height: var(--leading-head-l); @apply font-lemon font-medium; }

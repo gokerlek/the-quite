@@ -26,12 +26,12 @@
     "desc": "Framed for you.\nIn a certain mood, in the specific atmosphere. The rest is detail, movement and timing. Before it reveals itself. \nYou’ll know it’s yours."
   },
   "description": "Açıklama",
-  "team": "takım",
   "contact": {
     "title": "proje sorular",
     "link": "Let's Talk Quiet"
   },
   "about": {
+  "team": "takım",
     "desc": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,    eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae,"
   },
   "preloader": {
