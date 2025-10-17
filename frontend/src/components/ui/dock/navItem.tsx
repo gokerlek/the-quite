@@ -32,7 +32,9 @@ export const NavItem = ({ href, label, icon, zIndex }: NavItem) => {
       className='h-12 px-2 min-w-max flex items-center justify-center border border-offblack-950 uppercase text-lg font-medium bg-offblack-50 cursor-pointer pointer-events-auto'
       style={{ zIndex: zIndex, transform: 'translate(-31.25rem, 0rem)' }}
     >
-      <Image src={icon} alt={label} width={32} height={32} priority className='hidden sm:block' />
+      <div className='relative w-8 h-8 '>
+        <Image src={icon} alt={label} fill priority className='object-cover' />
+      </div>
 
       {t(label)}
     </div>
