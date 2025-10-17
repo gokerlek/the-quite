@@ -71,7 +71,7 @@ export const PreviousEvents = () => {
   const text = 'count/total'
 
   return (
-    <div className='flex h-[600px] w-full gap-10'>
+    <div className='flex h-600px w-full gap-10'>
       {/* Left Content Area */}
       <div className='w-2/5  flex flex-col justify-between '>
         <div className='flex flex-col gap-4'>

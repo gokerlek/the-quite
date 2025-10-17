@@ -13,6 +13,15 @@ import {
 
 import gsap from 'gsap'
 
+const getBaseUnit = (): number => {
+  if (typeof window === 'undefined') return 16
+
+  const rootStyles = getComputedStyle(document.documentElement)
+  const rootFontSize = rootStyles.fontSize
+
+  return parseFloat(rootFontSize) || 16
+}
+
 interface DockContextType {
   open: boolean
   toggleOpen: () => void
@@ -73,11 +82,12 @@ export const DockProvider = ({ children }: DockProviderProps) => {
   const openAnimation = useCallback(
     (menuBox: HTMLDivElement, navItems: HTMLDivElement) => {
       const { topRef, midRef, botRef } = hamburgerRefs
+      const baseUnit = getBaseUnit()
 
       // Menu animation
-      gsap.to(menuBox, { x: -120, duration: 0.5 })
+      gsap.to(menuBox, { x: -7.5 * baseUnit, duration: 0.5 })
       gsap.to(navItems.children, {
-        x: -58,
+        x: -3.625 * baseUnit,
         duration: 0.8,
         stagger: -0.1,
         delay: 0.1,
@@ -89,14 +99,14 @@ export const DockProvider = ({ children }: DockProviderProps) => {
         gsap.to(topRef.current, {
           y: 30,
           rotation: 45,
-          transformOrigin: 'center center',
+          transformOrigin: 'center',
           duration: 0.4,
           ease: 'power2.inOut',
         })
         gsap.to(botRef.current, {
           y: -30,
           rotation: -45,
-          transformOrigin: 'center center',
+          transformOrigin: 'center',
           duration: 0.4,
           ease: 'power2.inOut',
         })
@@ -113,13 +123,14 @@ export const DockProvider = ({ children }: DockProviderProps) => {
   const closeAnimation = useCallback(
     (menuBox: HTMLDivElement, navItems: HTMLDivElement) => {
       const { topRef, midRef, botRef } = hamburgerRefs
+      const baseUnit = getBaseUnit()
 
       // Dock container width animation
       const dockAnimation = Promise.resolve()
 
       // Menu animation
       const navItemsAnimation = gsap.to(navItems.children, {
-        x: -500,
+        x: -31.25 * baseUnit,
         duration: 0.8,
         stagger: 0.1,
         ease: 'power1.inOut',
@@ -135,14 +146,14 @@ export const DockProvider = ({ children }: DockProviderProps) => {
         gsap.to(topRef.current, {
           y: 0,
           rotation: 0,
-          transformOrigin: 'center center',
+          transformOrigin: 'center',
           duration: 0.4,
           ease: 'power2.inOut',
         })
         gsap.to(botRef.current, {
           y: 0,
           rotation: 0,
-          transformOrigin: 'center center',
+          transformOrigin: 'center',
           duration: 0.4,
           ease: 'power2.inOut',
         })

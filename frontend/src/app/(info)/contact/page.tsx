@@ -3,19 +3,17 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import Text from '@/components/ui/text'
+import { useTranslations } from 'use-intl'
 
 export default function ContactPage() {
-  return (
-    <div className='flex flex-col h-[calc(100dvh-192px)]'>
-      <div className='max-h-[120px] h-full md:block hidden'></div>
+  const t = useTranslations('contact')
 
-      <div className='flex flex-row md:gap-24 gap-5 h-full'>
-        <div className='flex flex-1 flex-col justify-between max-h-[645px]'>
-          <div className='flex flex-col gap-6'>
-            <Text variant='headingS' weight={300} t>
-              contact.title
-            </Text>
+  return (
+    <div className='flex flex-col justify-center h-dvh md:py-24 pb-6 pt-24'>
+      <div className='flex flex-row md:gap-24 gap-5 max-h-645px h-full'>
+        <div className='flex flex-1 flex-col justify-between  h-full'>
+          <div className='flex flex-col md:ap-6 gap-3'>
+            <div className='heading-s md:heading-m'>{t('title')}</div>
 
             <Link
               href='mailto:info@thequiet.com'
@@ -25,32 +23,28 @@ export default function ContactPage() {
               }}
               className='underline underline-offset-5 decoration-1 hover:underline-offset-4 cursor-pointer'
             >
-              <Text
-                variant='pXL'
-                t
-                className='underline underline-offset-5 decoration-1 hover:underline-offset-4 cursor-pointer'
-              >
-                contact.link
-              </Text>
+              <div className='underline underline-offset-5 decoration-1 hover:underline-offset-4 cursor-pointer md:p-l p-xs'>
+                {t('link')}
+              </div>
             </Link>
           </div>
 
-          <div className='flex flex-col gap-3 md:gap-6 items-end'>
-            <div className='flex flex-col gap-2 md:gap-5 items-end'>
-              <Image src='/contact/icon.svg' alt='icon' width={64} height={24} />
+          <div className='flex flex-col gap-6 md:items-end items-start'>
+            <div className='flex flex-col gap-5 md:items-end'>
+              <div className='relative w-16 h-8'>
+                <Image src='/contact/icon.svg' fill className='object-cover' alt='icon' />
+              </div>
 
-              <Text variant='pL' t>
-                contact.mail
-              </Text>
+              <div className='md:text-end text-start p-m md:p-l'>{t('mail')}</div>
             </div>
 
-            <Text variant='pL' t className='whitespace-pre-line text-end md:text-'>
-              contact.address
-            </Text>
+            <div className='whitespace-pre-line md:text-end text-start md:p-l p-m'>
+              {t('address')}
+            </div>
           </div>
         </div>
 
-        <div className='relative max-w-[406px] max-h-[645px] min-h-[277px] w-full h-full'>
+        <div className='relative md:max-w-406px max-w-2/5 w-full h-full'>
           <Image
             src='/contact/img.png'
             alt='contact'

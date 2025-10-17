@@ -6,7 +6,6 @@ import Image from 'next/image'
 import { motion } from 'motion/react'
 
 import { buttonVariants } from '@/components/ui/button'
-import Text from '@/components/ui/text'
 
 import { Member } from './teamList'
 
@@ -30,24 +29,26 @@ export const TeamMemberModal = ({ member, id, onClose }: TeamMemberModalProps) =
 
       <div className='absolute grid place-items-center z-[100]'>
         <motion.div className='w-full flex items-start justify-between overflow-hidden'>
-          <motion.div layoutId={`image-${member.name}-${member.surname}-${id}`}>
+          <motion.div
+            className='relative w-44 h-44 min-w-44'
+            layoutId={`image-${member.name}-${member.surname}-${id}`}
+          >
             <Image
-              width={176}
-              height={184}
+              fill
               src={member.img}
               alt={`${member.name} ${member.surname}`}
-              className='min-w-[176px]'
+              className='object-cover'
             />
           </motion.div>
 
           <div className='relative px-4 flex justify-center flex-col items-center gap-5'>
             <motion.div layoutId={`title-${member.name}-${member.surname}-${id}`}>
-              <Text variant='headingM' className='font-medium text-center'>
+              <div className='heading-m-medium text-center'>
                 {text
                   .replace('name', member.name)
                   .replace('surname', member.surname)
                   .replace('role', member.role)}
-              </Text>
+              </div>
             </motion.div>
 
             <motion.div
@@ -55,10 +56,9 @@ export const TeamMemberModal = ({ member, id, onClose }: TeamMemberModalProps) =
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              className='pxl text-center max-w-2/3 mx-auto'
             >
-              <Text variant='pXL' className='text-center max-w-2/3 mx-auto'>
-                {member.sum}
-              </Text>
+              {member.sum}
             </motion.div>
 
             <div className='flex gap-2 items-center justify-center flex-wrap'>
@@ -81,7 +81,7 @@ export const TeamMemberModal = ({ member, id, onClose }: TeamMemberModalProps) =
             </div>
           </div>
 
-          <div className='flex justify-end'>
+          <div className='flex justify-end min-w-44'>
             <motion.button
               layoutId={`button-${member.name}-${member.surname}-${id}`}
               onClick={onClose}

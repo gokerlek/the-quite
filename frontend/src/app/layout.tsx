@@ -50,7 +50,7 @@ export default async function RootLayout({
       <body
         className={
           `${geistSans.variable} ${geistMono.variable} ${inconsolata.variable} antialiased` +
-          ' bg-offblack-50 relative mx-auto max-w-[1440px]'
+          ' bg-offblack-50 relative w-full'
         }
       >
         <NextIntlClientProvider messages={messages}>

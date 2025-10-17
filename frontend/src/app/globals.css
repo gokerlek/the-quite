@@ -8,6 +8,14 @@
 /* noinspection CssUnresolvedCustomProperty */
 /* noinspection CssUnknownTarget */
 
+@layer base {
+    html { font-size: clamp(16px, calc(100vw / 90), 9999px); }
+    /* 90 = 1440 / 16 ⇒ 100vw/90 = 16px @1440 */
+    option:disabled {
+        @apply text-offblack-950/30;
+    }
+}
+
 
 @font-face {
     font-family: 'MontagneetRiviäre';
@@ -106,15 +114,119 @@
     --color-springbud-200: lch(89.63% 27.31 106.20);
     --color-springbud-100: lch(93.78% 16.38 107.52);
     --color-springbud-50:  lch(98.03% 5.08 109.78);
+
+
+    /* Custom Spacing & Sizes - Only non-conflicting values */
+    --spacing-3px: 0.1875rem;     /* 3px */
+    --spacing-18px: 1.125rem;     /* 18px */
+    --spacing-120px: 7.5rem;      /* 120px */
+    --spacing-210px: 13.125rem;   /* 210px */
+    --spacing-214px: 13.375rem;   /* 214px */
+    --spacing-222px: 13.875rem;   /* 222px */
+    --spacing-277px: 17.3125rem;  /* 277px */
+    --spacing-322px: 20.125rem;   /* 322px */
+    --spacing-406px: 25.375rem;   /* 406px */
+    --spacing-420px: 26.25rem;    /* 420px */
+    --spacing-430px: 26.875rem;   /* 430px */
+    --spacing-480px: 30rem;       /* 480px */
+    --spacing-636px: 39.75rem;    /* 636px */
+    --spacing-645px: 40.3125rem;  /* 645px */
+    --spacing-720px: 45rem;       /* 720px */
+    --spacing-730px: 45.625rem;   /* 730px */
+    --spacing-1440px: 90rem;      /* 1440px */
+
+    /* Headings (H1–H6) */
+    --text-h1: 6rem;      --leading-h1: 7.125rem; /* 96px / 114px */
+    --text-h2: 4.5rem;    --leading-h2: 5.375rem; /* 72px / 86px */
+    --text-h3: 3.875rem;  --leading-h3: 4.5rem; /* 62px / 72px */
+    --text-h4: 3.5rem;    --leading-h4: 4.25rem; /* 56px / 68px */
+    --text-h5: 3rem;      --leading-h5: 3.5rem; /* 48px / 56px */
+    --text-h6: 2.5rem;    --leading-h6: 3rem; /* 40px / 48px */
+    --text-h7: 2rem;      --leading-h7: 2.5rem; /* 32px / 40px */
+    --text-h8: 1.5rem;    --leading-h8: 2rem; /* 24px / 32px */
+    --text-h9: 1.25rem;   --leading-h9: 1.5rem; /* 20px / 24px */
+
+    /* Display / Heading sets (L/M/S) */
+    --text-head-xl: 3rem;    --leading-head-xl: 3.5rem; /* 48px / 56px */
+    --text-head-l: 2rem;     --leading-head-l: 2.5rem; /* 32px / 40px */
+    --text-head-m: 1.5rem;   --leading-head-m: 2rem; /* 24px / 32px */
+    --text-head-s: 1.25rem;  --leading-head-s: 1.5rem; /* 20px / 24px */
+
+    /* Paragraphs */
+    --text-p-xl: 1.5rem;   --leading-p-xl: 2rem; /* 24px / 32px */
+    --text-p-l:  1.25rem;  --leading-p-l:  1.75rem; /* 20px / 28px */
+    --text-p-m:  1.125rem; --leading-p-m:  1.75rem; /* 18px / 28px */
+    --text-p-s:  1rem;     --leading-p-s:  1.75rem; /* 16px / 28px */
+    --text-p-xs: 0.875rem; --leading-p-xs: 1.5rem; /* 14px / 24px */
 }
 
 body {
     font-family: 'Inconsolata', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-@layer base {
-    option:disabled {
-        @apply text-offblack-950/30;
-    }
-}
+
+/* ===============================
+   HEADINGS (MontagneetRiviäre)
+   =============================== */
+@utility h1           { font-size: var(--text-h1); line-height: var(--leading-h1); @apply font-montagne; }
+@utility h2           { font-size: var(--text-h2); line-height: var(--leading-h2); @apply font-montagne; }
+@utility h3           { font-size: var(--text-h3); line-height: var(--leading-h3); @apply font-montagne; }
+@utility h4           { font-size: var(--text-h4); line-height: var(--leading-h4); @apply font-montagne; }
+@utility h5           { font-size: var(--text-h5); line-height: var(--leading-h5); @apply font-montagne; }
+@utility h6           { font-size: var(--text-h6); line-height: var(--leading-h6); @apply font-montagne; }
+@utility h7           { font-size: var(--text-h7); line-height: var(--leading-h7); @apply font-montagne; }
+@utility h8           { font-size: var(--text-h8); line-height: var(--leading-h8); @apply font-montagne; }
+@utility h9           { font-size: var(--text-h9); line-height: var(--leading-h9); @apply font-montagne; }
+
+
+/* ===============================
+   DISPLAY HEADINGS (Lemon)
+   =============================== */
+@utility heading-xl           { font-size: var(--text-head-xl); line-height: var(--leading-head-xl); @apply font-lemon font-normal; }
+@utility heading-xl-light     { font-size: var(--text-head-xl); line-height: var(--leading-head-xl); @apply font-lemon font-light; }
+@utility heading-xl-medium    { font-size: var(--text-head-xl); line-height: var(--leading-head-xl); @apply font-lemon font-medium; }
+@utility heading-xl-bold      { font-size: var(--text-head-xl); line-height: var(--leading-head-xl); @apply font-lemon font-bold; }
+
+@utility heading-l           { font-size: var(--text-head-l); line-height: var(--leading-head-l); @apply font-lemon font-normal; }
+@utility heading-l-light     { font-size: var(--text-head-l); line-height: var(--leading-head-l); @apply font-lemon font-light; }
+@utility heading-l-medium    { font-size: var(--text-head-l); line-height: var(--leading-head-l); @apply font-lemon font-medium; }
+@utility heading-l-bold      { font-size: var(--text-head-l); line-height: var(--leading-head-l); @apply font-lemon font-bold; }
+
+@utility heading-m           { font-size: var(--text-head-m); line-height: var(--leading-head-m); @apply font-lemon font-normal; }
+@utility heading-m-light     { font-size: var(--text-head-m); line-height: var(--leading-head-m); @apply font-lemon font-light; }
+@utility heading-m-medium    { font-size: var(--text-head-m); line-height: var(--leading-head-m); @apply font-lemon font-medium; }
+@utility heading-m-bold      { font-size: var(--text-head-m); line-height: var(--leading-head-m); @apply font-lemon font-bold; }
+
+@utility heading-s           { font-size: var(--text-head-s); line-height: var(--leading-head-s); @apply font-lemon font-normal; }
+@utility heading-s-light     { font-size: var(--text-head-s); line-height: var(--leading-head-s); @apply font-lemon font-light; }
+@utility heading-s-medium    { font-size: var(--text-head-s); line-height: var(--leading-head-s); @apply font-lemon font-medium; }
+@utility heading-s-bold      { font-size: var(--text-head-s); line-height: var(--leading-head-s); @apply font-lemon font-bold; }
+
+/* ===============================
+   PARAGRAPHS (Lemon)
+   =============================== */
+@utility p-xl        { font-size: var(--text-p-xl);  line-height: var(--leading-p-xl);  @apply font-base font-normal; }
+@utility p-xl-light  { font-size: var(--text-p-xl);  line-height: var(--leading-p-xl);  @apply font-base font-light; }
+@utility p-xl-medium { font-size: var(--text-p-xl);  line-height: var(--leading-p-xl);  @apply font-base font-medium; }
+@utility p-xl-bold   { font-size: var(--text-p-xl);  line-height: var(--leading-p-xl);  @apply font-base font-bold; }
+
+@utility p-l         { font-size: var(--text-p-l);   line-height: var(--leading-p-l);   @apply font-base font-normal; }
+@utility p-l-light   { font-size: var(--text-p-l);   line-height: var(--leading-p-l);   @apply font-base font-light; }
+@utility p-l-medium  { font-size: var(--text-p-l);   line-height: var(--leading-p-l);   @apply font-base font-medium; }
+@utility p-l-bold    { font-size: var(--text-p-l);   line-height: var(--leading-p-l);   @apply font-base font-bold; }
+
+@utility p-m         { font-size: var(--text-p-m);   line-height: var(--leading-p-m);   @apply font-base font-normal; }
+@utility p-m-light   { font-size: var(--text-p-m);   line-height: var(--leading-p-m);   @apply font-base font-light; }
+@utility p-m-medium  { font-size: var(--text-p-m);   line-height: var(--leading-p-m);   @apply font-base font-medium; }
+@utility p-m-bold    { font-size: var(--text-p-m);   line-height: var(--leading-p-m);   @apply font-base font-bold; }
+
+@utility p-s         { font-size: var(--text-p-s);   line-height: var(--leading-p-s);   @apply font-base font-normal; }
+@utility p-s-light   { font-size: var(--text-p-s);   line-height: var(--leading-p-s);   @apply font-base font-light; }
+@utility p-s-medium  { font-size: var(--text-p-s);   line-height: var(--leading-p-s);   @apply font-base font-medium; }
+@utility p-s-bold    { font-size: var(--text-p-s);   line-height: var(--leading-p-s);   @apply font-base font-bold; }
+
+@utility p-xs        { font-size: var(--text-p-xs);  line-height: var(--leading-p-xs);  @apply font-base font-normal; }
+@utility p-xs-light  { font-size: var(--text-p-xs);  line-height: var(--leading-p-xs);  @apply font-base font-light; }
+@utility p-xs-medium { font-size: var(--text-p-xs);  line-height: var(--leading-p-xs);  @apply font-base font-medium; }
+@utility p-xs-bold   { font-size: var(--text-p-xs);  line-height: var(--leading-p-xs);  @apply font-base font-bold; }
 

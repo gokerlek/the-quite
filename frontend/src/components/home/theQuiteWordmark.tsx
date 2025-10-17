@@ -4,7 +4,7 @@ export function TheQuiteWordmark() {
   return (
     <section
       id='the_quite'
-      className=' the_quite absolute bottom-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 z-20 pointer-events-none w-[min(80vw,640px)]'
+      className=' the_quite absolute bottom-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 z-20 pointer-events-none md:w-480px w-[17.5rem]'
       style={{ opacity: 0 }}
     >
       <svg

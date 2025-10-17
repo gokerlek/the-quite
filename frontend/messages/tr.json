@@ -10,16 +10,160 @@
     "contact": "İletişim"
   },
   "discover": "Keşfet",
-  "community_events":"iletişim",
-  "journey_design": "yolculuk\ntasarımı",
-  "event_organization": "etkinlikn\norganizasyonu",
+  "community_events": {
+    "title": "community\nevents",
+    "subtitle": "Begins in Rome.",
+    "desc": "Though, it belongs to those who moves with care. A quiet motif woven into detail, If it finds you, listen."
+  },
+  "society_events": {
+    "title": "Topluluk Etkinlikleri",
+    "subtitle": "Roma'da başlar. Özenle hareket edenlere aittir.",
+    "description": "Sessiz bir motif, detaylara dokunur. Seni bulursa, dinle. Bu topluluk, bu yolculuk - her an küratörlüğünde yaşanır.",
+    "features": {
+      "title": "Hizmetlerimiz",
+      "item1": {
+        "title": "Topluluk Oluşturma",
+        "description": "Benzersiz deneyimler yaşayan topluluklar kurar, sürdürülebilir bağlantılar yaratırız."
+      },
+      "item2": {
+        "title": "Kültürel Etkinlikler",
+        "description": "Sanat, müzik ve yaratıcılığın buluştuğu özgün kültürel deneyimler tasarlarız."
+      },
+      "item3": {
+        "title": "Networking Organizasyonu",
+        "description": "Anlamlı bağlantılar kurabileceğiniz, değer yaratan networking etkinlikleri düzenleriz."
+      }
+    },
+    "contact": {
+      "title": "Birlikte Yaratmaya Başlayalım",
+      "description": "Topluluk etkinlikleriniz için bizimle iletişime geçin.",
+      "button": "İletişime Geç"
+    }
+  },
+  "journey_design": {
+    "title": "journey\ndesign",
+    "subtitle": "First, we listen.",
+    "desc": "Tailoring experiences just for you.\nShaped by instinct, emotion and place\nIt belongs to the moment it's made for. \nJust what's right, when it 's time.",
+    "description": "İlk önce dinleriz. Sadece sizin için deneyimler tasarlarız. İçgüdü, duygu ve mekânla şekillenir. Yapıldığı anın ta kendisine aittir.",
+    "process": {
+      "title": "Tasarım Sürecimiz",
+      "step1": {
+        "title": "Keşif ve Dinleme",
+        "description": "İhtiyaçlarınızı ve vizyonunuzu derinlemesine anlayarak başlarız."
+      },
+      "step2": {
+        "title": "Konsept Geliştirme",
+        "description": "Özel durumunuz için benzersiz çözümler ve yaratıcı yaklaşımlar geliştiririz."
+      },
+      "step3": {
+        "title": "Tasarım ve Prototipleştirme",
+        "description": "Detaylı tasarımlar oluşturur ve test edilebilir prototipler sunarız."
+      },
+      "step4": {
+        "title": "Uygulama ve Değerlendirme",
+        "description": "Tasarımı hayata geçirir ve sürekli iyileştirme ile mükemmelleştiririz."
+      }
+    },
+    "portfolio": {
+      "title": "Portfolyomuz",
+      "project1": {
+        "title": "Kültürel Deneyim Tasarımı",
+        "description": "Müze ve galeri ziyaretçileri için interaktif deneyim yolculukları."
+      },
+      "project2": {
+        "title": "Kurumsal Etkinlik Tasarımı",
+        "description": "Şirketler için etkileşimli ve unutulmaz kurumsal etkinlik deneyimleri."
+      }
+    },
+    "contact": {
+      "title": "Yolculuğunuzu Tasarlayalım",
+      "description": "Özel tasarım ihtiyaçlarınız için bizimle iletişime geçin.",
+      "button": "Tasarıma Başla"
+    }
+  },
+  "event_organization":{
+    "title": "event\norganization",
+    "subtitle": "Framed for you.",
+    "desc": "Framed for you.\nIn a certain mood, in the specific atmosphere. The rest is detail, movement and timing. Before it reveals itself. \nYou'll know it's yours.",
+    "description": "Sizin için çerçevelenmiş. Belirli bir ruh halinde, özel atmosferde. Geri kalanı detay, hareket ve zamanlama. Kendini göstermeden önce. Sizin olduğunu bileceksiniz.",
+    "services": {
+      "title": "Hizmetlerimiz",
+      "service1": {
+        "title": "Etkinlik Planlama",
+        "description": "A'dan Z'ye profesyonel etkinlik planlama hizmeti"
+      },
+      "service2": {
+        "title": "Mekan Yönetimi",
+        "description": "En uygun mekanların seçimi ve düzenlenmesi"
+      },
+      "service3": {
+        "title": "Teknik Destek",
+        "description": "Ses, ışık ve teknik ekipman yönetimi"
+      },
+      "service4": {
+        "title": "Catering Koordinasyonu",
+        "description": "Lezzet odaklı catering çözümleri"
+      },
+      "service5": {
+        "title": "Konuk Deneyimi",
+        "description": "Misafirler için unutulmaz deneyim tasarımı"
+      },
+      "service6": {
+        "title": "Post-Event Analizi",
+        "description": "Etkinlik sonrası değerlendirme ve raporlama"
+      }
+    },
+    "event_types": {
+      "title": "Etkinlik Türleri",
+      "type1": {
+        "title": "Kurumsal Etkinlikler",
+        "description": "Konferans, seminer ve şirket etkinlikleri"
+      },
+      "type2": {
+        "title": "Kültürel Etkinlikler",
+        "description": "Sanat gösterileri, sergiler ve kültürel organizasyonlar"
+      },
+      "type3": {
+        "title": "Sosyal Etkinlikler",
+        "description": "Özel günler ve topluluk buluşmaları"
+      },
+      "type4": {
+        "title": "Lansmanlar",
+        "description": "Ürün tanıtımları ve marka lansmanları"
+      }
+    },
+    "planning": {
+      "title": "Planlama Süreci",
+      "phase1": {
+        "title": "Konsept",
+        "description": "Vizyon belirleme ve konsept geliştirme"
+      },
+      "phase2": {
+        "title": "Planlama",
+        "description": "Detaylı program ve lojistik planlama"
+      },
+      "phase3": {
+        "title": "Koordinasyon",
+        "description": "Tüm paydaşlarla koordinasyon"
+      },
+      "phase4": {
+        "title": "Uygulama",
+        "description": "Etkinliğin gerçekleştirilmesi"
+      }
+    },
+    "contact": {
+      "title": "Etkinliğinizi Organize Edelim",
+      "description": "Hayalinizdeki etkinlik için bizimle iletişime geçin.",
+      "button": "Organizasyona Başla"
+    }
+  },
   "description": "Açıklama",
-  "team": "takım",
   "contact": {
     "title": "proje sorular",
     "link": "Let's Talk Quiet"
   },
   "about": {
+  "team": "takım",
     "desc": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,    eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae,"
   },
   "preloader": {

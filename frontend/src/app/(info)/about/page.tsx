@@ -9,7 +9,6 @@ import { SplitText } from 'gsap/SplitText'
 import { useTranslations } from 'use-intl'
 
 import { TeamList } from '@/components/about/teamList'
-import Text from '@/components/ui/text'
 
 export default function AboutPage() {
   const logoRef = useRef<HTMLImageElement>(null)
@@ -24,7 +23,6 @@ export default function AboutPage() {
       return
 
     // Animasyon ayarları
-    const LOGO_TOP_MARGIN = 100 // Logo ile ekran üstü arasındaki boşluk
     const LOGO_OPACITY = 0.1
 
     // Logo'nun gerçek boyutunu al
@@ -53,7 +51,7 @@ export default function AboutPage() {
 
     // 1. Logo 50vh -> üstten LOGO_TOP_MARGIN + logo yarısı kadar aşağı, opacity %50
     tl.to(logoElement, {
-      top: `${LOGO_TOP_MARGIN + logoHeight / 2}px`,
+      top: `${logoHeight / 2}px`,
       opacity: LOGO_OPACITY,
       duration: 2,
       ease: 'none',
@@ -61,7 +59,7 @@ export default function AboutPage() {
 
       // 2. Logo üstte sabit kalır (red section geçerken)
       .to(logoElement, {
-        top: `${LOGO_TOP_MARGIN + logoHeight / 2}px`,
+        top: `${logoHeight / 2}px`,
         opacity: LOGO_OPACITY,
         duration: 2,
         ease: 'none',
@@ -82,7 +80,7 @@ export default function AboutPage() {
     splitText.lines.forEach((line) => {
       const mask = document.createElement('span')
 
-      mask.className = ` size-full absolute bg-offblack-50 left-0 top-0 opacity-80 blur-sm`
+      mask.className = ` size-full absolute bg-offblack-50 left-0 top-0 opacity-80`
       ;(line as HTMLElement).style.position = 'relative'
       line.appendChild(mask)
       masks.push(mask)
@@ -110,14 +108,11 @@ export default function AboutPage() {
   return (
     <div ref={mainContainerRef} className='relative'>
       {/* Logo - fixed position, responsive */}
-      <Image
-        ref={logoRef}
-        src='/about/bg.svg'
-        alt='logo'
-        width={636}
-        height={636}
-        className='w-[clamp(200px,50vw,636px)] h-auto'
-      />
+      <div ref={logoRef}>
+        <div className='relative w-[39.75rem] h-[39.75rem] '>
+          <Image src='/about/bg.svg' alt='logo' fill className='object-cover' />
+        </div>
+      </div>
 
       {/* İlk scroll alanı */}
       <section className='h-[200vh] w-full' />
@@ -128,10 +123,7 @@ export default function AboutPage() {
         id='red'
         className='relative w-full h-fit z-10 flex items-center justify-center'
       >
-        <div
-          ref={textRef}
-          className="text font-lemon font-light text-center text-[48px] leading-[48px] max-w-4xl px-8'"
-        >
+        <div ref={textRef} className="text-center heading-xl-light max-w-[74rem] px-8'">
           <h1>{t('desc')}</h1>
         </div>
       </section>
@@ -140,11 +132,9 @@ export default function AboutPage() {
       <section
         ref={greenSectionRef}
         id='green'
-        className='w-full h-fit  z-10 flex flex-col  items-center py-20 mb-40 gap-10  '
+        className='w-full h-dvh  z-10 flex flex-col  items-center py-20 gap-10'
       >
-        <Text variant='headingM' t className='uppercase font-light'>
-          team
-        </Text>
+        <div className='uppercase heading-m-light'>{t('team')}</div>
 
         <TeamList />
       </section>

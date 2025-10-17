@@ -3,12 +3,15 @@ import { RefObject, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 
+import { useMobileDetection } from '@/hooks/useMobileDetection'
+
 export const useScrollAnimation = (
   homeRef: RefObject<HTMLElement | null>,
   scrollRef: RefObject<HTMLElement | null>,
   svgRef: RefObject<SVGSVGElement | null>,
   showScrollIndicator: boolean,
 ) => {
+  const isMobile = useMobileDetection()
   // Timeline durum yönetimi
   const timelineStates = useRef({
     timeline1Triggered: false, // SVG Büyüme + Yazı + Overlay
@@ -122,7 +125,7 @@ export const useScrollAnimation = (
     tl.set('#scroll_indicator', { display: 'none' })
 
     tl.to('#the_quite', {
-      bottom: '10rem',
+      bottom: isMobile ? '6rem' : '10rem',
       duration: 2,
       ease: 'power2.inOut',
     })

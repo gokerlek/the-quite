@@ -1,176 +1,178 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
+
+import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+import { useTranslations } from 'use-intl'
 
 import { CarouselCard } from '@/components/home/carouselCard'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+
+// Helpers moved to module scope to avoid useEffect dependency noise
+const getViewportCenterX = () => (typeof window !== 'undefined' ? window.innerWidth / 2 : 0)
+
+const getCardCenterViewportX = (el: HTMLDivElement | null) => {
+  if (!el) return Number.POSITIVE_INFINITY
+
+  const rect = el.getBoundingClientRect()
+
+  return rect.left + rect.width / 2
+}
 
 const homeCarouselData = [
   {
     img: '/home/community-events.svg',
-    title: 'community_events',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin hendrerit porta. ',
-    href: '/events',
+    title: 'community_events.title',
+    subtitle: 'community_events.subtitle',
+    description: 'community_events.desc',
+    href: '/socaity-events',
   },
   {
     img: '/home/journey-design.svg',
-    title: 'journey_design',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin hendrerit porta. ',
-    href: '/events',
+    title: 'journey_design.title',
+    subtitle: 'journey_design.subtitle',
+    description: 'journey_design.desc',
+    href: '/journey-design',
   },
   {
     img: '/home/event-organization.svg',
-    title: 'event_organization',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin hendrerit porta. ',
-    href: '/events',
-  },
-  {
-    img: '/home/community-events.svg',
-    title: 'community_events',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin hendrerit porta. ',
-    href: '/events',
-  },
-  {
-    img: '/home/journey-design.svg',
-    title: 'journey_design',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin hendrerit porta. ',
-    href: '/events',
-  },
-  {
-    img: '/home/event-organization.svg',
-    title: 'event_organization',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin hendrerit porta. ',
-    href: '/events',
-  },
-  {
-    img: '/home/community-events.svg',
-    title: 'community_events',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin hendrerit porta. ',
-    href: '/events',
-  },
-  {
-    img: '/home/journey-design.svg',
-    title: 'journey_design',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin hendrerit porta. ',
-    href: '/events',
-  },
-  {
-    img: '/home/event-organization.svg',
-    title: 'event_organization',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin hendrerit porta. ',
-    href: '/events',
+    title: 'event_organization.title',
+    subtitle: 'event_organization.subtitle',
+    description: 'event_organization.desc',
+    href: '/event-organization',
   },
 ]
 
+const list = [
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+  ...homeCarouselData,
+]
+
 export const HomeCarousel = () => {
+  const t = useTranslations()
   const containerRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const [activeIndex, setActiveIndex] = useState(0)
   const wheelTimeoutRef = useRef<NodeJS.Timeout | null>(null)
-  const list = [
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-    ...homeCarouselData,
-  ]
+
+  const updateActiveIndexByCenter = useCallback(() => {
+    const center = getViewportCenterX()
+    let closestIdx = 0
+    let closestDist = Number.POSITIVE_INFINITY
+
+    cardRefs.current.forEach((card, idx) => {
+      const c = getCardCenterViewportX(card)
+      const dist = Math.abs(c - center)
+
+      if (dist < closestDist) {
+        closestDist = dist
+        closestIdx = idx
+      }
+    })
+
+    setActiveIndex(closestIdx)
+  }, [])
+
+  const snapToClosestCard = useCallback(() => {
+    const el = containerRef.current
+
+    if (!el) return
+
+    const viewportCenter = getViewportCenterX()
+    let targetCardCenterVp = viewportCenter
+    let closestDist = Number.POSITIVE_INFINITY
+
+    cardRefs.current.forEach((card) => {
+      const cVp = getCardCenterViewportX(card)
+      const dist = Math.abs(cVp - viewportCenter)
+
+      if (dist < closestDist) {
+        closestDist = dist
+        targetCardCenterVp = cVp
+      }
+    })
+
+    // Compute required scrollLeft to bring target card center to viewport center
+    const delta = targetCardCenterVp - viewportCenter
+    const targetScrollLeft = Math.max(0, el.scrollLeft + delta)
+
+    gsap.killTweensOf(el)
+    gsap.to(el, {
+      duration: 0.6,
+      ease: 'power3.out',
+      scrollTo: { x: targetScrollLeft },
+    })
+  }, [])
 
   useEffect(() => {
-    const container = containerRef.current
+    // Ensure GSAP ScrollToPlugin is registered on client
+    gsap.registerPlugin(ScrollToPlugin)
 
-    if (!container) return
+    const el = containerRef.current
 
-    // Start from middle of the list to allow infinite scrolling
-    const middleIndex = Math.floor(list.length / 2)
-    const cardWidth = container.scrollWidth / list.length
+    if (!el) return
 
-    container.scrollLeft = middleIndex * cardWidth
+    // Handle wheel -> horizontal scroll
+    const onWheel = (e: WheelEvent) => {
+      // allow shift+wheel native horizontal scroll
+      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY
 
-    const handleScroll = () => {
-      const containerRect = container.getBoundingClientRect()
-      const containerCenterX = containerRect.left + containerRect.width / 2
-
-      let closestIndex = -1
-      let closestDistance = Infinity
-
-      // Her scroll'da tüm card'ları kontrol et
-      cardRefs.current.forEach((card, index) => {
-        if (card) {
-          const cardRect = card.getBoundingClientRect()
-          const cardCenterX = cardRect.left + cardRect.width / 2
-          const distance = Math.abs(containerCenterX - cardCenterX)
-
-          if (distance < closestDistance) {
-            closestDistance = distance
-            closestIndex = index
-          }
-        }
-      })
-
-      if (closestIndex !== -1) {
-        setActiveIndex(closestIndex)
-      }
-    }
-
-    const handleWheel = (e: WheelEvent) => {
+      // Prevent page vertical scrolling when hovering the carousel
       e.preventDefault()
 
-      // Debounce - çok hızlı wheel event'lerini engelle
-      if (wheelTimeoutRef.current) return
+      // Cancel any ongoing GSAP tween when the user interacts
+      gsap.killTweensOf(el)
 
-      // Sadece belirli bir threshold'u geçince scroll yap
-      if (Math.abs(e.deltaY) < 10) return
+      el.scrollLeft += delta
+      updateActiveIndexByCenter()
+
+      if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current)
 
       wheelTimeoutRef.current = setTimeout(() => {
-        wheelTimeoutRef.current = null
-      }, 300) // 300ms debounce
-
-      // Scroll miktarını sınırla - tek card geçişi için
-      const direction = e.deltaY > 0 ? 1 : -1
-      const scrollAmount = direction * 150 // Card genişliği kadar scroll
-
-      container.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth',
-      })
+        snapToClosestCard()
+      }, 120)
     }
 
-    // Event listener'ları ekle
-    container.addEventListener('scroll', handleScroll)
-    container.addEventListener('wheel', handleWheel, { passive: false })
+    const onScroll = () => {
+      updateActiveIndexByCenter()
+    }
 
-    // İlk yüklemede de çalıştır
-    handleScroll()
+    el.addEventListener('wheel', onWheel, { passive: false })
+    el.addEventListener('scroll', onScroll)
+    window.addEventListener('resize', updateActiveIndexByCenter)
+
+    // Initialize active index on mount
+    updateActiveIndexByCenter()
 
     return () => {
-      container.removeEventListener('scroll', handleScroll)
-      container.removeEventListener('wheel', handleWheel)
+      el.removeEventListener('wheel', onWheel)
+      el.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', updateActiveIndexByCenter)
 
-      if (wheelTimeoutRef.current) {
-        clearTimeout(wheelTimeoutRef.current)
-      }
+      if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current)
     }
-  }, [list.length])
+  }, [updateActiveIndexByCenter, snapToClosestCard])
 
   return (
     <div
       ref={containerRef}
-      className=' min-h-dvh flex gap-5 md:gap-12 items-center px-5 md:px-6 py-24 mx-auto md:max-w-[1440px] max-w-[100vw] snap-x snap-mandatory overflow-x-scroll scrollbar-hide'
+      className='relative min-h-dvh flex gap-5 md:gap-12 items-center justify-center px-5 md:px-6 py-24 mx-auto md:max-w-[73.5rem] max-w-[100vw] overflow-x-scroll scrollbar-hide'
       style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
     >
       {list.map((data, index) => {
@@ -186,7 +188,17 @@ export const HomeCarousel = () => {
         )
       })}
 
-      <div className='absolute top-1/2 left-1/2 border border-offblack-950 w-[430px] h-[calc(100dvh-210px)] max-h-[720px] -translate-x-1/2 -translate-y-1/2 bg-transparent pointer-events-none md:block hidden'></div>
+      <div className='fixed top-1/2 left-1/2 z-30 border border-offblack-950 w-[22.5rem] min-w-[22.5rem] h-[37.5rem] -translate-x-1/2 -translate-y-1/2 bg-transparent  md:block hidden'>
+        <Link
+          className={cn(
+            buttonVariants(),
+            'absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer',
+          )}
+          href={list[activeIndex]?.href || '/'}
+        >
+          {t('discover')}
+        </Link>
+      </div>
     </div>
   )
 }
