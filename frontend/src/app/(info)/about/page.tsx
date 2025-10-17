@@ -16,6 +16,8 @@ export default function AboutPage() {
   const greenSectionRef = useRef<HTMLElement>(null)
   const mainContainerRef = useRef<HTMLDivElement>(null)
   const textRef = useRef<HTMLParagraphElement>(null)
+  const splitTextRef = useRef<SplitText | null>(null)
+  const masksRef = useRef<HTMLElement[]>([])
   const t = useTranslations('about')
 
   useEffect(() => {
@@ -49,59 +51,92 @@ export default function AboutPage() {
       },
     })
 
-    // 1. Logo 50vh -> üstten LOGO_TOP_MARGIN + logo yarısı kadar aşağı, opacity %50
+    // 1. Logo ortada sabit kalır (text animation boyunca)
     tl.to(logoElement, {
-      top: `${logoHeight / 2}px`,
+      top: '50vh',
       opacity: LOGO_OPACITY,
-      duration: 2,
+      duration: 4,
       ease: 'none',
     })
 
-      // 2. Logo üstte sabit kalır (red section geçerken)
+      // 2. Logo yukarı çıkar ve fade out (team section gelince)
       .to(logoElement, {
-        top: `${logoHeight / 2}px`,
-        opacity: LOGO_OPACITY,
-        duration: 2,
-        ease: 'none',
-      })
-
-      // 3. Logo yukarı çıkar ve fade out (green section ortada)
-      .to(logoElement, {
-        top: `-${logoHeight}px`, // Logo boyutu kadar yukarı çıkar
+        top: `-${logoHeight}px`,
         opacity: 0,
         duration: 1,
         ease: 'none',
       })
 
-    // Text mask animasyonu
-    const splitText = new SplitText(textRef.current.querySelector('h1'), { type: 'lines' })
-    const masks: HTMLElement[] = []
+    // Text mask animasyonu - Responsive
+    const initTextAnimation = () => {
+      const h1Element = textRef.current?.querySelector('h1')
 
-    splitText.lines.forEach((line) => {
-      const mask = document.createElement('span')
+      if (!h1Element) return
 
-      mask.className = ` size-full absolute bg-offblack-50 left-0 top-0 opacity-80`
-      ;(line as HTMLElement).style.position = 'relative'
-      line.appendChild(mask)
-      masks.push(mask)
-
-      gsap.to(mask, {
-        scaleX: 0,
-        transformOrigin: 'right center',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: line,
-          scrub: true,
-          start: 'top center',
-          end: 'bottom center',
-        },
+      // Text ile ilgili ScrollTrigger'ları temizle
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.vars.trigger && h1Element.contains(trigger.vars.trigger as Element)) {
+          trigger.kill()
+        }
       })
-    })
+
+      // Önceki animation'ı temizle
+      if (splitTextRef.current) {
+        splitTextRef.current.revert()
+      }
+
+      masksRef.current.forEach((mask) => mask.remove())
+      masksRef.current = []
+
+      // Yeni SplitText oluştur
+      splitTextRef.current = new SplitText(h1Element, { type: 'lines' })
+
+      splitTextRef.current.lines.forEach((line) => {
+        const mask = document.createElement('span')
+
+        mask.className = ` size-full absolute bg-offblack-50 left-0 top-0 opacity-80`
+        ;(line as HTMLElement).style.position = 'relative'
+        line.appendChild(mask)
+        masksRef.current.push(mask)
+
+        gsap.to(mask, {
+          scaleX: 0,
+          transformOrigin: 'right center',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: line,
+            scrub: true,
+            start: 'top center',
+            end: 'bottom center',
+          },
+        })
+      })
+    }
+
+    // İlk kez çalıştır
+    initTextAnimation()
+
+    // Resize event listener
+    const handleResize = () => {
+      // Debounce resize events
+      clearTimeout((window as any).resizeTimeout)
+      ;(window as any).resizeTimeout = setTimeout(() => {
+        initTextAnimation()
+      }, 100)
+    }
+
+    window.addEventListener('resize', handleResize)
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-      masks.forEach((mask) => mask.remove())
-      splitText.revert()
+      masksRef.current.forEach((mask) => mask.remove())
+
+      if (splitTextRef.current) {
+        splitTextRef.current.revert()
+      }
+
+      window.removeEventListener('resize', handleResize)
+      clearTimeout((window as any).resizeTimeout)
     }
   }, [])
 
