@@ -1,11 +1,15 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 
 import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+import { useTranslations } from 'use-intl'
 
 import { CarouselCard } from '@/components/home/carouselCard'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 // Helpers moved to module scope to avoid useEffect dependency noise
 const getViewportCenterX = () => (typeof window !== 'undefined' ? window.innerWidth / 2 : 0)
@@ -24,21 +28,21 @@ const homeCarouselData = [
     title: 'community_events.title',
     subtitle: 'community_events.subtitle',
     description: 'community_events.desc',
-    href: '/events',
+    href: '/socaity-events',
   },
   {
     img: '/home/journey-design.svg',
     title: 'journey_design.title',
     subtitle: 'journey_design.subtitle',
     description: 'journey_design.desc',
-    href: '/events',
+    href: '/journey-design',
   },
   {
     img: '/home/event-organization.svg',
     title: 'event_organization.title',
     subtitle: 'event_organization.subtitle',
     description: 'event_organization.desc',
-    href: '/events',
+    href: '/event-organization',
   },
 ]
 
@@ -61,6 +65,7 @@ const list = [
 ]
 
 export const HomeCarousel = () => {
+  const t = useTranslations()
   const containerRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const [activeIndex, setActiveIndex] = useState(0)
@@ -183,7 +188,17 @@ export const HomeCarousel = () => {
         )
       })}
 
-      <div className='fixed top-1/2 left-1/2 z-30 border border-offblack-950 w-[22.5rem] min-w-[22.5rem] h-[37.5rem] -translate-x-1/2 -translate-y-1/2 bg-transparent pointer-events-none md:block hidden'></div>
+      <div className='fixed top-1/2 left-1/2 z-30 border border-offblack-950 w-[22.5rem] min-w-[22.5rem] h-[37.5rem] -translate-x-1/2 -translate-y-1/2 bg-transparent  md:block hidden'>
+        <Link
+          className={cn(
+            buttonVariants(),
+            'absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer',
+          )}
+          href={list[activeIndex]?.href || '/'}
+        >
+          {t('discover')}
+        </Link>
+      </div>
     </div>
   )
 }
