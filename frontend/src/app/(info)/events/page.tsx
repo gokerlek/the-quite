@@ -91,7 +91,7 @@ export default function EventsPage() {
 
   return (
     <div>
-      <section className='min-h-[calc(100dvh-222px)] md:min-h-[calc(100dvh-322px)] flex items-center justify-center'>
+      <section className='min-h-[calc(100dvh-222px)] md:min-h-[calc(100dvh-13.75rem)] flex items-center justify-center'>
         <div className='md:text-5xl text-3xl flex items-center justify-center gap-4 font-[400]'>
           <span>The</span>
 
@@ -115,13 +115,9 @@ export default function EventsPage() {
         </div>
       </section>
 
-      <Image
-        src={'/events/icon.svg'}
-        alt={'icon'}
-        width={456}
-        height={456}
-        className='mb-20 mx-auto'
-      />
+      <section className='relative w-[28.5rem] h-[28.5rem] mx-auto'>
+        <Image src={'/events/icon.svg'} alt={'icon'} fill className='object-cover' />
+      </section>
 
       <section
         id='second-section'
