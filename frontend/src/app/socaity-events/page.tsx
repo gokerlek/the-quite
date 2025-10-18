@@ -17,8 +17,37 @@ import Room from '@/components/society-events/room'
 export default function SocietyEventsPage() {
   const [isPulseActive, setIsPulseActive] = useState(true)
   const [startAnimation, setStartAnimation] = useState(false)
+  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
   const containerRef = useRef<HTMLDivElement>(null)
   const pulseTimelineRef = useRef<gsap.core.Timeline | null>(null)
+
+  // Container boyutunu dinamik hesapla
+  useEffect(() => {
+    const calculateSize = () => {
+      const { innerWidth: screenWidth, innerHeight: screenHeight } = window
+      const svgRatio = 1440 / 1024
+      const screenRatio = screenWidth / screenHeight
+
+      if (screenRatio > svgRatio) {
+        // Geniş ekran: yüksekliğe göre boyutlandır
+        const height = screenHeight * 0.8
+        const width = height * svgRatio
+
+        setContainerSize({ width, height })
+      } else {
+        // Uzun ekran: genişliğe göre boyutlandır
+        const width = screenWidth * 0.8
+        const height = width / svgRatio
+
+        setContainerSize({ width, height })
+      }
+    }
+
+    calculateSize()
+    window.addEventListener('resize', calculateSize)
+
+    return () => window.removeEventListener('resize', calculateSize)
+  }, [])
 
   // 1 saniye sonra animasyonu başlat
   useEffect(() => {
@@ -85,7 +114,11 @@ export default function SocietyEventsPage() {
     <div className='min-h-screen flex justify-center items-center'>
       <div
         ref={containerRef}
-        className='aspect-[1440/1024] w-full border-offblack-950 border mx-16 relative overflow-hidden'
+        style={{
+          width: containerSize.width,
+          height: containerSize.height,
+        }}
+        className='border-offblack-950 border relative overflow-hidden'
       >
         <section id='wall' className='absolute inset-0 '>
           <div className='relative w-full h-full'>
