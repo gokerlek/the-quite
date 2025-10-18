@@ -17,6 +17,7 @@ import Room from '@/components/society-events/room'
 export default function SocietyEventsPage() {
   const [isPulseActive, setIsPulseActive] = useState(true)
   const [startAnimation, setStartAnimation] = useState(false)
+  const [isEnteringRoom, setIsEnteringRoom] = useState(false)
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
   const containerRef = useRef<HTMLDivElement>(null)
   const pulseTimelineRef = useRef<gsap.core.Timeline | null>(null)
@@ -30,13 +31,13 @@ export default function SocietyEventsPage() {
 
       if (screenRatio > svgRatio) {
         // Geniş ekran: yüksekliğe göre boyutlandır
-        const height = screenHeight * 0.8
+        const height = screenHeight
         const width = height * svgRatio
 
         setContainerSize({ width, height })
       } else {
         // Uzun ekran: genişliğe göre boyutlandır
-        const width = screenWidth * 0.8
+        const width = screenWidth
         const height = width / svgRatio
 
         setContainerSize({ width, height })
@@ -110,6 +111,38 @@ export default function SocietyEventsPage() {
     }
   }
 
+  const handleDoorBellClick = () => {
+    setIsPulseActive(false)
+    setIsEnteringRoom(true)
+
+    // Pulse timeline'ı durdur
+    if (pulseTimelineRef.current) {
+      pulseTimelineRef.current.kill()
+    }
+
+    // Room entry animasyonu
+    const tl = gsap.timeline()
+
+    // 1. Kapıları açık pozisyona getir
+    tl.to(['#left-door', '#right-door'], {
+      x: (index) => (index === 0 ? '-5.2rem' : '5.2rem'),
+      duration: 0.5,
+      ease: 'power2.out',
+    })
+
+      // 2. Wall section'ı büyüt ve yukarı taşı
+      .to(
+        '#wall',
+        {
+          scale: 7.9,
+          y: '-250%',
+          duration: 2.5,
+          ease: 'power2.inOut',
+        },
+        '-=0.2', // Overlap için
+      )
+  }
+
   return (
     <div className='min-h-screen flex justify-center items-center'>
       <div
@@ -126,8 +159,10 @@ export default function SocietyEventsPage() {
 
             {/* Kapılar tam boyut ama peer sistemi ile */}
             <div
+              id='door-bell'
               className='absolute left-1/2 w-[10.5rem] -translate-x-1/2 h-60 bottom-10 peer z-20 flex justify-center opacity-5 cursor-pointer rounded-t-full'
               onMouseEnter={handleHoverStart}
+              onClick={handleDoorBellClick}
             />
 
             <LeftDoor
@@ -142,7 +177,7 @@ export default function SocietyEventsPage() {
           </div>
         </section>
 
-        <section id='room' className='ablosute inset-0 z-10 opacity-0'>
+        <section id='room-cotainer' className='ablosute inset-0 z-10 opacity-0'>
           <svg viewBox='0 0 1440 1024' fill='none' xmlns='http://www.w3.org/2000/svg'>
             <Room id='room' />
 
