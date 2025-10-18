@@ -123,10 +123,10 @@ export default function SocietyEventsPage() {
     // Room entry animasyonu - refined sequence
     const tl = gsap.timeline()
 
-    // 1. Kapıları kaybet (fade out)
+    // 1. Kapıları kaybet (fade out) ve door-bell'i disable et
     tl.to(['#left-door', '#right-door'], {
       opacity: 0,
-      duration: 0.3,
+      duration: 0,
       ease: 'power2.out',
       onComplete: () => {
         // CSS class'larını temizle
@@ -138,6 +138,16 @@ export default function SocietyEventsPage() {
         if (rightDoor) rightDoor.setAttribute('class', 'absolute inset-0')
       },
     })
+      .to(
+        '#door-bell',
+        {
+          pointerEvents: 'none',
+          opacity: 0,
+          duration: 0,
+          ease: 'power2.out',
+        },
+        '<',
+      ) // Kapılarla aynı anda
 
       // 2. Wall zoom ve Room animasyonları aynı anda başlar
       // Room container başlangıç pozisyonu ayarla
