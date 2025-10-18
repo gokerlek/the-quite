@@ -18,6 +18,7 @@ export default function SocietyEventsPage() {
   const [isPulseActive, setIsPulseActive] = useState(true)
   const [startAnimation, setStartAnimation] = useState(false)
   const [isEnteringRoom, setIsEnteringRoom] = useState(false)
+  const [showExitButton, setShowExitButton] = useState(false)
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
   const containerRef = useRef<HTMLDivElement>(null)
   const pulseTimelineRef = useRef<gsap.core.Timeline | null>(null)
@@ -179,13 +180,39 @@ export default function SocietyEventsPage() {
         '<',
       ) // Wall animasyonuyla aynı anda başlar
 
+      // Show exit button after animation completes
+      .call(() => {
+        setShowExitButton(true)
+      })
+
     enterRoomTimelineRef.current = tl
   }
 
   const exitRoom = () => {
     setIsEnteringRoom(false)
+    setShowExitButton(false)
 
+    // Use GSAP reverse - much simpler!
     if (enterRoomTimelineRef.current) {
+      // Add onReverseComplete callback for CSS restoration
+      enterRoomTimelineRef.current.eventCallback('onReverseComplete', () => {
+        // Restore door CSS classes for hover functionality
+        const leftDoor = document.querySelector('#left-door')
+        const rightDoor = document.querySelector('#right-door')
+
+        if (leftDoor) {
+          leftDoor.className =
+            'absolute inset-0 transition-all peer-hover:-translate-x-[6.3rem] duration-700'
+        }
+
+        if (rightDoor) {
+          rightDoor.className =
+            'absolute inset-0 transition-all peer-hover:translate-x-[6.3rem] duration-700'
+        }
+
+        // Keep isPulseActive false - no auto pulse restart
+      })
+
       enterRoomTimelineRef.current.reverse()
     }
   }
@@ -236,16 +263,17 @@ export default function SocietyEventsPage() {
 
             <LeftStar id='left-star' />
           </svg>
-
-          {isEnteringRoom && (
-            <button
-              className='absolute bottom-10 right-1/2 bg-white text-black px-4 py-2 rounded z-30 transform translate-x-1/2'
-              onClick={exitRoom}
-            >
-              Exit Room
-            </button>
-          )}
         </section>
+
+        {/* Exit button outside room container for accessibility */}
+        {showExitButton && (
+          <button
+            className='absolute bottom-10 right-1/2 bg-white text-black px-4 py-2 rounded z-50 transform translate-x-1/2'
+            onClick={exitRoom}
+          >
+            Exit Room
+          </button>
+        )}
       </div>
     </div>
   )

@@ -16,49 +16,49 @@ const MainWall = (props: GProps) => {
       <path
         d='M1392.51 975.43V48.57L47.4998 48.57V975.43L1392.51 975.43Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
       <path
         d='M1375.43 958.36V65.65L64.5696 65.65V958.36L1375.43 958.36Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
       <path
         d='M47.4902 48.57L64.5702 65.65'
         stroke='#EDEDED'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
       <path
         d='M1375.43 65.65L1392.51 48.57'
         stroke='#EDEDED'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
       <path
         d='M1375.43 958.35L1392.51 975.43'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
       <path
         d='M64.5702 958.35L47.4902 975.43'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
       <path
         d='M360.238 891.44H177.918V906.51H360.238V891.44Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -66,7 +66,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M177.919 879.14H360.239L362.609 891.44H175.549L177.919 879.14Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -74,7 +74,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M361.129 906.51H176.119C168.984 906.51 163.199 912.294 163.199 919.43V924.58C163.199 931.716 168.984 937.5 176.119 937.5H361.129C368.265 937.5 374.049 931.716 374.049 924.58V919.43C374.049 912.294 368.265 906.51 361.129 906.51Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -82,7 +82,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M374.049 937.5H163.199V958.36H374.049V937.5Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -90,7 +90,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M186.289 478.52H349.389'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -98,7 +98,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M212.329 491.38H212.289'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -106,7 +106,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M240.46 491.38H240.42'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -114,7 +114,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M268.599 491.38H268.549'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -122,7 +122,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M296.729 491.38H296.689'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -130,7 +130,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M324.858 491.38H324.818'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -138,7 +138,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M347.389 491.38H338.879'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -146,7 +146,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M310.8 491.38H310.75'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -154,7 +154,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M282.659 491.38H282.619'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -162,7 +162,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M254.528 491.38H254.488'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -170,7 +170,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M226.4 491.38H226.35'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -178,7 +178,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M198.26 491.38H189.75'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -186,7 +186,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M344.439 417.13H192.709V432.2H344.439V417.13Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -194,7 +194,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M344.44 417.13H192.71L190.34 404.83H346.81L344.44 417.13Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -202,7 +202,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M212.31 491.94C212.31 491.75 212.31 491.57 212.29 491.38C212.01 487.76 208.98 484.91 205.28 484.91C201.58 484.91 198.55 487.76 198.27 491.38'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -210,7 +210,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M226.369 491.94C226.369 491.75 226.369 491.57 226.349 491.38C226.069 487.76 223.039 484.91 219.339 484.91C215.639 484.91 212.609 487.76 212.329 491.38C212.319 491.57 212.309 491.75 212.309 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -218,7 +218,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M240.439 491.94C240.439 491.75 240.439 491.57 240.419 491.38C240.139 487.76 237.109 484.91 233.409 484.91C229.709 484.91 226.679 487.76 226.399 491.38C226.389 491.57 226.379 491.75 226.379 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -226,7 +226,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M254.509 491.94C254.509 491.75 254.509 491.57 254.489 491.38C254.209 487.76 251.179 484.91 247.479 484.91C243.779 484.91 240.749 487.76 240.469 491.38C240.459 491.57 240.449 491.75 240.449 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -234,7 +234,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M268.57 491.94C268.57 491.75 268.57 491.57 268.55 491.38C268.27 487.76 265.24 484.91 261.54 484.91C257.84 484.91 254.81 487.76 254.53 491.38C254.52 491.57 254.51 491.75 254.51 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -242,7 +242,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M282.64 491.94C282.64 491.75 282.64 491.57 282.62 491.38C282.34 487.76 279.31 484.91 275.61 484.91C271.91 484.91 268.88 487.76 268.6 491.38C268.59 491.57 268.58 491.75 268.58 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -250,7 +250,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M296.71 491.94C296.71 491.75 296.71 491.57 296.69 491.38C296.41 487.76 293.37 484.91 289.68 484.91C285.98 484.91 282.95 487.76 282.67 491.38C282.66 491.57 282.65 491.75 282.65 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -258,7 +258,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M310.769 491.94C310.769 491.75 310.769 491.57 310.749 491.38C310.469 487.76 307.429 484.91 303.739 484.91C300.039 484.91 297.009 487.76 296.729 491.38C296.719 491.57 296.709 491.75 296.709 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -266,7 +266,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M324.839 491.94C324.839 491.75 324.839 491.57 324.819 491.38C324.539 487.76 321.499 484.91 317.809 484.91C314.109 484.91 311.079 487.76 310.799 491.38C310.789 491.57 310.779 491.75 310.779 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -274,7 +274,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M338.91 491.94C338.91 491.75 338.91 491.57 338.89 491.38C338.61 487.76 335.57 484.91 331.88 484.91C328.19 484.91 325.15 487.76 324.87 491.38C324.86 491.57 324.85 491.75 324.85 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -282,7 +282,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M189.749 491.38L179.869 455.36'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -290,7 +290,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M347.389 491.38L357.279 455.36'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -298,7 +298,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M198.26 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -306,7 +306,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M212.289 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -314,7 +314,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M226.398 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -322,7 +322,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M240.459 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -330,7 +330,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M254.529 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -338,7 +338,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M268.6 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -346,7 +346,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M282.66 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -354,7 +354,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M296.729 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -362,7 +362,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M310.799 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -370,7 +370,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M324.818 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -378,7 +378,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M338.91 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -386,7 +386,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M376.439 432.19H159.689'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -394,7 +394,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M362.089 455.36H174.039'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -402,7 +402,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M376.44 432.2C366.77 437.61 361.75 446.92 362.09 455.36'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -410,7 +410,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M159.689 432.2C169.359 437.61 174.379 446.92 174.039 455.36'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -418,7 +418,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M474.721 958.35V548.76C474.721 473.18 496.111 399.49 536.581 335.66C577.051 271.83 644.651 221.69 713.011 189.45L719.991 186.16L735.461 192.85C881.181 255.92 965.271 398.64 965.271 557.43V958.35H474.721Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -427,7 +427,7 @@ const MainWall = (props: GProps) => {
         d='M948.201 557.44V575.21H491.801V548.77C491.801 542.22 491.971 535.68 492.301 529.17H947.271C947.891 538.5 948.201 547.94 948.201 557.45V557.44Z'
         fill='#EDEDED'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
@@ -439,80 +439,80 @@ const MainWall = (props: GProps) => {
       <path
         d='M601.319 474.09L591.129 469.84'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
       <path
         d='M600.799 629.97L590.609 634.22'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
       <path
         d='M801.949 422.72H638.029L590.619 470.13V634.22L638.029 681.63H801.949L849.389 634.22V470.13L801.949 422.72Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
       <path
         d='M797.719 432.91H642.279L600.829 474.36L600.799 474.38V629.96L642.269 671.43H797.709V671.41L839.159 629.96V474.35L797.709 432.9L797.719 432.91Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
       <path
         d='M849.39 470.14L839.17 474.37'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
       <path
         d='M839.17 629.97L849.39 634.2'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
       <path
         d='M797.709 671.43L801.949 681.65'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
       <path
         d='M642.279 671.43L638.039 681.65'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
       <path
         d='M801.949 422.72L797.719 432.91'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
       <path
         d='M638.469 422.72L642.279 432.91'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
-      <path d='M720 670.5V422.72' stroke='#1C1C1C' stroke-width='2' stroke-miterlimit='10' />
+      <path d='M720 670.5V422.72' stroke='#1C1C1C' strokeWidth='2' stroke-miterlimit='10' />
 
       <path
         d='M825.32 775.84V957.24H812.52V775.84C812.52 724.82 771.02 683.32 720 683.31V670.5C749.08 670.5 775.41 682.29 794.47 701.35C813.53 720.41 825.32 746.75 825.32 775.84Z'
         fill='#EDEDED'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
@@ -520,14 +520,14 @@ const MainWall = (props: GProps) => {
         d='M720 670.5V683.31H719.99C668.96 683.31 627.46 724.82 627.46 775.84V957.24H614.65V775.84C614.65 717.66 661.81 670.5 719.99 670.5H720Z'
         fill='#EDEDED'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-miterlimit='10'
       />
 
       <path
         d='M948.201 557.44V957.24H491.801V548.77C491.801 542.22 491.971 535.68 492.301 529.17C495.661 463.74 515.781 400.38 551.011 344.82C577.481 303.07 618.251 264.51 668.571 233.09C684.871 222.9 702.171 213.46 720.301 204.91L728.681 208.54C743.711 215.05 758.121 222.48 771.851 230.77C874.231 292.59 938.921 401.93 947.271 529.17C947.891 538.5 948.201 547.94 948.201 557.45V557.44Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -535,7 +535,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M516.5 496.91V956.26'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -543,7 +543,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M541.211 449.53V956.26'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -551,7 +551,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M565.91 449.53V956.26'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -559,7 +559,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M590.611 496.91V956.26'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -567,7 +567,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M874.09 449.53V956.26'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -575,7 +575,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M898.791 449.53V956.26'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -583,7 +583,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M923.5 496.91V956.26'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -591,7 +591,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M849.391 496.91V956.26'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -600,7 +600,7 @@ const MainWall = (props: GProps) => {
         d='M565.909 461.77C572.05 461.77 577.029 456.791 577.029 450.65C577.029 444.509 572.05 439.53 565.909 439.53C559.768 439.53 554.789 444.509 554.789 450.65C554.789 456.791 559.768 461.77 565.909 461.77Z'
         fill='#EDEDED'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -609,7 +609,7 @@ const MainWall = (props: GProps) => {
         d='M541.21 448.03C547.351 448.03 552.33 443.051 552.33 436.91C552.33 430.769 547.351 425.79 541.21 425.79C535.068 425.79 530.09 430.769 530.09 436.91C530.09 443.051 535.068 448.03 541.21 448.03Z'
         fill='#EDEDED'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -618,7 +618,7 @@ const MainWall = (props: GProps) => {
         d='M874.091 461.77C880.232 461.77 885.211 456.791 885.211 450.65C885.211 444.509 880.232 439.53 874.091 439.53C867.949 439.53 862.971 444.509 862.971 450.65C862.971 456.791 867.949 461.77 874.091 461.77Z'
         fill='#EDEDED'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -627,7 +627,7 @@ const MainWall = (props: GProps) => {
         d='M898.79 448.03C904.931 448.03 909.91 443.051 909.91 436.91C909.91 430.769 904.931 425.79 898.79 425.79C892.649 425.79 887.67 430.769 887.67 436.91C887.67 443.051 892.649 448.03 898.79 448.03Z'
         fill='#EDEDED'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -636,7 +636,7 @@ const MainWall = (props: GProps) => {
         d='M549.23 529.16H492.18V586.21H549.23V529.16Z'
         fill='#EDEDED'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -649,7 +649,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M549.679 586.91C524.729 586.38 501.979 601.14 492.299 624.15'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -658,7 +658,7 @@ const MainWall = (props: GProps) => {
         d='M891.159 586.21H948.209V529.16H891.159V586.21Z'
         fill='#EDEDED'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -671,7 +671,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M890.699 586.91C915.649 586.38 938.399 601.14 948.079 624.15'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -680,7 +680,7 @@ const MainWall = (props: GProps) => {
         d='M549.23 899.86H492.18V956.91H549.23V899.86Z'
         fill='#EDEDED'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -693,7 +693,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M549.679 899.16C524.729 899.69 501.979 884.93 492.299 861.92'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -702,7 +702,7 @@ const MainWall = (props: GProps) => {
         d='M891.159 956.92H948.209V899.87H891.159V956.92Z'
         fill='#EDEDED'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -715,7 +715,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M890.699 899.16C915.649 899.69 938.399 884.93 948.079 861.92'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -723,7 +723,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M825.461 446.22L909.911 383.82'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -731,7 +731,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M530.09 383.82L614.54 446.22'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -875,7 +875,7 @@ const MainWall = (props: GProps) => {
         d='M993.02 633.9H446.98C446.98 622.13 437.44 612.6 425.68 612.6V491.78C437.45 491.78 446.98 482.24 446.98 470.48H993.03C993.03 482.25 1002.57 491.78 1014.33 491.78V612.6C1002.56 612.6 993.03 622.14 993.03 633.9H993.02Z'
         fill='#EDEDED'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1211,7 +1211,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M425.67 527.68H1014.33'
         stroke='#1C1C1C'
-        stroke-width='2.56'
+        strokeWidth='2.56'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1219,7 +1219,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M425.67 576.65H1014.33'
         stroke='#1C1C1C'
-        stroke-width='2.56'
+        strokeWidth='2.56'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1247,7 +1247,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1272.86 891.44H1090.54V906.51H1272.86V891.44Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1255,7 +1255,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1090.54 879.14H1272.86L1275.23 891.44H1088.17L1090.54 879.14Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1263,7 +1263,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1273.75 906.51H1088.74C1081.6 906.51 1075.82 912.294 1075.82 919.43V924.58C1075.82 931.716 1081.6 937.5 1088.74 937.5H1273.75C1280.89 937.5 1286.67 931.716 1286.67 924.58V919.43C1286.67 912.294 1280.89 906.51 1273.75 906.51Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1271,7 +1271,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1286.67 937.5H1075.82V958.36H1286.67V937.5Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1279,7 +1279,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1098.92 478.52H1262.01'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1287,7 +1287,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1124.96 491.38H1124.91'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1295,7 +1295,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1153.09 491.38H1153.04'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1303,7 +1303,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1181.22 491.38H1181.18'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1311,7 +1311,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1209.36 491.38H1209.31'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1319,7 +1319,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1237.49 491.38H1237.44'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1327,7 +1327,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1260.02 491.38H1251.51'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1335,7 +1335,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1223.42 491.38H1223.38'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1343,7 +1343,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1195.29 491.38H1195.24'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1351,7 +1351,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1167.16 491.38H1167.11'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1359,7 +1359,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1139.02 491.38H1138.98'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1367,7 +1367,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1110.89 491.38H1102.38'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1375,7 +1375,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1257.06 417.13H1105.33V432.2H1257.06V417.13Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1383,7 +1383,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1257.07 417.13H1105.33L1102.96 404.83H1259.44L1257.07 417.13Z'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1391,7 +1391,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1124.93 491.94C1124.93 491.75 1124.93 491.57 1124.91 491.38C1124.63 487.76 1121.6 484.91 1117.9 484.91C1114.2 484.91 1111.17 487.76 1110.89 491.38'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1399,7 +1399,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1139 491.94C1139 491.75 1139 491.57 1138.98 491.38C1138.7 487.76 1135.67 484.91 1131.97 484.91C1128.27 484.91 1125.24 487.76 1124.96 491.38C1124.95 491.57 1124.94 491.75 1124.94 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1407,7 +1407,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1153.07 491.94C1153.07 491.75 1153.07 491.57 1153.05 491.38C1152.77 487.76 1149.74 484.91 1146.04 484.91C1142.34 484.91 1139.31 487.76 1139.03 491.38C1139.02 491.57 1139.01 491.75 1139.01 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1415,7 +1415,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1167.13 491.94C1167.13 491.75 1167.13 491.57 1167.11 491.38C1166.83 487.76 1163.8 484.91 1160.1 484.91C1156.4 484.91 1153.37 487.76 1153.09 491.38C1153.08 491.57 1153.07 491.75 1153.07 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1423,7 +1423,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1181.2 491.94C1181.2 491.75 1181.2 491.57 1181.18 491.38C1180.9 487.76 1177.87 484.91 1174.17 484.91C1170.47 484.91 1167.44 487.76 1167.16 491.38C1167.15 491.57 1167.14 491.75 1167.14 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1431,7 +1431,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1195.27 491.94C1195.27 491.75 1195.27 491.57 1195.25 491.38C1194.97 487.76 1191.94 484.91 1188.24 484.91C1184.54 484.91 1181.51 487.76 1181.23 491.38C1181.22 491.57 1181.21 491.75 1181.21 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1439,7 +1439,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1209.33 491.94C1209.33 491.75 1209.33 491.57 1209.31 491.38C1209.03 487.76 1205.99 484.91 1202.3 484.91C1198.6 484.91 1195.57 487.76 1195.29 491.38C1195.28 491.57 1195.27 491.75 1195.27 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1447,7 +1447,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1223.4 491.94C1223.4 491.75 1223.4 491.57 1223.38 491.38C1223.1 487.76 1220.06 484.91 1216.37 484.91C1212.67 484.91 1209.64 487.76 1209.36 491.38C1209.35 491.57 1209.34 491.75 1209.34 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1455,7 +1455,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1237.47 491.94C1237.47 491.75 1237.47 491.57 1237.45 491.38C1237.17 487.76 1234.13 484.91 1230.44 484.91C1226.74 484.91 1223.71 487.76 1223.43 491.38C1223.42 491.57 1223.41 491.75 1223.41 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1463,7 +1463,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1251.53 491.94C1251.53 491.75 1251.53 491.57 1251.51 491.38C1251.23 487.76 1248.19 484.91 1244.5 484.91C1240.81 484.91 1237.77 487.76 1237.49 491.38C1237.48 491.57 1237.47 491.75 1237.47 491.94'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1471,7 +1471,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1102.38 491.38L1092.5 455.36'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1479,7 +1479,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1260.02 491.38L1269.9 455.36'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1487,7 +1487,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1110.89 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1495,7 +1495,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1124.91 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1503,7 +1503,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1139.02 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1511,7 +1511,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1153.09 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1519,7 +1519,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1167.16 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1527,7 +1527,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1181.22 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1535,7 +1535,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1195.29 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1543,7 +1543,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1209.36 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1551,7 +1551,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1223.42 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1559,7 +1559,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1237.44 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1567,7 +1567,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1251.53 491.38V879.14'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1575,7 +1575,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1289.07 432.19H1072.31'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1583,7 +1583,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1274.72 455.36H1086.66'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1591,7 +1591,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1289.07 432.2C1279.4 437.61 1274.38 446.92 1274.72 455.36'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -1599,7 +1599,7 @@ const MainWall = (props: GProps) => {
       <path
         d='M1072.31 432.2C1081.98 437.61 1087 446.92 1086.66 455.36'
         stroke='#1C1C1C'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
