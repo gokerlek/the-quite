@@ -4,9 +4,9 @@ import { useState } from 'react'
 import Image from 'next/image'
 
 import { motion } from 'framer-motion'
+import { useTranslations } from 'use-intl'
 
 import { Button } from '@/components/ui/button'
-import Text from '@/components/ui/text'
 
 const data = [
   {
@@ -54,6 +54,7 @@ const data = [
 ]
 
 export const PreviousEvents = () => {
+  const t = useTranslations('events')
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const handlePrev = () => {
@@ -71,28 +72,32 @@ export const PreviousEvents = () => {
   const text = 'count/total'
 
   return (
-    <div className='flex h-600px w-full gap-10'>
+    <div className='flex h-[39.375rem] my-auto w-full gap-10'>
       {/* Left Content Area */}
       <div className='w-2/5  flex flex-col justify-between '>
         <div className='flex flex-col gap-4'>
+          <div className='heading-s-light'>{t('previous_events')}</div>
+
           <h2 className='text-7xl font-lemon mb-4'>
             {text
               .replace('count', (currentIndex + 1) as unknown as string)
               .replace('total', data.length as unknown as string)}
           </h2>
 
-          <Text variant='pL'>{data[currentIndex].desc}</Text>
+          <div className='p-l'>{data[currentIndex].desc}</div>
         </div>
 
         {/* Navigation Controls */}
-        <div className='flex gap-4'>
+        <div className='flex gap-1'>
           <Button
             variant='outline'
             onClick={handlePrev}
             disabled={currentIndex === 0}
             className='px-2'
           >
-            <Image src='/events/left.svg' alt='left' width={36} height={36} />
+            <div className='relative h-9 w-9'>
+              <Image src='/events/left.svg' alt='left' fill className='object-cover' />
+            </div>
           </Button>
 
           <Button
@@ -101,7 +106,9 @@ export const PreviousEvents = () => {
             disabled={currentIndex === data.length - 1}
             className='px-2'
           >
-            <Image src='/events/right.svg' alt='left' width={36} height={36} />
+            <div className='relative h-9 w-9'>
+              <Image src='/events/right.svg' alt='left' fill className='object-cover' />
+            </div>
           </Button>
         </div>
       </div>
@@ -127,7 +134,7 @@ export const PreviousEvents = () => {
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
               >
-                <div className='aspect-4/5 w-md relative'>
+                <div className='aspect-[2/3] w-[26.25rem] relative'>
                   <Image src={event.img} alt={event.name} fill className='object-cover' />
                 </div>
               </motion.div>

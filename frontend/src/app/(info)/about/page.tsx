@@ -8,9 +8,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 import { useTranslations } from 'use-intl'
 
+import { MobileTeamList } from '@/components/about/MobileTeamList'
 import { TeamList } from '@/components/about/teamList'
+import { useMobileDetection } from '@/hooks/useMobileDetection'
+
+declare global {
+  interface Window {
+    resizeTimeout?: NodeJS.Timeout
+  }
+}
 
 export default function AboutPage() {
+  const isMoble = useMobileDetection()
   const logoRef = useRef<HTMLImageElement>(null)
   const redSectionRef = useRef<HTMLElement>(null)
   const greenSectionRef = useRef<HTMLElement>(null)
@@ -119,8 +128,8 @@ export default function AboutPage() {
     // Resize event listener
     const handleResize = () => {
       // Debounce resize events
-      clearTimeout((window as any).resizeTimeout)
-      ;(window as any).resizeTimeout = setTimeout(() => {
+      clearTimeout(window.resizeTimeout)
+      window.resizeTimeout = setTimeout(() => {
         initTextAnimation()
       }, 100)
     }
@@ -136,7 +145,7 @@ export default function AboutPage() {
       }
 
       window.removeEventListener('resize', handleResize)
-      clearTimeout((window as any).resizeTimeout)
+      clearTimeout(window.resizeTimeout)
     }
   }, [])
 
@@ -174,7 +183,7 @@ export default function AboutPage() {
       >
         <div className='uppercase heading-m-light'>{t('team')}</div>
 
-        <TeamList />
+        {isMoble ? <MobileTeamList /> : <TeamList />}
       </section>
     </div>
   )
