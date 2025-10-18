@@ -41,10 +41,10 @@ export const CarouselCard = forwardRef<HTMLDivElement, CarouselCardProps>(
 
         <div className='flex flex-col justify-start gap-12 flex-1'>
           <div
-            className={cn(
-              'break-all text-center whitespace-pre-line transition-all duration-1000',
-              { 'heading-m-medium': isActive, 'heading-m': !isActive },
-            )}
+            className={cn('break-all text-center whitespace-preLine transition-all duration-1000', {
+              'heading-m-medium': isActive,
+              'heading-m': !isActive,
+            })}
           >
             {t(title)}
           </div>

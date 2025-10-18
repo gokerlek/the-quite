@@ -17,7 +17,6 @@ import Room from '@/components/society-events/room'
 export default function SocietyEventsPage() {
   const [isPulseActive, setIsPulseActive] = useState(true)
   const [startAnimation, setStartAnimation] = useState(false)
-  const [isEnteringRoom, setIsEnteringRoom] = useState(false)
   const [showExitButton, setShowExitButton] = useState(false)
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
   const containerRef = useRef<HTMLDivElement>(null)
@@ -115,7 +114,6 @@ export default function SocietyEventsPage() {
 
   const handleDoorBellClick = () => {
     setIsPulseActive(false)
-    setIsEnteringRoom(true)
 
     // Pulse timeline'ı durdur
     if (pulseTimelineRef.current) {
@@ -135,9 +133,9 @@ export default function SocietyEventsPage() {
         const leftDoor = document.querySelector('#left-door')
         const rightDoor = document.querySelector('#right-door')
 
-        if (leftDoor) leftDoor.className = 'absolute inset-0'
+        if (leftDoor) leftDoor.setAttribute('class', 'absolute inset-0')
 
-        if (rightDoor) rightDoor.className = 'absolute inset-0'
+        if (rightDoor) rightDoor.setAttribute('class', 'absolute inset-0')
       },
     })
 
@@ -189,7 +187,6 @@ export default function SocietyEventsPage() {
   }
 
   const exitRoom = () => {
-    setIsEnteringRoom(false)
     setShowExitButton(false)
 
     // Use GSAP reverse - much simpler!
@@ -201,13 +198,17 @@ export default function SocietyEventsPage() {
         const rightDoor = document.querySelector('#right-door')
 
         if (leftDoor) {
-          leftDoor.className =
-            'absolute inset-0 transition-all peer-hover:-translate-x-[6.3rem] duration-700'
+          leftDoor.setAttribute(
+            'class',
+            'absolute inset-0 transition-all peer-hover:-translate-x-[6.3rem] duration-700',
+          )
         }
 
         if (rightDoor) {
-          rightDoor.className =
-            'absolute inset-0 transition-all peer-hover:translate-x-[6.3rem] duration-700'
+          rightDoor.setAttribute(
+            'class',
+            'absolute inset-0 transition-all peer-hover:translate-x-[6.3rem] duration-700',
+          )
         }
 
         // Keep isPulseActive false - no auto pulse restart
