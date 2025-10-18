@@ -14,17 +14,20 @@ export default function SocietyEventsPage() {
     <div className='min-h-screen flex justify-center items-center'>
       <div className='aspect-[1440/1024] w-full border-offblack-950 border mx-16 relative overflow-hidden'>
         <section id='wall' className='absolute inset-0 '>
-          <div className='relative w-full group '>
+          <div className='relative w-full h-full'>
             <MainWall id='main-wall' className='z-10 absolute inset-0' />
+
+            {/* Kapılar tam boyut ama peer sistemi ile */}
+            <div className='absolute left-1/2 w-[10.5rem] -translate-x-1/2 h-60 bottom-10 peer z-20 flex justify-center opacity-5 cursor-pointer rounded-t-full ' />
 
             <LeftDoor
               id='left-door'
-              className='absolute inset-0  transition-all group-hover:-translate-x-[5.2rem] duration-700'
+              className='absolute inset-0 transition-all peer-hover:-translate-x-[5.2rem] duration-700'
             />
 
             <RightDoor
               id='right-door'
-              className='absolute inset-0  group-hover:translate-x-[5.2rem] transition-all duration-700'
+              className='absolute inset-0 transition-all peer-hover:translate-x-[5.2rem] duration-700'
             />
           </div>
         </section>
