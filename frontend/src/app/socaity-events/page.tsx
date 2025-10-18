@@ -21,6 +21,7 @@ export default function SocietyEventsPage() {
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
   const containerRef = useRef<HTMLDivElement>(null)
   const pulseTimelineRef = useRef<gsap.core.Timeline | null>(null)
+  const enterRoomTimelineRef = useRef<gsap.core.Timeline | null>(null)
 
   // Container boyutunu dinamik hesapla
   useEffect(() => {
@@ -120,27 +121,73 @@ export default function SocietyEventsPage() {
       pulseTimelineRef.current.kill()
     }
 
-    // Room entry animasyonu
+    // Room entry animasyonu - refined sequence
     const tl = gsap.timeline()
 
-    // 1. Kapıları açık pozisyona getir
+    // 1. Kapıları kaybet (fade out)
     tl.to(['#left-door', '#right-door'], {
-      x: (index) => (index === 0 ? '-5.2rem' : '5.2rem'),
-      duration: 0.5,
+      opacity: 0,
+      duration: 0.3,
       ease: 'power2.out',
+      onComplete: () => {
+        // CSS class'larını temizle
+        const leftDoor = document.querySelector('#left-door')
+        const rightDoor = document.querySelector('#right-door')
+
+        if (leftDoor) leftDoor.className = 'absolute inset-0'
+
+        if (rightDoor) rightDoor.className = 'absolute inset-0'
+      },
     })
 
-      // 2. Wall section'ı büyüt ve yukarı taşı
+      // 2. Wall zoom ve Room animasyonları aynı anda başlar
+      // Room container başlangıç pozisyonu ayarla
+      .set('#room-cotainer', {
+        opacity: 0,
+        scale: 0.5,
+        y: '25%',
+      })
+
+      // Wall section büyütme ve Room animasyonları aynı anda
+      .to('#wall', {
+        scale: 7.9,
+        y: '-250%',
+        duration: 2.5,
+        ease: 'power2.inOut',
+      })
+
+      // Room opacity fade in (0.5s'de tamamlanır)
       .to(
-        '#wall',
+        '#room-cotainer',
         {
-          scale: 7.9,
-          y: '-250%',
+          opacity: 1,
+          duration: 1,
+          ease: 'power2.out',
+        },
+        '<',
+      ) // Wall animasyonuyla aynı anda başlar
+
+      // Room scale ve position
+      .to(
+        '#room-cotainer',
+        {
+          scale: 1,
+          y: '0%',
           duration: 2.5,
           ease: 'power2.inOut',
         },
-        '-=0.2', // Overlap için
-      )
+        '<',
+      ) // Wall animasyonuyla aynı anda başlar
+
+    enterRoomTimelineRef.current = tl
+  }
+
+  const exitRoom = () => {
+    setIsEnteringRoom(false)
+
+    if (enterRoomTimelineRef.current) {
+      enterRoomTimelineRef.current.reverse()
+    }
   }
 
   return (
@@ -153,7 +200,7 @@ export default function SocietyEventsPage() {
         }}
         className='border-offblack-950 border relative overflow-hidden'
       >
-        <section id='wall' className='absolute inset-0 '>
+        <section id='wall' className='absolute inset-0 z-20 0'>
           <div className='relative w-full h-full'>
             <MainWall id='main-wall' className='z-10 absolute inset-0' />
 
@@ -167,12 +214,12 @@ export default function SocietyEventsPage() {
 
             <LeftDoor
               id='left-door'
-              className='absolute inset-0 transition-all peer-hover:-translate-x-[5.2rem] duration-700'
+              className='absolute inset-0 transition-all peer-hover:-translate-x-[6.3rem] duration-700'
             />
 
             <RightDoor
               id='right-door'
-              className='absolute inset-0 transition-all peer-hover:translate-x-[5.2rem] duration-700'
+              className='absolute inset-0 transition-all peer-hover:translate-x-[6.3rem] duration-700'
             />
           </div>
         </section>
@@ -189,6 +236,15 @@ export default function SocietyEventsPage() {
 
             <LeftStar id='left-star' />
           </svg>
+
+          {isEnteringRoom && (
+            <button
+              className='absolute bottom-10 right-1/2 bg-white text-black px-4 py-2 rounded z-30 transform translate-x-1/2'
+              onClick={exitRoom}
+            >
+              Exit Room
+            </button>
+          )}
         </section>
       </div>
     </div>
