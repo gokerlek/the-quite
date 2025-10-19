@@ -5,14 +5,10 @@ import { useEffect, useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 
+import Circle from '@/components/society-events/circle'
 import LeftDoor from '@/components/society-events/leftDoor'
-import LeftStar from '@/components/society-events/leftStar'
-import LeftVase from '@/components/society-events/leftVase'
 import MainWall from '@/components/society-events/mainWall'
 import RightDoor from '@/components/society-events/rightDoor'
-import RightStar from '@/components/society-events/rightStar'
-import RightVase from '@/components/society-events/rightVase'
-import Room from '@/components/society-events/room'
 
 export default function SocietyEventsPage() {
   const [isPulseActive, setIsPulseActive] = useState(true)
@@ -264,15 +260,7 @@ export default function SocietyEventsPage() {
 
         <section id='room-cotainer' className='ablosute inset-0 z-10 opacity-0'>
           <svg viewBox='0 0 1440 1024' fill='none' xmlns='http://www.w3.org/2000/svg'>
-            <Room id='room' />
-
-            <RightVase id='right-vase' />
-
-            <LeftVase id='left-vase' />
-
-            <RightStar id='right-star' />
-
-            <LeftStar id='left-star' />
+            <Circle id='room' />
           </svg>
         </section>
 
