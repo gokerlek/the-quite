@@ -1,15 +1,18 @@
 'use client'
-import { cn } from '@/lib/utils'
-import React, { useRef, useState, useEffect } from 'react'
+
+import React, { useEffect, useRef, useState } from 'react'
+
 import {
+  animate,
   motion,
+  useAnimationControls,
   useMotionValue,
   useSpring,
   useTransform,
-  animate,
   useVelocity,
-  useAnimationControls,
 } from 'motion/react'
+
+import { cn } from '@/lib/utils'
 
 export const DraggableCardBody = ({
   className,
@@ -19,6 +22,7 @@ export const DraggableCardBody = ({
   children?: React.ReactNode
 }) => {
   const mouseX = useMotionValue(0)
+
   const mouseY = useMotionValue(0)
   const cardRef = useRef<HTMLDivElement>(null)
   const controls = useAnimationControls()
@@ -82,7 +86,9 @@ export const DraggableCardBody = ({
     const centerY = top + height / 2
     const deltaX = clientX - centerX
     const deltaY = clientY - centerY
+
     mouseX.set(deltaX)
+
     mouseY.set(deltaY)
   }
 
@@ -148,9 +154,10 @@ export const DraggableCardBody = ({
       whileHover={{ scale: 1.02 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={cn('relative overflow-hidden rounded-md  transform-3d ', className)}
+      className={cn('relative overflow-hidden transform-3d ', className)}
     >
       {children}
+
       <motion.div
         style={{
           opacity: glareOpacity,
