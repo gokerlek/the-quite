@@ -48,8 +48,6 @@ export const DraggableCardBody = ({
 
   const opacity = useSpring(useTransform(mouseX, [-300, 0, 300], [0.8, 1, 0.8]), springConfig)
 
-  const glareOpacity = useSpring(useTransform(mouseX, [-300, 0, 300], [0.2, 0, 0.2]), springConfig)
-
   useEffect(() => {
     // Update constraints when component mounts or window resizes
     const updateConstraints = () => {
@@ -104,9 +102,17 @@ export const DraggableCardBody = ({
       dragConstraints={constraints}
       onDragStart={() => {
         document.body.style.cursor = 'grabbing'
+
+        if (cardRef.current) {
+          cardRef.current.style.cursor = 'grabbing'
+        }
       }}
-      onDragEnd={(event, info) => {
+      onDragEnd={(_event, info) => {
         document.body.style.cursor = 'default'
+
+        if (cardRef.current) {
+          cardRef.current.style.cursor = 'grab'
+        }
 
         controls.start({
           rotateX: 0,
@@ -154,16 +160,9 @@ export const DraggableCardBody = ({
       whileHover={{ scale: 1.02 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={cn('relative overflow-hidden transform-3d ', className)}
+      className={cn('relative  transform-3d cursor-grab', className)}
     >
       {children}
-
-      <motion.div
-        style={{
-          opacity: glareOpacity,
-        }}
-        className='pointer-events-none absolute inset-0  select-none'
-      />
     </motion.div>
   )
 }
