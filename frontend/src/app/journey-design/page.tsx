@@ -88,29 +88,29 @@ export default function SocietyEventsPage() {
   useGSAP(
     () => {
       if (cardsRef.current && containerRef.current) {
+        const tl = gsap.timeline()
+
         if (journeyStep === 0) {
-          // Show cards, hide container
-          gsap.to(cardsRef.current, {
-            opacity: 1,
-            duration: 0.5,
-            ease: 'power2.out',
-          })
-          gsap.to(containerRef.current, {
+          // Sequential: first hide container completely, then show cards
+          tl.to(containerRef.current, {
             opacity: 0,
-            duration: 0.5,
-            ease: 'power2.out',
+            duration: 1.5,
+            ease: 'power1.inOut',
+          }).to(cardsRef.current, {
+            opacity: 1,
+            duration: 1.5,
+            ease: 'power1.out',
           })
         } else if (journeyStep === 1) {
-          // Hide cards, show container
-          gsap.to(cardsRef.current, {
+          // Sequential: first hide cards completely, then show container
+          tl.to(cardsRef.current, {
             opacity: 0,
-            duration: 0.5,
-            ease: 'power2.out',
-          })
-          gsap.to(containerRef.current, {
+            duration: 1.5,
+            ease: 'power1.inOut',
+          }).to(containerRef.current, {
             opacity: 1,
-            duration: 0.5,
-            ease: 'power2.out',
+            duration: 1.5,
+            ease: 'power1.out',
           })
         }
       }
