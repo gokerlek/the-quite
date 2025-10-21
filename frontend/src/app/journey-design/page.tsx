@@ -50,14 +50,19 @@ export default function SocietyEventsPage() {
     return () => window.removeEventListener('resize', calculateSize)
   }, [])
 
-  // 1 saniye sonra animasyonu başlat
+  // Step 1'e geçince transition bitince 1 saniye sonra animasyonu başlat
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setStartAnimation(true)
-    }, 1000)
+    if (journeyStep === 1) {
+      // Transition süresi (3s) + 1 saniye bekleme = 4 saniye
+      const timer = setTimeout(() => {
+        setStartAnimation(true)
+      }, 4000)
 
-    return () => clearTimeout(timer)
-  }, [])
+      return () => clearTimeout(timer)
+    } else {
+      setStartAnimation(false)
+    }
+  }, [journeyStep])
 
   // Wheel event listener for journey navigation
   useEffect(() => {
@@ -120,7 +125,7 @@ export default function SocietyEventsPage() {
 
   useGSAP(
     () => {
-      if (!isPulseActive || !startAnimation) return
+      if (!isPulseActive || !startAnimation || journeyStep !== 1) return
 
       const leftDoor = document.querySelector('#left-door') as SVGSVGElement
 
@@ -145,7 +150,7 @@ export default function SocietyEventsPage() {
         pulseTimelineRef.current = tl
       }
     },
-    { scope: containerRef, dependencies: [isPulseActive, startAnimation] },
+    { scope: containerRef, dependencies: [isPulseActive, startAnimation, journeyStep] },
   )
 
   const handleHoverStart = () => {
@@ -216,7 +221,7 @@ export default function SocietyEventsPage() {
       .set('#room-cotainer', {
         opacity: 0,
         scale: 0.5,
-        y: '25%',
+        y: '15%',
       })
 
       // Wall section büyütme ve Room animasyonları aynı anda
@@ -244,7 +249,7 @@ export default function SocietyEventsPage() {
         {
           scale: 1,
           y: '0%',
-          duration: 2.5,
+          duration: 1.8,
           ease: 'power2.inOut',
         },
         '<',
