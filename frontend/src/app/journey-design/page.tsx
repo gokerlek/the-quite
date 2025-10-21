@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 
+import { OpeningDraggableCards } from '@/components/openingDraggableCards'
 import Circle from '@/components/society-events/circle'
 import LeftDoor from '@/components/society-events/leftDoor'
 import MainWall from '@/components/society-events/mainWall'
@@ -226,6 +227,8 @@ export default function SocietyEventsPage() {
 
   return (
     <div className='min-h-screen flex justify-center items-center'>
+      <OpeningDraggableCards />
+
       <div
         ref={containerRef}
         style={{
