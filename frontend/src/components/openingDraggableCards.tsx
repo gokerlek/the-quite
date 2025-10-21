@@ -4,30 +4,30 @@ import Image from 'next/image'
 import { DraggableCardBody, DraggableCardContainer } from '@/components/ui/draggable-card'
 import { cn } from '@/lib/utils'
 
-export default function DraggableCardDemo() {
-  const items = [
-    {
-      title: 'Card 06',
-      image: '/draggable-cards/temple.png',
-      className: 'rotate-[6.15deg]',
-    },
-    {
-      title: 'Card 03',
-      image: '/draggable-cards/hause.png',
-      className: 'rotate-[-8.18deg]',
-    },
-    {
-      title: 'Card 04',
-      image: '/draggable-cards/circle.png',
-      className: 'rotate-[17.22deg]',
-    },
-    {
-      title: 'Card 05',
-      image: '/draggable-cards/door.png',
-      className: 'rotate-[-10.04deg]',
-    },
-  ]
+const items = [
+  {
+    title: 'Card 06',
+    image: '/draggable-cards/temple.png',
+    className: 'rotate-[6.15deg]',
+  },
+  {
+    title: 'Card 03',
+    image: '/draggable-cards/hause.png',
+    className: 'rotate-[-8.18deg]',
+  },
+  {
+    title: 'Card 04',
+    image: '/draggable-cards/circle.png',
+    className: 'rotate-[17.22deg]',
+  },
+  {
+    title: 'Card 05',
+    image: '/draggable-cards/door.png',
+    className: 'rotate-[-10.04deg]',
+  },
+]
 
+export const OpeningDraggableCards = () => {
   return (
     <DraggableCardContainer className='relative flex min-h-screen w-full items-center justify-center overflow-clip'>
       <p className='absolute top-1/2  -translate-y-3/4 text-center md:text-5xl text-3xl font-light '>
