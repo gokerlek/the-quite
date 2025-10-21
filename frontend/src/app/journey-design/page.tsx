@@ -16,7 +16,9 @@ export default function SocietyEventsPage() {
   const [startAnimation, setStartAnimation] = useState(false)
   const [showExitButton, setShowExitButton] = useState(false)
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
+  const [journeyStep, setJourneyStep] = useState(0) // 0: cards, 1: door, 2: room
   const containerRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
   const pulseTimelineRef = useRef<gsap.core.Timeline | null>(null)
   const enterRoomTimelineRef = useRef<gsap.core.Timeline | null>(null)
 
@@ -56,6 +58,65 @@ export default function SocietyEventsPage() {
 
     return () => clearTimeout(timer)
   }, [])
+
+  // Wheel event listener for journey navigation
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault() // Prevent actual scrolling
+
+      // Only handle wheel in steps 0 and 1
+      if (journeyStep === 0 && e.deltaY > 0) {
+        // Wheel down from cards to door
+        setJourneyStep(1)
+      } else if (journeyStep === 1 && e.deltaY < 0) {
+        // Wheel up from door back to cards
+        setJourneyStep(0)
+      }
+    }
+
+    // Only add listener if in steps 0 or 1
+    if (journeyStep === 0 || journeyStep === 1) {
+      window.addEventListener('wheel', handleWheel, { passive: false })
+    }
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel)
+    }
+  }, [journeyStep])
+
+  // Journey step transition animations
+  useGSAP(
+    () => {
+      if (cardsRef.current && containerRef.current) {
+        if (journeyStep === 0) {
+          // Show cards, hide container
+          gsap.to(cardsRef.current, {
+            opacity: 1,
+            duration: 0.5,
+            ease: 'power2.out',
+          })
+          gsap.to(containerRef.current, {
+            opacity: 0,
+            duration: 0.5,
+            ease: 'power2.out',
+          })
+        } else if (journeyStep === 1) {
+          // Hide cards, show container
+          gsap.to(cardsRef.current, {
+            opacity: 0,
+            duration: 0.5,
+            ease: 'power2.out',
+          })
+          gsap.to(containerRef.current, {
+            opacity: 1,
+            duration: 0.5,
+            ease: 'power2.out',
+          })
+        }
+      }
+    },
+    { dependencies: [journeyStep] },
+  )
 
   useGSAP(
     () => {
@@ -110,7 +171,11 @@ export default function SocietyEventsPage() {
   }
 
   const handleDoorBellClick = () => {
+    // Only allow clicking in Step 1 (when container is visible)
+    if (journeyStep !== 1) return
+
     setIsPulseActive(false)
+    setJourneyStep(2) // Enter room
 
     // Pulse timeline'ı durdur
     if (pulseTimelineRef.current) {
@@ -195,6 +260,7 @@ export default function SocietyEventsPage() {
 
   const exitRoom = () => {
     setShowExitButton(false)
+    setJourneyStep(1) // Return to door
 
     // Use GSAP reverse - much simpler!
     if (enterRoomTimelineRef.current) {
@@ -226,16 +292,23 @@ export default function SocietyEventsPage() {
   }
 
   return (
-    <div className='min-h-screen flex justify-center items-center'>
-      <OpeningDraggableCards />
+    <div className='min-h-screen flex justify-center items-center relative'>
+      <div
+        ref={cardsRef}
+        className='absolute inset-0'
+        style={{ zIndex: journeyStep === 0 ? 30 : 10 }}
+      >
+        <OpeningDraggableCards />
+      </div>
 
       <div
         ref={containerRef}
         style={{
           width: containerSize.width,
           height: containerSize.height,
+          zIndex: journeyStep === 1 || journeyStep === 2 ? 30 : 10,
         }}
-        className='border-offblack-950 border relative overflow-hidden'
+        className='border-offblack-950 border relative overflow-hidden opacity-0'
       >
         <section id='wall' className='absolute inset-0 z-20 0'>
           <div className='relative w-full h-full'>
