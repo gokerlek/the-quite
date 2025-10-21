@@ -16,7 +16,7 @@ export default function SocietyEventsPage() {
   const [startAnimation, setStartAnimation] = useState(false)
   const [showExitButton, setShowExitButton] = useState(false)
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
-  const [journeyStep, setJourneyStep] = useState(0) // 0: cards, 1: door, 2: room
+  const [journeyStep, setJourneyStep] = useState(0) // 0: cards, 1: door, 2: room, 3: house, 4: temple, 5: postcard
   const containerRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
   const pulseTimelineRef = useRef<gsap.core.Timeline | null>(null)
@@ -106,7 +106,7 @@ export default function SocietyEventsPage() {
             duration: 1.5,
             ease: 'power1.out',
           })
-        } else if (journeyStep === 1) {
+        } else if (journeyStep >= 1) {
           // Sequential: first hide cards completely, then show container
           tl.to(cardsRef.current, {
             opacity: 0,
@@ -311,7 +311,7 @@ export default function SocietyEventsPage() {
         style={{
           width: containerSize.width,
           height: containerSize.height,
-          zIndex: journeyStep === 1 || journeyStep === 2 ? 30 : 10,
+          zIndex: journeyStep >= 1 ? 30 : 10,
         }}
         className='border-offblack-950 border relative overflow-hidden opacity-0'
       >
@@ -343,6 +343,21 @@ export default function SocietyEventsPage() {
           <svg viewBox='0 0 1440 1024' fill='none' xmlns='http://www.w3.org/2000/svg'>
             <Circle id='room' />
           </svg>
+        </section>
+
+        {/* Step 3: House */}
+        <section id='house-container' className='absolute inset-0 z-10 opacity-0'>
+          {/* House content will be added here */}
+        </section>
+
+        {/* Step 4: Temple */}
+        <section id='temple-container' className='absolute inset-0 z-10 opacity-0'>
+          {/* Temple content will be added here */}
+        </section>
+
+        {/* Step 5: Postcard */}
+        <section id='postcard-container' className='absolute inset-0 z-10 opacity-0'>
+          {/* Postcard content will be added here */}
         </section>
 
         {/* Exit button outside room container for accessibility */}
