@@ -46,8 +46,6 @@ export const DraggableCardBody = ({
   const rotateX = useSpring(useTransform(mouseY, [-300, 300], [25, -25]), springConfig)
   const rotateY = useSpring(useTransform(mouseX, [-300, 300], [-25, 25]), springConfig)
 
-  const opacity = useSpring(useTransform(mouseX, [-300, 0, 300], [0.8, 1, 0.8]), springConfig)
-
   useEffect(() => {
     // Update constraints when component mounts or window resizes
     const updateConstraints = () => {
@@ -153,7 +151,6 @@ export const DraggableCardBody = ({
       style={{
         rotateX,
         rotateY,
-        opacity,
         willChange: 'transform',
       }}
       animate={controls}
