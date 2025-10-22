@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-import Circle from '@/components/society-events/circle'
+import { Circle } from '@/components/society-events/circle'
 import { Button } from '@/components/ui/button'
 import { useContainerSize } from '@/hooks/useContainerSize'
 import { useDoorAnimations } from '@/hooks/useDoorAnimations'
