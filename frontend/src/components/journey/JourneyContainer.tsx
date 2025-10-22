@@ -1,6 +1,8 @@
 import React from 'react'
+import Image from 'next/image'
 
 import Circle from '@/components/society-events/circle'
+import { Button } from '@/components/ui/button'
 import { useContainerSize } from '@/hooks/useContainerSize'
 import { useDoorAnimations } from '@/hooks/useDoorAnimations'
 
@@ -64,12 +66,15 @@ export const JourneyContainer = ({
 
       {/* Exit button outside room container for accessibility */}
       {showExitButton && (
-        <button
-          className='absolute bottom-10 right-1/2 bg-white text-black px-4 py-2 rounded z-50 transform translate-x-1/2'
+        <Button
+          variant='outline'
           onClick={onExitRoom}
+          className=' z-50 absolute top-6 right-12 px-0 w-12 h-12 bg-offblack-50'
         >
-          Exit Room
-        </button>
+          <div className='relative h-9 w-9'>
+            <Image src='/events/left.svg' alt='left' fill className='object-cover' />
+          </div>
+        </Button>
       )}
     </div>
   )
