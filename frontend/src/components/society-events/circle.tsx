@@ -1,3 +1,8 @@
+import { useRef } from 'react'
+
+import { useGSAP } from '@gsap/react'
+import { gsap } from 'gsap'
+
 import { BaseCircle } from '@/components/society-events/baseCircle'
 import { GProps } from '@/components/society-events/type'
 
@@ -12,9 +17,48 @@ export const Circle = (props: GProps) => {
   const circle5Animation = useCircleAnimation('Circle5')
   const circle6Animation = useCircleAnimation('Circle6')
 
+  // Center circle için ref
+  const centerCircleRef = useRef<SVGPathElement>(null)
+
+  // Center circle parlama animasyonu
+  useGSAP(() => {
+    if (!centerCircleRef.current) return
+
+    const glowTimeline = gsap.timeline()
+
+    glowTimeline
+      // Normal durum
+      .set(centerCircleRef.current, {
+        stroke: '#1C1C1C',
+        filter: 'none',
+        strokeWidth: 2,
+      })
+      // Kırmızı parlama başlangıcı
+      .to(centerCircleRef.current, {
+        stroke: '#F0002C',
+        filter: 'drop-shadow(0 0 4px #FF0000)',
+        strokeWidth: 1.5,
+        duration: 2,
+        ease: 'power2.out',
+        delay: Math.random() * 7 + 5, // 5-12 saniye arası rastgele bekleme
+        repeat: -1,
+        yoyo: true,
+      })
+  }, [])
+
   return (
     <g {...props}>
       <BaseCircle />
+
+      <path
+        ref={centerCircleRef}
+        id='center-circle'
+        d='M720 588.21C762.31 588.21 796.61 553.911 796.61 511.6C796.61 469.289 762.31 434.99 720 434.99C677.689 434.99 643.39 469.289 643.39 511.6C643.39 553.911 677.689 588.21 720 588.21Z'
+        stroke='#1C1C1C'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
 
       <g id='base-circle'>
         <path
