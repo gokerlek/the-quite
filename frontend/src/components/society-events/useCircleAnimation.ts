@@ -8,6 +8,7 @@ import { getRandomAnimationConfig } from './animationConfigs'
 export const useCircleAnimation = (circleId?: string) => {
   const elementRef = useRef<SVGGElement>(null)
   const timelineRef = useRef<gsap.core.Timeline | null>(null)
+  const timelinesRef = useRef<gsap.core.Timeline[]>([])
 
   useGSAP(() => {
     if (!elementRef.current) return
@@ -133,6 +134,7 @@ export const useCircleAnimation = (circleId?: string) => {
 
     // Ana timeline referansı (cleanup için)
     timelineRef.current = timelines[0] || gsap.timeline()
+    timelinesRef.current = timelines
 
     // Cleanup - tüm timeline'ları temizle
     return () => {
@@ -144,27 +146,73 @@ export const useCircleAnimation = (circleId?: string) => {
     }
   }, [])
 
+  // Hover kontrol fonksiyonları
+  const handleMouseEnter = () => {
+    if (!elementRef.current) return
+    
+    // Tüm timeline'ları pause et
+    timelinesRef.current.forEach(timeline => {
+      if (timeline) {
+        timeline.pause()
+      }
+    })
+    
+    // Scale up animasyonu
+    gsap.to(elementRef.current, {
+      scale: 1.1,
+      duration: 0.3,
+      ease: 'back.out(1.7)',
+    })
+  }
+
+  const handleMouseLeave = () => {
+    if (!elementRef.current) return
+    
+    // Scale'i normale döndür
+    gsap.to(elementRef.current, {
+      scale: 1,
+      duration: 0.3,
+      ease: 'back.out(1.7)',
+      onComplete: () => {
+        // Animasyonu kaldığı yerden devam ettir
+        timelinesRef.current.forEach(timeline => {
+          if (timeline) {
+            timeline.resume()
+          }
+        })
+      }
+    })
+  }
+
   // Manuel kontrol fonksiyonları
   const pauseAnimation = () => {
-    if (timelineRef.current) {
-      timelineRef.current.pause()
-    }
+    timelinesRef.current.forEach(timeline => {
+      if (timeline) {
+        timeline.pause()
+      }
+    })
   }
 
   const resumeAnimation = () => {
-    if (timelineRef.current) {
-      timelineRef.current.resume()
-    }
+    timelinesRef.current.forEach(timeline => {
+      if (timeline) {
+        timeline.resume()
+      }
+    })
   }
 
   const resetAnimation = () => {
-    if (timelineRef.current) {
-      timelineRef.current.restart()
-    }
+    timelinesRef.current.forEach(timeline => {
+      if (timeline) {
+        timeline.restart()
+      }
+    })
   }
 
   return {
     elementRef,
+    handleMouseEnter,
+    handleMouseLeave,
     pauseAnimation,
     resumeAnimation,
     resetAnimation,

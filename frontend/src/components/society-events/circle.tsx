@@ -78,7 +78,13 @@ export const Circle = (props: GProps) => {
         />
       </g>
 
-      <g id='circle1' ref={circle1Animation.elementRef}>
+      <g
+        id='circle1'
+        ref={circle1Animation.elementRef}
+        onMouseEnter={circle1Animation.handleMouseEnter}
+        onMouseLeave={circle1Animation.handleMouseLeave}
+        style={{ cursor: 'pointer' }}
+      >
         <path
           d='M442.97 419.09C493.173 419.09 533.87 378.393 533.87 328.19C533.87 277.987 493.173 237.29 442.97 237.29C392.768 237.29 352.07 277.987 352.07 328.19C352.07 378.393 392.768 419.09 442.97 419.09Z'
           fill='#EDEDED'
@@ -98,7 +104,13 @@ export const Circle = (props: GProps) => {
         />
       </g>
 
-      <g id='circle2' ref={circle2Animation.elementRef}>
+      <g
+        id='circle2'
+        ref={circle2Animation.elementRef}
+        onMouseEnter={circle2Animation.handleMouseEnter}
+        onMouseLeave={circle2Animation.handleMouseLeave}
+        style={{ cursor: 'pointer' }}
+      >
         <path
           d='M966.76 369.77C1006.09 369.77 1037.98 337.884 1037.98 298.55C1037.98 259.216 1006.09 227.33 966.76 227.33C927.426 227.33 895.54 259.216 895.54 298.55C895.54 337.884 927.426 369.77 966.76 369.77Z'
           fill='#EDEDED'
@@ -118,7 +130,13 @@ export const Circle = (props: GProps) => {
         />
       </g>
 
-      <g id='circle3' ref={circle3Animation.elementRef}>
+      <g
+        id='circle3'
+        ref={circle3Animation.elementRef}
+        onMouseEnter={circle3Animation.handleMouseEnter}
+        onMouseLeave={circle3Animation.handleMouseLeave}
+        style={{ cursor: 'pointer' }}
+      >
         <path
           d='M429.32 628.18C462.54 628.18 489.47 601.25 489.47 568.03C489.47 534.81 462.54 507.88 429.32 507.88C396.1 507.88 369.17 534.81 369.17 568.03C369.17 601.25 396.1 628.18 429.32 628.18Z'
           fill='#EDEDED'
@@ -138,7 +156,13 @@ export const Circle = (props: GProps) => {
         />
       </g>
 
-      <g id='circle4' ref={circle4Animation.elementRef}>
+      <g
+        id='circle4'
+        ref={circle4Animation.elementRef}
+        onMouseEnter={circle4Animation.handleMouseEnter}
+        onMouseLeave={circle4Animation.handleMouseLeave}
+        style={{ cursor: 'pointer' }}
+      >
         <path
           d='M898.12 604.24C914.827 604.24 928.37 590.697 928.37 573.99C928.37 557.283 914.827 543.74 898.12 543.74C881.414 543.74 867.87 557.283 867.87 573.99C867.87 590.697 881.414 604.24 898.12 604.24Z'
           fill='#EDEDED'
@@ -158,7 +182,13 @@ export const Circle = (props: GProps) => {
         />
       </g>
 
-      <g id='circle5' ref={circle5Animation.elementRef}>
+      <g
+        id='circle5'
+        ref={circle5Animation.elementRef}
+        onMouseEnter={circle5Animation.handleMouseEnter}
+        onMouseLeave={circle5Animation.handleMouseLeave}
+        style={{ cursor: 'pointer' }}
+      >
         <path
           d='M598.11 872.35C651.831 872.35 695.38 828.801 695.38 775.08C695.38 721.359 651.831 677.81 598.11 677.81C544.389 677.81 500.84 721.359 500.84 775.08C500.84 828.801 544.389 872.35 598.11 872.35Z'
           fill='#EDEDED'
@@ -178,7 +208,13 @@ export const Circle = (props: GProps) => {
         />
       </g>
 
-      <g id='circle6' ref={circle6Animation.elementRef}>
+      <g
+        id='circle6'
+        ref={circle6Animation.elementRef}
+        onMouseEnter={circle6Animation.handleMouseEnter}
+        onMouseLeave={circle6Animation.handleMouseLeave}
+        style={{ cursor: 'pointer' }}
+      >
         <path
           d='M911.54 800.94C947.687 800.94 976.99 771.637 976.99 735.49C976.99 699.343 947.687 670.04 911.54 670.04C875.393 670.04 846.09 699.343 846.09 735.49C846.09 771.637 875.393 800.94 911.54 800.94Z'
           fill='#EDEDED'
