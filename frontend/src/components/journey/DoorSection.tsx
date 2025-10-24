@@ -11,8 +11,8 @@ interface DoorSectionProps {
 
 export const DoorSection = ({ onMouseEnter, onClick }: DoorSectionProps) => {
   return (
-    <section id='wall' className='absolute inset-0 z-20 '>
-      <div className='relative w-full h-full'>
+    <section id='door-section' className='absolute inset-0 z-20 '>
+      <div id='wall' className='relative w-full h-full'>
         <MainWall id='main-wall' className='z-10 absolute inset-0' />
 
         {/* Kapılar tam boyut ama peer sistemi ile */}

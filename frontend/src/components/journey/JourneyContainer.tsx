@@ -43,24 +43,33 @@ export const JourneyContainer = ({
     >
       <DoorSection onMouseEnter={onMouseEnter} onClick={onDoorClick} />
 
-      <section id='room-cotainer' className='ablosute inset-0 z-10 opacity-0'>
+      <section id='room-cotainer' className='absolute inset-0 z-10 opacity-0 pointer-events-none'>
         <svg viewBox='0 0 1440 1024' fill='none' xmlns='http://www.w3.org/2000/svg'>
           <Circle id='room' />
         </svg>
       </section>
 
       {/* Step 3: House */}
-      <section id='house-container' className='absolute inset-0 z-10 opacity-0'>
+      <section
+        id='house-container'
+        className='absolute inset-0 z-[9] opacity-0 pointer-events-none'
+      >
         {/* House content will be added here */}
       </section>
 
       {/* Step 4: Temple */}
-      <section id='temple-container' className='absolute inset-0 z-10 opacity-0'>
+      <section
+        id='temple-container'
+        className='absolute inset-0 z-[8] opacity-0 pointer-events-none'
+      >
         {/* Temple content will be added here */}
       </section>
 
       {/* Step 5: Postcard */}
-      <section id='postcard-container' className='absolute inset-0 z-10 opacity-0'>
+      <section
+        id='postcard-container'
+        className='absolute inset-0 z-[7] opacity-0 pointer-events-none'
+      >
         {/* Postcard content will be added here */}
       </section>
 

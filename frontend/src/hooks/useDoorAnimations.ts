@@ -167,9 +167,22 @@ export const useDoorAnimations = ({
         '<',
       ) // Wall animasyonuyla aynı anda başlar
 
-      // Show exit button after animation completes
+      // Show exit button and enable room interactions after animation completes
       .call(() => {
         setShowExitButton(true)
+        // Enable room interactions now that animation is complete
+        const roomContainer = document.querySelector('#room-cotainer')
+
+        if (roomContainer) {
+          gsap.set(roomContainer, { pointerEvents: 'auto' })
+        }
+
+        // Disable door interactions
+        const doorSection = document.querySelector('#door-section')
+
+        if (doorSection) {
+          gsap.set(doorSection, { pointerEvents: 'none' })
+        }
       })
 
     enterRoomTimelineRef.current = tl
@@ -202,6 +215,20 @@ export const useDoorAnimations = ({
         }
 
         // Keep isPulseActive false - no auto pulse restart
+
+        // Enable door interactions now that reverse animation is complete
+        const doorSection = document.querySelector('#door-section')
+
+        if (doorSection) {
+          gsap.set(doorSection, { pointerEvents: 'auto' })
+        }
+
+        // Disable room interactions
+        const roomContainer = document.querySelector('#room-cotainer')
+
+        if (roomContainer) {
+          gsap.set(roomContainer, { pointerEvents: 'none' })
+        }
       })
 
       enterRoomTimelineRef.current.reverse()
