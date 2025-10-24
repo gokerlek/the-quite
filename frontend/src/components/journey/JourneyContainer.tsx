@@ -67,6 +67,7 @@ export const JourneyContainer = ({
       {/* Exit button outside room container for accessibility */}
       {showExitButton && (
         <Button
+          id='exit-button'
           variant='outline'
           onClick={onExitRoom}
           className=' z-50 absolute top-6 right-12 px-0 w-12 h-12 bg-offblack-50'
