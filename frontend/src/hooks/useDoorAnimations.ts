@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { RefObject, useEffect, useRef, useState } from 'react'
 
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
@@ -6,7 +6,7 @@ import gsap from 'gsap'
 interface UseDoorAnimationsProps {
   journeyStep: number
   setJourneyStep: (step: number) => void
-  containerRef: React.RefObject<HTMLDivElement | null>
+  containerRef: RefObject<HTMLDivElement | null>
 }
 
 export const useDoorAnimations = ({
@@ -87,7 +87,7 @@ export const useDoorAnimations = ({
     }
   }
 
-  const handleDoorBellClick = () => {
+  const enterStep2 = () => {
     // Only allow clicking in Step 1 (when container is visible)
     if (journeyStep !== 1) return
 
@@ -175,7 +175,7 @@ export const useDoorAnimations = ({
     enterRoomTimelineRef.current = tl
   }
 
-  const exitRoom = () => {
+  const exitStep2 = () => {
     setShowExitButton(false)
     setJourneyStep(1) // Return to door
 
@@ -208,6 +208,35 @@ export const useDoorAnimations = ({
     }
   }
 
+  // Placeholder functions for future steps
+  const enterStep3 = () => {
+    setJourneyStep(3)
+  }
+
+  const enterStep4 = () => {
+    setJourneyStep(4)
+  }
+
+  const enterStep5 = () => {
+    setJourneyStep(5)
+  }
+
+  const exitStep3 = () => {
+    setJourneyStep(1)
+  }
+
+  const exitStep4 = () => {
+    setJourneyStep(1)
+  }
+
+  const exitStep5 = () => {
+    setJourneyStep(1)
+  }
+
+  // Backward compatibility aliases
+  const handleDoorBellClick = enterStep2
+  const exitRoom = exitStep2
+
   return {
     isPulseActive,
     startAnimation,
@@ -215,5 +244,14 @@ export const useDoorAnimations = ({
     handleHoverStart,
     handleDoorBellClick,
     exitRoom,
+    // New step-based functions
+    enterStep2,
+    enterStep3,
+    enterStep4,
+    enterStep5,
+    exitStep2,
+    exitStep3,
+    exitStep4,
+    exitStep5,
   }
 }
