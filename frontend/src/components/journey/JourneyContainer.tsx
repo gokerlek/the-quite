@@ -2,6 +2,9 @@ import React from 'react'
 import Image from 'next/image'
 
 import { Circle } from '@/components/society-events/circle'
+import { House } from '@/components/society-events/house'
+import { Postcard } from '@/components/society-events/postcard'
+import { Temple } from '@/components/society-events/Temple'
 import { Button } from '@/components/ui/button'
 import { useContainerSize } from '@/hooks/useContainerSize'
 import { useDoorAnimations } from '@/hooks/useDoorAnimations'
@@ -54,6 +57,15 @@ export const JourneyContainer = ({
         id='house-container'
         className='absolute inset-0 z-[9] opacity-0 pointer-events-none'
       >
+        <svg
+          viewBox='0 0 1440 1024'
+          fill='none'
+          className='relative'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <House id='house' />
+        </svg>
+
         {/* House content will be added here */}
       </section>
 
@@ -62,7 +74,14 @@ export const JourneyContainer = ({
         id='temple-container'
         className='absolute inset-0 z-[8] opacity-0 pointer-events-none'
       >
-        {/* Temple content will be added here */}
+        <svg
+          viewBox='0 0 1440 1024'
+          fill='none'
+          className='relative'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <Temple id='temple' startAnimation={journeyStep >= 4} />
+        </svg>
       </section>
 
       {/* Step 5: Postcard */}
@@ -70,7 +89,14 @@ export const JourneyContainer = ({
         id='postcard-container'
         className='absolute inset-0 z-[7] opacity-0 pointer-events-none'
       >
-        {/* Postcard content will be added here */}
+        <svg
+          viewBox='0 0 1440 1024'
+          fill='none'
+          className='relative'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <Postcard id='postcard' startAnimation={journeyStep >= 5} />
+        </svg>
       </section>
 
       {/* Exit button outside room container for accessibility */}
