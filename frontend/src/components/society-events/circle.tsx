@@ -84,6 +84,7 @@ export const Circle = (props: GProps) => {
         onMouseEnter={circle1Animation.handleMouseEnter}
         onMouseLeave={circle1Animation.handleMouseLeave}
         style={{ cursor: 'pointer' }}
+        onClick={() => props.onClick}
       >
         <path
           d='M442.97 419.09C493.173 419.09 533.87 378.393 533.87 328.19C533.87 277.987 493.173 237.29 442.97 237.29C392.768 237.29 352.07 277.987 352.07 328.19C352.07 378.393 392.768 419.09 442.97 419.09Z'
@@ -110,6 +111,7 @@ export const Circle = (props: GProps) => {
         onMouseEnter={circle2Animation.handleMouseEnter}
         onMouseLeave={circle2Animation.handleMouseLeave}
         style={{ cursor: 'pointer' }}
+        onClick={() => props.onClick}
       >
         <path
           d='M966.76 369.77C1006.09 369.77 1037.98 337.884 1037.98 298.55C1037.98 259.216 1006.09 227.33 966.76 227.33C927.426 227.33 895.54 259.216 895.54 298.55C895.54 337.884 927.426 369.77 966.76 369.77Z'
@@ -136,6 +138,7 @@ export const Circle = (props: GProps) => {
         onMouseEnter={circle3Animation.handleMouseEnter}
         onMouseLeave={circle3Animation.handleMouseLeave}
         style={{ cursor: 'pointer' }}
+        onClick={() => props.onClick}
       >
         <path
           d='M429.32 628.18C462.54 628.18 489.47 601.25 489.47 568.03C489.47 534.81 462.54 507.88 429.32 507.88C396.1 507.88 369.17 534.81 369.17 568.03C369.17 601.25 396.1 628.18 429.32 628.18Z'
@@ -162,6 +165,7 @@ export const Circle = (props: GProps) => {
         onMouseEnter={circle4Animation.handleMouseEnter}
         onMouseLeave={circle4Animation.handleMouseLeave}
         style={{ cursor: 'pointer' }}
+        onClick={() => props.onClick}
       >
         <path
           d='M898.12 604.24C914.827 604.24 928.37 590.697 928.37 573.99C928.37 557.283 914.827 543.74 898.12 543.74C881.414 543.74 867.87 557.283 867.87 573.99C867.87 590.697 881.414 604.24 898.12 604.24Z'
@@ -188,6 +192,7 @@ export const Circle = (props: GProps) => {
         onMouseEnter={circle5Animation.handleMouseEnter}
         onMouseLeave={circle5Animation.handleMouseLeave}
         style={{ cursor: 'pointer' }}
+        onClick={() => props.onClick}
       >
         <path
           d='M598.11 872.35C651.831 872.35 695.38 828.801 695.38 775.08C695.38 721.359 651.831 677.81 598.11 677.81C544.389 677.81 500.84 721.359 500.84 775.08C500.84 828.801 544.389 872.35 598.11 872.35Z'
@@ -214,6 +219,7 @@ export const Circle = (props: GProps) => {
         onMouseEnter={circle6Animation.handleMouseEnter}
         onMouseLeave={circle6Animation.handleMouseLeave}
         style={{ cursor: 'pointer' }}
+        onClick={() => props.onClick}
       >
         <path
           d='M911.54 800.94C947.687 800.94 976.99 771.637 976.99 735.49C976.99 699.343 947.687 670.04 911.54 670.04C875.393 670.04 846.09 699.343 846.09 735.49C846.09 771.637 875.393 800.94 911.54 800.94Z'
@@ -228,6 +234,24 @@ export const Circle = (props: GProps) => {
           d='M976.99 735.49C916.85 738.42 914.47 740.8 911.54 800.94C908.61 740.8 906.23 738.42 846.09 735.49C906.23 732.56 908.61 730.18 911.54 670.04C914.47 730.18 916.85 732.56 976.99 735.49Z'
           fill='#EDEDED'
           stroke='#F0002C'
+          strokeWidth='2'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+        />
+      </g>
+
+      <g id='lines-group'>
+        <path
+          d='M720 511.6V511.59L684.1 443.91L496.27 89.8398'
+          stroke='#1C1C1C'
+          strokeWidth='2'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+        />
+
+        <path
+          d='M720 511.6L937.15 86.4102'
+          stroke='#1C1C1C'
           strokeWidth='2'
           strokeLinecap='round'
           strokeLinejoin='round'

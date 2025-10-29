@@ -19,6 +19,9 @@ export const useDoorAnimations = ({
   const [showExitButton, setShowExitButton] = useState(false)
   const pulseTimelineRef = useRef<gsap.core.Timeline | null>(null)
   const enterRoomTimelineRef = useRef<gsap.core.Timeline | null>(null)
+  const enterTempleTimelineRef = useRef<gsap.core.Timeline | null>(null)
+  const enterHouseTimelineRef = useRef<gsap.core.Timeline | null>(null)
+  const enterPostcardTimelineRef = useRef<gsap.core.Timeline | null>(null)
 
   // Step 1'e geçince transition bitince 1 saniye sonra animasyonu başlat
   useEffect(() => {
@@ -235,34 +238,321 @@ export const useDoorAnimations = ({
     }
   }
 
-  // Placeholder functions for future steps
   const enterStep3 = () => {
-    setJourneyStep(3)
+    // Only allow clicking in Step 2 (when room is visible)
+    if (journeyStep !== 2) return
+
+    setJourneyStep(3) // Enter temple
+    setShowExitButton(false) // Hide current exit button temporarily
+
+    // Temple entry animation
+    const tl = gsap.timeline()
+
+    // Temple container başlangıç pozisyonu ayarla
+    tl.set('#temple-container', {
+      opacity: 0,
+      scale: 0.8,
+      y: '15%',
+    })
+
+      // Room büyütme animasyonu (12 kat)
+      .to('#room-cotainer', {
+        scale: 15,
+        duration: 2.5,
+        ease: 'power2.inOut',
+      })
+
+      // Temple fade-in
+      .to(
+        '#temple-container',
+        {
+          opacity: 1,
+          duration: 1,
+          ease: 'power2.out',
+        },
+        '<', // Room animasyonuyla aynı anda başlar
+      )
+
+      // Temple positioning
+      .to(
+        '#temple-container',
+        {
+          scale: 1,
+          y: '0%',
+          duration: 1.8,
+          ease: 'power2.inOut',
+        },
+        '<', // Room animasyonuyla aynı anda başlar
+      )
+      // Lines-group fade out animasyonu (son 1 saniyede)
+      .to(
+        '#lines-group',
+        {
+          opacity: 0,
+          duration: 0.2,
+          ease: 'power2.out',
+        },
+        '-=1.5',
+      ) // Room animasyonunun son 1 saniyesinde başlar
+
+      // Show exit button and enable temple interactions after animation completes
+      .call(() => {
+        setShowExitButton(true)
+        // Enable temple interactions
+        const templeContainer = document.querySelector('#temple-container')
+
+        if (templeContainer) {
+          gsap.set(templeContainer, { pointerEvents: 'auto' })
+        }
+
+        // Disable room interactions
+        const roomContainer = document.querySelector('#room-cotainer')
+
+        if (roomContainer) {
+          gsap.set(roomContainer, { pointerEvents: 'none' })
+        }
+      })
+
+    enterTempleTimelineRef.current = tl
   }
 
   const enterStep4 = () => {
-    setJourneyStep(4)
+    // Only allow clicking in Step 3 (when temple is visible)
+    if (journeyStep !== 3) return
+
+    setJourneyStep(4) // Enter house
+    setShowExitButton(false) // Hide current exit button temporarily
+
+    // House entry animation
+    const tl = gsap.timeline()
+
+    // House container başlangıç pozisyonu ayarla
+    tl.set('#house-container', {
+      opacity: 0,
+      scale: 0.8,
+      y: '15%',
+    })
+
+      // Temple büyütme animasyonu (12 kat)
+      .to('#temple-container', {
+        scale: 12,
+        y: '-250%',
+        duration: 2.5,
+        ease: 'power2.inOut',
+      })
+
+      // House fade-in
+      .to(
+        '#house-container',
+        {
+          opacity: 1,
+          duration: 1,
+          ease: 'power2.out',
+        },
+        '<', // Temple animasyonuyla aynı anda başlar
+      )
+
+      // House positioning
+      .to(
+        '#house-container',
+        {
+          scale: 1,
+          y: '0%',
+          duration: 1.8,
+          ease: 'power2.inOut',
+        },
+        '<', // Temple animasyonuyla aynı anda başlar
+      )
+
+      // Show exit button and enable house interactions after animation completes
+      .call(() => {
+        setShowExitButton(true)
+        // Enable house interactions
+        const houseContainer = document.querySelector('#house-container')
+
+        if (houseContainer) {
+          gsap.set(houseContainer, { pointerEvents: 'auto' })
+        }
+
+        // Disable temple interactions
+        const templeContainer = document.querySelector('#temple-container')
+
+        if (templeContainer) {
+          gsap.set(templeContainer, { pointerEvents: 'none' })
+        }
+      })
+
+    enterHouseTimelineRef.current = tl
   }
 
   const enterStep5 = () => {
-    setJourneyStep(5)
+    // Only allow clicking in Step 4 (when house is visible)
+    if (journeyStep !== 4) return
+
+    setJourneyStep(5) // Enter postcard
+    setShowExitButton(false) // Hide current exit button temporarily
+
+    // Postcard entry animation
+    const tl = gsap.timeline()
+
+    // Postcard container başlangıç pozisyonu ayarla
+    tl.set('#postcard-container', {
+      opacity: 0,
+      scale: 0.8,
+      y: '15%',
+    })
+
+      // House büyütme animasyonu (12 kat)
+      .to('#house-container', {
+        scale: 12,
+        y: '-250%',
+        duration: 2.5,
+        ease: 'power2.inOut',
+      })
+
+      // Postcard fade-in
+      .to(
+        '#postcard-container',
+        {
+          opacity: 1,
+          duration: 1,
+          ease: 'power2.out',
+        },
+        '<', // House animasyonuyla aynı anda başlar
+      )
+
+      // Postcard positioning
+      .to(
+        '#postcard-container',
+        {
+          scale: 1,
+          y: '0%',
+          duration: 1.8,
+          ease: 'power2.inOut',
+        },
+        '<', // House animasyonuyla aynı anda başlar
+      )
+
+      // Show exit button and enable postcard interactions after animation completes
+      .call(() => {
+        setShowExitButton(true)
+        // Enable postcard interactions
+        const postcardContainer = document.querySelector('#postcard-container')
+
+        if (postcardContainer) {
+          gsap.set(postcardContainer, { pointerEvents: 'auto' })
+        }
+
+        // Disable house interactions
+        const houseContainer = document.querySelector('#house-container')
+
+        if (houseContainer) {
+          gsap.set(houseContainer, { pointerEvents: 'none' })
+        }
+      })
+
+    enterPostcardTimelineRef.current = tl
   }
 
   const exitStep3 = () => {
-    setJourneyStep(1)
+    setShowExitButton(false)
+    setJourneyStep(2) // Return to room
+
+    // Use GSAP reverse for temple exit
+    if (enterTempleTimelineRef.current) {
+      // Add onReverseComplete callback for restoration
+      enterTempleTimelineRef.current.eventCallback('onReverseComplete', () => {
+        // Enable room interactions now that reverse animation is complete
+        const roomContainer = document.querySelector('#room-cotainer')
+
+        if (roomContainer) {
+          gsap.set(roomContainer, { pointerEvents: 'auto' })
+        }
+
+        // Disable temple interactions
+        const templeContainer = document.querySelector('#temple-container')
+
+        if (templeContainer) {
+          gsap.set(templeContainer, { pointerEvents: 'none' })
+        }
+
+        setShowExitButton(true)
+      })
+
+      enterTempleTimelineRef.current.reverse()
+    }
   }
 
   const exitStep4 = () => {
-    setJourneyStep(1)
+    setShowExitButton(false)
+    setJourneyStep(3) // Return to temple
+
+    // Use GSAP reverse for house exit
+    if (enterHouseTimelineRef.current) {
+      // Add onReverseComplete callback for restoration
+      enterHouseTimelineRef.current.eventCallback('onReverseComplete', () => {
+        // Enable temple interactions now that reverse animation is complete
+        const templeContainer = document.querySelector('#temple-container')
+
+        if (templeContainer) {
+          gsap.set(templeContainer, { pointerEvents: 'auto' })
+        }
+
+        // Disable house interactions
+        const houseContainer = document.querySelector('#house-container')
+
+        if (houseContainer) {
+          gsap.set(houseContainer, { pointerEvents: 'none' })
+        }
+
+        setShowExitButton(true)
+      })
+
+      enterHouseTimelineRef.current.reverse()
+    }
   }
 
   const exitStep5 = () => {
-    setJourneyStep(1)
+    setShowExitButton(false)
+    setJourneyStep(4) // Return to house
+
+    // Use GSAP reverse for postcard exit
+    if (enterPostcardTimelineRef.current) {
+      // Add onReverseComplete callback for restoration
+      enterPostcardTimelineRef.current.eventCallback('onReverseComplete', () => {
+        // Enable house interactions now that reverse animation is complete
+        const houseContainer = document.querySelector('#house-container')
+
+        if (houseContainer) {
+          gsap.set(houseContainer, { pointerEvents: 'auto' })
+        }
+
+        // Disable postcard interactions
+        const postcardContainer = document.querySelector('#postcard-container')
+
+        if (postcardContainer) {
+          gsap.set(postcardContainer, { pointerEvents: 'none' })
+        }
+
+        setShowExitButton(true)
+      })
+
+      enterPostcardTimelineRef.current.reverse()
+    }
   }
 
   // Backward compatibility aliases
   const handleDoorBellClick = enterStep2
-  const exitRoom = exitStep2
+  const exit =
+    journeyStep === 2
+      ? exitStep2
+      : journeyStep === 3
+        ? exitStep3
+        : journeyStep === 4
+          ? exitStep4
+          : journeyStep === 5
+            ? exitStep5
+            : () => {}
 
   return {
     isPulseActive,
@@ -270,7 +560,7 @@ export const useDoorAnimations = ({
     showExitButton,
     handleHoverStart,
     handleDoorBellClick,
-    exitRoom,
+    exit,
     // New step-based functions
     enterStep2,
     enterStep3,

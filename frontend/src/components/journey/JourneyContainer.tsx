@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Circle } from '@/components/society-events/circle'
 import { House } from '@/components/society-events/house'
 import { Postcard } from '@/components/society-events/postcard'
-import { Temple } from '@/components/society-events/Temple'
+import { Temple } from '@/components/society-events/temple'
 import { Button } from '@/components/ui/button'
 import { useContainerSize } from '@/hooks/useContainerSize'
 import { useDoorAnimations } from '@/hooks/useDoorAnimations'
@@ -27,7 +27,8 @@ export const JourneyContainer = ({
     showExitButton,
     handleHoverStart: onMouseEnter,
     handleDoorBellClick: onDoorClick,
-    exitRoom: onExitRoom,
+    exit,
+    enterStep3,
   } = useDoorAnimations({
     journeyStep: journeyStep,
     setJourneyStep: setJourneyStep,
@@ -48,13 +49,13 @@ export const JourneyContainer = ({
 
       <section id='room-cotainer' className='absolute inset-0 z-10 opacity-0 pointer-events-none'>
         <svg viewBox='0 0 1440 1024' fill='none' xmlns='http://www.w3.org/2000/svg'>
-          <Circle id='room' />
+          <Circle id='room' onClick={enterStep3} />
         </svg>
       </section>
 
       {/* Step 3: House */}
       <section
-        id='house-container'
+        id='temple-container'
         className='absolute inset-0 z-[9] opacity-0 pointer-events-none'
       >
         <svg
@@ -63,7 +64,7 @@ export const JourneyContainer = ({
           className='relative'
           xmlns='http://www.w3.org/2000/svg'
         >
-          <House id='house' />
+          <Temple id='house' startAnimation={journeyStep === 3} />
         </svg>
 
         {/* House content will be added here */}
@@ -71,7 +72,7 @@ export const JourneyContainer = ({
 
       {/* Step 4: Temple */}
       <section
-        id='temple-container'
+        id='house-container'
         className='absolute inset-0 z-[8] opacity-0 pointer-events-none'
       >
         <svg
@@ -80,7 +81,7 @@ export const JourneyContainer = ({
           className='relative'
           xmlns='http://www.w3.org/2000/svg'
         >
-          <Temple id='temple' startAnimation={journeyStep >= 4} />
+          <House id='house' startAnimation={journeyStep >= 4} />
         </svg>
       </section>
 
@@ -104,7 +105,7 @@ export const JourneyContainer = ({
         <Button
           id='exit-button'
           variant='outline'
-          onClick={onExitRoom}
+          onClick={exit}
           className=' z-50 absolute top-6 right-12 px-0 w-12 h-12 bg-offblack-50'
         >
           <div className='relative h-9 w-9'>

@@ -7,7 +7,15 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M176.53 46.9697H1263.47'
+        d='M176.53 46.9697H609'
+        stroke='#1C1C1C'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+
+      <path
+        d='M830 46.9697H1263.47'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -119,7 +127,7 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M744.53 975.62L723.93 588.1'
+        d='M745.43 976.599L724.83 589.079'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -127,7 +135,7 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M720 511.6V511.59'
+        d='M892.33 835.72L860.68 776.06L756.81 580.26'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -135,7 +143,7 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M891.429 834.74L859.779 775.08L755.909 579.28'
+        d='M860.67 776.06L944.64 934.33'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -143,7 +151,7 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M859.77 775.08L943.74 933.35'
+        d='M782.04 558.729L958.93 692.299L1101.92 800.26'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -151,7 +159,7 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M719.989 511.59H719.999V511.6'
+        d='M659.77 466.42L339.88 224.89'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -159,7 +167,7 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M781.14 557.75L958.03 691.32L1101.02 799.28'
+        d='M958.93 692.3L1101.92 800.26'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -167,7 +175,7 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M658.869 465.44L338.979 223.91'
+        d='M795.82 528.58L1012.59 574.87L1187.8 612.28'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -175,7 +183,7 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M958.029 691.32L1101.02 799.28'
+        d='M645.97 496.57L254 412.87'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -183,7 +191,7 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M719.989 511.591H719.999V511.601'
+        d='M1012.59 574.87L1187.8 612.28'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -191,7 +199,7 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M794.92 527.601L1011.69 573.891L1186.9 611.301'
+        d='M646.23 529.73L255.61 619.53'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -199,7 +207,7 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M645.07 495.591L253.1 411.891'
+        d='M1186.19 405.62L795.57 495.41'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -207,7 +215,7 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M1011.69 573.891L1186.9 611.301'
+        d='M781.311 465.47L956.111 329.17L1097.4 219'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -215,7 +223,7 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M720 511.591H719.99'
+        d='M660.49 559.68L344.4 806.15'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -223,7 +231,7 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M645.33 528.751L254.71 618.551'
+        d='M956.11 329.17L1097.4 219'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -231,71 +239,7 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M1185.29 404.641L794.67 494.431'
-        stroke='#1C1C1C'
-        strokeWidth='2'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-
-      <path
-        d='M720.02 511.581L720.01 511.591H720'
-        stroke='#1C1C1C'
-        strokeWidth='2'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-
-      <path
-        d='M719.99 511.6H720V511.59H720.01L720.02 511.58'
-        stroke='#1C1C1C'
-        strokeWidth='2'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-
-      <path
-        d='M780.41 464.49L955.21 328.191L1096.5 218.021'
-        stroke='#1C1C1C'
-        strokeWidth='2'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-
-      <path
-        d='M659.59 558.7L343.5 805.17'
-        stroke='#1C1C1C'
-        strokeWidth='2'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-
-      <path
-        d='M955.21 328.191L1096.5 218.021'
-        stroke='#1C1C1C'
-        strokeWidth='2'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-
-      <path
-        d='M719.999 511.59V511.6H719.989'
-        stroke='#1C1C1C'
-        strokeWidth='2'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-
-      <path
-        d='M685.15 579.83L502.85 936.78'
-        stroke='#1C1C1C'
-        strokeWidth='2'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-
-      <path
-        d='M720 511.6L937.15 86.4102'
+        d='M686.05 580.81L503.75 937.76'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -437,7 +381,7 @@ export const BaseCircle = () => {
       />
 
       <path
-        d='M813.68 328.41H616.48'
+        d='M813.68 328.41H623'
         stroke='#1C1C1C'
         strokeWidth='2'
         strokeLinecap='round'
@@ -890,14 +834,6 @@ export const BaseCircle = () => {
       <path
         d='M965.47 959.34L968.17 957.44C968.91 958.63 969.98 959.17 971.43 959.17C973.01 959.17 974.08 958.52 974.08 957.63C974.08 956.4 972.07 955.43 970.31 954.56C968.42 953.62 966.35 952.59 966.35 949.91C966.35 947 968.81 945.08 971.89 945.08C974.18 945.08 976.08 946.03 976.84 948.06L974.35 949.8C973.85 948.8 972.88 948.39 971.94 948.39C970.68 948.39 969.74 949.12 969.74 949.98C969.74 950.98 971.01 951.32 972.94 952.23C975.72 953.54 977.47 954.96 977.47 957.54C977.47 960.6 974.97 962.55 971.37 962.55C968.62 962.55 966.59 961.4 965.46 959.32L965.47 959.34Z'
         fill='#1C1C1C'
-      />
-
-      <path
-        d='M720 511.6V511.59L684.1 443.91L496.27 89.8398'
-        stroke='#1C1C1C'
-        strokeWidth='2'
-        strokeLinecap='round'
-        strokeLinejoin='round'
       />
     </g>
   )
