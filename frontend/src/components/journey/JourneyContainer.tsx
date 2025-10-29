@@ -29,6 +29,8 @@ export const JourneyContainer = ({
     handleDoorBellClick: onDoorClick,
     exit,
     enterStep3,
+    enterStep4,
+    enterStep5,
   } = useDoorAnimations({
     journeyStep: journeyStep,
     setJourneyStep: setJourneyStep,
@@ -64,7 +66,7 @@ export const JourneyContainer = ({
           className='relative'
           xmlns='http://www.w3.org/2000/svg'
         >
-          <Temple id='house' startAnimation={journeyStep === 3} />
+          <Temple id='house' startAnimation={journeyStep === 3} onClick={enterStep4} />
         </svg>
 
         {/* House content will be added here */}
@@ -81,7 +83,7 @@ export const JourneyContainer = ({
           className='relative'
           xmlns='http://www.w3.org/2000/svg'
         >
-          <House id='house' startAnimation={journeyStep >= 4} />
+          <House id='house' startAnimation={journeyStep >= 4} onClick={enterStep5} />
         </svg>
       </section>
 
