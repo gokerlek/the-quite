@@ -335,10 +335,11 @@ export const useDoorAnimations = ({
 
       // Temple büyütme animasyonu (12 kat)
       .to('#temple-container', {
-        scale: 12,
-        y: '-250%',
+        scale: 15,
+        y: '-50%',
         duration: 2.5,
         ease: 'power2.inOut',
+        transformOrigin: 'center center',
       })
 
       // House fade-in

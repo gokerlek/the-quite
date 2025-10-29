@@ -1,3 +1,6 @@
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+
 import { TempleBase } from '@/components/society-events/tampleBase'
 import { GProps } from '@/components/society-events/type'
 
@@ -8,7 +11,154 @@ interface TempleProps extends GProps {
 export const Temple = (props: TempleProps) => {
   const { startAnimation = false } = props
 
-  console.log('Temple animation started:', startAnimation)
+  // Animasyon sürelerini yönetmek için obje
+  const animationConfig = {
+    circle: {
+      fadeInDuration: 1,
+      fadeOutDuration: 1,
+      scaleIn: 1,
+      scaleOut: 0.95,
+      delay: 1,
+      easeIn: 'elastic.out(1, 0.3)',
+      easeOut: 'elastic.in(1, 0.3)',
+    },
+    text: {
+      fadeInDuration: 1,
+      fadeOutDuration: 1,
+      delay: 0.5,
+      ease: 'power2.out',
+    },
+  }
+
+  // Temple animasyon sekansı
+  useGSAP(
+    () => {
+      if (!startAnimation) return
+
+      // Başlangıç durumları - hepsini gizle (left circle da dahil)
+      gsap.set(['#temple-left-circle', '#temple-center-circle', '#temple-right-circle'], {
+        opacity: 0,
+        scale: animationConfig.circle.scaleOut,
+        transformOrigin: 'center center',
+      })
+
+      gsap.set(
+        ['#temple-left-circle-text', '#temple-center-circle-text', '#temple-right-circle-text'],
+        {
+          opacity: 0,
+        },
+      )
+
+      gsap.set('#temple-gate-star', { transformOrigin: 'center center' })
+
+      // Sequential animasyon timeline
+      const tl = gsap.timeline()
+
+      tl
+        // 1 saniye bekle, sonra animasyona başla
+        .delay(2)
+        // 1. Left circle fade in
+        .to('#temple-left-circle', {
+          opacity: 1,
+          scale: animationConfig.circle.scaleIn,
+          duration: animationConfig.circle.fadeInDuration,
+          ease: animationConfig.circle.easeIn,
+        })
+        // 2. Left text fade in
+        .to(
+          '#temple-left-circle-text',
+          {
+            opacity: 1,
+            duration: animationConfig.text.fadeInDuration,
+            ease: animationConfig.text.ease,
+          },
+          `+=${animationConfig.text.delay}`,
+        )
+        // 3. Left circle fade out
+        .to(
+          '#temple-left-circle',
+          {
+            opacity: 0,
+            scale: animationConfig.circle.scaleOut,
+            duration: animationConfig.circle.fadeOutDuration,
+            ease: animationConfig.circle.easeOut,
+          },
+          `+=${animationConfig.circle.delay}`,
+        )
+        // 4. Center circle fade in
+        .to(
+          '#temple-center-circle',
+          {
+            opacity: 1,
+            scale: animationConfig.circle.scaleIn,
+            duration: animationConfig.circle.fadeInDuration,
+            ease: animationConfig.circle.easeIn,
+          },
+          `+=${animationConfig.circle.delay}`,
+        )
+        // 5. Center text fade in
+        .to(
+          '#temple-center-circle-text',
+          {
+            opacity: 1,
+            duration: animationConfig.text.fadeInDuration,
+            ease: animationConfig.text.ease,
+          },
+          `+=${animationConfig.text.delay}`,
+        )
+        // 6. Center circle fade out
+        .to(
+          '#temple-center-circle',
+          {
+            opacity: 0,
+            scale: animationConfig.circle.scaleOut,
+            duration: animationConfig.circle.fadeOutDuration,
+            ease: animationConfig.circle.easeOut,
+          },
+          `+=${animationConfig.circle.delay}`,
+        )
+        // 7. Right circle fade in
+        .to(
+          '#temple-right-circle',
+          {
+            opacity: 1,
+            scale: animationConfig.circle.scaleIn,
+            duration: animationConfig.circle.fadeInDuration,
+            ease: animationConfig.circle.easeIn,
+          },
+          `+=${animationConfig.circle.delay}`,
+        )
+        // 8. Right text fade in
+        .to(
+          '#temple-right-circle-text',
+          {
+            opacity: 1,
+            duration: animationConfig.text.fadeInDuration,
+            ease: animationConfig.text.ease,
+          },
+          `+=${animationConfig.text.delay}`,
+        )
+        // 9. Right circle fade out
+        .to(
+          '#temple-right-circle',
+          {
+            opacity: 0,
+            scale: animationConfig.circle.scaleOut,
+            duration: animationConfig.circle.fadeOutDuration,
+            ease: animationConfig.circle.easeOut,
+          },
+          `+=${animationConfig.circle.delay}`,
+        )
+        .to('#temple-gate-star', {
+          scale: 1.05,
+          duration: 2.5,
+          ease: 'elastic.out(1, 0.3)',
+          yoyo: true,
+          repeat: -1,
+        })
+    },
+    { dependencies: [startAnimation] },
+  )
 
   return (
     <g {...props}>
@@ -28,6 +178,7 @@ export const Temple = (props: TempleProps) => {
         />
 
         <path
+          id='temple-gate-star'
           d='M845.3 557.04C724.13 562.94 719.34 567.73 713.44 688.9C707.54 567.73 702.75 562.94 581.58 557.04C702.75 551.14 707.54 546.35 713.44 425.18C719.34 546.35 724.13 551.14 845.3 557.04Z'
           fill='#EDEDED'
           stroke='#F0002C'
