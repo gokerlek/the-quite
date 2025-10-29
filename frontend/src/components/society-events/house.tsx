@@ -1,3 +1,8 @@
+import { useRef } from 'react'
+
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+
 import { BaseHouse } from '@/components/society-events/baseHouse'
 import { GProps } from '@/components/society-events/type'
 
@@ -6,12 +11,130 @@ interface TempleProps extends GProps {
 }
 
 export const House = (props: TempleProps) => {
-  const startAnimation = props.startAnimation
+  const { startAnimation, ...rest } = props
+  const timelineRef = useRef<gsap.core.Timeline | null>(null)
 
-  console.log(startAnimation)
+  // House animasyon konfigürasyonu
+  const animationConfig = {
+    startDelay: 2, // startAnimation'dan sonra 2s bekle
+    circles: {
+      fadeInDuration: 0.5,
+      fadeOutDuration: 0.5,
+      holdDuration: 1, // 1 saniye görünür kal
+      ease: 'power2.out',
+    },
+    door: {
+      // Gelecek aşama için hazır
+      openDuration: 1,
+      closeDuration: 1,
+      ease: 'power2.inOut',
+    },
+  }
+
+  // Element reset fonksiyonu
+  const resetElements = () => {
+    gsap.set(['#first-circles', '#second-circles', '#third-circles'], {
+      opacity: 0,
+    })
+  }
+
+  // Timeline cleanup fonksiyonu
+  const cleanupAnimation = () => {
+    if (timelineRef.current) {
+      timelineRef.current.kill()
+      timelineRef.current = null
+    }
+
+    resetElements()
+  }
+
+  // House circle animasyon sekansı
+  useGSAP(
+    () => {
+      console.log('DEBUG: House useGSAP called, startAnimation:', startAnimation)
+
+      // Önce cleanup yap
+      cleanupAnimation()
+
+      if (!startAnimation) {
+        console.log('DEBUG: House startAnimation is false, elements should be hidden')
+
+        return
+      }
+
+      // Element reset
+      resetElements()
+
+      // Sequential animasyon timeline
+      const tl = gsap.timeline()
+
+      timelineRef.current = tl
+
+      tl
+        // 2 saniye bekle, sonra animasyona başla
+        .delay(animationConfig.startDelay)
+
+        // First circles: fade in → hold → fade out
+        .to('#first-circles', {
+          opacity: 1,
+          duration: animationConfig.circles.fadeInDuration,
+          ease: animationConfig.circles.ease,
+        })
+        .to(
+          '#first-circles',
+          {
+            opacity: 0,
+            duration: animationConfig.circles.fadeOutDuration,
+            ease: animationConfig.circles.ease,
+          },
+          `+=${animationConfig.circles.holdDuration}`,
+        )
+
+        // Second circles: aynı pattern
+        .to('#second-circles', {
+          opacity: 1,
+          duration: animationConfig.circles.fadeInDuration,
+          ease: animationConfig.circles.ease,
+        })
+        .to(
+          '#second-circles',
+          {
+            opacity: 0,
+            duration: animationConfig.circles.fadeOutDuration,
+            ease: animationConfig.circles.ease,
+          },
+          `+=${animationConfig.circles.holdDuration}`,
+        )
+
+        // Third circles: aynı pattern
+        .to('#third-circles', {
+          opacity: 1,
+          duration: animationConfig.circles.fadeInDuration,
+          ease: animationConfig.circles.ease,
+        })
+        .to(
+          '#third-circles',
+          {
+            opacity: 0,
+            duration: animationConfig.circles.fadeOutDuration,
+            ease: animationConfig.circles.ease,
+          },
+          `+=${animationConfig.circles.holdDuration}`,
+        )
+
+      console.log('DEBUG: House circle timeline created')
+    },
+    {
+      dependencies: [startAnimation],
+      // Cleanup function
+      cleanup: () => {
+        cleanupAnimation()
+      },
+    },
+  )
 
   return (
-    <g {...props}>
+    <g {...rest}>
       <BaseHouse />
 
       <g id='first-circles' className='opacity-0'>
