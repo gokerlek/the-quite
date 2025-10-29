@@ -364,6 +364,16 @@ export const useDoorAnimations = ({
         },
         '<', // Temple animasyonuyla aynı anda başlar
       )
+      //
+      .to(
+        '#temple-gate-circle',
+        {
+          opacity: 0,
+          duration: 0.2,
+          ease: 'power2.out',
+        },
+        '-=1.5',
+      ) // Temple animasyonunun son 1 saniyesinde başlar
 
       // Show exit button and enable house interactions after animation completes
       .call(() => {

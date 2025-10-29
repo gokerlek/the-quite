@@ -9,7 +9,7 @@ interface TempleProps extends GProps {
 }
 
 export const Temple = (props: TempleProps) => {
-  const { startAnimation = false } = props
+  const { startAnimation = false, ...rest } = props
 
   // Animasyon sürelerini yönetmek için obje
   const animationConfig = {
@@ -161,7 +161,7 @@ export const Temple = (props: TempleProps) => {
   )
 
   return (
-    <g {...props}>
+    <g {...rest}>
       <path
         d='M1443.74 -2.65039V1026.66H-3.73047V-2.65039H1443.74ZM713.44 446.93C652.628 446.93 603.33 496.228 603.33 557.04C603.33 617.852 652.628 667.149 713.44 667.149C774.252 667.149 823.55 617.852 823.55 557.04C823.55 496.228 774.252 446.93 713.44 446.93Z'
         fill='#EDEDED'
@@ -170,7 +170,7 @@ export const Temple = (props: TempleProps) => {
       <g id='temple-gate-circle' onClick={() => props.onClick}>
         <path
           d='M713.44 667.15C774.252 667.15 823.55 617.852 823.55 557.04C823.55 496.228 774.252 446.93 713.44 446.93C652.628 446.93 603.33 496.228 603.33 557.04C603.33 617.852 652.628 667.15 713.44 667.15Z'
-          fill='#EDEDED'
+          fill='transparent'
           stroke='#F0002C'
           strokeWidth='2'
           strokeLinecap='round'
@@ -180,7 +180,7 @@ export const Temple = (props: TempleProps) => {
         <path
           id='temple-gate-star'
           d='M845.3 557.04C724.13 562.94 719.34 567.73 713.44 688.9C707.54 567.73 702.75 562.94 581.58 557.04C702.75 551.14 707.54 546.35 713.44 425.18C719.34 546.35 724.13 551.14 845.3 557.04Z'
-          fill='#EDEDED'
+          fill='transparent'
           stroke='#F0002C'
           strokeWidth='2'
           strokeLinecap='round'
