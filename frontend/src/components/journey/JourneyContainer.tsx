@@ -80,7 +80,7 @@ export const JourneyContainer = ({
           className='relative'
           xmlns='http://www.w3.org/2000/svg'
         >
-          <Temple id='house' startAnimation={journeyStep === 3} onClick={enterStep4} />
+          <Temple id='house' startAnimation={journeyStep === 3} />
         </svg>
 
         <div

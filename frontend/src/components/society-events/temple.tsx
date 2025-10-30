@@ -167,7 +167,7 @@ export const Temple = (props: TempleProps) => {
         fill='#EDEDED'
       />
 
-      <g id='temple-gate-circle' onClick={() => props.onClick}>
+      <g id='temple-gate-circle'>
         <path
           d='M713.44 667.15C774.252 667.15 823.55 617.852 823.55 557.04C823.55 496.228 774.252 446.93 713.44 446.93C652.628 446.93 603.33 496.228 603.33 557.04C603.33 617.852 652.628 667.15 713.44 667.15Z'
           fill='transparent'
