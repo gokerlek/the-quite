@@ -1,6 +1,9 @@
 export const LeftHouseDoor = () => {
   return (
-    <g id='left-house-door'>
+    <g
+      id='left-house-door'
+      className='absolute inset-0 transition-all peer-hover:-translate-x-[6.3rem] duration-700'
+    >
       <path
         d='M623 465.5V635H724V465.5V281C668.305 281 623 323.041 623 374.723V465.5ZM623 465.5H651.721'
         stroke='#1C1C1C'
@@ -79,11 +82,6 @@ export const LeftHouseDoor = () => {
         stroke='#F0002C'
         stroke-width='2'
         stroke-miterlimit='10'
-      />
-
-      <path
-        d='M831 635H724.001V465.5V458V281C783.003 281 831 323.041 831 374.723V465.5V635Z'
-        fill='#EDEDED'
       />
     </g>
   )

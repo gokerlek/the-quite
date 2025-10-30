@@ -3,7 +3,9 @@ import Image from 'next/image'
 
 import { Circle } from '@/components/society-events/circle'
 import { House } from '@/components/society-events/house'
+import LeftDoor from '@/components/society-events/leftDoor'
 import { Postcard } from '@/components/society-events/postcard'
+import RightDoor from '@/components/society-events/rightDoor'
 import { Temple } from '@/components/society-events/temple'
 import { Button } from '@/components/ui/button'
 import { useContainerSize } from '@/hooks/useContainerSize'
@@ -27,6 +29,7 @@ export const JourneyContainer = ({
     showExitButton,
     handleHoverStart: onMouseEnter,
     handleDoorBellClick: onDoorClick,
+    houseMouseHoverStart,
     exit,
     enterStep3,
     enterStep4,
@@ -82,14 +85,33 @@ export const JourneyContainer = ({
         id='house-container'
         className='absolute inset-0 z-[8] opacity-0 pointer-events-none'
       >
-        <svg
-          viewBox='0 0 1440 1024'
-          fill='none'
-          className='relative'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <House id='house' startAnimation={journeyStep >= 4} onClick={enterStep5} />
-        </svg>
+        <div id='house-wall' className='relative w-full h-full'>
+          <svg
+            viewBox='0 0 1440 1024'
+            fill='none'
+            className='z-10 absolute inset-0'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <House id='house' startAnimation={journeyStep >= 4} />
+          </svg>
+
+          <div
+            id='house-door-bell'
+            className='absolute left-1/2 w-[11.5rem] -translate-x-1/2 h-80 bottom-[39%] peer z-50 flex justify-center opacity-5 cursor-pointer rounded-t-full bg-black'
+            onMouseEnter={houseMouseHoverStart}
+            onClick={enterStep5}
+          />
+
+          <LeftDoor
+            id='house-left-door'
+            className='absolute inset-0 transition-all peer-hover:-translate-x-[6.3rem] -translate-y-[19.3rem] duration-700 '
+          />
+
+          <RightDoor
+            id='house-right-door'
+            className='absolute inset-0 transition-all peer-hover:translate-x-[6.3rem] -translate-y-[19.3rem] duration-700'
+          />
+        </div>
       </section>
 
       {/* Step 5: Postcard */}

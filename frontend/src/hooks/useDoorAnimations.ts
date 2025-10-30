@@ -15,9 +15,12 @@ export const useDoorAnimations = ({
   containerRef,
 }: UseDoorAnimationsProps) => {
   const [isPulseActive, setIsPulseActive] = useState(true)
+  const [isHousePulseActive, setIsHousePulseActive] = useState(true)
   const [startAnimation, setStartAnimation] = useState(false)
+  const [houseStartAnimation, setHouseStartAnimation] = useState(false)
   const [showExitButton, setShowExitButton] = useState(false)
   const pulseTimelineRef = useRef<gsap.core.Timeline | null>(null)
+  const housePulseTimelineRef = useRef<gsap.core.Timeline | null>(null)
   const enterRoomTimelineRef = useRef<gsap.core.Timeline | null>(null)
   const enterTempleTimelineRef = useRef<gsap.core.Timeline | null>(null)
   const enterHouseTimelineRef = useRef<gsap.core.Timeline | null>(null)
@@ -34,6 +37,22 @@ export const useDoorAnimations = ({
       return () => clearTimeout(timer)
     } else {
       setStartAnimation(false)
+    }
+  }, [journeyStep])
+
+  // Step 4'e geçince transition bitince 1 saniye sonra house pulse animasyonunu başlat
+  useEffect(() => {
+    if (journeyStep === 4) {
+      // Transition süresi (3s) + 1 saniye bekleme = 4 saniye
+      const timer = setTimeout(() => {
+        setHouseStartAnimation(true)
+        setIsHousePulseActive(true)
+      }, 4000)
+
+      return () => clearTimeout(timer)
+    } else {
+      setHouseStartAnimation(false)
+      setIsHousePulseActive(false)
     }
   }, [journeyStep])
 
@@ -68,6 +87,36 @@ export const useDoorAnimations = ({
     { scope: containerRef, dependencies: [isPulseActive, startAnimation, journeyStep] },
   )
 
+  // House door pulse animation
+  useGSAP(
+    () => {
+      if (!isHousePulseActive || !houseStartAnimation || journeyStep !== 4) return
+
+      const leftDoor = document.querySelector('#house-left-door') as SVGSVGElement
+
+      if (leftDoor) {
+        // Kapı genişliğini hesapla
+        const doorWidth = leftDoor.getBoundingClientRect().width
+        const pulseDistance = doorWidth * 0.15 // %15'lik hareket
+        // Loop aç-kapat animasyonu
+        const tl = gsap.timeline({ repeat: -1, repeatDelay: 2.2, yoyo: true })
+
+        tl.to(['#house-left-door', '#house-right-door'], {
+          x: (index) => (index === 0 ? -pulseDistance : pulseDistance),
+          duration: 1,
+          ease: 'power1.inOut',
+        }).to(['#house-left-door', '#house-right-door'], {
+          x: 0,
+          duration: 1,
+          ease: 'power1.inOut',
+        })
+
+        housePulseTimelineRef.current = tl
+      }
+    },
+    { scope: containerRef, dependencies: [isHousePulseActive, houseStartAnimation, journeyStep] },
+  )
+
   const handleHoverStart = () => {
     setIsPulseActive(false)
 
@@ -77,6 +126,28 @@ export const useDoorAnimations = ({
       // Kapıları orjinal pozisyona çek ve GSAP transform'unu temizle
       const leftDoor = document.querySelector('#left-door')
       const rightDoor = document.querySelector('#right-door')
+
+      gsap.to([leftDoor, rightDoor], {
+        x: 0,
+        duration: 0.3,
+        ease: 'power2.out',
+        onComplete: () => {
+          // GSAP transform'unu tamamen temizle, CSS hover devralabilsin
+          gsap.set([leftDoor, rightDoor], { clearProps: 'transform' })
+        },
+      })
+    }
+  }
+
+  const houseMouseHoverStart = () => {
+    setIsHousePulseActive(false)
+
+    if (housePulseTimelineRef.current) {
+      housePulseTimelineRef.current.kill()
+
+      // Kapıları orjinal pozisyona çek ve GSAP transform'unu temizle
+      const leftDoor = document.querySelector('#house-left-door')
+      const rightDoor = document.querySelector('#house-right-door')
 
       gsap.to([leftDoor, rightDoor], {
         x: 0,
@@ -323,7 +394,7 @@ export const useDoorAnimations = ({
     setJourneyStep(4) // Enter house
     setShowExitButton(false) // Hide current exit button temporarily
 
-    // House entry animation
+    // House entry animation - following Step 2 pattern
     const tl = gsap.timeline()
 
     // House container başlangıç pozisyonu ayarla
@@ -364,7 +435,8 @@ export const useDoorAnimations = ({
         },
         '<', // Temple animasyonuyla aynı anda başlar
       )
-      //
+
+      // Temple gate circle fade out
       .to(
         '#temple-gate-circle',
         {
@@ -378,7 +450,7 @@ export const useDoorAnimations = ({
       // Show exit button and enable house interactions after animation completes
       .call(() => {
         setShowExitButton(true)
-        // Enable house interactions
+        // Enable house interactions now that animation is complete
         const houseContainer = document.querySelector('#house-container')
 
         if (houseContainer) {
@@ -398,6 +470,8 @@ export const useDoorAnimations = ({
 
   const enterStep5 = () => {
     // Only allow clicking in Step 4 (when house is visible)
+    console.log('enterStep5')
+
     if (journeyStep !== 4) return
 
     setJourneyStep(5) // Enter postcard
@@ -416,7 +490,7 @@ export const useDoorAnimations = ({
       // House büyütme animasyonu (12 kat)
       .to('#house-container', {
         scale: 12,
-        y: '-250%',
+        y: '-50%',
         duration: 2.5,
         ease: 'power2.inOut',
       })
@@ -498,7 +572,7 @@ export const useDoorAnimations = ({
     setShowExitButton(false)
     setJourneyStep(3) // Return to temple
 
-    // Use GSAP reverse for house exit
+    // Use GSAP reverse for house exit - following Step 2 pattern
     if (enterHouseTimelineRef.current) {
       // Add onReverseComplete callback for restoration
       enterHouseTimelineRef.current.eventCallback('onReverseComplete', () => {
@@ -581,5 +655,9 @@ export const useDoorAnimations = ({
     exitStep3,
     exitStep4,
     exitStep5,
+
+    isHousePulseActive,
+    houseStartAnimation,
+    houseMouseHoverStart,
   }
 }

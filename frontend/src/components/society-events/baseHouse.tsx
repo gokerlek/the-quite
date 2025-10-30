@@ -1,17 +1,10 @@
-import { LeftHouseDoor } from '@/components/society-events/leftHouseDoor'
-import { RightHouseDoor } from '@/components/society-events/rightHouseDoor'
-
 export const BaseHouse = () => {
   return (
     <g>
       <path
-        d='M623 635H724V465.5V281C668.305 281 623 323.041 623 374.723V465.5V635Z'
+        d='M1440 1024H0V0H1440V1024ZM720.3 287C664.44 287 619 332.44 619 388.3V624H821.6V388.3C821.599 332.44 776.16 287 720.3 287Z'
         fill='#EDEDED'
       />
-
-      <LeftHouseDoor />
-
-      <RightHouseDoor />
 
       <g>
         <path
