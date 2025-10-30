@@ -97,7 +97,7 @@ export const JourneyContainer = ({
 
           <div
             id='house-door-bell'
-            className='absolute left-1/2 w-[11.5rem] -translate-x-1/2 h-80 bottom-[39%] peer z-50 flex justify-center opacity-5 cursor-pointer rounded-t-full bg-black'
+            className='absolute left-1/2 w-[11.5rem] -translate-x-1/2 h-80 bottom-[39%] peer z-50 flex justify-center opacity-5 cursor-pointer rounded-t-full'
             onMouseEnter={houseMouseHoverStart}
             onClick={enterStep5}
           />
