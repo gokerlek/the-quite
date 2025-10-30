@@ -5,7 +5,7 @@ import { gsap } from 'gsap'
 
 import { getRandomAnimationConfig } from './animationConfigs'
 
-export const useCircleAnimation = (circleId?: string) => {
+export const useCircleAnimation = () => {
   const elementRef = useRef<SVGGElement>(null)
   const timelineRef = useRef<gsap.core.Timeline | null>(null)
   const timelinesRef = useRef<gsap.core.Timeline[]>([])
@@ -29,10 +29,6 @@ export const useCircleAnimation = (circleId?: string) => {
       activeAnimations.push(
         `pulse(${config.pulse.minScale}-${config.pulse.maxScale}, ${config.pulse.duration}s)`,
       )
-
-    console.log(
-      `🎯 ${circleId || 'Circle'}: [${activeAnimations.join(', ')}] | Start delay: ${config.startDelay.toFixed(2)}s`,
-    )
 
     // SVG için transform origin'i optimize et
     gsap.set(elementRef.current, {
@@ -149,14 +145,14 @@ export const useCircleAnimation = (circleId?: string) => {
   // Hover kontrol fonksiyonları
   const handleMouseEnter = () => {
     if (!elementRef.current) return
-    
+
     // Tüm timeline'ları pause et
-    timelinesRef.current.forEach(timeline => {
+    timelinesRef.current.forEach((timeline) => {
       if (timeline) {
         timeline.pause()
       }
     })
-    
+
     // Scale up animasyonu
     gsap.to(elementRef.current, {
       scale: 1.1,
@@ -167,7 +163,7 @@ export const useCircleAnimation = (circleId?: string) => {
 
   const handleMouseLeave = () => {
     if (!elementRef.current) return
-    
+
     // Scale'i normale döndür
     gsap.to(elementRef.current, {
       scale: 1,
@@ -175,18 +171,18 @@ export const useCircleAnimation = (circleId?: string) => {
       ease: 'back.out(1.7)',
       onComplete: () => {
         // Animasyonu kaldığı yerden devam ettir
-        timelinesRef.current.forEach(timeline => {
+        timelinesRef.current.forEach((timeline) => {
           if (timeline) {
             timeline.resume()
           }
         })
-      }
+      },
     })
   }
 
   // Manuel kontrol fonksiyonları
   const pauseAnimation = () => {
-    timelinesRef.current.forEach(timeline => {
+    timelinesRef.current.forEach((timeline) => {
       if (timeline) {
         timeline.pause()
       }
@@ -194,7 +190,7 @@ export const useCircleAnimation = (circleId?: string) => {
   }
 
   const resumeAnimation = () => {
-    timelinesRef.current.forEach(timeline => {
+    timelinesRef.current.forEach((timeline) => {
       if (timeline) {
         timeline.resume()
       }
@@ -202,7 +198,7 @@ export const useCircleAnimation = (circleId?: string) => {
   }
 
   const resetAnimation = () => {
-    timelinesRef.current.forEach(timeline => {
+    timelinesRef.current.forEach((timeline) => {
       if (timeline) {
         timeline.restart()
       }

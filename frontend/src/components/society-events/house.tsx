@@ -123,14 +123,13 @@ export const House = (props: TempleProps) => {
         )
 
       console.log('DEBUG: House circle timeline created')
-    },
-    {
-      dependencies: [startAnimation],
-      // Cleanup function
-      cleanup: () => {
+
+      // Return cleanup function
+      return () => {
         cleanupAnimation()
-      },
+      }
     },
+    { dependencies: [startAnimation] },
   )
 
   return (

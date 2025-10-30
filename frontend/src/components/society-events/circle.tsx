@@ -10,12 +10,12 @@ import { useCircleAnimation } from './useCircleAnimation'
 
 export const Circle = (props: GProps) => {
   // Her circle için ayrı animasyon hook'ları
-  const circle1Animation = useCircleAnimation('Circle1')
-  const circle2Animation = useCircleAnimation('Circle2')
-  const circle3Animation = useCircleAnimation('Circle3')
-  const circle4Animation = useCircleAnimation('Circle4')
-  const circle5Animation = useCircleAnimation('Circle5')
-  const circle6Animation = useCircleAnimation('Circle6')
+  const circle1Animation = useCircleAnimation()
+  const circle2Animation = useCircleAnimation()
+  const circle3Animation = useCircleAnimation()
+  const circle4Animation = useCircleAnimation()
+  const circle5Animation = useCircleAnimation()
+  const circle6Animation = useCircleAnimation()
 
   // Center circle için ref
   const centerCircleRef = useRef<SVGPathElement>(null)
