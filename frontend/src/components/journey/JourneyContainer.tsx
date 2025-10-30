@@ -59,8 +59,14 @@ export const JourneyContainer = ({
 
       <section id='room-cotainer' className='absolute inset-0 z-10 opacity-0 pointer-events-none'>
         <svg viewBox='0 0 1440 1024' fill='none' xmlns='http://www.w3.org/2000/svg'>
-          <Circle id='room' onClick={enterStep3} />
+          <Circle id='room' />
         </svg>
+
+        <div
+          id='circle-door-bell'
+          className='fixed left-1/2 size-80 -translate-x-1/2 bottom-[14%] -translate-y-1/2 z-50 cursor-pointer rounded-full'
+          onClick={enterStep3}
+        />
       </section>
 
       {/* Step 3: House */}
@@ -76,6 +82,12 @@ export const JourneyContainer = ({
         >
           <Temple id='house' startAnimation={journeyStep === 3} onClick={enterStep4} />
         </svg>
+
+        <div
+          id='temple-door-bell'
+          className='fixed left-1/2 size-80 -translate-x-1/2 bottom-[14%] -translate-y-1/2 z-50 cursor-pointer rounded-full'
+          onClick={enterStep4}
+        />
 
         {/* House content will be added here */}
       </section>
@@ -97,7 +109,7 @@ export const JourneyContainer = ({
 
           <div
             id='house-door-bell'
-            className='absolute left-1/2 w-[11.5rem] -translate-x-1/2 h-80 bottom-[39%] peer z-50 flex justify-center opacity-5 cursor-pointer rounded-t-full'
+            className='absolute left-1/2 w-[11.5rem] -translate-x-1/2 h-80 bottom-[39%] peer z-50 flex justify-center cursor-pointer rounded-t-full'
             onMouseEnter={houseMouseHoverStart}
             onClick={enterStep5}
           />
