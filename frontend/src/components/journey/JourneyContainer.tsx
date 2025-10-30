@@ -3,9 +3,9 @@ import Image from 'next/image'
 
 import { Circle } from '@/components/society-events/circle'
 import { House } from '@/components/society-events/house'
-import LeftDoor from '@/components/society-events/leftDoor'
+import { LeftHouseDoor } from '@/components/society-events/leftHouseDoor'
 import { Postcard } from '@/components/society-events/postcard'
-import RightDoor from '@/components/society-events/rightDoor'
+import { RightHouseDoor } from '@/components/society-events/rightHouseDoor'
 import { Temple } from '@/components/society-events/temple'
 import { Button } from '@/components/ui/button'
 import { useContainerSize } from '@/hooks/useContainerSize'
@@ -102,14 +102,14 @@ export const JourneyContainer = ({
             onClick={enterStep5}
           />
 
-          <LeftDoor
+          <LeftHouseDoor
             id='house-left-door'
-            className='absolute inset-0 transition-all peer-hover:-translate-x-[6.3rem] -translate-y-[19.3rem] duration-700 '
+            className='absolute inset-0 transition-all peer-hover:-translate-x-[6.3rem] duration-700 '
           />
 
-          <RightDoor
+          <RightHouseDoor
             id='house-right-door'
-            className='absolute inset-0 transition-all peer-hover:translate-x-[6.3rem] -translate-y-[19.3rem] duration-700'
+            className='absolute inset-0 transition-all peer-hover:translate-x-[6.3rem] duration-700'
           />
         </div>
       </section>

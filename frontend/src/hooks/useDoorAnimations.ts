@@ -21,10 +21,47 @@ export const useDoorAnimations = ({
   const [showExitButton, setShowExitButton] = useState(false)
   const pulseTimelineRef = useRef<gsap.core.Timeline | null>(null)
   const housePulseTimelineRef = useRef<gsap.core.Timeline | null>(null)
+  const postcardTimelineRef = useRef<gsap.core.Timeline | null>(null)
   const enterRoomTimelineRef = useRef<gsap.core.Timeline | null>(null)
   const enterTempleTimelineRef = useRef<gsap.core.Timeline | null>(null)
   const enterHouseTimelineRef = useRef<gsap.core.Timeline | null>(null)
   const enterPostcardTimelineRef = useRef<gsap.core.Timeline | null>(null)
+
+  // Postcard animation configuration
+  const postcardAnimationConfig = {
+    startDelay: 2, // Transition sonrası 2s bekle
+    fadeInDuration: 0.8, // Her postcard fade-in süresi
+    staggerDelay: 0.3, // Postcard'lar arası gecikme
+    ease: 'power2.out', // Easing function
+  }
+
+  // Postcard reset function
+  const resetPostcardElements = () => {
+    gsap.set(
+      [
+        '#postcard-1',
+        '#postcard-2',
+        '#postcard-3',
+        '#postcard-4',
+        '#postcard-5',
+        '#postcard-6',
+        '#postcard-7',
+      ],
+      {
+        opacity: 0,
+      },
+    )
+  }
+
+  // Postcard timeline cleanup function
+  const cleanupPostcardAnimation = () => {
+    if (postcardTimelineRef.current) {
+      postcardTimelineRef.current.kill()
+      postcardTimelineRef.current = null
+    }
+
+    resetPostcardElements()
+  }
 
   // Step 1'e geçince transition bitince 1 saniye sonra animasyonu başlat
   useEffect(() => {
@@ -477,15 +514,32 @@ export const useDoorAnimations = ({
     setJourneyStep(5) // Enter postcard
     setShowExitButton(false) // Hide current exit button temporarily
 
-    // Postcard entry animation
+    // Postcard entry animation - following Step 2 pattern
     const tl = gsap.timeline()
 
-    // Postcard container başlangıç pozisyonu ayarla
-    tl.set('#postcard-container', {
+    // 1. Hide house doors and door-bell first (like Step 2 does)
+    tl.to(['#house-left-door', '#house-right-door'], {
       opacity: 0,
-      scale: 0.8,
-      y: '15%',
+      duration: 0,
+      ease: 'power2.out',
     })
+      .to(
+        '#house-door-bell',
+        {
+          pointerEvents: 'none',
+          opacity: 0,
+          duration: 0,
+          ease: 'power2.out',
+        },
+        '<',
+      ) // House door-bell ile aynı anda
+
+      // Postcard container başlangıç pozisyonu ayarla
+      .set('#postcard-container', {
+        opacity: 0,
+        scale: 0.8,
+        y: '15%',
+      })
 
       // House büyütme animasyonu (12 kat)
       .to('#house-container', {
@@ -528,12 +582,87 @@ export const useDoorAnimations = ({
           gsap.set(postcardContainer, { pointerEvents: 'auto' })
         }
 
-        // Disable house interactions
+        // Disable house interactions - following Step 2 pattern
         const houseContainer = document.querySelector('#house-container')
 
         if (houseContainer) {
           gsap.set(houseContainer, { pointerEvents: 'none' })
         }
+
+        // Start postcard sequential fade-in animation after delay
+        setTimeout(() => {
+          // Cleanup any existing postcard animation
+          cleanupPostcardAnimation()
+
+          // Reset all postcards to hidden
+          resetPostcardElements()
+
+          // Create postcard sequential fade-in timeline
+          const postcardTl = gsap.timeline()
+
+          postcardTl
+            .to('#postcard-1', {
+              opacity: 1,
+              duration: postcardAnimationConfig.fadeInDuration,
+              ease: postcardAnimationConfig.ease,
+            })
+            .to(
+              '#postcard-2',
+              {
+                opacity: 1,
+                duration: postcardAnimationConfig.fadeInDuration,
+                ease: postcardAnimationConfig.ease,
+              },
+              `+=${postcardAnimationConfig.staggerDelay}`,
+            )
+            .to(
+              '#postcard-3',
+              {
+                opacity: 1,
+                duration: postcardAnimationConfig.fadeInDuration,
+                ease: postcardAnimationConfig.ease,
+              },
+              `+=${postcardAnimationConfig.staggerDelay}`,
+            )
+            .to(
+              '#postcard-4',
+              {
+                opacity: 1,
+                duration: postcardAnimationConfig.fadeInDuration,
+                ease: postcardAnimationConfig.ease,
+              },
+              `+=${postcardAnimationConfig.staggerDelay}`,
+            )
+            .to(
+              '#postcard-5',
+              {
+                opacity: 1,
+                duration: postcardAnimationConfig.fadeInDuration,
+                ease: postcardAnimationConfig.ease,
+              },
+              `+=${postcardAnimationConfig.staggerDelay}`,
+            )
+            .to(
+              '#postcard-6',
+              {
+                opacity: 1,
+                duration: postcardAnimationConfig.fadeInDuration,
+                ease: postcardAnimationConfig.ease,
+              },
+              `+=${postcardAnimationConfig.staggerDelay}`,
+            )
+            .to(
+              '#postcard-7',
+              {
+                opacity: 1,
+                duration: postcardAnimationConfig.fadeInDuration,
+                ease: postcardAnimationConfig.ease,
+              },
+              `+=${postcardAnimationConfig.staggerDelay}`,
+            )
+
+          postcardTimelineRef.current = postcardTl
+        }, postcardAnimationConfig.startDelay * 1000) // Convert seconds to milliseconds
       })
 
     enterPostcardTimelineRef.current = tl
@@ -601,10 +730,29 @@ export const useDoorAnimations = ({
     setShowExitButton(false)
     setJourneyStep(4) // Return to house
 
+    // Cleanup postcard animations
+    cleanupPostcardAnimation()
+
     // Use GSAP reverse for postcard exit
     if (enterPostcardTimelineRef.current) {
       // Add onReverseComplete callback for restoration
       enterPostcardTimelineRef.current.eventCallback('onReverseComplete', () => {
+        // Hide all postcard elements after reverse animation completes
+        gsap.set(
+          [
+            '#postcard-1',
+            '#postcard-2',
+            '#postcard-3',
+            '#postcard-4',
+            '#postcard-5',
+            '#postcard-6',
+            '#postcard-7',
+          ],
+          {
+            opacity: 0,
+          },
+        )
+
         // Enable house interactions now that reverse animation is complete
         const houseContainer = document.querySelector('#house-container')
 
