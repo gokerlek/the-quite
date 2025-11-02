@@ -104,7 +104,7 @@ export const JourneyContainer = ({
             className='z-10 absolute inset-0'
             xmlns='http://www.w3.org/2000/svg'
           >
-            <House id='house' startAnimation={journeyStep >= 4} />
+            <House id='house' />
           </svg>
 
           <div
