@@ -4,6 +4,11 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 
 import { useJourneyContext } from '@/contexts/JourneyContext'
+import {
+  createDoorHoverHandler,
+  createDoorPulseAnimation,
+  createStepTransitionAnimation,
+} from '@/utils/animationUtils'
 
 interface UseHouseStepProps {
   containerRef: RefObject<HTMLDivElement | null>
@@ -42,52 +47,24 @@ export const useHouseStep = ({
     () => {
       if (!isHousePulseActive || !houseStartAnimation || journeyStep !== 4) return
 
-      const leftDoor = document.querySelector('#house-left-door') as SVGSVGElement
+      const tl = createDoorPulseAnimation({
+        leftSelector: '#house-left-door',
+        rightSelector: '#house-right-door',
+        targetStep: 4,
+      })
 
-      if (leftDoor) {
-        // Kapı genişliğini hesapla
-        const doorWidth = leftDoor.getBoundingClientRect().width
-        const pulseDistance = doorWidth * 0.15 // %15'lik hareket
-        // Loop aç-kapat animasyonu
-        const tl = gsap.timeline({ repeat: -1, repeatDelay: 2.2, yoyo: true })
-
-        tl.to(['#house-left-door', '#house-right-door'], {
-          x: (index) => (index === 0 ? -pulseDistance : pulseDistance),
-          duration: 1,
-          ease: 'power1.inOut',
-        }).to(['#house-left-door', '#house-right-door'], {
-          x: 0,
-          duration: 1,
-          ease: 'power1.inOut',
-        })
-
+      if (tl) {
         housePulseTimelineRef.current = tl
       }
     },
     { scope: containerRef, dependencies: [isHousePulseActive, houseStartAnimation, journeyStep] },
   )
 
-  const houseMouseHoverStart = () => {
-    setIsHousePulseActive(false)
-
-    if (housePulseTimelineRef.current) {
-      housePulseTimelineRef.current.kill()
-
-      // Kapıları orjinal pozisyona çek ve GSAP transform'unu temizle
-      const leftDoor = document.querySelector('#house-left-door')
-      const rightDoor = document.querySelector('#house-right-door')
-
-      gsap.to([leftDoor, rightDoor], {
-        x: 0,
-        duration: 0.3,
-        ease: 'power2.out',
-        onComplete: () => {
-          // GSAP transform'unu tamamen temizle, CSS hover devralabilsin
-          gsap.set([leftDoor, rightDoor], { clearProps: 'transform' })
-        },
-      })
-    }
-  }
+  const houseMouseHoverStart = createDoorHoverHandler(
+    ['#house-left-door', '#house-right-door'],
+    housePulseTimelineRef,
+    setIsHousePulseActive,
+  )
 
   const enterStep5 = () => {
     // Only allow clicking in Step 4 (when a house is visible)
@@ -98,80 +75,34 @@ export const useHouseStep = ({
     setJourneyStep(5) // Enter postcard
     setShowExitButton(false) // Hide current exit button temporarily
 
-    // Postcard entry animation - following Step 2 pattern
-    const tl = gsap.timeline()
-
-    // 1. Hide house doors and doorbell first (like Step 2 does)
-    tl.to(['#house-left-door', '#house-right-door'], {
-      opacity: 0,
-      duration: 0,
-      ease: 'power2.out',
+    // Use utility function for step transition
+    const tl = createStepTransitionAnimation({
+      fromStep: 4,
+      toStep: 5,
+      fromContainerSelector: '#house-container',
+      toContainerSelector: '#postcard-container',
+      doorSelectors: ['#house-left-door', '#house-right-door'],
+      doorBellSelector: '#house-door-bell',
+      scaleValue: 12,
+      yValue: '-50%',
     })
-      .to(
-        '#house-door-bell',
-        {
-          pointerEvents: 'none',
-          opacity: 0,
-          duration: 0,
-          ease: 'power2.out',
-        },
-        '<',
-      ) // House doorbell ile aynı anda
 
-      // Postcard container başlangıç pozisyonu ayarla
-      .set('#postcard-container', {
-        opacity: 0,
-        scale: 0.8,
-        y: '15%',
-      })
+    // Add completion callback
+    tl.call(() => {
+      // Enable postcard interactions
+      const postcardContainer = document.querySelector('#postcard-container')
 
-      // House büyütme animation (12 kat)
-      .to('#house-container', {
-        scale: 12,
-        y: '-50%',
-        duration: 2.5,
-        ease: 'power2.inOut',
-      })
+      if (postcardContainer) {
+        gsap.set(postcardContainer, { pointerEvents: 'auto' })
+      }
 
-      // Postcard fade-in
-      .to(
-        '#postcard-container',
-        {
-          opacity: 1,
-          duration: 1,
-          ease: 'power2.out',
-        },
-        '<', // House animasyonuyla aynı anda başlar
-      )
+      // Disable house interactions
+      const houseContainer = document.querySelector('#house-container')
 
-      // Postcard positioning
-      .to(
-        '#postcard-container',
-        {
-          scale: 1,
-          y: '0%',
-          duration: 1.8,
-          ease: 'power2.inOut',
-        },
-        '<', // House animasyonuyla aynı anda başlar
-      )
-
-      // Enable postcard interactions after zoom animation completes (no exit button yet)
-      .call(() => {
-        // Enable postcard interactions
-        const postcardContainer = document.querySelector('#postcard-container')
-
-        if (postcardContainer) {
-          gsap.set(postcardContainer, { pointerEvents: 'auto' })
-        }
-
-        // Disable house interactions - following Step 2 pattern
-        const houseContainer = document.querySelector('#house-container')
-
-        if (houseContainer) {
-          gsap.set(houseContainer, { pointerEvents: 'none' })
-        }
-      })
+      if (houseContainer) {
+        gsap.set(houseContainer, { pointerEvents: 'none' })
+      }
+    })
 
     enterPostcardTimelineRef.current = tl
 

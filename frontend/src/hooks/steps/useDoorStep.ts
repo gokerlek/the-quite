@@ -4,6 +4,11 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 
 import { useJourneyContext } from '@/contexts/JourneyContext'
+import {
+  createDoorHoverHandler,
+  createDoorPulseAnimation,
+  createStepTransitionAnimation,
+} from '@/utils/animationUtils'
 
 interface UseDoorStepProps {
   containerRef: RefObject<HTMLDivElement | null>
@@ -35,53 +40,24 @@ export const useDoorStep = ({ containerRef }: UseDoorStepProps) => {
     () => {
       if (!isPulseActive || !startAnimation || journeyStep !== 1) return
 
-      const leftDoor = document.querySelector('#left-door') as SVGSVGElement
+      const tl = createDoorPulseAnimation({
+        leftSelector: '#left-door',
+        rightSelector: '#right-door',
+        targetStep: 1,
+      })
 
-      if (leftDoor) {
-        // Kapı genişliğini hesapla
-        const doorWidth = leftDoor.getBoundingClientRect().width
-        const pulseDistance = doorWidth * 0.15 // %15'lik hareket
-
-        // Loop aç-kapat animasyonu
-        const tl = gsap.timeline({ repeat: -1, repeatDelay: 2.2, yoyo: true })
-
-        tl.to(['#left-door', '#right-door'], {
-          x: (index) => (index === 0 ? -pulseDistance : pulseDistance),
-          duration: 1,
-          ease: 'power1.inOut',
-        }).to(['#left-door', '#right-door'], {
-          x: 0,
-          duration: 1,
-          ease: 'power1.inOut',
-        })
-
+      if (tl) {
         pulseTimelineRef.current = tl
       }
     },
     { scope: containerRef, dependencies: [isPulseActive, startAnimation, journeyStep] },
   )
 
-  const handleHoverStart = () => {
-    setIsPulseActive(false)
-
-    if (pulseTimelineRef.current) {
-      pulseTimelineRef.current.kill()
-
-      // Kapıları orjinal pozisyona çek ve GSAP transform'unu temizle
-      const leftDoor = document.querySelector('#left-door')
-      const rightDoor = document.querySelector('#right-door')
-
-      gsap.to([leftDoor, rightDoor], {
-        x: 0,
-        duration: 0.3,
-        ease: 'power2.out',
-        onComplete: () => {
-          // GSAP transform'unu tamamen temizle, CSS hover devralabilsin
-          gsap.set([leftDoor, rightDoor], { clearProps: 'transform' })
-        },
-      })
-    }
-  }
+  const handleHoverStart = createDoorHoverHandler(
+    ['#left-door', '#right-door'],
+    pulseTimelineRef,
+    setIsPulseActive,
+  )
 
   const enterStep2 = () => {
     // Only allow clicking in Step 1 (when the container is visible)
@@ -95,90 +71,32 @@ export const useDoorStep = ({ containerRef }: UseDoorStepProps) => {
       pulseTimelineRef.current.kill()
     }
 
-    // Room entry animasyonu - refined sequence
-    const tl = gsap.timeline()
-
-    // 1. Kapıları kaybet (fade out) ve door-bell'i disable et
-    tl.to(['#left-door', '#right-door'], {
-      opacity: 0,
-      duration: 0,
-      ease: 'power2.out',
-      onComplete: () => {
-        // CSS class'larını temizle
-        const leftDoor = document.querySelector('#left-door')
-        const rightDoor = document.querySelector('#right-door')
-
-        if (leftDoor) leftDoor.setAttribute('class', 'absolute inset-0')
-
-        if (rightDoor) rightDoor.setAttribute('class', 'absolute inset-0')
-      },
+    // Use utility function for step transition
+    const tl = createStepTransitionAnimation({
+      fromStep: 1,
+      toStep: 2,
+      fromContainerSelector: '#wall',
+      toContainerSelector: '#room-cotainer',
+      doorSelectors: ['#left-door', '#right-door'],
+      doorBellSelector: '#door-bell',
     })
-      .to(
-        '#door-bell',
-        {
-          pointerEvents: 'none',
-          opacity: 0,
-          duration: 0,
-          ease: 'power2.out',
-        },
-        '<',
-      ) // Kapılarla aynı anda
 
-      // 2. Wall zoom ve Room animasyonları aynı anda başlar
-      // Room container başlangıç pozisyonu ayarla
-      .set('#room-cotainer', {
-        opacity: 0,
-        scale: 0.5,
-        y: '15%',
-      })
+    // Add completion callback
+    tl.call(() => {
+      // Enable room interactions now that animation is complete
+      const roomContainer = document.querySelector('#room-cotainer')
 
-      // Wall section büyütme ve Room animasyonları aynı anda
-      .to('#wall', {
-        scale: 7.9,
-        y: '-250%',
-        duration: 2.5,
-        ease: 'power2.inOut',
-      })
+      if (roomContainer) {
+        gsap.set(roomContainer, { pointerEvents: 'auto' })
+      }
 
-      // Room opacity fade in (0.5s'de tamamlanır)
-      .to(
-        '#room-cotainer',
-        {
-          opacity: 1,
-          duration: 1,
-          ease: 'power2.out',
-        },
-        '<',
-      ) // Wall animasyonuyla aynı anda başlar
+      // Disable door interactions
+      const doorSection = document.querySelector('#door-section')
 
-      // Room scale ve position
-      .to(
-        '#room-cotainer',
-        {
-          scale: 1,
-          y: '0%',
-          duration: 1.8,
-          ease: 'power2.inOut',
-        },
-        '<',
-      ) // Wall animasyonuyla aynı anda başlar
-
-      // Show the exit button and enable room interactions after animation completes
-      .call(() => {
-        // Enable room interactions now that animation is complete
-        const roomContainer = document.querySelector('#room-cotainer')
-
-        if (roomContainer) {
-          gsap.set(roomContainer, { pointerEvents: 'auto' })
-        }
-
-        // Disable door interactions
-        const doorSection = document.querySelector('#door-section')
-
-        if (doorSection) {
-          gsap.set(doorSection, { pointerEvents: 'none' })
-        }
-      })
+      if (doorSection) {
+        gsap.set(doorSection, { pointerEvents: 'none' })
+      }
+    })
 
     enterRoomTimelineRef.current = tl
   }
