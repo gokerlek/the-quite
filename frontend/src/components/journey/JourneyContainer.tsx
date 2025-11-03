@@ -8,22 +8,18 @@ import { Postcard } from '@/components/society-events/postcard'
 import { RightHouseDoor } from '@/components/society-events/rightHouseDoor'
 import { Temple } from '@/components/society-events/temple'
 import { Button } from '@/components/ui/button'
+import { useJourneyContext } from '@/contexts/JourneyContext'
 import { useContainerSize } from '@/hooks/useContainerSize'
-import { useDoorAnimations } from '@/hooks/useDoorAnimations'
+import { useJourneyAnimations } from '@/hooks/useJourneyAnimations'
 
 import { DoorSection } from './DoorSection'
 
 interface JourneyContainerProps {
   containerRef: React.RefObject<HTMLDivElement | null>
-  journeyStep: number
-  setJourneyStep: (step: number) => void
 }
 
-export const JourneyContainer = ({
-  containerRef,
-  journeyStep,
-  setJourneyStep,
-}: JourneyContainerProps) => {
+export const JourneyContainer = ({ containerRef }: JourneyContainerProps) => {
+  const { journeyStep } = useJourneyContext()
   const { containerSize } = useContainerSize()
   const {
     showExitButton,
@@ -36,9 +32,7 @@ export const JourneyContainer = ({
     enterStep3,
     enterStep4,
     enterStep5,
-  } = useDoorAnimations({
-    journeyStep: journeyStep,
-    setJourneyStep: setJourneyStep,
+  } = useJourneyAnimations({
     containerRef: containerRef,
   })
 

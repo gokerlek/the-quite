@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 
+import { useJourneyContext } from '@/contexts/JourneyContext'
+
 export const useJourneyNavigation = () => {
-  const [journeyStep, setJourneyStep] = useState(0) // 0: cards, 1: door, 2: room, 3: house, 4: temple, 5: postcard
+  const { journeyStep, setJourneyStep } = useJourneyContext()
   const cardsRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -31,7 +33,7 @@ export const useJourneyNavigation = () => {
     return () => {
       window.removeEventListener('wheel', handleWheel)
     }
-  }, [journeyStep])
+  }, [journeyStep, setJourneyStep])
 
   // Journey step transition animations
   useGSAP(
@@ -68,8 +70,6 @@ export const useJourneyNavigation = () => {
   )
 
   return {
-    journeyStep,
-    setJourneyStep,
     cardsRef,
     containerRef,
   }

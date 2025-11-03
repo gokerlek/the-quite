@@ -2,16 +2,25 @@
 
 import { JourneyCards } from '@/components/journey/JourneyCards'
 import { JourneyContainer } from '@/components/journey/JourneyContainer'
+import { JourneyProvider } from '@/contexts/JourneyContext'
 import { useJourneyNavigation } from '@/hooks/useJourneyNavigation'
 
-export default function SocietyEventsPage() {
+function SocietyEventsContent() {
   const navigation = useJourneyNavigation()
 
   return (
     <div className='min-h-screen flex justify-center items-center relative'>
-      <JourneyCards cardsRef={navigation.cardsRef} journeyStep={navigation.journeyStep} />
+      <JourneyCards cardsRef={navigation.cardsRef} />
 
-      <JourneyContainer {...navigation} />
+      <JourneyContainer containerRef={navigation.containerRef} />
     </div>
+  )
+}
+
+export default function SocietyEventsPage() {
+  return (
+    <JourneyProvider>
+      <SocietyEventsContent />
+    </JourneyProvider>
   )
 }
