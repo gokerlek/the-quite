@@ -20,30 +20,16 @@ export const Circle = (props: GProps) => {
   // Center circle için ref
   const centerCircleRef = useRef<SVGPathElement>(null)
 
-  // Center circle parlama animasyonu
+  // Center circle initial state - glow will be controlled externally
   useGSAP(() => {
     if (!centerCircleRef.current) return
 
-    const glowTimeline = gsap.timeline()
-
-    glowTimeline
-      // Normal durum
-      .set(centerCircleRef.current, {
-        stroke: '#1C1C1C',
-        filter: 'none',
-        strokeWidth: 2,
-      })
-      // Kırmızı parlama başlangıcı
-      .to(centerCircleRef.current, {
-        stroke: '#F0002C',
-        filter: 'drop-shadow(0 0 4px #FF0000)',
-        strokeWidth: 1.5,
-        duration: 2,
-        ease: 'power2.out',
-        delay: Math.random() * 7 + 5, // 5-12 saniye arası rastgele bekleme
-        repeat: -1,
-        yoyo: true,
-      })
+    // Set initial state only
+    gsap.set(centerCircleRef.current, {
+      stroke: '#1C1C1C',
+      filter: 'none',
+      strokeWidth: 2,
+    })
   }, [])
 
   return (

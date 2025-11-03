@@ -33,7 +33,10 @@ export const useCircleAnimation = () => {
     // SVG için transform origin'i optimize et
     gsap.set(elementRef.current, {
       transformOrigin: '50% 50%',
-      transform: 'translate3d(0,0,0)', // Hardware acceleration için
+      // SVG için transform yerine x, y kullan
+      x: 0,
+      y: 0,
+      force3D: true, // Hardware acceleration için
     })
 
     // Rotate animasyonu - elastic sallanma

@@ -27,6 +27,8 @@ export const JourneyContainer = ({
   const { containerSize } = useContainerSize()
   const {
     showExitButton,
+    isGlowAnimationComplete,
+    isTempleAnimationComplete,
     handleHoverStart: onMouseEnter,
     handleDoorBellClick: onDoorClick,
     houseMouseHoverStart,
@@ -64,8 +66,10 @@ export const JourneyContainer = ({
 
         <div
           id='circle-door-bell'
-          className='fixed left-1/2 size-80 -translate-x-1/2 bottom-[14%] -translate-y-1/2 z-50 cursor-pointer rounded-full'
-          onClick={enterStep3}
+          className={`fixed left-1/2 size-80 -translate-x-1/2 bottom-[14%] -translate-y-1/2 z-50 rounded-full ${
+            isGlowAnimationComplete ? 'cursor-pointer' : 'cursor-not-allowed'
+          }`}
+          onClick={isGlowAnimationComplete ? enterStep3 : undefined}
         />
       </section>
 
@@ -80,13 +84,15 @@ export const JourneyContainer = ({
           className='relative'
           xmlns='http://www.w3.org/2000/svg'
         >
-          <Temple id='house' startAnimation={journeyStep === 3} />
+          <Temple id='house' />
         </svg>
 
         <div
           id='temple-door-bell'
-          className='fixed left-1/2 size-80 -translate-x-1/2 bottom-[14%] -translate-y-1/2 z-50 cursor-pointer rounded-full'
-          onClick={enterStep4}
+          className={`fixed left-1/2 size-80 -translate-x-1/2 bottom-[14%] -translate-y-1/2 z-50 rounded-full ${
+            isTempleAnimationComplete ? 'cursor-pointer' : 'cursor-not-allowed'
+          }`}
+          onClick={isTempleAnimationComplete ? enterStep4 : undefined}
         />
 
         {/* House content will be added here */}
