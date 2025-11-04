@@ -69,7 +69,7 @@ export const PreviousEvents = () => {
     }
   }
 
-  const text = 'count/total'
+  // const text = 'count/total'
 
   return (
     <div className='flex h-[39.375rem] my-auto w-full gap-10'>
@@ -78,11 +78,11 @@ export const PreviousEvents = () => {
         <div className='flex flex-col gap-4'>
           <div className='heading-s-light'>{t('previous_events')}</div>
 
-          <h2 className='text-7xl font-lemon mb-4'>
-            {text
-              .replace('count', (currentIndex + 1) as unknown as string)
-              .replace('total', data.length as unknown as string)}
-          </h2>
+          {/*<h2 className='text-7xl font-lemon mb-4'>*/}
+          {/*  {text*/}
+          {/*    .replace('count', (currentIndex + 1) as unknown as string)*/}
+          {/*    .replace('total', data.length as unknown as string)}*/}
+          {/*</h2>*/}
 
           <div className='p-l'>{data[currentIndex].desc}</div>
         </div>
