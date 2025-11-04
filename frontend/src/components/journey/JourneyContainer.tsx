@@ -46,11 +46,6 @@ export const JourneyContainer = ({ containerRef }: JourneyContainerProps) => {
       }}
       className='border-offblack-950 border relative overflow-hidden opacity-0'
     >
-      {/* Debug: Active step indicator */}
-      <div className='absolute top-5 left-2 z-50 bg-black text-white px-2 py-1 text-xs rounded'>
-        Active Step: {journeyStep}
-      </div>
-
       <DoorSection onMouseEnter={onMouseEnter} onClick={onDoorClick} />
 
       <section id='room-cotainer' className='absolute inset-0 z-10 opacity-0 pointer-events-none'>

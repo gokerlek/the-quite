@@ -102,7 +102,7 @@ export const Temple = (props: GProps) => {
         <text
           x='39.24%'
           y='33.55%'
-          className='heading-s-medium fill-offblack-950 tracking-[0.105em]'
+          className='text-[20px] font-lemon font-medium fill-offblack-950 tracking-[0.105em]'
         >
           IDEAS ARE OFFERED LIKE
         </text>
@@ -110,7 +110,7 @@ export const Temple = (props: GProps) => {
         <text
           x='37.85%'
           y='36.9%'
-          className='heading-s-medium fill-offblack-950 tracking-[0.105em]'
+          className='text-[20px] font-lemon font-medium fill-offblack-950 tracking-[0.105em]'
         >
           OBJECTS ON A VELVET TRAY
         </text>
@@ -142,7 +142,7 @@ export const Temple = (props: GProps) => {
         <text
           x='4.56%'
           y='49.37%'
-          className='heading-s-medium fill-offblack-950 tracking-[0.108em]'
+          className='text-[20px] font-lemon font-medium fill-offblack-950 tracking-[0.108em]'
         >
           SHAPING THE UNSPOKEN
         </text>
@@ -150,7 +150,7 @@ export const Temple = (props: GProps) => {
         <text
           x='4.56%'
           y='52.73%'
-          className='heading-s-medium fill-offblack-950 tracking-[0.108em]'
+          className='text-[20px] font-lemon font-medium fill-offblack-950 tracking-[0.108em]'
         >
           A CONVERSATION BECOMES
         </text>
@@ -158,7 +158,7 @@ export const Temple = (props: GProps) => {
         <text
           x='4.56%'
           y='56.05%'
-          className='heading-s-medium fill-offblack-950 tracking-[0.108em]'
+          className='text-[20px] font-lemon font-medium fill-offblack-950 tracking-[0.108em]'
         >
           A SKETCH
         </text>
@@ -190,7 +190,7 @@ export const Temple = (props: GProps) => {
         <text
           x='76.35%'
           y='49.37%'
-          className='heading-s-medium fill-offblack-950 tracking-[0.108em]'
+          className='text-[20px] font-lemon font-medium fill-offblack-950 tracking-[0.108em]'
         >
           NOTHING READY-MADE
         </text>
@@ -198,7 +198,7 @@ export const Temple = (props: GProps) => {
         <text
           x='70.28%'
           y='52.73%'
-          className='heading-s-medium fill-offblack-950 tracking-[0.108em]'
+          className='text-[20px] font-lemon font-medium fill-offblack-950 tracking-[0.108em]'
         >
           ONLY WHAT RESONATES STAYS
         </text>

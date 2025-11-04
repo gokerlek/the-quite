@@ -40,8 +40,6 @@ export class EmailService implements IEmailService {
 
       const info = await transporter.sendMail(mailOptions)
 
-      console.log('Email sent successfully:', info.messageId)
-
       return {
         success: true,
         messageId: info.messageId,

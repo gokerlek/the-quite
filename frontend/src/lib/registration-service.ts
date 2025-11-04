@@ -37,7 +37,6 @@ export class RegistrationService implements IRegistrationService {
     if (sheetsConfig) {
       try {
         this.sheetsService = createGoogleSheetsService(sheetsConfig)
-        console.log('Google Sheets integration initialized successfully')
       } catch (error) {
         console.error('Failed to initialize Google Sheets service:', error)
         this.sheetsService = undefined
@@ -102,7 +101,6 @@ export class RegistrationService implements IRegistrationService {
 
         if (sheetsResult.success) {
           sheetsUpdated = true
-          console.log('Registration data saved to Google Sheets')
         } else {
           console.warn('Failed to save to Google Sheets:', sheetsResult.error)
           // Don't fail the entire registration if sheets fails

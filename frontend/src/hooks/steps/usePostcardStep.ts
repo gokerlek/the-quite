@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import gsap from 'gsap'
 
@@ -9,17 +9,6 @@ export const usePostcardStep = () => {
   const [isPostcardAnimationComplete, setIsPostcardAnimationComplete] = useState(false)
   const postcardTimelineRef = useRef<gsap.core.Timeline | null>(null)
   const enterPostcardTimelineRef = useRef<gsap.core.Timeline | null>(null)
-
-  // Auto-trigger postcard animations when entering step 5
-  useEffect(() => {
-    if (journeyStep === 5) {
-      const timer = setTimeout(() => {
-        startPostcardAnimations()
-      }, postcardAnimationConfig.startDelay * 1000) // Use the existing delay config
-
-      return () => clearTimeout(timer)
-    }
-  }, [journeyStep])
 
   // Postcard animation configuration
   const postcardAnimationConfig = {
@@ -48,17 +37,17 @@ export const usePostcardStep = () => {
   }
 
   // Postcard timeline cleanup function
-  const cleanupPostcardAnimation = () => {
+  const cleanupPostcardAnimation = useCallback(() => {
     if (postcardTimelineRef.current) {
       postcardTimelineRef.current.kill()
       postcardTimelineRef.current = null
     }
 
     resetPostcardElements()
-  }
+  }, [])
 
   // Start postcard sequential fade-in animation
-  const startPostcardAnimations = () => {
+  const startPostcardAnimations = useCallback(() => {
     // Clean up any existing postcard animation
     cleanupPostcardAnimation()
 
@@ -136,7 +125,13 @@ export const usePostcardStep = () => {
       )
 
     postcardTimelineRef.current = postcardTl
-  }
+  }, [
+    cleanupPostcardAnimation,
+    postcardAnimationConfig.ease,
+    postcardAnimationConfig.fadeInDuration,
+    postcardAnimationConfig.staggerDelay,
+    setShowExitButton,
+  ])
 
   const exitStep5 = () => {
     setIsPostcardAnimationComplete(false)
@@ -168,6 +163,17 @@ export const usePostcardStep = () => {
       enterPostcardTimelineRef.current.reverse()
     }
   }
+
+  // Auto-trigger postcard animations when entering step 5
+  useEffect(() => {
+    if (journeyStep === 5) {
+      const timer = setTimeout(() => {
+        startPostcardAnimations()
+      }, postcardAnimationConfig.startDelay * 1000) // Use the existing delay config
+
+      return () => clearTimeout(timer)
+    }
+  }, [journeyStep, postcardAnimationConfig.startDelay, startPostcardAnimations])
 
   // Set enterPostcardTimelineRef for exit functionality
   const setEnterPostcardTimeline = (timeline: gsap.core.Timeline) => {

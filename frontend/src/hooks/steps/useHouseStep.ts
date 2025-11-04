@@ -68,8 +68,6 @@ export const useHouseStep = ({
 
   const enterStep5 = () => {
     // Only allow clicking in Step 4 (when a house is visible)
-    console.log('enterStep5')
-
     if (journeyStep !== 4) return
 
     setJourneyStep(5) // Enter postcard

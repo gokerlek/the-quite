@@ -111,9 +111,6 @@ export const useScrollAnimation = (
       tl.duration() * 0.7,
     )
 
-    // Timeline bittiğinde log
-    tl.call(() => console.log('✅ Timeline 1 completed: SVG Scaling + Text + Overlay'))
-
     return tl
   }
 
@@ -136,9 +133,6 @@ export const useScrollAnimation = (
       color: '#1c1c1c',
     })
 
-    // Timeline bittiğinde log
-    tl.call(() => console.log('✅ Timeline 2 completed: Text Movement'))
-
     return tl
   }
 
@@ -155,9 +149,6 @@ export const useScrollAnimation = (
     tl.to('#the_quite_white', { opacity: 1, duration: 1.5, ease: 'power1.inOut' }, '-=1.5')
     tl.to('#main', { backgroundColor: '#1c1c1c', duration: 1.5, ease: 'power1.inOut' }, '-=1.5')
 
-    // Timeline bittiğinde log
-    tl.call(() => console.log('✅ Timeline 3 completed: Final Scene'))
-
     return tl
   }
 
@@ -169,7 +160,6 @@ export const useScrollAnimation = (
     // Timeline 1 - SVG Büyüme + Yazı + Overlay
     if (!states.timeline1Triggered && showScrollIndicator) {
       states.timeline1Triggered = true
-      console.log('📈 Timeline 1 started: SVG Scaling + Text + Overlay')
       tl.timeline1?.play()
 
       return
@@ -179,7 +169,6 @@ export const useScrollAnimation = (
     if (states.timeline1Triggered && !states.timeline2Triggered) {
       if (tl.timeline1 && tl.timeline1.progress() >= 0.7) {
         states.timeline2Triggered = true
-        console.log('⬇️ Timeline 2 started: Text Movement')
         tl.timeline2?.play()
       }
 
@@ -190,7 +179,6 @@ export const useScrollAnimation = (
     if (states.timeline2Triggered && !states.timeline3Triggered) {
       if (tl.timeline2?.progress() === 1) {
         states.timeline3Triggered = true
-        console.log('🎬 Timeline 3 started: Final Scene')
         tl.timeline3?.play()
       }
     }

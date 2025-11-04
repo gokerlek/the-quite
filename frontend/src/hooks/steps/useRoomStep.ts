@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 
 import gsap from 'gsap'
 
@@ -14,19 +14,8 @@ export const useRoomStep = ({ onEnterTempleTimelineCreated }: UseRoomStepProps) 
   const glowTimelineRef = useRef<gsap.core.Timeline | null>(null)
   const enterTempleTimelineRef = useRef<gsap.core.Timeline | null>(null)
 
-  // Auto-trigger glow animation when entering step 2
-  useEffect(() => {
-    if (journeyStep === 2) {
-      const timer = setTimeout(() => {
-        startGlowAnimation()
-      }, 3000) // Wait for door animation to complete
-
-      return () => clearTimeout(timer)
-    }
-  }, [journeyStep])
-
   // Start a glow animation function
-  const startGlowAnimation = () => {
+  const startGlowAnimation = useCallback(() => {
     const centerCircle = document.querySelector('#center-circle')
 
     if (!centerCircle) return
@@ -71,7 +60,7 @@ export const useRoomStep = ({ onEnterTempleTimelineCreated }: UseRoomStepProps) 
       })
 
     glowTimelineRef.current = glowTl
-  }
+  }, [setIsGlowAnimationComplete, setShowExitButton])
 
   const enterStep3 = () => {
     // Only allow clicking in Step 2 (when room is visible)
@@ -165,6 +154,17 @@ export const useRoomStep = ({ onEnterTempleTimelineCreated }: UseRoomStepProps) 
       glowTimelineRef.current = null
     }
   }
+
+  // Auto-trigger glow animation when entering step 2
+  useEffect(() => {
+    if (journeyStep === 2) {
+      const timer = setTimeout(() => {
+        startGlowAnimation()
+      }, 3000) // Wait for door animation to complete
+
+      return () => clearTimeout(timer)
+    }
+  }, [journeyStep, startGlowAnimation])
 
   return {
     startGlowAnimation,
