@@ -29,7 +29,7 @@ const items = [
 
 export const OpeningDraggableCards = () => {
   return (
-    <DraggableCardContainer className='relative flex min-h-screen w-full items-center justify-center overflow-clip'>
+    <DraggableCardContainer className='relative flex min-h-full w-full items-center justify-center overflow-clip'>
       <p className='absolute top-1/2  -translate-y-3/4 text-center md:text-5xl text-3xl font-light '>
         Where you <span className='text-red-500 font-montagne'>want</span> to be?
       </p>

@@ -1,17 +1,45 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 
 import { useJourneyContext } from '@/contexts/JourneyContext'
+import { useMobileDetection } from '@/hooks/useMobileDetection'
 
 export const useJourneyNavigation = () => {
   const { journeyStep, setJourneyStep } = useJourneyContext()
   const cardsRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const isMobile = useMobileDetection()
+  const [touchStartY, setTouchStartY] = useState(0)
 
-  // Wheel event listener for journey navigation
+  // Navigation event listeners (wheel for desktop, touch for mobile)
   useEffect(() => {
+    // Touch event handlers for mobile navigation
+    const handleTouchStart = (e: TouchEvent) => {
+      console.log('Touch start:', e.touches[0].clientY, 'Step:', journeyStep, 'isMobile:', isMobile)
+      setTouchStartY(e.touches[0].clientY)
+    }
+
+    const handleTouchMove = (e: TouchEvent) => {
+      e.preventDefault() // Prevent actual scrolling
+      const touchEndY = e.touches[0].clientY
+      const deltaY = touchStartY - touchEndY
+      const threshold = 50 // Minimum swipe distance
+
+      console.log('Touch move:', { touchStartY, touchEndY, deltaY, threshold, journeyStep })
+
+      // Only handle touch in steps 0 and 1
+      if (journeyStep === 0 && deltaY > threshold) {
+        // Swipe up from cards to door
+        console.log('Navigating from step 0 to 1')
+        setJourneyStep(1)
+      } else if (journeyStep === 1 && deltaY < -threshold) {
+        // Swipe down from door back to cards
+        console.log('Navigating from step 1 to 0')
+        setJourneyStep(0)
+      }
+    }
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault() // Prevent actual scrolling
 
@@ -25,15 +53,27 @@ export const useJourneyNavigation = () => {
       }
     }
 
-    // Only add listener if in steps 0 or 1
+    // Only add listeners if in steps 0 or 1
     if (journeyStep === 0 || journeyStep === 1) {
-      window.addEventListener('wheel', handleWheel, { passive: false })
+      if (isMobile) {
+        // Mobile: Add touch event listeners
+        window.addEventListener('touchstart', handleTouchStart, { passive: false })
+        window.addEventListener('touchmove', handleTouchMove, { passive: false })
+      } else {
+        // Desktop: Add wheel event listener
+        window.addEventListener('wheel', handleWheel, { passive: false })
+      }
     }
 
     return () => {
-      window.removeEventListener('wheel', handleWheel)
+      if (isMobile) {
+        window.removeEventListener('touchstart', handleTouchStart)
+        window.removeEventListener('touchmove', handleTouchMove)
+      } else {
+        window.removeEventListener('wheel', handleWheel)
+      }
     }
-  }, [journeyStep, setJourneyStep])
+  }, [journeyStep, setJourneyStep, isMobile, touchStartY])
 
   // Journey step transition animations
   useGSAP(

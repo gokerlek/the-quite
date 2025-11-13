@@ -9,7 +9,7 @@ function SocietyEventsContent() {
   const navigation = useJourneyNavigation()
 
   return (
-    <div className='min-h-screen flex justify-center items-center relative'>
+    <div className='min-h-dvh flex justify-center items-center relative'>
       <JourneyCards cardsRef={navigation.cardsRef} />
 
       <JourneyContainer containerRef={navigation.containerRef} />
