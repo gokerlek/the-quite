@@ -3,12 +3,14 @@ import { useCallback, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 
 import { useJourneyContext } from '@/contexts/JourneyContext'
+import { useMobileDetection } from '@/hooks/useMobileDetection'
 
 interface UseRoomStepProps {
   onEnterTempleTimelineCreated?: (timeline: gsap.core.Timeline) => void
 }
 
 export const useRoomStep = ({ onEnterTempleTimelineCreated }: UseRoomStepProps) => {
+  const isMobile = useMobileDetection()
   const { journeyStep, setJourneyStep, setIsGlowAnimationComplete, setShowExitButton } =
     useJourneyContext()
   const glowTimelineRef = useRef<gsap.core.Timeline | null>(null)
@@ -32,7 +34,7 @@ export const useRoomStep = ({ onEnterTempleTimelineCreated }: UseRoomStepProps) 
       .set(centerCircle, {
         stroke: '#1C1C1C',
         filter: 'none',
-        strokeWidth: 2,
+        strokeWidth: isMobile ? 1.5 : 2,
       })
       // Glow effect (one time)
       .to(centerCircle, {
@@ -52,7 +54,7 @@ export const useRoomStep = ({ onEnterTempleTimelineCreated }: UseRoomStepProps) 
       .to(centerCircle, {
         stroke: '#1C1C1C',
         filter: 'none',
-        strokeWidth: 2,
+        strokeWidth: isMobile ? 1.5 : 2,
         duration: 2,
         ease: 'power2.out',
         yoyo: true,
@@ -60,7 +62,7 @@ export const useRoomStep = ({ onEnterTempleTimelineCreated }: UseRoomStepProps) 
       })
 
     glowTimelineRef.current = glowTl
-  }, [setIsGlowAnimationComplete, setShowExitButton])
+  }, [setIsGlowAnimationComplete, setShowExitButton, isMobile])
 
   const enterStep3 = () => {
     // Only allow clicking in Step 2 (when room is visible)
@@ -81,8 +83,9 @@ export const useRoomStep = ({ onEnterTempleTimelineCreated }: UseRoomStepProps) 
 
       // Room büyütme animasyonu (12 kat)
       .to('#room-cotainer', {
-        scale: 15,
+        scale: isMobile ? 20 : 15,
         duration: 2.5,
+        y: isMobile ? '-50%' : 0,
         ease: 'power2.inOut',
       })
 

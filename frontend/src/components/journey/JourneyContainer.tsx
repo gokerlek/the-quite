@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 
 import { Circle } from '@/components/society-events/circle'
+import { CircleMobile } from '@/components/society-events/circleMobile'
 import { House } from '@/components/society-events/house'
 import { LeftHouseDoor } from '@/components/society-events/leftHouseDoor'
 import { Postcard } from '@/components/society-events/postcard'
@@ -11,6 +12,8 @@ import { Button } from '@/components/ui/button'
 import { useJourneyContext } from '@/contexts/JourneyContext'
 import { useContainerSize } from '@/hooks/useContainerSize'
 import { useJourneyAnimations } from '@/hooks/useJourneyAnimations'
+import { useMobileDetection } from '@/hooks/useMobileDetection'
+import { cn } from '@/lib/utils'
 
 import { DoorSection } from './DoorSection'
 
@@ -19,6 +22,7 @@ interface JourneyContainerProps {
 }
 
 export const JourneyContainer = ({ containerRef }: JourneyContainerProps) => {
+  const isMobile = useMobileDetection()
   const { journeyStep } = useJourneyContext()
   const { containerSize } = useContainerSize()
   const {
@@ -49,15 +53,17 @@ export const JourneyContainer = ({ containerRef }: JourneyContainerProps) => {
       <DoorSection onMouseEnter={onMouseEnter} onClick={onDoorClick} />
 
       <section id='room-cotainer' className='absolute inset-0 z-10 opacity-0 pointer-events-none'>
-        <svg viewBox='0 0 1440 1024' fill='none' xmlns='http://www.w3.org/2000/svg'>
-          <Circle id='room' />
-        </svg>
+        {isMobile ? <CircleMobile id='room' /> : <Circle id='room' />}
 
         <div
           id='circle-door-bell'
-          className={`fixed left-1/2 size-80 -translate-x-1/2 bottom-[14%] -translate-y-1/2 z-50 rounded-full ${
-            isGlowAnimationComplete ? 'cursor-pointer' : 'cursor-not-allowed'
-          }`}
+          className={cn(
+            'fixed left-1/2 size-24 md:size-80 -translate-x-1/2 bottom-[46%] translate-y-1/2 md:bottom-[14%] md:-translate-y-1/2 z-50 rounded-full',
+            {
+              'cursor-pointer': isGlowAnimationComplete,
+              'cursor-not-allowed': !isGlowAnimationComplete,
+            },
+          )}
           onClick={isGlowAnimationComplete ? enterStep3 : undefined}
         />
       </section>
