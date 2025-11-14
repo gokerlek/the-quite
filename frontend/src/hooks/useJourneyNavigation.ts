@@ -17,7 +17,6 @@ export const useJourneyNavigation = () => {
   useEffect(() => {
     // Touch event handlers for mobile navigation
     const handleTouchStart = (e: TouchEvent) => {
-      console.log('Touch start:', e.touches[0].clientY, 'Step:', journeyStep, 'isMobile:', isMobile)
       setTouchStartY(e.touches[0].clientY)
     }
 
@@ -27,16 +26,12 @@ export const useJourneyNavigation = () => {
       const deltaY = touchStartY - touchEndY
       const threshold = 50 // Minimum swipe distance
 
-      console.log('Touch move:', { touchStartY, touchEndY, deltaY, threshold, journeyStep })
-
       // Only handle touch in steps 0 and 1
       if (journeyStep === 0 && deltaY > threshold) {
         // Swipe up from cards to door
-        console.log('Navigating from step 0 to 1')
         setJourneyStep(1)
       } else if (journeyStep === 1 && deltaY < -threshold) {
         // Swipe down from door back to cards
-        console.log('Navigating from step 1 to 0')
         setJourneyStep(0)
       }
     }

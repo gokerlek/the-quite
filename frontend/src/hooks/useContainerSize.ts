@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
 
+import { useMobileDetection } from '@/hooks/useMobileDetection'
+
 export const useContainerSize = () => {
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
+  const isMobile = useMobileDetection()
 
   // Container boyutunu dinamik hesapla
   useEffect(() => {
     const calculateSize = () => {
       const { innerWidth: screenWidth, innerHeight: screenHeight } = window
-      const svgRatio = 1440 / 1024
+      const svgRatio = isMobile ? 375 / 852 : 1440 / 1024
       const screenRatio = screenWidth / screenHeight
 
       if (screenRatio > svgRatio) {
@@ -29,7 +32,7 @@ export const useContainerSize = () => {
     window.addEventListener('resize', calculateSize)
 
     return () => window.removeEventListener('resize', calculateSize)
-  }, [])
+  }, [isMobile])
 
   return { containerSize }
 }

@@ -44,7 +44,7 @@ export const JourneyContainer = ({ containerRef }: JourneyContainerProps) => {
         height: containerSize.height,
         zIndex: journeyStep >= 1 ? 30 : 10,
       }}
-      className='border-offblack-950 border relative overflow-hidden opacity-0'
+      className='border-offblack-950 border relative overflow-hidden opacity-0 h-dvh'
     >
       <DoorSection onMouseEnter={onMouseEnter} onClick={onDoorClick} />
 
