@@ -3,7 +3,7 @@ import { GProps } from '@/components/society-events/type'
 export const RightDoorMobile = (props: GProps) => {
   return (
     <svg viewBox='0 0 375 852' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
-      <g clip-path='url(#clip0_450_7170)'>
+      <g clipPath='url(#clip0_450_7170)'>
         <path
           d='M239.73 672.23V851.85H187.5V620C216.31 620.01 239.73 643.43 239.73 672.23Z'
           fill='#EDEDED'

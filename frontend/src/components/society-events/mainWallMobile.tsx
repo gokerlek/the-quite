@@ -3,7 +3,7 @@ import { GProps } from '@/components/society-events/type'
 const MainWallMobile = (props: GProps) => {
   return (
     <svg viewBox='0 0 375 852' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
-      <g clip-path='url(#clip0_450_7186)'>
+      <g clipPath='url(#clip0_450_7186)'>
         <path
           d='M375 798.72H240.23V619.1C240.23 590.3 216.81 566.88 188 566.87L275 0C291.43 0 375 0 375 0V798.72Z'
           fill='#EDEDED'

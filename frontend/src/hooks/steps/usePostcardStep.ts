@@ -1,14 +1,33 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import gsap from 'gsap'
 
 import { useJourneyContext } from '@/contexts/JourneyContext'
+import { useMobileDetection } from '@/hooks/useMobileDetection'
 
 export const usePostcardStep = () => {
   const { journeyStep, setShowExitButton } = useJourneyContext()
+  const isMobile = useMobileDetection()
   const [isPostcardAnimationComplete, setIsPostcardAnimationComplete] = useState(false)
   const postcardTimelineRef = useRef<gsap.core.Timeline | null>(null)
   const enterPostcardTimelineRef = useRef<gsap.core.Timeline | null>(null)
+
+  // Dynamic postcard elements based on mobile/desktop
+  const postcardElements = useMemo(
+    () =>
+      isMobile
+        ? ['#postcard-1', '#postcard-2', '#postcard-3', '#postcard-4', '#postcard-5']
+        : [
+            '#postcard-1',
+            '#postcard-2',
+            '#postcard-3',
+            '#postcard-4',
+            '#postcard-5',
+            '#postcard-6',
+            '#postcard-7',
+          ],
+    [isMobile],
+  )
 
   // Postcard animation configuration
   const postcardAnimationConfig = {
@@ -19,22 +38,11 @@ export const usePostcardStep = () => {
   }
 
   // Postcard reset function
-  const resetPostcardElements = () => {
-    gsap.set(
-      [
-        '#postcard-1',
-        '#postcard-2',
-        '#postcard-3',
-        '#postcard-4',
-        '#postcard-5',
-        '#postcard-6',
-        '#postcard-7',
-      ],
-      {
-        opacity: 0,
-      },
-    )
-  }
+  const resetPostcardElements = useCallback(() => {
+    gsap.set(postcardElements, {
+      opacity: 0,
+    })
+  }, [postcardElements])
 
   // Postcard timeline cleanup function
   const cleanupPostcardAnimation = useCallback(() => {
@@ -44,7 +52,7 @@ export const usePostcardStep = () => {
     }
 
     resetPostcardElements()
-  }, [])
+  }, [resetPostcardElements])
 
   // Start postcard sequential fade-in animation
   const startPostcardAnimations = useCallback(() => {
@@ -63,66 +71,26 @@ export const usePostcardStep = () => {
       },
     })
 
-    postcardTl
-      .to('#postcard-1', {
-        opacity: 1,
-        duration: postcardAnimationConfig.fadeInDuration,
-        ease: postcardAnimationConfig.ease,
-      })
-      .to(
-        '#postcard-2',
-        {
+    // Dynamic postcard animations based on available elements
+    postcardElements.forEach((postcard, index) => {
+      if (index === 0) {
+        postcardTl.to(postcard, {
           opacity: 1,
           duration: postcardAnimationConfig.fadeInDuration,
           ease: postcardAnimationConfig.ease,
-        },
-        `+=${postcardAnimationConfig.staggerDelay}`,
-      )
-      .to(
-        '#postcard-3',
-        {
-          opacity: 1,
-          duration: postcardAnimationConfig.fadeInDuration,
-          ease: postcardAnimationConfig.ease,
-        },
-        `+=${postcardAnimationConfig.staggerDelay}`,
-      )
-      .to(
-        '#postcard-4',
-        {
-          opacity: 1,
-          duration: postcardAnimationConfig.fadeInDuration,
-          ease: postcardAnimationConfig.ease,
-        },
-        `+=${postcardAnimationConfig.staggerDelay}`,
-      )
-      .to(
-        '#postcard-5',
-        {
-          opacity: 1,
-          duration: postcardAnimationConfig.fadeInDuration,
-          ease: postcardAnimationConfig.ease,
-        },
-        `+=${postcardAnimationConfig.staggerDelay}`,
-      )
-      .to(
-        '#postcard-6',
-        {
-          opacity: 1,
-          duration: postcardAnimationConfig.fadeInDuration,
-          ease: postcardAnimationConfig.ease,
-        },
-        `+=${postcardAnimationConfig.staggerDelay}`,
-      )
-      .to(
-        '#postcard-7',
-        {
-          opacity: 1,
-          duration: postcardAnimationConfig.fadeInDuration,
-          ease: postcardAnimationConfig.ease,
-        },
-        `+=${postcardAnimationConfig.staggerDelay}`,
-      )
+        })
+      } else {
+        postcardTl.to(
+          postcard,
+          {
+            opacity: 1,
+            duration: postcardAnimationConfig.fadeInDuration,
+            ease: postcardAnimationConfig.ease,
+          },
+          `+=${postcardAnimationConfig.staggerDelay}`,
+        )
+      }
+    })
 
     postcardTimelineRef.current = postcardTl
   }, [
@@ -130,6 +98,8 @@ export const usePostcardStep = () => {
     postcardAnimationConfig.ease,
     postcardAnimationConfig.fadeInDuration,
     postcardAnimationConfig.staggerDelay,
+    postcardElements,
+    resetPostcardElements,
     setShowExitButton,
   ])
 
@@ -144,20 +114,9 @@ export const usePostcardStep = () => {
         cleanupPostcardAnimation()
 
         // Hide all postcard elements after reverse animation completes
-        gsap.set(
-          [
-            '#postcard-1',
-            '#postcard-2',
-            '#postcard-3',
-            '#postcard-4',
-            '#postcard-5',
-            '#postcard-6',
-            '#postcard-7',
-          ],
-          {
-            opacity: 0,
-          },
-        )
+        gsap.set(postcardElements, {
+          opacity: 0,
+        })
       })
 
       enterPostcardTimelineRef.current.reverse()
