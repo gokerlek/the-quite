@@ -146,7 +146,10 @@ export const JourneyContainer = ({ containerRef }: JourneyContainerProps) => {
           id='exit-button'
           variant='outline'
           onClick={exit}
-          className=' z-50 absolute top-6 right-12 px-0 w-12 h-12 bg-offblack-50'
+          className={cn(' z-50  px-0 w-12 h-12 bg-offblack-50', {
+            'absolute top-6 right-12': !isMobile,
+            'absolute bottom-4 right-4 w-9 h-9': isMobile,
+          })}
         >
           <div className='relative h-9 w-9'>
             <Image src='/events/left.svg' alt='left' fill className='object-cover' />
