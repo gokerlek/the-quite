@@ -132,6 +132,22 @@ export const useHouseStep = ({
           gsap.set(postcardContainer, { pointerEvents: 'none' })
         }
 
+        // Hide all postcard elements after reverse animation completes
+        gsap.set(
+          [
+            '#postcard-1',
+            '#postcard-2',
+            '#postcard-3',
+            '#postcard-4',
+            '#postcard-5',
+            '#postcard-6',
+            '#postcard-7',
+          ],
+          {
+            opacity: 0,
+          },
+        )
+
         // Return to the house in final state (with the exit button)
         setShowExitButton(true)
       })
