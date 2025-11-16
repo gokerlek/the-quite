@@ -19,657 +19,657 @@ const MainWallMobile = (props: GProps) => {
         <path
           d='M43.4795 307.93H122.399'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M56.0796 314.16H56.0596'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M69.6999 314.16H69.6699'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M83.31 314.16H83.29'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M96.9194 314.16H96.8994'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M110.53 314.16H110.51'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M121.44 314.16H117.32'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M103.73 314.16H103.71'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M90.1199 314.16H90.0898'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M76.4995 314.16H76.4795'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M62.8901 314.16H62.8701'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M49.2802 314.16H45.1602'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M120.01 278.23H46.5898V285.52H120.01V278.23Z'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M120.009 278.23H46.5895L45.4395 272.28H121.159L120.009 278.23Z'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M56.0703 314.43C56.0703 314.34 56.0703 314.25 56.0603 314.16C55.9203 312.41 54.4603 311.03 52.6703 311.03C50.8803 311.03 49.4203 312.41 49.2803 314.16'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M62.8801 314.43C62.8801 314.34 62.8801 314.25 62.8701 314.16C62.7301 312.41 61.2701 311.03 59.4801 311.03C57.6901 311.03 56.2301 312.41 56.0901 314.16C56.0901 314.25 56.0801 314.34 56.0801 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M69.6906 314.43C69.6906 314.34 69.6906 314.25 69.6806 314.16C69.5406 312.41 68.0806 311.03 66.2906 311.03C64.5006 311.03 63.0406 312.41 62.9006 314.16C62.9006 314.25 62.8906 314.34 62.8906 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M76.4904 314.43C76.4904 314.34 76.4904 314.25 76.4804 314.16C76.3404 312.41 74.8804 311.03 73.0904 311.03C71.3004 311.03 69.8404 312.41 69.7004 314.16C69.7004 314.25 69.6904 314.34 69.6904 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M83.3 314.43C83.3 314.34 83.3 314.25 83.29 314.16C83.15 312.41 81.69 311.03 79.9 311.03C78.11 311.03 76.65 312.41 76.51 314.16C76.51 314.25 76.5 314.34 76.5 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M90.0998 314.43C90.0998 314.34 90.0998 314.25 90.0898 314.16C89.9498 312.41 88.4898 311.03 86.6998 311.03C84.9098 311.03 83.4498 312.41 83.3098 314.16C83.3098 314.25 83.2998 314.34 83.2998 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M96.9104 314.43C96.9104 314.34 96.9104 314.25 96.9004 314.16C96.7604 312.41 95.3004 311.03 93.5104 311.03C91.7204 311.03 90.2604 312.41 90.1204 314.16C90.1204 314.25 90.1104 314.34 90.1104 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M103.72 314.43C103.72 314.34 103.72 314.25 103.71 314.16C103.57 312.41 102.11 311.03 100.32 311.03C98.5299 311.03 97.0699 312.41 96.9299 314.16C96.9299 314.25 96.9199 314.34 96.9199 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M110.521 314.43C110.521 314.34 110.521 314.25 110.511 314.16C110.371 312.41 108.911 311.03 107.121 311.03C105.331 311.03 103.871 312.41 103.731 314.16C103.731 314.25 103.721 314.34 103.721 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M117.33 314.43C117.33 314.34 117.33 314.25 117.32 314.16C117.18 312.41 115.72 311.03 113.93 311.03C112.14 311.03 110.68 312.41 110.54 314.16C110.54 314.25 110.53 314.34 110.53 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M45.1599 314.16L40.3799 296.73'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M121.439 314.16L126.219 296.73'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M49.2803 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M56.0596 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M62.8896 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M69.71 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M76.5 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M83.2998 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M90.0898 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M96.9199 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M103.729 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M110.51 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M117.32 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M135.49 285.52H30.6104'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M128.551 296.73H37.5605'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M135.49 285.52C130.81 288.14 128.38 292.64 128.55 296.73'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M30.6104 285.52C35.2904 288.14 37.7204 292.64 37.5504 296.73'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M252.11 307.93H331.02'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M264.71 314.16H264.68'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M278.32 314.16H278.3'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M291.93 314.16H291.91'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M305.54 314.16H305.52'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M319.16 314.16H319.14'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M330.06 314.16H325.94'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M312.35 314.16H312.33'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M298.74 314.16H298.72'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M285.13 314.16H285.1'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M271.51 314.16H271.49'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M257.9 314.16H253.78'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M328.63 278.23H255.21V285.52H328.63V278.23Z'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M328.63 278.23H255.21L254.06 272.28H329.78L328.63 278.23Z'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M264.7 314.43C264.7 314.34 264.7 314.25 264.69 314.16C264.55 312.41 263.09 311.03 261.3 311.03C259.51 311.03 258.05 312.41 257.91 314.16'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M271.5 314.43C271.5 314.34 271.5 314.25 271.49 314.16C271.35 312.41 269.89 311.03 268.1 311.03C266.31 311.03 264.85 312.41 264.71 314.16C264.71 314.25 264.7 314.34 264.7 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M278.31 314.43C278.31 314.34 278.31 314.25 278.3 314.16C278.16 312.41 276.7 311.03 274.91 311.03C273.12 311.03 271.66 312.41 271.52 314.16C271.52 314.25 271.51 314.34 271.51 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M285.111 314.43C285.111 314.34 285.111 314.25 285.101 314.16C284.961 312.41 283.501 311.03 281.711 311.03C279.921 311.03 278.461 312.41 278.321 314.16C278.321 314.25 278.311 314.34 278.311 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M291.92 314.43C291.92 314.34 291.92 314.25 291.91 314.16C291.77 312.41 290.31 311.03 288.52 311.03C286.73 311.03 285.27 312.41 285.13 314.16C285.13 314.25 285.12 314.34 285.12 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M298.73 314.43C298.73 314.34 298.73 314.25 298.72 314.16C298.58 312.41 297.12 311.03 295.33 311.03C293.54 311.03 292.08 312.41 291.94 314.16C291.94 314.25 291.93 314.34 291.93 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M305.53 314.43C305.53 314.34 305.53 314.25 305.52 314.16C305.38 312.41 303.92 311.03 302.13 311.03C300.34 311.03 298.88 312.41 298.74 314.16C298.74 314.25 298.73 314.34 298.73 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M312.34 314.43C312.34 314.34 312.34 314.25 312.33 314.16C312.19 312.41 310.73 311.03 308.94 311.03C307.15 311.03 305.69 312.41 305.55 314.16C305.55 314.25 305.54 314.34 305.54 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M319.151 314.43C319.151 314.34 319.151 314.25 319.141 314.16C319.001 312.41 317.541 311.03 315.751 311.03C313.961 311.03 312.501 312.41 312.361 314.16C312.361 314.25 312.351 314.34 312.351 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M325.95 314.43C325.95 314.34 325.95 314.25 325.94 314.16C325.8 312.41 324.34 311.03 322.55 311.03C320.76 311.03 319.3 312.41 319.16 314.16C319.16 314.25 319.15 314.34 319.15 314.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M253.78 314.16L249 296.73'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M330.06 314.16L334.84 296.73'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M257.9 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M264.68 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M271.51 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M278.33 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M285.12 314.16L285.13 841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M291.92 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M298.72 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M305.54 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M312.35 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M319.14 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M325.94 314.16V841.24'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M344.11 285.52H239.23'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M337.171 296.73H246.181'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M344.12 285.52C339.44 288.14 337.01 292.64 337.18 296.73'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M239.23 285.52C243.91 288.14 246.34 292.64 246.17 296.73'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
@@ -696,9 +696,9 @@ const MainWallMobile = (props: GProps) => {
           d='M49.04 851.24V543.43C49.04 500.76 61.12 459.17 83.96 423.13C106.81 387.1 144.97 358.79 183.56 340.59L187.5 338.73L196.23 342.51C278.49 378.12 325.96 458.68 325.96 548.32V851.23H240.001L243 652L227 631L204 615.5L156.5 622.51L132.5 652L135.001 851.23H49.04V851.24Z'
           fill='#EDEDED'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path d='M135.5 852.01H239' stroke='black' />
@@ -707,8 +707,8 @@ const MainWallMobile = (props: GProps) => {
           d='M316.32 548.32V558.35H58.6797V543.42C58.6797 539.72 58.7797 536.03 58.9597 532.35H315.8C316.15 537.62 316.33 542.94 316.33 548.31L316.32 548.32Z'
           fill='#EDEDED'
           stroke='#1C1C1C'
-          stroke-width='1.45'
-          stroke-miterlimit='10'
+          strokeWidth='1.45'
+          strokeMiterlimit='10'
         />
 
         <path
@@ -719,195 +719,190 @@ const MainWallMobile = (props: GProps) => {
         <path
           d='M120.5 501.27L114.75 498.87'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-miterlimit='10'
+          strokeWidth='1.5'
+          strokeMiterlimit='10'
         />
 
         <path
           d='M120.21 589.27L114.46 591.669'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-miterlimit='10'
+          strokeWidth='1.5'
+          strokeMiterlimit='10'
         />
 
         <path
           d='M233.76 472.27H141.22L114.45 499.04V591.669L141.22 618.44H233.76L260.54 591.669V499.04L233.76 472.27Z'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-miterlimit='10'
+          strokeWidth='1.5'
+          strokeMiterlimit='10'
         />
 
         <path
           d='M231.37 478.029H143.62L120.22 501.429H120.21V589.269L143.62 612.679H231.37L254.77 589.269V501.429L231.37 478.029Z'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-miterlimit='10'
+          strokeWidth='1.5'
+          strokeMiterlimit='10'
         />
 
         <path
           d='M260.541 499.04L254.771 501.43'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-miterlimit='10'
+          strokeWidth='1.5'
+          strokeMiterlimit='10'
         />
 
         <path
           d='M254.771 589.27L260.541 591.66'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-miterlimit='10'
+          strokeWidth='1.5'
+          strokeMiterlimit='10'
         />
 
         <path
           d='M231.37 612.669L233.76 618.439'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-miterlimit='10'
+          strokeWidth='1.5'
+          strokeMiterlimit='10'
         />
 
         <path
           d='M143.62 612.669L141.23 618.439'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-miterlimit='10'
+          strokeWidth='1.5'
+          strokeMiterlimit='10'
         />
 
         <path
           d='M233.76 472.27L231.37 478.03'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-miterlimit='10'
+          strokeWidth='1.5'
+          strokeMiterlimit='10'
         />
 
         <path
           d='M141.47 472.27L143.62 478.03'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-miterlimit='10'
+          strokeWidth='1.5'
+          strokeMiterlimit='10'
         />
 
-        <path
-          d='M187.5 612.15V472.27'
-          stroke='#1C1C1C'
-          stroke-width='1.45'
-          stroke-miterlimit='10'
-        />
+        <path d='M187.5 612.15V472.27' stroke='#1C1C1C' strokeWidth='1.45' strokeMiterlimit='10' />
 
         <path
           d='M316.32 548.57V851.23H58.6797V543.66C58.6797 539.96 58.7797 536.26 58.9597 532.58C60.8497 495.6 72.2097 459.78 92.0997 428.38C107.04 404.78 130.06 382.98 158.46 365.23C167.66 359.47 177.43 354.14 187.66 349.3L192.39 351.35C200.88 355.03 209.01 359.23 216.76 363.92C274.55 398.86 311.07 460.67 315.79 532.59C316.14 537.86 316.32 543.2 316.32 548.57Z'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M72.6201 514.15V812.73'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M86.5693 487.41V850.06'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M100.51 487.41V850.06'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M114.46 514.15V850.06'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M274.489 487.41V850.06'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M288.43 487.41V850.06'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M302.38 514.15V812.94'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M260.54 514.15V850.06'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M100.51 494.32C103.979 494.32 106.79 491.508 106.79 488.04C106.79 484.571 103.979 481.76 100.51 481.76C97.0421 481.76 94.2305 484.571 94.2305 488.04C94.2305 491.508 97.0421 494.32 100.51 494.32Z'
           fill='#EDEDED'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M86.57 486.56C90.0384 486.56 92.85 483.748 92.85 480.28C92.85 476.812 90.0384 474 86.57 474C83.1017 474 80.29 476.812 80.29 480.28C80.29 483.748 83.1017 486.56 86.57 486.56Z'
           fill='#EDEDED'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M274.49 494.32C277.958 494.32 280.77 491.508 280.77 488.04C280.77 484.571 277.958 481.76 274.49 481.76C271.022 481.76 268.21 484.571 268.21 488.04C268.21 491.508 271.022 494.32 274.49 494.32Z'
           fill='#EDEDED'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M288.43 486.56C291.899 486.56 294.71 483.748 294.71 480.28C294.71 476.812 291.899 474 288.43 474C284.962 474 282.15 476.812 282.15 480.28C282.15 483.748 284.962 486.56 288.43 486.56Z'
           fill='#EDEDED'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M91.0996 532.36H58.8896V564.57H91.0996V532.36Z'
           fill='#EDEDED'
           stroke='#1C1C1C'
-          stroke-width='1.45'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.45'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path d='M91.35 564.96C77.26 564.66 64.42 573 58.96 585.98L91.35 564.96Z' fill='#EDEDED' />
@@ -915,18 +910,18 @@ const MainWallMobile = (props: GProps) => {
         <path
           d='M91.35 564.96C77.26 564.66 64.42 573 58.96 585.98'
           stroke='#1C1C1C'
-          stroke-width='1.45'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.45'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M284.11 564.57H316.32V532.36H284.11V564.57Z'
           fill='#EDEDED'
           stroke='#1C1C1C'
-          stroke-width='1.45'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.45'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
@@ -937,59 +932,59 @@ const MainWallMobile = (props: GProps) => {
         <path
           d='M283.87 564.96C297.96 564.66 310.8 573 316.26 585.98'
           stroke='#1C1C1C'
-          stroke-width='1.45'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.45'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M90.8897 819.03H58.6797V851.24H90.8897V819.03Z'
           fill='#EDEDED'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M91.14 818.63C77.05 818.93 64.21 810.59 58.75 797.61'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M284.11 851.24H316.32V819.03H284.11V851.24Z'
           fill='#EDEDED'
           stroke='#1C1C1C'
-          stroke-width='1.45'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.45'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M283.87 818.63C297.96 818.93 310.8 810.59 316.26 797.61'
           stroke='#1C1C1C'
-          stroke-width='1.45'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.45'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M247.03 485.54L294.71 450.31'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M80.29 450.31L127.97 485.54'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
@@ -1131,25 +1126,25 @@ const MainWallMobile = (props: GProps) => {
           d='M341.63 591.49H33.3698C33.3698 584.85 27.9898 579.46 21.3398 579.46V511.25C27.9798 511.25 33.3698 505.87 33.3698 499.22H341.62C341.62 505.86 347 511.25 353.65 511.25V579.46C347.01 579.46 341.62 584.84 341.62 591.49H341.63Z'
           fill='#EDEDED'
           stroke='#1C1C1C'
-          stroke-width='1.5'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M21.3496 531.52H353.65'
           stroke='#1C1C1C'
-          stroke-width='1.45'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.45'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
           d='M21.3496 559.169H353.65'
           stroke='#1C1C1C'
-          stroke-width='1.45'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.45'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
 
         <path
@@ -1484,16 +1479,16 @@ const MainWallMobile = (props: GProps) => {
           d='M246.96 671.61V851.23H239.73V671.61C239.73 642.81 216.31 619.39 187.5 619.38V612.15C203.93 612.15 218.78 618.8 229.54 629.56C240.3 640.32 246.96 655.19 246.96 671.61Z'
           fill='#EDEDED'
           stroke='#1C1C1C'
-          stroke-width='1.45'
-          stroke-miterlimit='10'
+          strokeWidth='1.45'
+          strokeMiterlimit='10'
         />
 
         <path
           d='M187.5 612.15V619.38H187.49C158.69 619.38 135.26 642.81 135.26 671.61V851.23H128.03V671.61C128.03 638.77 154.65 612.15 187.49 612.15H187.5Z'
           fill='#EDEDED'
           stroke='#1C1C1C'
-          stroke-width='1.45'
-          stroke-miterlimit='10'
+          strokeWidth='1.45'
+          strokeMiterlimit='10'
         />
       </g>
 

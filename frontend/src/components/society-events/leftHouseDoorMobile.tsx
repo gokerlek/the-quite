@@ -7,88 +7,88 @@ export const LeftHouseDoorMobile = (props: GProps) => {
         d='M138.84 343.56V514H187.84V294C160.812 294.009 138.84 316.232 138.84 343.56Z'
         fill='#EDEDED'
         stroke='#1C1C1C'
-        stroke-width='1.45'
-        stroke-miterlimit='10'
+        strokeWidth='1.45'
+        strokeMiterlimit='10'
       />
 
       <path
         d='M187.248 415.595V447.347C187.248 447.347 187.33 447.384 187.366 447.42H187.248V451.178H187.12C161.164 451.178 140.035 430.049 140.035 404.084C140.035 378.119 161.164 357 187.12 357H187.248V360.758H187.366C187.366 360.758 187.284 360.803 187.248 360.831V404.212'
         stroke='#F0002C'
-        stroke-width='1.5'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='1.5'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
 
       <path
         d='M187.248 415.596V447.348C187.248 447.348 187.33 447.385 187.367 447.421H186.864C163.139 447.284 143.93 428.076 143.793 404.342V403.83C143.93 380.105 163.148 360.896 186.873 360.759H187.367C187.367 360.759 187.284 360.805 187.248 360.832V415.267'
         stroke='#F0002C'
-        stroke-width='1.5'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='1.5'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
 
       <path
         d='M186.869 360.759H186.878C186.961 360.805 187.034 360.85 187.125 360.905C187.162 360.933 187.207 360.951 187.244 360.978'
         stroke='#F0002C'
-        stroke-width='1.5'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='1.5'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
 
       <path
         d='M187.248 415.596C187.248 415.596 187.165 415.642 187.129 415.669C182.475 418.357 177.072 419.893 171.321 419.893C159.619 419.893 149.407 413.539 143.939 404.086C143.894 404.003 143.839 403.93 143.793 403.839'
         stroke='#F0002C'
-        stroke-width='1.5'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='1.5'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
 
       <path
         d='M187.247 415.733C187.247 415.733 187.164 415.688 187.128 415.669C184.723 414.28 182.529 412.579 180.582 410.632C178.634 408.684 176.934 406.49 175.544 404.086C172.856 399.441 171.32 394.047 171.32 388.287C171.32 376.585 177.674 366.372 187.128 360.905C187.164 360.878 187.21 360.85 187.247 360.832C187.283 360.805 187.329 360.786 187.366 360.759H187.375'
         stroke='#F0002C'
-        stroke-width='1.5'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='1.5'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
 
       <path
         d='M143.793 404.341C143.839 404.249 143.894 404.176 143.939 404.085C149.407 394.64 159.619 388.286 171.321 388.286C177.072 388.286 182.475 389.822 187.129 392.51C187.165 392.537 187.211 392.556 187.248 392.583'
         stroke='#F0002C'
-        stroke-width='1.5'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='1.5'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
 
       <path
         d='M187.244 447.202C187.244 447.202 187.162 447.248 187.125 447.275C187.034 447.321 186.961 447.367 186.869 447.422'
         stroke='#F0002C'
-        stroke-width='1.5'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='1.5'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
 
       <path
         d='M187.375 447.422H187.366C187.366 447.422 187.283 447.367 187.247 447.349C187.21 447.321 187.164 447.294 187.128 447.275C177.674 441.808 171.32 431.596 171.32 419.893C171.32 414.133 172.856 408.739 175.544 404.086C176.934 401.681 178.625 399.487 180.573 397.54C182.52 395.592 184.723 393.901 187.128 392.511C187.164 392.493 187.21 392.466 187.247 392.447'
         stroke='#F0002C'
-        stroke-width='1.5'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='1.5'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
 
       <path
         d='M187.248 403.967L187.129 404.095L180.583 410.632L171.321 419.893L156.492 434.723'
         stroke='#F0002C'
-        stroke-width='1.5'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='1.5'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
 
       <path
         d='M156.492 373.457L171.321 388.286L180.574 397.539L187.129 404.094L187.248 404.213'
         stroke='#F0002C'
-        stroke-width='1.5'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='1.5'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
     </svg>
   )
