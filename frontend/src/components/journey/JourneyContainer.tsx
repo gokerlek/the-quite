@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Circle } from '@/components/society-events/circle'
 import { CircleMobile } from '@/components/society-events/circleMobile'
 import { House } from '@/components/society-events/house'
+import { HouseMobile } from '@/components/society-events/houseMobile'
 import { LeftHouseDoor } from '@/components/society-events/leftHouseDoor'
 import { LeftHouseDoorMobile } from '@/components/society-events/leftHouseDoorMobile'
 import { Postcard } from '@/components/society-events/postcard'
@@ -95,44 +96,40 @@ export const JourneyContainer = ({ containerRef }: JourneyContainerProps) => {
         id='house-container'
         className='absolute inset-0 z-[8] opacity-0 pointer-events-none'
       >
-        {isMobile ? (
-          <div id='house-wall' className='relative w-full h-full'></div>
-        ) : (
-          <div id='house-wall' className='relative w-full h-full'>
-            <House id='house' />
+        <div id='house-wall' className='relative w-full h-full'>
+          {isMobile ? <HouseMobile id='house' /> : <House id='house' />}
 
-            <div
-              id='house-door-bell'
-              className='absolute left-1/2 w-[11.5rem] -translate-x-1/2 h-80 bottom-[39%] peer z-50 flex justify-center cursor-pointer rounded-t-full'
-              onMouseEnter={houseMouseHoverStart}
-              onClick={enterStep5}
+          <div
+            id='house-door-bell'
+            className='absolute left-1/2 w-[11.5rem] -translate-x-1/2 h-80 bottom-[39%] peer z-50 flex justify-center cursor-pointer rounded-t-full'
+            onMouseEnter={houseMouseHoverStart}
+            onClick={enterStep5}
+          />
+
+          {isMobile ? (
+            <LeftHouseDoorMobile
+              id='house-left-door'
+              className='absolute inset-0 transition-all peer-hover:-translate-x-[6.3rem] duration-700 '
             />
+          ) : (
+            <LeftHouseDoor
+              id='house-left-door'
+              className='absolute inset-0 transition-all peer-hover:-translate-x-[6.3rem] duration-700 '
+            />
+          )}
 
-            {isMobile ? (
-              <LeftHouseDoorMobile
-                id='house-left-door'
-                className='absolute inset-0 transition-all peer-hover:-translate-x-[6.3rem] duration-700 '
-              />
-            ) : (
-              <LeftHouseDoor
-                id='house-left-door'
-                className='absolute inset-0 transition-all peer-hover:-translate-x-[6.3rem] duration-700 '
-              />
-            )}
-
-            {isMobile ? (
-              <RightHouseDoorMobile
-                id='house-right-door'
-                className='absolute inset-0 transition-all peer-hover:translate-x-[6.3rem] duration-700'
-              />
-            ) : (
-              <RightHouseDoor
-                id='house-right-door'
-                className='absolute inset-0 transition-all peer-hover:translate-x-[6.3rem] duration-700'
-              />
-            )}
-          </div>
-        )}
+          {isMobile ? (
+            <RightHouseDoorMobile
+              id='house-right-door'
+              className='absolute inset-0 transition-all peer-hover:translate-x-[6.3rem] duration-700'
+            />
+          ) : (
+            <RightHouseDoor
+              id='house-right-door'
+              className='absolute inset-0 transition-all peer-hover:translate-x-[6.3rem] duration-700'
+            />
+          )}
+        </div>
       </section>
 
       {/* Step 5: Postcard */}
@@ -140,14 +137,7 @@ export const JourneyContainer = ({ containerRef }: JourneyContainerProps) => {
         id='postcard-container'
         className='absolute inset-0 z-[7] opacity-0 pointer-events-none'
       >
-        <svg
-          viewBox='0 0 1440 1024'
-          fill='none'
-          className='relative'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          {isMobile ? <PostcardMobile id='postcard' /> : <Postcard id='postcard' />}
-        </svg>
+        {isMobile ? <PostcardMobile id='postcard' /> : <Postcard id='postcard' />}
       </section>
 
       {/* Exit button outside room container for accessibility */}

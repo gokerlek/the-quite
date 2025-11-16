@@ -3,6 +3,7 @@ import { useRef } from 'react'
 import gsap from 'gsap'
 
 import { useJourneyContext } from '@/contexts/JourneyContext'
+import { useMobileDetection } from '@/hooks/useMobileDetection'
 
 interface UseTempleStepProps {
   onEnterHouseTimelineCreated?: (timeline: gsap.core.Timeline) => void
@@ -16,7 +17,99 @@ export const useTempleStep = ({ onEnterHouseTimelineCreated }: UseTempleStepProp
   const enterHouseTimelineRef = useRef<gsap.core.Timeline | null>(null)
   const enterTempleTimelineRef = useRef<gsap.core.Timeline | null>(null)
 
+  const isMobile = useMobileDetection()
+
   // Temple circle animations are triggered by enterStep3, not automatically
+
+  // Start temple mobile animations function (mobile specific)
+  const startTempleMobileAnimations = () => {
+    // Clean up any existing animations
+    if (templeCircleTimelineRef.current) {
+      templeCircleTimelineRef.current.kill()
+    }
+
+    if (templeStarTimelineRef.current) {
+      templeStarTimelineRef.current.kill()
+    }
+
+    // Set initial states for mobile
+    gsap.set(['#temple-text-1', '#temple-text-2', '#temple-text-3'], {
+      opacity: 0,
+    })
+
+    gsap.set('#temple-center-star', { transformOrigin: 'center center', rotation: 0 })
+    gsap.set('#temple-gate-star', { transformOrigin: 'center center' })
+
+    // Mobile animation timeline
+    const mobileTl = gsap.timeline({
+      onComplete: () => {
+        // Start gate-star loop animation after mobile sequence completes
+        startTempleStarAnimation()
+      },
+    })
+
+    mobileTl
+      // 1 saniye bekle
+      .delay(1)
+      // 1. temple-center-star 90° döndür
+      .to('#temple-center-star', {
+        rotation: 90,
+        duration: 0.8,
+        ease: 'power2.inOut',
+      })
+      // 2. text1 göster (kalıcı)
+      .to(
+        '#temple-text-1',
+        {
+          opacity: 1,
+          duration: 0.6,
+          ease: 'power2.out',
+        },
+        '+=0.2',
+      )
+      // 3. temple-center-star 90° daha döndür (toplam 180°)
+      .to(
+        '#temple-center-star',
+        {
+          rotation: 180,
+          duration: 0.8,
+          ease: 'power2.inOut',
+        },
+        '+=1',
+      )
+      // 4. text2 göster (kalıcı)
+      .to(
+        '#temple-text-2',
+        {
+          opacity: 1,
+          duration: 0.6,
+          ease: 'power2.out',
+        },
+        '+=0.2',
+      )
+      // 5. temple-center-star 90° daha döndür (toplam 270°)
+      .to(
+        '#temple-center-star',
+        {
+          rotation: 270,
+          duration: 0.8,
+          ease: 'power2.inOut',
+        },
+        '+=1',
+      )
+      // 6. text3 göster (kalıcı)
+      .to(
+        '#temple-text-3',
+        {
+          opacity: 1,
+          duration: 0.6,
+          ease: 'power2.out',
+        },
+        '+=0.2',
+      )
+
+    templeCircleTimelineRef.current = mobileTl
+  }
 
   // Start temple circle animations function
   const startTempleCircleAnimations = () => {
@@ -211,11 +304,11 @@ export const useTempleStep = ({ onEnterHouseTimelineCreated }: UseTempleStepProp
 
       // Temple büyütme animasyonu (12 kat)
       .to('#temple-container', {
-        scale: 15,
+        scale: isMobile ? 20 : 15,
         y: '-50%',
         duration: 2.5,
         ease: 'power2.inOut',
-        transformOrigin: 'center center',
+        transformOrigin: isMobile ? '49% 68%' : 'center center',
       })
 
       // House fade-in
@@ -317,6 +410,16 @@ export const useTempleStep = ({ onEnterHouseTimelineCreated }: UseTempleStepProp
           transformOrigin: 'center center',
         })
 
+        // Reset mobile temple elements to initial state
+        gsap.set(['#temple-text-1', '#temple-text-2', '#temple-text-3'], {
+          opacity: 0,
+        })
+
+        gsap.set('#temple-center-star', {
+          rotation: 0,
+          transformOrigin: 'center center',
+        })
+
         // Enable room interactions now that reverse animation is complete
         const roomContainer = document.querySelector('#room-cotainer')
 
@@ -381,6 +484,7 @@ export const useTempleStep = ({ onEnterHouseTimelineCreated }: UseTempleStepProp
 
   return {
     startTempleCircleAnimations,
+    startTempleMobileAnimations,
     startTempleStarAnimation,
     enterStep4,
     exitStep3,

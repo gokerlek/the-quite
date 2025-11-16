@@ -43,7 +43,7 @@ export const useJourneyAnimations = ({ containerRef }: UseJourneyAnimationsProps
     // Start temple circle animations after room zoom completes
     setTimeout(() => {
       if (isMobile) {
-        console.log('Mobile detected: Skipping temple circle animations.')
+        templeStep.startTempleMobileAnimations()
       } else {
         templeStep.startTempleCircleAnimations()
       }

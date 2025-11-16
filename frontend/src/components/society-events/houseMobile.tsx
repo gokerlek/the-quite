@@ -2,7 +2,13 @@ import { GProps } from '@/components/society-events/type'
 
 export const HouseMobile = (props: GProps) => {
   return (
-    <svg viewBox='0 0 375 852' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
+    <svg
+      viewBox='0 0 375 852'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      className='z-10 absolute inset-0'
+      {...props}
+    >
       <path
         d='M375 -1.00977V853H0V-1.00977H375ZM187.35 293.94C159.906 293.941 137.58 316.266 137.58 343.71V512.351C137.58 512.764 137.916 513.101 138.33 513.101H236.37C236.784 513.101 237.12 512.764 237.12 512.351V343.71C237.12 316.266 214.794 293.94 187.35 293.94Z'
         fill='#EDEDED'

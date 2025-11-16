@@ -1,3 +1,6 @@
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+
 import { TempleBaseMobile } from '@/components/society-events/templeBaseMobile'
 import { TempleText1Mobile } from '@/components/society-events/templeText1Mobile'
 import { TempleText2Mobile } from '@/components/society-events/templeText2Mobile'
@@ -7,15 +10,26 @@ import { GProps } from '@/components/society-events/type'
 export const TempleMobile = (props: GProps) => {
   const { ...rest } = props
 
+  useGSAP(
+    () => {
+      gsap.set(['#temple-text-1', '#temple-text-2', '#temple-text-3'], {
+        opacity: 0,
+      })
+
+      gsap.set('#temple-gate-star', { transformOrigin: 'center center' })
+    },
+    { dependencies: [] },
+  )
+
   return (
     <svg viewBox='0 0 375 852' fill='none' xmlns='http://www.w3.org/2000/svg' {...rest}>
       <TempleBaseMobile />
 
-      <TempleText1Mobile />
+      <TempleText1Mobile id='temple-text-1' />
 
-      <TempleText2Mobile />
+      <TempleText2Mobile id='temple-text-2' />
 
-      <TempleText3Mobile />
+      <TempleText3Mobile id='temple-text-3' />
 
       <g id='temple-gate-circle'>
         <path
@@ -28,6 +42,7 @@ export const TempleMobile = (props: GProps) => {
         />
 
         <path
+          id='temple-gate-star'
           d='M254.62 583.29C189.71 586.45 187.15 589.02 183.98 653.93C180.82 589.02 178.25 586.46 113.34 583.29C178.25 580.13 180.81 577.56 183.98 512.65C187.14 577.56 189.71 580.12 254.62 583.29Z'
           fill='transparent'
           stroke='#F0002C'

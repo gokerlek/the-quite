@@ -1,6 +1,8 @@
-export const TempleText3Mobile = () => {
+import { GProps } from '@/components/society-events/type'
+
+export const TempleText3Mobile = (props: GProps) => {
   return (
-    <g>
+    <g {...props}>
       <path
         d='M119.33 421.62V430.81H119.25L113.91 425.61V430.65H112.1V421.47H112.19L117.52 426.66V421.62H119.34H119.33Z'
         fill='#1C1C1C'

@@ -2,14 +2,7 @@ import { GProps } from '@/components/society-events/type'
 
 export const PostcardMobile = (props: GProps) => {
   return (
-    <svg
-      width='375'
-      height='852'
-      viewBox='0 0 375 852'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-      {...props}
-    >
+    <svg viewBox='0 0 375 852' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
       <path d='M375 -1.00977H0V853H375V-1.00977Z' fill='#EDEDED' />
 
       <path
