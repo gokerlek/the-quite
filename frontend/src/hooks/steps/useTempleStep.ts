@@ -59,7 +59,7 @@ export const useTempleStep = ({ onEnterHouseTimelineCreated }: UseTempleStepProp
       text: {
         fadeInDuration: 1,
         fadeOutDuration: 1,
-        delay: 0.5,
+        delay: 0.2,
         ease: 'power2.out',
       },
     }

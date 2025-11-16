@@ -5,9 +5,13 @@ import { Circle } from '@/components/society-events/circle'
 import { CircleMobile } from '@/components/society-events/circleMobile'
 import { House } from '@/components/society-events/house'
 import { LeftHouseDoor } from '@/components/society-events/leftHouseDoor'
+import { LeftHouseDoorMobile } from '@/components/society-events/leftHouseDoorMobile'
 import { Postcard } from '@/components/society-events/postcard'
+import { PostcardMobile } from '@/components/society-events/postcardMobile'
 import { RightHouseDoor } from '@/components/society-events/rightHouseDoor'
+import { RightHouseDoorMobile } from '@/components/society-events/rightHouseDoorMobile'
 import { Temple } from '@/components/society-events/temple'
+import { TempleMobile } from '@/components/society-events/templeMobile'
 import { Button } from '@/components/ui/button'
 import { useJourneyContext } from '@/contexts/JourneyContext'
 import { useContainerSize } from '@/hooks/useContainerSize'
@@ -73,18 +77,11 @@ export const JourneyContainer = ({ containerRef }: JourneyContainerProps) => {
         id='temple-container'
         className='absolute inset-0 z-[9] opacity-0 pointer-events-none'
       >
-        <svg
-          viewBox='0 0 1440 1024'
-          fill='none'
-          className='relative'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <Temple id='house' />
-        </svg>
+        {isMobile ? <TempleMobile id='house' /> : <Temple id='house' />}
 
         <div
           id='temple-door-bell'
-          className={`fixed left-1/2 size-80 -translate-x-1/2 bottom-[14%] -translate-y-1/2 z-50 rounded-full ${
+          className={`fixed left-1/2 size-40 md:size-80 -translate-x-1/2 bottom-[14%] -translate-y-1/2 z-50 rounded-full bg--400 ${
             isTempleAnimationComplete ? 'cursor-pointer' : 'cursor-not-allowed'
           }`}
           onClick={isTempleAnimationComplete ? enterStep4 : undefined}
@@ -98,33 +95,44 @@ export const JourneyContainer = ({ containerRef }: JourneyContainerProps) => {
         id='house-container'
         className='absolute inset-0 z-[8] opacity-0 pointer-events-none'
       >
-        <div id='house-wall' className='relative w-full h-full'>
-          <svg
-            viewBox='0 0 1440 1024'
-            fill='none'
-            className='z-10 absolute inset-0'
-            xmlns='http://www.w3.org/2000/svg'
-          >
+        {isMobile ? (
+          <div id='house-wall' className='relative w-full h-full'></div>
+        ) : (
+          <div id='house-wall' className='relative w-full h-full'>
             <House id='house' />
-          </svg>
 
-          <div
-            id='house-door-bell'
-            className='absolute left-1/2 w-[11.5rem] -translate-x-1/2 h-80 bottom-[39%] peer z-50 flex justify-center cursor-pointer rounded-t-full'
-            onMouseEnter={houseMouseHoverStart}
-            onClick={enterStep5}
-          />
+            <div
+              id='house-door-bell'
+              className='absolute left-1/2 w-[11.5rem] -translate-x-1/2 h-80 bottom-[39%] peer z-50 flex justify-center cursor-pointer rounded-t-full'
+              onMouseEnter={houseMouseHoverStart}
+              onClick={enterStep5}
+            />
 
-          <LeftHouseDoor
-            id='house-left-door'
-            className='absolute inset-0 transition-all peer-hover:-translate-x-[6.3rem] duration-700 '
-          />
+            {isMobile ? (
+              <LeftHouseDoorMobile
+                id='house-left-door'
+                className='absolute inset-0 transition-all peer-hover:-translate-x-[6.3rem] duration-700 '
+              />
+            ) : (
+              <LeftHouseDoor
+                id='house-left-door'
+                className='absolute inset-0 transition-all peer-hover:-translate-x-[6.3rem] duration-700 '
+              />
+            )}
 
-          <RightHouseDoor
-            id='house-right-door'
-            className='absolute inset-0 transition-all peer-hover:translate-x-[6.3rem] duration-700'
-          />
-        </div>
+            {isMobile ? (
+              <RightHouseDoorMobile
+                id='house-right-door'
+                className='absolute inset-0 transition-all peer-hover:translate-x-[6.3rem] duration-700'
+              />
+            ) : (
+              <RightHouseDoor
+                id='house-right-door'
+                className='absolute inset-0 transition-all peer-hover:translate-x-[6.3rem] duration-700'
+              />
+            )}
+          </div>
+        )}
       </section>
 
       {/* Step 5: Postcard */}
@@ -138,7 +146,7 @@ export const JourneyContainer = ({ containerRef }: JourneyContainerProps) => {
           className='relative'
           xmlns='http://www.w3.org/2000/svg'
         >
-          <Postcard id='postcard' />
+          {isMobile ? <PostcardMobile id='postcard' /> : <Postcard id='postcard' />}
         </svg>
       </section>
 

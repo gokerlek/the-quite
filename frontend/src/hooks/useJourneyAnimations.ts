@@ -1,6 +1,7 @@
 import { RefObject } from 'react'
 
 import { useJourneyContext } from '@/contexts/JourneyContext'
+import { useMobileDetection } from '@/hooks/useMobileDetection'
 
 import { useDoorStep } from './steps/useDoorStep'
 import { useHouseStep } from './steps/useHouseStep'
@@ -13,6 +14,7 @@ interface UseJourneyAnimationsProps {
 }
 
 export const useJourneyAnimations = ({ containerRef }: UseJourneyAnimationsProps) => {
+  const isMobile = useMobileDetection()
   const { journeyStep, showExitButton, isGlowAnimationComplete, isTempleAnimationComplete } =
     useJourneyContext()
 
@@ -40,7 +42,11 @@ export const useJourneyAnimations = ({ containerRef }: UseJourneyAnimationsProps
     roomStep.enterStep3()
     // Start temple circle animations after room zoom completes
     setTimeout(() => {
-      templeStep.startTempleCircleAnimations()
+      if (isMobile) {
+        console.log('Mobile detected: Skipping temple circle animations.')
+      } else {
+        templeStep.startTempleCircleAnimations()
+      }
     }, 3000) // Wait for room zoom animation to complete
   }
 
