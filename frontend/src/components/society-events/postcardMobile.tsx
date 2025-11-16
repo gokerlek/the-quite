@@ -8,8 +8,9 @@ export const PostcardMobile = (props: GProps) => {
       viewBox='0 0 375 852'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
+      {...props}
     >
-      <path d='M375 -1.00977H0V853H375V-1.00977Z' fill='#EDEDED' {...props} />
+      <path d='M375 -1.00977H0V853H375V-1.00977Z' fill='#EDEDED' />
 
       <path
         d='M359.01 385.35H15.9805V617.96H359.01V385.35Z'
