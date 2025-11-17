@@ -22,9 +22,9 @@ export const MobileHomeCarousel = () => {
   }
 
   return (
-    <div className='relative h-dvh w-full'>
+    <div className='relative h-screen w-full'>
       <div
-        className='grid gap-4 h-dvh overflow-scroll snap-y snap-mandatory p-4 scrollbar-hide place-items-center translate-y-28'
+        className='grid gap-4 h-screen overflow-scroll snap-y snap-mandatory p-4 scrollbar-hide place-items-center translate-y-28'
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         onScroll={handleScroll}
       >
