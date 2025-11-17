@@ -1,6 +1,6 @@
 import { NavItem } from './navItem'
 
-const navItems = [
+export const navItems = [
   { href: '/', label: 'dock.home', icon: 'dock/home.svg' },
   { href: '/about', label: 'dock.about', icon: 'dock/about.svg' },
   { href: '/contact', label: 'dock.contact', icon: 'dock/contact.svg' },
