@@ -145,6 +145,7 @@
     --text-h7: 2rem;      --leading-h7: 2.5rem; /* 32px / 40px */
     --text-h8: 1.5rem;    --leading-h8: 2rem; /* 24px / 32px */
     --text-h9: 1.25rem;   --leading-h9: 1.5rem; /* 20px / 24px */
+    --text-h10: 1rem;     --leading-h10: 1.5rem; /* 16px / 24px */
 
     /* Display / Heading sets (L/M/S) */
     --text-head-xl: 3rem;    --leading-head-xl: 3.5rem; /* 48px / 56px */
@@ -177,6 +178,7 @@ body {
 @utility h7           { font-size: var(--text-h7); line-height: var(--leading-h7); @apply font-montagne; }
 @utility h8           { font-size: var(--text-h8); line-height: var(--leading-h8); @apply font-montagne; }
 @utility h9           { font-size: var(--text-h9); line-height: var(--leading-h9); @apply font-montagne; }
+@utility h10          { font-size: var(--text-h10); line-height: var(--leading-h10); @apply font-montagne; }
 
 
 /* ===============================

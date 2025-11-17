@@ -4,12 +4,14 @@ import { useRef } from 'react'
 
 import { HeroLogo } from '@/components/home/heroLogo'
 import { HomeCarousel } from '@/components/home/homeCarousel'
+import { MobileHomeCarousel } from '@/components/home/MobileHomeCarousel'
 import { ScrollIndicator } from '@/components/home/scrollIndicator'
 import { TheQuietDescription } from '@/components/home/theQuietDescription'
 import { TheQuiteWordmark } from '@/components/home/theQuiteWordmark'
 import { TheQuiteWordmarkWhite } from '@/components/home/theQuiteWordmarkWhite'
 import { useHeroAnimation } from '@/hooks/useHeroAnimation'
 import { useLoadingState } from '@/hooks/useLoadingState'
+import { useMobileDetection } from '@/hooks/useMobileDetection'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 
 export default function Home() {
@@ -20,11 +22,16 @@ export default function Home() {
 
   const { loaded, endLoading } = useLoadingState()
   const { showScrollIndicator } = useHeroAnimation(containerRef, true)
+  const isMobile = useMobileDetection()
 
   useScrollAnimation(homeRef, scrollRef, svgRef, showScrollIndicator)
 
   return loaded ? (
-    <HomeCarousel />
+    isMobile ? (
+      <MobileHomeCarousel />
+    ) : (
+      <HomeCarousel />
+    )
   ) : (
     <div id='home' className='min-h-dvh flex flex-col bg-offblack-50 fixed inset-0' ref={homeRef}>
       <section id='main' className='min-h-dvh flex flex-col relative h-dvh overflow-hidden'>

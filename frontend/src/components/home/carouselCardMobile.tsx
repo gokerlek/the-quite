@@ -17,7 +17,7 @@ interface CarouselCardProps {
   isActive: boolean
 }
 
-export const CarouselCard = forwardRef<HTMLDivElement, CarouselCardProps>(
+export const CarouselCardMobile = forwardRef<HTMLDivElement, CarouselCardProps>(
   ({ img, title, description, subtitle, isActive, href }, ref) => {
     const t = useTranslations()
     const isMobile = useMobileDetection()
@@ -26,13 +26,12 @@ export const CarouselCard = forwardRef<HTMLDivElement, CarouselCardProps>(
       <div
         ref={ref}
         className={cn(
-          'relative flex snap-center flex-col items-center justify-center gap-12 px-6 py-8 w-[22.5rem] min-w-[22.5rem] h-[37.5rem] ',
+          'flex flex-col items-center justify-center gap-6 w-[296px] px-5 py-6  h-[453px] ',
           {
             'opacity-40': !isActive,
             'opacity-100': isActive,
           },
         )}
-        style={{ scrollSnapAlign: 'center' }}
       >
         <div className='relative md:w-[8.75rem] md:h-[8.75rem] w-24 h-24'>
           <Image
@@ -75,4 +74,4 @@ export const CarouselCard = forwardRef<HTMLDivElement, CarouselCardProps>(
   },
 )
 
-CarouselCard.displayName = 'CarouselCard'
+CarouselCardMobile.displayName = 'CarouselCardMobile'

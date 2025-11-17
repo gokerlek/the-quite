@@ -9,6 +9,7 @@ import { useTranslations } from 'use-intl'
 
 import { CarouselCard } from '@/components/home/carouselCard'
 import { buttonVariants } from '@/components/ui/button'
+import { list } from '@/data/homeCarouselData'
 import { cn } from '@/lib/utils'
 
 // Helpers moved to module scope to avoid useEffect dependency noise
@@ -21,48 +22,6 @@ const getCardCenterViewportX = (el: HTMLDivElement | null) => {
 
   return rect.left + rect.width / 2
 }
-
-const homeCarouselData = [
-  {
-    img: '/home/community-events.svg',
-    title: 'community_events.title',
-    subtitle: 'community_events.subtitle',
-    description: 'community_events.desc',
-    href: '/socaity-events',
-  },
-  {
-    img: '/home/journey-design.svg',
-    title: 'journey_design.title',
-    subtitle: 'journey_design.subtitle',
-    description: 'journey_design.desc',
-    href: '/journey-design',
-  },
-  {
-    img: '/home/event-organization.svg',
-    title: 'event_organization.title',
-    subtitle: 'event_organization.subtitle',
-    description: 'event_organization.desc',
-    href: '/event-organization',
-  },
-]
-
-const list = [
-  ...homeCarouselData,
-  ...homeCarouselData,
-  ...homeCarouselData,
-  ...homeCarouselData,
-  ...homeCarouselData,
-  ...homeCarouselData,
-  ...homeCarouselData,
-  ...homeCarouselData,
-  ...homeCarouselData,
-  ...homeCarouselData,
-  ...homeCarouselData,
-  ...homeCarouselData,
-  ...homeCarouselData,
-  ...homeCarouselData,
-  ...homeCarouselData,
-]
 
 export const HomeCarousel = () => {
   const t = useTranslations()
@@ -188,7 +147,7 @@ export const HomeCarousel = () => {
         )
       })}
 
-      <div className='fixed top-1/2 left-1/2 z-30 border border-offblack-950 w-[22.5rem] min-w-[22.5rem] h-[37.5rem] -translate-x-1/2 -translate-y-1/2 bg-transparent  md:block block'>
+      <div className='fixed top-1/2 left-1/2 z-30 border border-offblack-950 w-[22.5rem] min-w-[22.5rem] h-[37.5rem] -translate-x-1/2 -translate-y-1/2 bg-transparent  md:block block pointer-events-none'>
         <Link
           className={cn(
             buttonVariants(),
