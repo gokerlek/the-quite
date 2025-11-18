@@ -13,7 +13,9 @@ export default function ContactPage() {
       <div className='flex flex-row md:gap-24 gap-5 max-h-645px h-full'>
         <div className='flex flex-1 flex-col justify-between  h-full'>
           <div className='flex flex-col md:ap-6 gap-3'>
-            <div className='heading-s md:heading-m'>{t('title')}</div>
+            <div className='heading-s-light md:heading-m whitespace-break-spaces md:whitespace-normal'>
+              {t('title')}
+            </div>
 
             <Link
               href='mailto:info@thequiet.com'
@@ -21,25 +23,25 @@ export default function ContactPage() {
                 e.preventDefault()
                 window.location.href = 'mailto:info@thequiet.com'
               }}
-              className='underline underline-offset-5 decoration-1 hover:underline-offset-4 cursor-pointer'
+              className='cursor-pointer'
             >
-              <div className='underline underline-offset-5 decoration-1 hover:underline-offset-4 cursor-pointer md:p-l p-xs'>
-                {t('link')}
-              </div>
+              <div className=' cursor-pointer md:p-l p-xs'>{t('link')}</div>
             </Link>
           </div>
 
           <div className='flex flex-col gap-6 md:items-end items-start'>
             <div className='flex flex-col gap-5 md:items-end'>
-              <div className='relative w-16 h-8'>
+              <div className='relative md:w-16 md:h-8 w-11 h-7'>
                 <Image src='/contact/icon.svg' fill className='object-cover' alt='icon' />
               </div>
 
-              <div className='md:text-end text-start p-m md:p-l'>{t('mail')}</div>
+              <div className='md:text-end text-start p-xs md:p-l'>{t('mail')}</div>
             </div>
 
-            <div className='whitespace-pre-line md:text-end text-start md:p-l p-m'>
-              {t('address')}
+            <div className='whitespace-pre-line text-end  p-l md:block hidden'>{t('address')}</div>
+
+            <div className='whitespace-break-spaces text-start  p-xs md:hidden block'>
+              {t('address-mobile')}
             </div>
           </div>
         </div>

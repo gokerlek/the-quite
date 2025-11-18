@@ -27,10 +27,11 @@
   },
   "description": "Description",
   "contact": {
-    "title": "project inquiries",
-    "link": "Let's Talk Quiet",
+    "title": "project \ninquiries",
+    "link": "Let's Talk Quietly",
     "mail": "info@thequiet.com",
-    "address": "Via Guantai Nuovi 72, Lago Patria\n80014 Napoli, ITALY"
+    "address": "Via Guantai Nuovi 72, Lago Patria\n80014 Napoli, ITALY",
+    "address-mobile": "Via Guantai Nuovi 72,\n Lago Patria 80014\n Napoli, ITALY"
   },
   "about": {
   "team": "team",
