@@ -181,7 +181,7 @@ export default function AboutPage() {
         id='green'
         className='w-full h-dvh  z-10 flex flex-col  items-center py-20 gap-10'
       >
-        <div className='uppercase heading-m-light'>{t('team')}</div>
+        <div className='uppercase heading-xs-light md:heading-m-light'>{t('team')}</div>
 
         {isMoble ? <MobileTeamList /> : <TeamList />}
       </section>

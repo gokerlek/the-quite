@@ -23,7 +23,7 @@ export const MobileTeamMember = ({ member, id, onDiscover }: MobileTeamMemberPro
       onClick={onDiscover}
     >
       <motion.div layoutId={`title-${member.name}-${member.surname}-${id}`}>
-        <div className='group-hover:font-medium heading-s-light cursor-default block text-center'>
+        <div className='group-hover:font-medium heading-xxs-light cursor-default block text-center'>
           {text
             .replace('name', member.name)
             .replace('surname', member.surname)

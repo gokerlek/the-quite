@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { motion } from 'motion/react'
 
 import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 import { Member } from './teamList'
 
@@ -22,7 +23,7 @@ export const MobileTeamMemberModal = ({ member, id, onClose }: MobileTeamMemberM
     <div className='absolute grid place-items-center z-[100] bg-offblack-50 h-[calc(100vh-10rem)] overflow-y-scroll '>
       <motion.div className='w-full flex flex-col items-center gap-5 h-screen mb-20'>
         <motion.div
-          className='relative w-44 h-44 min-w-44 aspect-square  min-h-44 '
+          className='relative w-36 h-36 min-w-36 aspect-square  min-h-36 '
           layoutId={`image-${member.name}-${member.surname}-${id}`}
         >
           <Image
@@ -34,7 +35,7 @@ export const MobileTeamMemberModal = ({ member, id, onClose }: MobileTeamMemberM
         </motion.div>
 
         <motion.div layoutId={`title-${member.name}-${member.surname}-${id}`}>
-          <div className='heading-s-medium text-center'>
+          <div className='heading-xxs-medium text-center'>
             {text
               .replace('name', member.name)
               .replace('surname', member.surname)
@@ -47,7 +48,7 @@ export const MobileTeamMemberModal = ({ member, id, onClose }: MobileTeamMemberM
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className='p-l-regular text-center '
+          className='p-xs text-center  mx-10'
         >
           {member.sum}
         </motion.div>
@@ -62,9 +63,12 @@ export const MobileTeamMemberModal = ({ member, id, onClose }: MobileTeamMemberM
               href={link.link}
               target='_blank'
               rel='noopener noreferrer'
-              className={buttonVariants({
-                variant: 'outline',
-              })}
+              className={cn(
+                buttonVariants({
+                  variant: 'outline',
+                }),
+                'text-xs h-8 px-3',
+              )}
             >
               {link.name}
             </motion.a>
@@ -74,9 +78,12 @@ export const MobileTeamMemberModal = ({ member, id, onClose }: MobileTeamMemberM
         <motion.button
           layoutId={`button-${member.name}-${member.surname}-${id}`}
           onClick={onClose}
-          className={buttonVariants({
-            variant: 'outline',
-          })}
+          className={cn(
+            buttonVariants({
+              variant: 'outline',
+            }),
+            'text-xs h-8 px-3',
+          )}
         >
           Close
         </motion.button>

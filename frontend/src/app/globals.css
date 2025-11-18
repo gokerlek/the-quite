@@ -152,6 +152,8 @@
     --text-head-l: 2rem;     --leading-head-l: 2.5rem; /* 32px / 40px */
     --text-head-m: 1.5rem;   --leading-head-m: 2rem; /* 24px / 32px */
     --text-head-s: 1.25rem;  --leading-head-s: 1.5rem; /* 20px / 24px */
+    --text-head-xs: 1.125rem; --leading-head-xs: 1.5rem; /* 18px / 24px */
+    --text-head-xxs: 1rem;   --leading-head-xxs: 1.5rem; /* 16px / 24px */
 
     /* Paragraphs */
     --text-p-xl: 1.5rem;   --leading-p-xl: 2rem; /* 24px / 32px */
@@ -203,6 +205,16 @@ body {
 @utility heading-s-light     { font-size: var(--text-head-s); line-height: var(--leading-head-s); @apply font-lemon font-light; }
 @utility heading-s-medium    { font-size: var(--text-head-s); line-height: var(--leading-head-s); @apply font-lemon font-medium; }
 @utility heading-s-bold      { font-size: var(--text-head-s); line-height: var(--leading-head-s); @apply font-lemon font-bold; }
+
+@utility heading-xs          { font-size: var(--text-head-xs); line-height: var(--leading-head-xs); @apply font-lemon font-normal; }
+@utility heading-xs-light    { font-size: var(--text-head-xs); line-height: var(--leading-head-xs); @apply font-lemon font-light; }
+@utility heading-xs-medium   { font-size: var(--text-head-xs); line-height: var(--leading-head-xs); @apply font-lemon font-medium; }
+@utility heading-xs-bold     { font-size: var(--text-head-xs); line-height: var(--leading-head-xs); @apply font-lemon font-bold; }
+
+@utility heading-xxs          { font-size: var(--text-head-xxs); line-height: var(--leading-head-xxs); @apply font-lemon font-normal; }
+@utility heading-xxs-light    { font-size: var(--text-head-xxs); line-height: var(--leading-head-xxs); @apply font-lemon font-light; }
+@utility heading-xxs-medium   { font-size: var(--text-head-xxs); line-height: var(--leading-head-xxs); @apply font-lemon font-medium; }
+@utility heading-xxs-bold     { font-size: var(--text-head-xxs); line-height: var(--leading-head-xxs); @apply font-lemon font-bold; }
 
 /* ===============================
    PARAGRAPHS (Lemon)
