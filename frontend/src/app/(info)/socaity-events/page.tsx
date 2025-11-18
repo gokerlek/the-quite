@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useMemo, useRef } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
@@ -19,6 +19,7 @@ export default function EventsPage() {
   const isMobile = useMobileDetection()
   const router = useRouter()
   const t = useTranslations('events')
+  const augustRef = useRef<HTMLDivElement>(null)
 
   const { currentIndex, containerRef, currentWordRef, nextWordRef } = useWordChangeAnimation({
     words,
@@ -27,31 +28,39 @@ export default function EventsPage() {
     autoPlayInterval: 2500,
   })
 
-  // Poster animasyonu için ScrollTrigger
+  // AUGUST tepeye dayandığında smooth poster animasyonu
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
     ScrollTrigger.create({
+      trigger: '#second-section',
+      start: 'top top',
+      pin: '#second-section',
+    })
+
+    // AUGUST tepeye dayandığında otomatik timeline başlat
+    ScrollTrigger.create({
       trigger: '#agust',
       start: 'top top',
-      end: '+=2000',
-      scrub: 2,
-      pin: '#second-section',
-      onUpdate: (self) => {
-        const progress = self.progress
-        const width = 100 - progress * 75
+      onEnter: () => {
+        const timeline = gsap.timeline()
+        const targetWidth = window.innerHeight * 0.7 * (2 / 3) // Aspect ratio 2:3
 
-        gsap.set('#poster', {
-          width: `${width}%`,
+        timeline.to('#poster', {
+          width: `${targetWidth}px`,
+          duration: 2,
+          ease: 'power2.out',
           transformOrigin: 'top center',
         })
       },
-      onEnter: () => {
-        // AUGUST yukarı dayandığında otomatik scroll başlat
-        gsap.to(window, {
-          scrollTo: { y: '+=2000', autoKill: false },
-          duration: 3,
-          ease: 'power2.inOut',
+      onLeaveBack: () => {
+        const timeline = gsap.timeline()
+
+        timeline.to('#poster', {
+          width: '100%',
+          duration: 2,
+          ease: 'power2.out',
+          transformOrigin: 'top center',
         })
       },
     })
@@ -89,9 +98,9 @@ export default function EventsPage() {
 
       <section
         id='second-section'
-        className='flex flex-col items-center justify-start sticky top-10 text-5xl md:text-120 font-[300] font-lemon'
+        className='flex flex-col items-center justify-start sticky top-10 text-5xl md:text-120 font-[300] font-lemon h-screen max-h-screen'
       >
-        <div id='agust' className='text-richcarmine-800'>
+        <div ref={augustRef} id='agust' className='text-richcarmine-800'>
           AUGUST
         </div>
 
