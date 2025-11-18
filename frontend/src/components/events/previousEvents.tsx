@@ -124,9 +124,13 @@ export const PreviousEvents = () => {
                   key={event.id}
                   className='absolute'
                   animate={{
-                    x: position * (isMobile ? 240 : 420),
+                    x: position * (isMobile ? 240 : 320),
                     scale: isActive ? 1 : isMobile ? 0.8 : 0.6,
                     opacity: isActive ? 1 : 0.6,
+                  }}
+                  style={{
+                    transformOrigin:
+                      position < 0 ? 'right center' : position > 0 ? 'right center' : 'center',
                   }}
                   transition={{
                     duration: 0.6,
