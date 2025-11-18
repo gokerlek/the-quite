@@ -23,7 +23,7 @@ export default function ContactPage() {
                 e.preventDefault()
                 window.location.href = 'mailto:info@thequiet.com'
               }}
-              className='cursor-pointer'
+              className='cursor-pointer hover:opacity-70 transition-opacity duration-300'
             >
               <div className=' cursor-pointer md:p-l p-xs'>{t('link')}</div>
             </Link>
