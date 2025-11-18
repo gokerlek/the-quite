@@ -4,7 +4,7 @@ export function TheQuiteWordmarkWhite() {
   return (
     <section
       id='the_quite_white'
-      className='absolute md:bottom-[10rem] bottom-[6rem] left-1/2 -translate-x-1/2 translate-y-1/2 z-20 opacity-0 pointer-events-none md:w-480px w-[17.5rem] '
+      className='absolute md:bottom-[10rem] bottom-[6rem] left-1/2 -translate-x-1/2 translate-y-1/2 z-20 opacity-0 pointer-events-none md:w-480px w-[12rem] '
     >
       <svg
         viewBox='0 0 480 240'

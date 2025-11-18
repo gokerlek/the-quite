@@ -39,7 +39,8 @@
   },
   "preloader": {
 
-    "desc": "We are **the** curators of **the** moment.\nSeekers of **the** unforgettable.\nWe are **the** quiet.\nIt's a society, ıt's a journey."
+    "desc": "We are **the** curators of **the** moment.\nSeekers of **the** unforgettable.\nWe are **the** quiet.\nIt's a society, ıt's a journey.",
+    "desc_mobile": "We are **the** curators\n of **the** moment.\nSeekers of **the** \nunforgettable.\nWe are **the** quiet.\nIt's a society,\n ıt's a journey."
   },
   "events": {
     "button": "REQUEST AN INVITATION",
