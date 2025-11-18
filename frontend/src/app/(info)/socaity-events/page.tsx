@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
@@ -11,53 +11,21 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTranslations } from 'use-intl'
 
 import { Button } from '@/components/ui/button'
+import { useMobileDetection } from '@/hooks/useMobileDetection'
 import { useWordChangeAnimation } from '@/hooks/useWordChangeAnimation'
 
 export default function EventsPage() {
   const words = useMemo(() => ['world', 'moment', 'action', 'science'], [])
-  const [isMobile, setIsMobile] = useState(false)
+  const isMobile = useMobileDetection()
   const router = useRouter()
   const t = useTranslations('events')
 
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-
-    checkIsMobile()
-    window.addEventListener('resize', checkIsMobile)
-
-    return () => window.removeEventListener('resize', checkIsMobile)
-  }, [])
-
-  const { currentIndex, containerRef, currentWordRef, nextWordRef, hasCompletedCycle } =
-    useWordChangeAnimation({
-      words,
-      scrollThreshold: 100,
-      autoPlay: isMobile,
-      autoPlayInterval: 2500,
-    })
-
-  // Mobilde tüm kelimeler geçene kadar scroll'u engelle
-  useEffect(() => {
-    if (!isMobile) return
-
-    const preventScroll = (e: TouchEvent | WheelEvent) => {
-      if (!hasCompletedCycle) {
-        e.preventDefault()
-      }
-    }
-
-    if (!hasCompletedCycle) {
-      document.addEventListener('touchmove', preventScroll, { passive: false })
-      document.addEventListener('wheel', preventScroll, { passive: false })
-    }
-
-    return () => {
-      document.removeEventListener('touchmove', preventScroll)
-      document.removeEventListener('wheel', preventScroll)
-    }
-  }, [isMobile, hasCompletedCycle])
+  const { currentIndex, containerRef, currentWordRef, nextWordRef } = useWordChangeAnimation({
+    words,
+    scrollThreshold: 100,
+    autoPlay: isMobile,
+    autoPlayInterval: 2500,
+  })
 
   // Poster animasyonu için ScrollTrigger
   useGSAP(() => {

@@ -20,7 +20,6 @@ interface UseWordChangeAnimationReturn {
   containerRef: RefObject<HTMLDivElement | null>
   currentWordRef: RefObject<HTMLSpanElement | null>
   nextWordRef: RefObject<HTMLSpanElement | null>
-  hasCompletedCycle: boolean
 }
 
 export function useWordChangeAnimation({
@@ -31,7 +30,6 @@ export function useWordChangeAnimation({
 }: UseWordChangeAnimationOptions): UseWordChangeAnimationReturn {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
-  const [hasCompletedCycle, setHasCompletedCycle] = useState(false)
 
   const containerRef = useRef<HTMLDivElement>(null)
   const currentWordRef = useRef<HTMLSpanElement>(null)
@@ -111,25 +109,12 @@ export function useWordChangeAnimation({
       if (!isAnimating) {
         const nextIndex = (currentIndex + 1) % words.length
 
-        // İlk turunu tamamladığını işaretle
-        if (currentIndex === words.length - 1 && !hasCompletedCycle) {
-          setHasCompletedCycle(true)
-        }
-
         animateWordChange(nextIndex, 'down')
       }
     }, autoPlayInterval)
 
     return () => clearInterval(interval)
-  }, [
-    autoPlay,
-    autoPlayInterval,
-    currentIndex,
-    isAnimating,
-    words.length,
-    animateWordChange,
-    hasCompletedCycle,
-  ])
+  }, [autoPlay, autoPlayInterval, currentIndex, isAnimating, words.length, animateWordChange])
 
   // Wheel event for desktop
   useEffect(() => {
@@ -158,6 +143,5 @@ export function useWordChangeAnimation({
     containerRef,
     currentWordRef,
     nextWordRef,
-    hasCompletedCycle,
   }
 }
