@@ -147,7 +147,7 @@ export const HomeCarousel = () => {
         )
       })}
 
-      <div className='fixed top-1/2 left-1/2 z-30 border border-offblack-950 w-[22.5rem] min-w-[22.5rem] h-[37.5rem] -translate-x-1/2 -translate-y-1/2 bg-transparent  md:block block pointer-events-none'>
+      <div className='fixed top-1/2 left-1/2 z-30 border border-offblack-950 w-[22.5rem] min-w-[22.5rem] h-[37.5rem] -translate-x-1/2 -translate-y-1/2 bg-transparent  md:block block '>
         <Link
           className={cn(
             buttonVariants(),

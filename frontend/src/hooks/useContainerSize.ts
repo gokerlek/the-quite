@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { useMobileDetection } from '@/hooks/useMobileDetection'
 
-export const useContainerSize = () => {
+export const useContainerSize = ({ isWideScreen }: { isWideScreen?: boolean } = {}) => {
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
   const isMobile = useMobileDetection()
 
@@ -13,7 +13,13 @@ export const useContainerSize = () => {
       const svgRatio = isMobile ? 375 / 852 : 1440 / 1024
       const screenRatio = screenWidth / screenHeight
 
-      if (screenRatio > svgRatio) {
+      if (isWideScreen) {
+        // Geniş ekranlar için genişliğe göre boyutlandır
+        const width = screenWidth
+        const height = width / svgRatio
+
+        setContainerSize({ width, height })
+      } else if (screenRatio > svgRatio) {
         // Geniş ekran: yüksekliğe göre boyutlandır
         const height = screenHeight
         const width = height * svgRatio
@@ -32,7 +38,7 @@ export const useContainerSize = () => {
     window.addEventListener('resize', calculateSize)
 
     return () => window.removeEventListener('resize', calculateSize)
-  }, [isMobile])
+  }, [isMobile, isWideScreen])
 
   return { containerSize }
 }

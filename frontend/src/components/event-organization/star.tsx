@@ -4,6 +4,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 
 interface StarProps {
+  strokeWidth?: number
   animationEnabled?: boolean
   animationDelay?: number
   d: {
@@ -13,7 +14,13 @@ interface StarProps {
   id: string
 }
 
-export const Star = ({ animationEnabled = true, animationDelay = 0, d, id }: StarProps) => {
+export const Star = ({
+  animationEnabled = true,
+  animationDelay = 0,
+  d,
+  id,
+  strokeWidth,
+}: StarProps) => {
   const groupRef = useRef<SVGGElement>(null)
 
   // Wave/Ripple Animation
@@ -50,7 +57,7 @@ export const Star = ({ animationEnabled = true, animationDelay = 0, d, id }: Sta
         d={d.base}
         fill='#EDEDED'
         stroke='#F0002C'
-        strokeWidth='2'
+        strokeWidth={strokeWidth ?? 2}
         strokeLinecap='round'
         strokeLinejoin='round'
       />
@@ -62,7 +69,7 @@ export const Star = ({ animationEnabled = true, animationDelay = 0, d, id }: Sta
           d={d.star}
           fill='#F0002C'
           stroke='#F0002C'
-          strokeWidth='2'
+          strokeWidth={strokeWidth ?? 2}
           strokeLinecap='round'
           strokeLinejoin='round'
           opacity='0'
