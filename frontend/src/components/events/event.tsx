@@ -13,12 +13,14 @@ export default function Event({
   validateOnChange,
 }: EventProps) {
   return (
-    <div className='flex flex-col lg:flex-row md:gap-24 gap-5 h-dvh w-full  items-center'>
-      <div className=' relative aspect-[4/5] w-1/2 md:w-1/3'>
+    <div className='flex flex-col lg:flex-row md:gap-24 gap-10 h-dvh min-h-fit w-full  items-center mb-20 md:mb-0'>
+      <div className='block md:hidden h-20 min-h-20' />
+
+      <div className=' relative aspect-2/3 md:aspect-[4/5] w-[80vw] md:w-1/3'>
         <Image src='/events/mock.png' alt={imageAlt} fill className='object-ccntain' />
       </div>
 
-      <div className='flex flex-1 flex-col justify-between'>
+      <div className='flex flex-1 flex-col justify-between w-full'>
         <div className='flex flex-col gap-8'>
           <EventForm
             onSubmit={onSubmit}

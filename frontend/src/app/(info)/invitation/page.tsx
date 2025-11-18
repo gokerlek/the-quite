@@ -8,7 +8,7 @@ export default function InvitationPage() {
     <>
       <Event />
 
-      <div className='flex flex-col gap-10 w-full text-xl h-dvh items-center '>
+      <div className='flex flex-col gap-10 w-full text-xl h-dvh min-h-dvh items-center '>
         <PreviousEvents />
       </div>
     </>

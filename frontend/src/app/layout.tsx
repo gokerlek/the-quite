@@ -8,7 +8,7 @@ import Header from '@/components/layout/header'
 
 import Providers from './providers'
 
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 
 import './globals.css'
 
@@ -26,6 +26,13 @@ const inconsolata = Inconsolata({
   variable: '--font-inconsolata',
   subsets: ['latin'],
 })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+}
 
 export const metadata: Metadata = {
   title: 'The Quiet',

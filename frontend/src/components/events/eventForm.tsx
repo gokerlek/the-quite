@@ -8,6 +8,7 @@ import { useTranslations } from 'use-intl'
 
 import { Button } from '@/components/ui/button'
 import Text from '@/components/ui/text'
+import { useMobileDetection } from '@/hooks/useMobileDetection'
 import { cn } from '@/lib/utils'
 
 import { DEFAULT_ROLE_OPTIONS } from './constants'
@@ -18,6 +19,7 @@ export default function EventForm({
   validateOnChange = true,
   roleOptions = DEFAULT_ROLE_OPTIONS,
 }: EventFormProps) {
+  const isMobile = useMobileDetection()
   const t = useTranslations('events')
 
   const { register, handleSubmit, watch } = useForm<EventFormData>({
@@ -32,8 +34,6 @@ export default function EventForm({
 
   const handleFormSubmit = async (data: EventFormData) => {
     try {
-      console.log('Submitting event form:', data)
-
       // Send form data to email API
       const response = await fetch('/api/send-email', {
         method: 'POST',
@@ -49,8 +49,6 @@ export default function EventForm({
         throw new Error(result.error || 'Failed to submit form')
       }
 
-      // Handle success
-      console.log('Email sent successfully:', result.messageId)
       toast.success(
         'Thank you for your interest! We have received your registration and will contact you soon.',
       )
@@ -64,9 +62,9 @@ export default function EventForm({
   const { role } = watch()
 
   const inputClassName =
-    'border-b outline-none bg-transparent text-offblack-950  font-inconsolata font-normal text-2xl placeholder:text-offblack-950/30 px-2 py-0.5 mx-5   flex-1 min-w-0 [&>option[disabled]]:text-offblack-950/30'
+    'border-b outline-none bg-transparent text-offblack-950  font-inconsolata font-normal text-xs md:text-2xl placeholder:text-offblack-950/30 px-2 py-0.5 mx-1 md:mx-5   flex-1 min-w-0 [&>option[disabled]]:text-offblack-950/30'
 
-  const formSentence = t.raw('sentence_form')
+  const formSentence = t.raw(isMobile ? 'sentence_form_mobile' : 'sentence_form')
 
   const renderFormSentence = () => {
     const lines = formSentence.split('\n')
@@ -80,7 +78,7 @@ export default function EventForm({
             <input
               key={partIndex}
               type='text'
-              className={cn(inputClassName)}
+              className={cn(inputClassName, 'mr-0 md:mr-0')}
               {...register('name', { required: true })}
             />
           )
@@ -89,7 +87,7 @@ export default function EventForm({
             <input
               key={partIndex}
               type='text'
-              className={cn(inputClassName)}
+              className={cn(inputClassName, 'mr-0')}
               {...register('occupation', { required: true })}
             />
           )
@@ -97,7 +95,7 @@ export default function EventForm({
           return (
             <select
               key={partIndex}
-              className={cn(inputClassName, {
+              className={cn(inputClassName, 'md:ml-0', {
                 'text-offblack-950/30  border-offblack-950': isEmpty(role),
               })}
               {...register('role', { required: true })}
@@ -119,7 +117,7 @@ export default function EventForm({
               key={partIndex}
               type='text'
               placeholder='email@email.com'
-              className={cn(inputClassName)}
+              className={cn(inputClassName, 'mx-0 md:mr-0')}
               {...register('email', {
                 required: true,
                 pattern:
@@ -141,8 +139,8 @@ export default function EventForm({
   }
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className='flex flex-col gap-6'>
-      <div className='text-offblack-950 font-inconsolata font-normal text-2xl leading-relaxed flex flex-col gap-4'>
+    <form onSubmit={handleSubmit(handleFormSubmit)} className='flex flex-col gap-6 w-full'>
+      <div className='text-offblack-950 font-inconsolata font-normal text-xs md:text-2xl leading-relaxed flex flex-col gap-4 w-full'>
         {renderFormSentence()}
       </div>
 

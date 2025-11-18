@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import { useTranslations } from 'use-intl'
 
 import { Button } from '@/components/ui/button'
+import { useMobileDetection } from '@/hooks/useMobileDetection'
 
 const data = [
   {
@@ -56,6 +57,7 @@ const data = [
 export const PreviousEvents = () => {
   const t = useTranslations('events')
   const [currentIndex, setCurrentIndex] = useState(0)
+  const isMobile = useMobileDetection()
 
   const handlePrev = () => {
     if (currentIndex > 0) {
@@ -72,23 +74,76 @@ export const PreviousEvents = () => {
   // const text = 'count/total'
 
   return (
-    <div className='flex h-[39.375rem] my-auto w-full gap-10'>
-      {/* Left Content Area */}
-      <div className='w-2/5  flex flex-col justify-between '>
-        <div className='flex flex-col gap-4'>
-          <div className='heading-s-light'>{t('previous_events')}</div>
+    <>
+      <div className='block md:hidden h-20 min-h-20' />
 
-          {/*<h2 className='text-7xl font-lemon mb-4'>*/}
-          {/*  {text*/}
-          {/*    .replace('count', (currentIndex + 1) as unknown as string)*/}
-          {/*    .replace('total', data.length as unknown as string)}*/}
-          {/*</h2>*/}
+      <div className='flex md:flex-row flex-col md:h-[39.375rem] h-fit  md:my-auto w-full gap-10'>
+        {/* Left Content Area */}
+        <div className='w-full md:w-2/5  flex flex-col justify-between '>
+          <div className='flex flex-col gap-4'>
+            <div className='heading-xxs-light md:heading-s-light'>{t('previous_events')}</div>
 
-          <div className='p-l'>{data[currentIndex].desc}</div>
+            <div className='p-xs md:p-l'>{data[currentIndex].desc}</div>
+          </div>
+
+          {/* Navigation Controls */}
+          <div className='md:flex gap-1 hidden'>
+            <Button
+              variant='outline'
+              onClick={handlePrev}
+              disabled={currentIndex === 0}
+              className='px-2'
+            >
+              <div className='relative h-9 w-9'>
+                <Image src='/events/left.svg' alt='left' fill className='object-cover' />
+              </div>
+            </Button>
+
+            <Button
+              variant='outline'
+              onClick={handleNext}
+              disabled={currentIndex === data.length - 1}
+              className='px-2'
+            >
+              <div className='relative h-9 w-9'>
+                <Image src='/events/right.svg' alt='left' fill className='object-cover' />
+              </div>
+            </Button>
+          </div>
+        </div>
+
+        {/* Right Carousel Area */}
+        <div className='w-[90vw] md:w-3/5 relative overflow-hidden'>
+          <div className='carousel-container md:h-full h-[23.75rem] flex items-start justify-start'>
+            {data.map((event, index) => {
+              const position = index - currentIndex
+              const isActive = index === currentIndex
+
+              return (
+                <motion.div
+                  key={event.id}
+                  className='absolute'
+                  animate={{
+                    x: position * (isMobile ? 240 : 420),
+                    scale: isActive ? 1 : isMobile ? 0.8 : 0.6,
+                    opacity: isActive ? 1 : 0.6,
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    ease: [0.25, 0.1, 0.25, 1],
+                  }}
+                >
+                  <div className='aspect-[2/3] md:w-[26.25rem] w-64 relative'>
+                    <Image src={event.img} alt={event.name} fill className='object-cover' />
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
         </div>
 
         {/* Navigation Controls */}
-        <div className='flex gap-1'>
+        <div className='flex justify-center gap-1 md:hidden'>
           <Button
             variant='outline'
             onClick={handlePrev}
@@ -112,36 +167,6 @@ export const PreviousEvents = () => {
           </Button>
         </div>
       </div>
-
-      {/* Right Carousel Area */}
-      <div className='w-3/5 relative overflow-hidden'>
-        <div className='carousel-container h-full flex items-start justify-start'>
-          {data.map((event, index) => {
-            const position = index - currentIndex
-            const isActive = index === currentIndex
-
-            return (
-              <motion.div
-                key={event.id}
-                className='absolute'
-                animate={{
-                  x: position * 340,
-                  scale: isActive ? 1 : 0.4,
-                  opacity: isActive ? 1 : 0.6,
-                }}
-                transition={{
-                  duration: 0.6,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
-              >
-                <div className='aspect-[2/3] w-[26.25rem] relative'>
-                  <Image src={event.img} alt={event.name} fill className='object-cover' />
-                </div>
-              </motion.div>
-            )
-          })}
-        </div>
-      </div>
-    </div>
+    </>
   )
 }
