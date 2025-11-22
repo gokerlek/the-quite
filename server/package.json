@@ -19,6 +19,7 @@
     "@strapi/plugin-users-permissions": "5.23.3",
     "@strapi/strapi": "5.23.3",
     "better-sqlite3": "11.3.0",
+    "pg": "^8.16.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
@@ -28,6 +29,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "node-gyp": "^12.1.0",
     "typescript": "^5"
   },
   "engines": {
